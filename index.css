@@ -42,7 +42,7 @@ rgb(217, 137, 108)*/
 }
 
 p,
-li {
+li, a {
     font-family: var(--secondary-font);
     line-height: 2;
     font-size: 15px;
@@ -252,7 +252,7 @@ footer {
 @media only screen and (max-width: 1024px) {
     .row {
         width: 100%;
-        padding: 40px 20px;
+        padding: 40px;
         margin: auto;
     }
 
