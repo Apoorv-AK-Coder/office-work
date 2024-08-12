@@ -1,0 +1,115 @@
+.desktop-logo img {width: 80%;}
+.navbar-nav{padding:8px 0;}
+nav.navbar{padding-bottom:0;}
+.nav-number i{font-size:14px;}
+.top{display:none;}
+.form-bg label{color:#fff;}
+.form-bg input.btn{background:#eb9102;}
+.form-bg .tab-content{background:rgba(0,0,0,.6); padding:10px 0 0!important;}
+.form-bg .type-bg>span+span{margin-left:15px;}
+.form-bg .type-bg > span input[type=radio]{position:absolute; top:2px; margin:0;}
+.form-bg .type-bg > span label{padding-left:15px;}
+.form-bg .checkbox input[type=checkbox] {margin-top: 2px;}
+.form-bg .checkbox{margin:0;}
+.usp_sec .usp_inner ul li .usp_txt span{display:block;}
+.usp_sec .usp_inner ul li .usp_txt br{display:none;}
+.usp_sec .usp_inner ul li{padding:15px 10px; margin-right:2%; width:23.5%;}
+.usp_sec .usp_inner ul li:last-of-type{margin:0;}
+.usp_sec .usp_inner ul li .usp_txt{margin:5px 0 0 0;}
+.destWrapper a{box-shadow:0px 2px 5px #000; background-position:center center; background-size:cover;}
+.destWrapper a .destOverlay{z-index:1;}
+.destWrapper .destName{z-index:2; top: 75%; left: 50%; transform: translate(-50%,-50%); text-align:center; text-shadow:0 2px 5px #000; transition:ease-in-out .5s;}
+.destWrapper span{display:none;}
+.destWrapper .destName small{display:block;}
+.destWrapper a:hover .destName {top:65%;}
+.destWrapper a:hover .destOverlay{background:rgba(0,0,0,.5);}
+.footer {background: #00126c; padding:30px 0;}
+.footer h2{color:var(--logoyellow); color:#fff;}
+.footer h2:after{display:none;}
+.footer ul li a{color:#c9c8c8; color:var(--logoblue);}
+.footer ul.social-media{border:0; padding:0;}
+footer .copyright{margin:0; background:#000932;}
+.usp_sec .usp_inner ul{margin:0; padding:0 15px;}
+.wait-popup {margin: 0; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); height:auto;}
+.mob_gif_center{display:none;}
+.new-listing-unit .contract__trip, .new-listing-unit .contract__header{background:#fff;}
+.new-listing-unit .contract__footer{background:#e3f4fb;}
+.left-sec-box{background:#fff;}
+.filter-box section{background:#fff; padding:10px;}
+.filter-box input{margin:0 0 0 0; position:absolute; left:0; top:2px;}
+.by-stop #stopsftr, .by-airline #airline {margin-top: 8px;}
+.by-stop #stopsftr .frow1 label, .filter-box section #departairport .s1, .filter-box section #airlines .s1 {position:relative; padding-left:17px; font-size:12px;}
+.by-stop #stopsftr .frow1 .s1{font-size:1em; font-weight:bold;}
+.filter-box section #flightime, .filter-box section #flightduration, .filter-box section #departairport, .filter-box section #airlines{margin:8px 0 0 0;}
+.why-book{margin:10px 0; background:#fff;}
+.sidebar .flight-summary{background:#019add;}
+ul.nav-wizard li:before, ul.nav-wizard li:after{display:none;}
+ul.nav-wizard li.active{width:100%; text-align:left; background:#162849;}
+.sidebar .flight-summary {background: #162849;}
+ul.nav-wizard li.active a, ul.nav-wizard li.active a:active, ul.nav-wizard li.active a:visited, ul.nav-wizard li.active a:focus{background:none;}
+.new-listing-unit .flight-details-block .msg__flight-time{text-align:center; background:#e3f4fb; padding:3px 5px;}
+.flight-details-block .flight-details__content{padding:0;}
+.new-listing-unit .flight-details-block{padding:10px;}
+.pax-bound-section{padding:0;}
+.pax-wrapper{padding:10px; margin:0; border:0;}
+.pax-wrapper label{display:block;}
+.pax-wrapper .form-group{margin:0 2% 10px 0;}
+.pax-wrapper .pax-title{width:13%;}
+.pax-wrapper .pax-name{width:25.5%;}
+.pax-wrapper .pax-title select, .pax-wrapper .pax-name .form-control{width:100%;}
+.pax-wrapper .pax-dob {width:33%;}
+.pax-dob-box{float:left; width:32%;}
+.pax-dob-box .form-control{width:100%;}
+.pax-dob-box + .pax-dob-box{margin-left:2%;}
+.pax-wrapper .pax-gender{}
+.pax-contact-wr{padding:15px 0 0 0;}
+.pax-contact-wr label{display:block;}
+.pax-contact-wr .form-control{width:100%!important;}
+.pax-contact-wr .note{padding:0 15px 15px; }
+.form-group.radiowidth{margin-bottom:.8rem!important;}
+.cta-1st a{padding:0; width:100%; display:block;}
+.container{width:95%; max-width:1170px;}
+.left-sidebar-wr{padding-left:0;}
+.right-result-wr{padding-right:0;}
+.contract__farebreakup .currency{font-size:2rem; font-weight:bold;}
+.mod-sea-head{font-size:1.8rem;}
+.grand-total-row{background:#f3f3f3;}
+.bookingRef,.pnrRef{color:#000932;}
+.bok-firm-btn{display:inline-block; padding:5px 10px; background-color:#000932; color:#fff; border-radius:5px; font-size:1.2em; font-weight:bold;}
+.bok-firm-btn:hover{background-color:#f9ab30; color:#000932;}
+.white-box-bg-conatiner .booking-message ul li{list-style-type:decimal; font-weight:500;}
+.white-box-bg-conatiner .booking-message>h3{padding-bottom:5px; font-weight:bold;}
+.about-section .para-title {font-size: 1.5em; margin-bottom: 15px !important; color:#0b2241;}
+.about-section .para-title::after{background:#ff8a00;}
+.about-section p{font-size:1.1em; line-height:1.5; margin-bottom:10px!important;}
+.breadcrumbs-description{border-color:#ff8a00;}
+.contact-area .address-items li .icon i{color:#ff8a00; font-size:18px;}
+
+
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .navbar-nav > li > a {padding: 7px 10px;} .navbar-nav > li{padding:0;} .mod-sea-head{font-size:1.5rem;}
+}
+@media screen and (max-width:1025px){.usp_sec .usp_inner ul li .usp_txt br{display:block;} .tel-ftr a{font-size:1em;} .tel-ftr a i{font-size:1.2em;}
+}
+@media screen and (max-width:991px){.container{width:98%;} .logo-ftr{margin-bottom:10px;} .all-cards-footer{margin:0;} .navbar-collapse{display:none!important;}
+.sidebar.col-md-3.no-pad-mobile{padding:0;}
+}
+@media screen and (max-width:892px){.navbar-inverse .navbar-nav > li > a{font-size:14px; padding:4px 8px 0;} .navbar-brand, .navbar{height:auto; min-height:auto;}
+}
+@media only screen and (max-width: 767px) {
+    .navbar {background: #fff!important;} .desktop-logo, .navbar-inverse .navbar-toggle .icon-bar {display: block;} .desktop-logo img {width: 200px;}
+    .navbar-toggle{margin:7px 5px;} .tollfree {display: block; margin:6px 5px 5px 5px;} #menuSample {display: block;} .home-searchbg{background-size:cover;}
+    .usp_sec .usp_inner ul li{width:49%; float:left; margin-bottom:15px;} .usp_sec .usp_inner ul li:nth-child(2n+2){margin-right:0;} .footer .row{margin:0;}
+    .contract__footer.col-xs-12.visible-xs .col-xs-6.pt-10{padding:8px 8px 0!important;} .new-listing-unit .flight-details-link.link-down{padding:0 0 0!important; margin:0!important;}
+    .flight-details-block .segment__boundinfo{padding:0 0 7px;} .new-listing-unit .itinerary__airline .airline__logo{margin:0;}
+    .flight-details-block .itinerary__info{margin:5px 0 0 0;} .flight-details-block .itinerary__info .flight-info__class{float:left; width:auto;}
+    .flight-details-block .itinerary__info .flight-info__alllist{float:right; width:auto; text-align:right;} .form-group.phone{align-items:initial;}
+    .form-group.phone label{padding-left:5px;} .pax-contact-wr .col-xs-12{width:50%;} .pax-contact-wr .note{clear:both; width:100%;}
+}
+@media screen and (max-width:600px){.form-bg .tab-content{background:rgba(0,0,0,.6)!important;} .form-group{margin-bottom:10px!important;} footer{padding:0;}
+.trendinghody .col-md-3.col-sm-6{padding:0 5px;} .pax-wrapper .form-group{display:inline-block!important;} .pax-wrapper .pax-title {width: 40%;}
+.pax-wrapper .pax-name {width: 100%;} .pax-wrapper .pax-dob, .pax-wrapper .pax-gender, .pax-contact-wr .col-xs-12 {width: 100%;}
+}
+@media screen and (max-width:480px){header{min-height:auto;}  .home-searchbg .form-group {padding: 0 10px;}
+}

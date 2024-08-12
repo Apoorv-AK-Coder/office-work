@@ -1,0 +1,298 @@
+﻿@model TravelSite.Models.BookingConfirm
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Flight Confirmation";
+    var _Items = Model.Itinerary;
+    var SectorDept = _Items.Sectors.Where(x => x.IsReturn.ToString().ToLower() == "false").ToList();
+    var SectorRet = _Items.Sectors.Where(x => x.IsReturn.ToString().ToLower() == "true").ToList();
+    DateTime firstSegmentArrTime = DateTime.Now;
+    var passenger = Model.Pax;
+
+}
+<section class="bg_grey">
+    <div class="container pt-20 pb-20">
+        <div class="white-box-bg-conatiner">
+            <h3 class="title-head"><i class="fa fa-thumbs-up" aria-hidden="true"></i>BOOKING CONFIRMATION</h3>
+            <div class="booking-message text-center">
+                <p><strong>Thank you</strong>Your reservation is booked, and tickets confirmed. Tickets will be sent to the email address you supplied within 24 hours.</p>
+
+                <p class="p-0 m-0">If you have not received your tickets after this time, or you require any further assistance, please contact us on <a href="tel:866-699-8919">+866-699-8919</a> or email <a href="mailto:support@faressaver.com">support@faressaver.com</a></p>
+            </div>
+            <div class="pax-box-bg-conatiner">
+                <div class="table-responsive overflowXHidden">
+                    <table width="100%" class="table" border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                            <tr>
+                                                <td width="32" align="left" valign="middle"><img src="~/images/airplane-ico.png" style="width:32px; height:32px;"></td>
+                                                <td align="left" valign="middle" class="bookingRef">Booking reference @Model.BookingRef </td>
+                                                @*<td width="290" align="center" valign="middle" class="pnrRef">PNR:@Model.BookingRef</td>*@
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>                           
+
+                            <tr>
+                                <td>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                            <tr>
+                                                <td width="32" align="left" valign="middle"><img src="~/images/airplane-ico.png" style="width:32px; height:32px;"></td>
+                                                <td align="left" valign="middle" class="bookingRef">Contact Details</td>
+                                                <td width="290" align="center" valign="middle" class="pnrRef"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-0">
+                                    <table class="table table-bordered table-fly-itin" width="100%" cellpadding="5">
+                                        <thead>
+                                            <tr>
+                                                <th align="left" valign="middle" style="background:#162849; color: #FFF;">Name</th>
+                                                <th align="left" valign="middle" style="background:#162849; color: #FFF;">Phone</th>
+                                                <th align="left" valign="middle" style="background:#162849; color: #FFF;">Email</th>
+                                                <th align="left" valign="middle" style="background:#162849; color: #FFF;">Booking Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (int i = 0; i < passenger.Count; i++)
+                                            {
+                                            <tr>
+                                                <td width="250" align="left" valign="middle">@Model.Pax[0].Title @Model.Pax[0].FirstName @Model.Pax[0].LastName</td>
+                                                <td align="left" valign="middle">@Model.MobileNo</td>
+                                                <td height="30" align="left" valign="middle"> @Model.Email</td>
+                                                <td width="250" align="left" valign="middle">@Convert.ToDateTime(DateTime.Now).ToString("ddd, dd MMM yyyy")</td>
+                                            </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+
+
+                            <tr>
+                                <td>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                            <tr>
+                                                <td width="32" align="left" valign="middle"><img src="~/images/airplane-ico.png" style="width:32px; height:32px;"></td>
+                                                <td align="left" valign="middle" class="bookingRef">Pasenger Details</td>
+                                                <td align="center" valign="middle" class="pnrRef"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-0">
+                                    <table class="table table-bordered table-fly-itin" width="100%" cellpadding="5">
+                                        <thead>
+                                            <tr>
+                                                <th align="left" valign="middle" style="background:#162849; color: #FFF;">#</th>
+                                                <th align="left" valign="middle" style="background:#162849; color: #FFF;">Name</th>
+                                                <th align="left" valign="middle" style="background:#162849; color: #FFF;">Date of Birth</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (int i = 0; i < passenger.Count; i++)
+                                            {
+                                                <tr>
+                                                    <td align="left" valign="middle"><img src="~/images/pax.png" width="24" height="24"></td>
+                                                    <td height="30" align="left" valign="middle">@(passenger[i].Title + " " + passenger[i].FirstName + " " + passenger[i].LastName)</td>
+                                                    <td align="left" valign="middle">
+                                                        @(Convert.ToDateTime(passenger[i].DOB).ToString("dd MMM yyyy"))
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                            <tr>
+                                                <td width="32" align="left" valign="middle"><img src="~/images/airplane-ico.png" style="width:32px; height:32px;"></td>
+                                                <td align="left" valign="middle" class="bookingRef">Your flight itinerary</td>
+                                                <td width="290" align="center" valign="middle" class="pnrRef">
+                                                    @*PNR:@Model.BookingRef*@
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-0">
+                                    <table class="table table-bordered table-fly-itin" width="100%" cellpadding="5">
+                                        <thead>
+                                            <tr>
+                                                <th align="left" valign="middle" style="background:#162849; color: #FFF;">Date</th>
+                                                <th align="left" valign="middle" style="background:#162849; color: #FFF;">Flight Number</th>
+                                                <th align="left" valign="middle" style="background:#162849; color: #FFF;">Departing</th>
+                                                <th align="left" valign="middle" style="background:#162849; color: #FFF;">Arriving</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach (var sec in SectorDept)
+                                            {
+                                                <tr>
+                                                    <td valign="top">
+                                                        <strong>@Convert.ToDateTime(sec.Departure.Date).ToString("ddd, dd MMM yyyy") </strong><br>
+
+                                                    </td>
+                                                    <td valign="top">
+                                                        <p>@sec.AirlineName (@sec.CabinClass.Name)</p>
+                                                        @sec.FltNum
+                                                    </td>
+                                                    <td valign="top">
+                                                        <strong>@sec.Departure.AirportCityName</strong>
+                                                        <p>
+                                                            @sec.Departure.AirportName (@sec.Departure.AirportCode)<br>
+                                                            @sec.Departure.Time
+                                                        </p>
+                                                    </td>
+                                                    <td valign="top">
+                                                        <strong>@sec.Arrival.AirportCityName</strong>
+                                                        <p>
+                                                            @sec.Arrival.AirportName (@sec.Arrival.AirportCode)<br>
+                                                            @sec.Arrival.Time
+                                                        </p>
+                                                    </td>
+                                                </tr>
+
+                                            }
+                                            @foreach (var sec in SectorRet)
+                                            {
+                                                <tr>
+                                                    <td valign="top">
+                                                        <strong>@Convert.ToDateTime(sec.Departure.Date).ToString("ddd, dd MMM yyyy") </strong><br>
+
+                                                    </td>
+                                                    <td valign="top">
+                                                        <p>@sec.AirlineName (@sec.CabinClass.Name)</p>
+                                                        @sec.FltNum
+                                                    </td>
+                                                    <td valign="top">
+                                                        <strong>@sec.Departure.AirportCityName</strong>
+                                                        <p>
+                                                            @sec.Departure.AirportName (@sec.Departure.AirportCode)<br>
+                                                            @sec.Departure.Time
+                                                        </p>
+                                                    </td>
+                                                    <td valign="top">
+                                                        <strong>@sec.Arrival.AirportCityName</strong>
+                                                        <p>
+                                                            @sec.Arrival.AirportName (@sec.Arrival.AirportCode)<br>
+                                                            @sec.Arrival.AirportName (@sec.Arrival.AirportCode)<br>
+                                                            @sec.Arrival.Time
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                            <tr>
+                                                <td colspan="4" align="left" valign="top"><strong>Baggage Included : </strong> @SectorDept[0].BaggageInfo </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                            <tr>
+                                                <td width="32" align="left" valign="middle"><img src="~/images/pax.png" width="24" height="24"></td>
+                                                <td align="left" valign="middle" class="bookingRef">Pricing Details</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:0;">
+                                    <table class="table table-bordered" width="100%" cellpadding="5">
+                                        <thead>
+                                            <tr>
+                                                <th align="left" valign="middle" style="background: #000932; color: #FFF;">Fare Type</th>
+                                                <th align="left" valign="middle" style="background: #000932; color: #FFF;">No. of Passenger</th>
+                                                <th align="left" valign="middle" style="background: #000932; color: #FFF;">Fare Per Person </th>
+                                                <th align="left" valign="middle" style="background: #000932; color: #FFF;">Total Fare </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td> Adult </td>
+                                                <td>@Model.Itinerary.AdultInfo.NoAdult</td>
+                                                <td>@TravelSite.Models.CompCredentials.Currency_Symbol@Convert.ToDouble(((Model.Itinerary.AdultInfo.AdtBFare + Model.Itinerary.AdultInfo.AdTax + Model.Itinerary.AdultInfo.Commission + Model.Itinerary.AdultInfo.Safi + Model.Itinerary.AdultInfo.MarkUp))).ToString("f2")  </td>
+                                                <td><strong>@TravelSite.Models.CompCredentials.Currency_Symbol@Convert.ToDouble(((_Items.AdultInfo.AdtBFare + _Items.AdultInfo.AdTax + _Items.AdultInfo.Commission + _Items.AdultInfo.Safi + _Items.AdultInfo.MarkUp) * _Items.AdultInfo.NoAdult)).ToString("f2") </strong></td>
+                                            </tr>
+
+                                            @if (Model.Itinerary.ChildInfo.NoChild > 0)
+                                            {
+                                                <tr>
+                                                    <td> Child </td>
+                                                    <td>@Model.Itinerary.ChildInfo.NoChild</td>
+                                                    <td>@TravelSite.Models.CompCredentials.Currency_Symbol@Convert.ToDouble(((Model.Itinerary.ChildInfo.ChdBFare + Model.Itinerary.ChildInfo.CHTax + Model.Itinerary.AdultInfo.Commission + Model.Itinerary.AdultInfo.Safi + Model.Itinerary.AdultInfo.MarkUp))).ToString("f2")  </td>
+                                                    <td><strong>@TravelSite.Models.CompCredentials.Currency_Symbol@Convert.ToDouble(((_Items.ChildInfo.ChdBFare + _Items.ChildInfo.CHTax + _Items.AdultInfo.Commission + _Items.AdultInfo.Safi + _Items.AdultInfo.MarkUp) * _Items.AdultInfo.NoAdult)).ToString("f2") </strong></td>
+                                                </tr>
+                                            }
+                                            @if (Model.Itinerary.InfantInfo.NoInfant > 0)
+                                            {
+                                                <tr>
+                                                    <td> Infant </td>
+                                                    <td>@Model.Itinerary.InfantInfo.NoInfant</td>
+                                                    <td>@TravelSite.Models.CompCredentials.Currency_Symbol@Convert.ToDouble(((Model.Itinerary.InfantInfo.InfBFare + Model.Itinerary.InfantInfo.InTax + Model.Itinerary.InfantInfo.Commission + Model.Itinerary.InfantInfo.Safi + Model.Itinerary.InfantInfo.MarkUp))).ToString("f2")  </td>
+                                                    <td><strong>@TravelSite.Models.CompCredentials.Currency_Symbol@Convert.ToDouble(((_Items.InfantInfo.InfBFare + _Items.InfantInfo.InTax + _Items.InfantInfo.Commission + _Items.InfantInfo.Safi + _Items.InfantInfo.MarkUp) * _Items.InfantInfo.NoInfant)).ToString("f2") </strong></td>
+                                                </tr>
+                                            }
+
+                                            <tr class="">
+                                                <td colspan="3">Card Charges </td>
+                                                <td><span>@TravelSite.Models.CompCredentials.Currency_Symbol@Convert.ToDouble(Model.CardCharge) </span></td>
+                                            </tr>
+
+                                            <tr class="grand-total-row">
+                                                <td colspan="3">Total Price </td>
+                                                <td><span>@TravelSite.Models.CompCredentials.Currency_Symbol<span id="spn_TotalFare">@_Items.GrandTotal.ToString("f2") </span></span></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="booking-message footer mt-20">
+            <h3>Terms and Conditions</h3>
+            <ul>
+                <li>Tickets are non-changeable and non-refundable, unless specified. Please contact us on the above number for a detailed description of ticket conditions.</li>
+                <li>Please note that you must have a valid Passport having a minimum of 6 months before expiry after travel has been completed, or you will not be permitted to travel. Your passport must be clearly legible and in excellent condition. Presenting a damaged passport at check-in may mean you are unable to travel. For travel to the USA it is mandatory to possess a machine-readable passport or valid visa for travel; otherwise you will be denied boarding. Details of the airline flight numbers/schedules and destination airport will be shown on your invoice/confirmation.Please note that a flight described as “direct” will not necessarily be non-stop. Flight schedules may change at any time and provided there is enough time to do so, we will advise you of any changes prior to departure. However, we strongly recommend you reconfirm your reservations on all flights during your journey, at least 72 hours prior to departure of each flight.We cannot accept any responsibility for delays or missed flights. If you wish to change any item on you flight itinerary, other than increasing the number of persons in your party, providing we can accommodate the change, you must confirm the change in writing and pay an amendment fee of $75 per item changed, plus the airline/supplier charges applicable to their ticket terms & conditions.Occasionally we are required to collect additional taxes.You will be informed of any additional taxes prior to ticket issuance.Once tickets have been issued, most airlines do not allow any changes. In all cases, a complete name change is not possible, which means tickets cannot be transferred to someone else. However, in most situations a name correction can be made, depending upon the supplier/airline’s conditions. For full terms and conditions, please use this link: <a href="https://www.Faressaver.com/terms-conditions" target="_blank">https://www.Faressaver.com/terms-conditions</a> </li>
+
+            </ul>
+
+        </div>
+    </div>
+</div>
+</section>

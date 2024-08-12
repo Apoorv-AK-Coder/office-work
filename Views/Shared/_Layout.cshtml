@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+<head runat="server">
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title </title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" crossorigin="anonymous" />
+<link rel="icon" type="image/png" sizes="96x96" href="https://www.planeflybooking.com/iimg/logoo.png">
+    @Styles.Render("~/Content/css/main")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    <link rel="shortcut icon" href="~/images/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,700i,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @*<script src="jss/jquery.js"></script>*@
+    <link href="/css/jquery-bootstrap.css" rel="stylesheet" />
+    <link href="/css/css-custom.css" rel="stylesheet" />
+    <link href="/css/text.css" rel="stylesheet" />
+    <link href="/Content/css/home.css" rel="stylesheet" />
+
+
+    <script>
+        $(document).ready(function () {
+            if ($("#hdn_member_id").val() != "") {
+                $("#login_guest").hide();
+                $("#login_success").show();
+                $("#spn_member_name").html($("#hdn_member_name").val());
+            } else {
+                $("#login_guest").show();
+                $("#login_success").hide();
+            }
+            if ($("#recentcount").html() == "") {
+                $("#li_recent_search").hide();
+            }
+        });
+    </script>
+
+
+
+
+
+    <script>
+        $(document).ready(function () {
+
+            $('#dismiss, .overlay').on('click', function () {
+                $('#sidebar').removeClass('active');
+                $('.overlay').fadeOut();
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').addClass('active');
+                $('.overlay').fadeIn();
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+
+            //$("#sidebar").mCustomScrollbar({
+            //    theme: "minimal"
+            //});
+
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
+</head>
+<body>
+
+    @{Html.RenderPartial("~/Views/Shared/header.cshtml");}
+    <!-- WRAPPER CONTENT -->
+    <!-- FOOTER-->
+    @RenderBody()
+    @{Html.RenderPartial("~/Views/Shared/footer.cshtml");}
+    <!-- //FOOTER-->
+    <!--  Wait Popup -->
+    <div class="searchpop1" style="display:none;">
+        <div id="dvWait">
+        </div>
+    </div>
+    <div class="popup-outer-box" id="divprogress" style="display:none;">
+        <div class="popup-center-box">
+            <h5 class="txt-white text-center font13">Please Wait...</h5>
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#menuSample").Pushy();
+    </script>
+   
+ 
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta name="facebook-domain-verification" content="dfzby176kxtmjrrepox7j3ai8qk1ks" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title </title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" crossorigin="anonymous" />
+
+    @Styles.Render("~/Content/css/main")
+    @Scripts.Render("~/bundles/jquery")
+
+    @Scripts.Render("~/bundles/bootstrap")
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/6318576c37898912e967b795/1gcbhb0kr';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '3125853524323266');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=3125853524323266&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- End Meta Pixel Code -->
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-P444QLS');</script>
+    <!-- End Google Tag Manager -->
+
+    <meta name="author" content="" />
+    <meta name="Language" content="English" />
+    <meta name="Copyright" content="" />
+    <meta name="distribution" content="Global" />
+    <meta name="Robots" content="INDEX,FOLLOW" />
+    <meta name="country" content="US" />
+    <meta name="rating" content="general" />
+    <link rel="shortcut icon" href="~/images/favicon.ico" type="image/x-icon">
+    <link rel="alternate" href="/" hreflang="en-US" />
+
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,700i,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149362702-1"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($("#hdn_member_id").val() != "") {
+                $("#login_guest").hide();
+                $("#login_success").show();
+                $("#spn_member_name").html($("#hdn_member_name").val());
+            } else {
+                $("#login_guest").show();
+                $("#login_success").hide();
+            }
+            if ($("#recentcount").html() == "") {
+                $("#li_recent_search").hide();
+            }
+        });
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
+
+
+    <div id="google_translate_element2"></div>
+    <script type="text/javascript">
+           
+            function googleTranslateElementInit2() {
+                var element = "@System.Configuration.ConfigurationManager.AppSettings["myKey"]";
+
+                if (element == "Spain") {
+                    debugger;
+                    // new google.translate.TranslateElement({ pageLanguage: 'ES', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element2');
+
+                    setCookie('googtrans', '/en/es', 1);
+                    { new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'es,en', autoDisplay: true }, 'google_translate_element2'); }
+                }
+            }
+            function setCookie(key, value, expiry) {
+                var expires = new Date();
+                expires.setTime(expires.getTime() + (expiry * 24 * 60 * 60 * 1000));
+                document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
+            }
+
+    </script>
+
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
+
+
+</head>
+<body>
+
+    @{Html.RenderPartial("~/Views/Shared/header.cshtml");}
+    <!-- WRAPPER CONTENT -->
+    <!-- FOOTER-->
+    @RenderBody()
+    @{Html.RenderPartial("~/Views/Shared/footer.cshtml");}
+    <!-- //FOOTER-->
+    <!--  Wait Popup -->
+    <div class="searchpop1" style="display:none;">
+        <div id="dvWait">
+        </div>
+    </div>
+    <div class="popup-outer-box" id="divprogress" style="display:none;">
+        <div class="popup-center-box">
+            <h5 class="txt-white text-center font13">Please Wait...</h5>
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#menuSample").Pushy();
+    </script>
+    <script type="text/javascript">
+        $('.btn-inter-dest').click(function () {
+            $(".show-more-inter-dest").slideToggle('slow');
+            var $this = $(this);
+            $this.toggleClass('btn-inter-dest');
+            if ($this.hasClass('btn-inter-dest')) {
+                $this.text('+ View More');
+            } else {
+                $this.text('- View Less');
+            }
+        });
+    </script>
+    <!--  Wait Popup End -->
+    @*<script type='text/javascript' id='cookieinfo' src='@TravelSite.Models.WebsiteStaticData.WebsiteUrl/scripts/js/cookieinfo.min.js'></script>*@
+
+
+    <!-- End Web-Stat code v 6.3 -->
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

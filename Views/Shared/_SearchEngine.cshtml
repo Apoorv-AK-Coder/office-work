@@ -1,0 +1,935 @@
+﻿@model TravelSite.ViewModels.HomeBanner
+
+@using (Html.BeginForm("_SearchEngineHome", "Home"))
+{
+    <div class="col-12 col-sm-12 col-lg-6 col-xl-6 p-0 marg-top">
+        <div class="tab-content" style="display:block">
+            <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="home-tab">
+                <div class="form-check form-check-inline mb-3">
+                    <input class="form-check-input" type="radio" name="return" id="return" checked="" value="Return">
+                    <label class="form-check-label" for="roundTrip">Round Trip</label>
+                </div>
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="return" id="oneway" value="OneWay">
+                <label class="form-check-label" for="oneWay">One Way</label></div>
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-lg-6 col-xl-6 p-1">
+                        <label>From Airport</label>
+                        <div class="input-group">
+                            <div class="icon3"><img class="" id="" alt="" src="iimg/location.png"></div>
+                            <input class="form-control" type="text" id="flying_from" name="flying_from" placeholder="Flying From" style="border-radius:5px" value="">
+
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6 col-xl-6 p-1">
+                        <label>To Airport</label>
+                        <div class="input-group">
+                            <div class="icon3">
+                                <img class="" id="" alt="" src="iimg/plane_down.png">
+                            </div>
+                            <input class="form-control" type="text" placeholder="Flying To" id="flying_to" name="flying_to" style="border-radius:5px" value="">
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6 col-xl-6 p-1">
+                        <label>Departure Date</label>
+                        <div class="input-group">
+                            <div class="icon3"><img class="" id="" alt="" src="iimg/dateoick.png"></div>
+                            <input type="text" id="from" name="from" class="form-control cal mid-dspc-lt" placeholder="MM/DD/YYYY" onclick="this.focus(); this.setSelectionRange(0, 9999);" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6 col-xl-6 p-1">
+                        <label>Return Date</label>
+                        <div class="input-group">
+                            <div class="icon3"><img class="" id="" alt="" src="iimg/dateoick.png"></div>
+                            <input class="form-control return" id="to" name="to" onclick="this.focus(); this.setSelectionRange(0, 9999);" placeholder="MM/DD/YYYY" type="text">
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6 col-xl-6 p-1">
+                        <label>Traveleer(s) </label>
+                        <div class="form_full">
+
+                            <div class="form-group">
+
+                                <div id="divPaxInfo" data-toggle="collapse" data-target="#divPaxInfo_Fight1" class="form-control f-traveller collapsed" aria-expanded="false">
+                                    <span id="spanTotalPax_Flight">1 Traveller, Economy</span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="divPaxInfo_Fight1" class="adult-class-dropdown flight-pax collapse" style="position: absolute; height: 0px;" aria-expanded="false">
+                            <div class="dropdown-content" id="divFlightRoom1">
+                                <div class="form-group">
+                                    <label>Cabin Class:</label>
+                                    <select id="CabinClass" name="CabinClass" class="form-control" onclick="getPassenger()">
+                                        <option value="Y">Economy</option>
+                                        <option value="W">Premium Eco</option>
+                                        <option value="C">Business</option>
+                                        <option value="F">First Class</option>
+                                    </select>
+                                </div>
+                                <div class="adult-panel">
+                                    <span class="heading">Adult(s)</span>
+                                    <div class="min-max-outer">
+                                        <div class="min-max">
+                                            <input class="input-btn1 qtyminus" value="-" id="mins_adt" type="button" field='quantity'>
+                                            <input Value="1" class="input-text" data-val="true" data-val-number="The field Adult must be a number." data-val-required="The Adult field is required." field="quantity" id="Adult" name="Adult" readonly type="text" value="" />
+                                            <input class="input-btn2 qtyplus" value="+" id="plus_adt" type="button" field='quantity'>
+                                        </div>
+                                        <span class="age-text">+15 Yrs</span>
+                                    </div>
+                                </div>
+                                <div class="adult-panel">
+                                    <span class="heading">Child(ren)</span>
+                                    <div class="min-max-outer">
+                                        <div class="min-max">
+                                            <input class="input-btn1 qtyminus" data-field="Children" value="-" id="mins_chd" type="button" field='quantity'>
+                                            <input Value="0" class="input-text" data-val="true" data-val-number="The field Children must be a number." data-val-required="The Children field is required." field="quantity" id="Children" name="Children" readonly type="text" value="" />
+                                            <input class="input-btn2 qtyplus" data-field="Children" value="+" id="plus_chd" type="button" field='quantity'>
+
+                                        </div>
+                                        <span class="age-text">2-12 Yrs</span>
+                                    </div>
+                                </div>
+
+                                <div class="adult-panel">
+                                    <span class="heading">Infant(s)</span>
+                                    <div class="min-max-outer">
+                                        <div class="min-max">
+                                            <input class="input-btn1 qtyminus" value="-" id="mins_inf" type="button" field='quantity'>
+                                            <input Value="0" class="input-text" data-val="true" data-val-number="The field Infant must be a number." data-val-required="The Infant field is required." field="quantity" id="Infant" name="Infant" readonly type="text" value="" />
+                                            <input class="input-btn2 qtyplus" value="+" id="plus_inf" type="button" field='quantity'>
+                                        </div>
+                                        <span class="age-text">Under 2 Yrs</span>
+                                    </div>
+                                </div>
+                                <div class="done-btn-full">
+                                    <a href="javascript:void(0);" class="done-btn" id="prsn_done">Done</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-3 col-sm-4 col-xs-12 search-col-padding has-feedback" style="display:none!important">
+                        <label>Airline</label>
+                        <div class="inputGroupContainer no_padding">
+                            <div class="input-group" id="datetimePickerReturn_date">
+                                <span id="return_dateSpan" class="input-group-addon"><i class="fa fa-paper-plane fa-fw"></i></span>
+                                <select id="airline" name="airline" class="form-control">
+                                    <option selected="selected" value="">Any</option>
+                                    <option value="JP">Adria Airways</option>
+                                    <option value="EI">Aerlingus</option>
+                                    <option value="SU">Aeroflot</option>
+                                    <option value="AR">Aerolineas Argen </option>
+                                    <option value="AM">Aeromexico</option>
+                                    <option value="5L">Aerosur </option>
+                                    <option value="VV">Aerosvit</option>
+                                    <option value="8U">Afriqiyah Airline</option>
+                                    <option value="AH">Air Algerie</option>
+                                    <option value="KC">Air Astana</option>
+                                    <option value="BT">Air Baltic</option>
+                                    <option value="AB">Air Berlin</option>
+                                    <option value="2J">Air Burkina </option>
+                                    <option value="AC">Air Canada</option>
+                                    <option value="CA">Air China </option>
+                                    <option value="A7">Air Comet </option>
+                                    <option value="UX">Air Europa </option>
+                                    <option value="AF">Air France </option>
+                                    <option value="AI">Air India </option>
+                                    <option value="JM">Air Jamaica</option>
+                                    <option value="KM">Air Malta </option>
+                                    <option value="MK">Air Mauritius </option>
+                                    <option value="9U">Air Maldova</option>
+                                    <option value="SW">Air Namibia </option>
+                                    <option value="NZ">Air New Zealand </option>
+                                    <option value="HM">Air Seychelles </option>
+                                    <option value="VT">Air Tahiti </option>
+                                    <option value="TN">Air Tahiti Nui </option>
+                                    <option value="TS">Air Transat</option>
+                                    <option value="UM">Air Zimbabwe</option>
+                                    <option value="AS">Alaska Air</option>
+                                    <option value="LV">Albanian Air</option>
+                                    <option value="AZ">Alitalia </option>
+                                    <option value="NH">All Nippon </option>
+                                    <option value="AA">American Air</option>
+                                    <option value="OZ">Asiana Airlines</option>
+                                    <option value="GR">Aurigny</option>
+                                    <option value="OS">Austrian Airline </option>
+                                    <option value="AV">Avianca </option>
+                                    <option value="J2">Azerbaijan</option>
+                                    <option value="UP">Bahamasair</option>
+                                    <option value="PG">Bangkok Airways </option>
+                                    <option value="BG">Biman Bangla</option>
+                                    <option value="BD">Bmi British </option>
+                                    <option value="BA">British Airways</option>
+                                    <option value="SN">Brussels Airline </option>
+                                    <option value="FB">Bulgaria Air</option>
+                                    <option value="BW">Caribbean Air</option>
+                                    <option value="CX">Cathay Pacific </option>
+                                    <option value="CI">China Airlines </option>
+                                    <option value="MU">China Eastern </option>
+                                    <option value="CZ">China Southern </option>
+                                    <option value="QI">Cimber Sterli</option>
+                                    <option value="CF">City Airline</option>
+                                    <option value="DE">Condor </option>
+                                    <option value="CO">Continental </option>
+                                    <option value="OU">Croatia Air </option>
+                                    <option value="CU">Cubana Airlines </option>
+                                    <option value="CY">Cyprus Airways </option>
+                                    <option value="OK">Czech Airlines </option>
+                                    <option value="D3">Daallo</option>
+                                    <option value="DL">Delta </option>
+                                    <option value="T3">Eastern airways</option>
+                                    <option value="MS">Egyptair </option>
+                                    <option value="EK">Emirates Air </option>
+                                    <option value="OV">Estonian Air</option>
+                                    <option value="ET">Ethiopian Air </option>
+                                    <option value="EY">Etihad Airways </option>
+                                    <option value="BR">EVA Airways </option>
+                                    <option value="AY">Finnair </option>
+                                    <option value="BE">Flybe </option>
+                                    <option value="GA">Garuda </option>
+                                    <option value="GF">Gulf Air </option>
+                                    <option value="HR">Hahn Air </option>
+                                    <option value="HU">Hainan Airlin</option>
+                                    <option value="YO">Heli-Air Monaco</option>
+                                    <option value="EO">Hewa Bora Air </option>
+                                    <option value="IB">Iberia </option>
+                                    <option value="FI">Iceland Air </option>
+                                    <option value="IC">Indian Air </option>
+                                    <option value="IR">Iran Air </option>
+                                    <option value="6H">Israir</option>
+                                    <option value="JL">Japan Airline</option>
+                                    <option value="JU">Jat Airways</option>
+                                    <option value="9W">Jet Airways </option>
+                                    <option value="KQ">Kenya Airways </option>
+                                    <option value="KL">KLM </option>
+                                    <option value="KE">Korean Air </option>
+                                    <option value="KU">Kuwait Airways </option>
+                                    <option value="LA">Lan Airlines </option>
+                                    <option value="LO">Lot-Polish </option>
+                                    <option value="LH">Lufthansa </option>
+                                    <option value="CC">Macair</option>
+                                    <option value="W5">Mahan Air </option>
+                                    <option value="MA">Malev </option>
+                                    <option value="MH">Malaysia </option>
+                                    <option value="MP">Martinair </option>
+                                    <option value="IG">Meridiana </option>
+                                    <option value="MX">Mexicana </option>
+                                    <option value="ME">Middle East</option>
+                                    <option value="YM">Montenegro</option>
+                                    <option value="CE">Nationwide Air </option>
+                                    <option value="NW">Northwest </option>
+                                    <option value="OA">Olympic </option>
+                                    <option value="WY">Oman Aviation </option>
+                                    <option value="PR">Philippine </option>
+                                    <option value="QR">Qatar Airways </option>
+                                    <option value="AT">Royal Air Maroc </option>
+                                    <option value="BI">Royal Brunei </option>
+                                    <option value="RJ">Royal Jordanian </option>
+                                    <option value="FV">Rossiya </option>
+                                    <option value="SK">Sas </option>
+                                    <option value="S4">Sata Intl </option>
+                                    <option value="SV">Saudi Arabian </option>
+                                    <option value="S7">Siberia Air</option>
+                                    <option value="SQ">Singapore Airlines</option>
+                                    <option value="SA">South African </option>
+                                    <option value="UL">SriLankan </option>
+                                    <option value="SD">Sudan </option>
+                                    <option value="LX">Swiss </option>
+                                    <option value="RB">Syrian Arab</option>
+                                    <option value="DT">Taag-Angola </option>
+                                    <option value="VR">Tacv Carbo Verdes </option>
+                                    <option value="JJ">Tam Linhas Aerea </option>
+                                    <option value="TP">Tap Portugal Airline</option>
+                                    <option value="TG">Thai Intl </option>
+                                    <option value="UN">Transaero</option>
+                                    <option value="TU">Tunis Air</option>
+                                    <option value="TK">Turkish Airlines </option>
+                                    <option value="QF">Qantas Flights </option>
+                                    <option value="PS">Ukraine Intl </option>
+                                    <option value="UA">United</option>
+                                    <option value="US">US Airways </option>
+                                    <option value="HY">Uzbekistan </option>
+                                    <option value="VN">Vietnam Air </option>
+                                    <option value="VS">Virgin Atlantic </option>
+                                    <option value="VK">Virgin Nigeria </option>
+                                    <option value="WM">Windward Island</option>
+                                    <option value="IY">Yemenia Yemen </option>
+                                </select>
+                            </div>
+                            <small data-bv-validator="notEmpty" data-bv-validator-for="return_date" class="help-block" style="display: none;">The return date is required</small>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6 col-xl-6 d-grid gap-2 p-1">
+                        <button class="btn btn-primary" type="submit" id="flight_submit" name="flight_submit" onclick="return CheckValidation();">Search Flights</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <input id="hdn_MultiCityFrom" name="MultiCityFrom" type="hidden" value="" />
+    <input id="hdn_MultiCityTo" name="MultiCityTo" type="hidden" value="" />
+    <input id="hdn_MultiCitydate" name="MultiCitydate" type="hidden" value="" />
+    <input id="hdn_ClassTypeName" name="ClassTypeName" type="hidden" value="" />
+
+
+
+    <div id="dvNLMessage_FS" class="searchpop12_FS" style="display: none; top: 0; left: 0;" onclick="NLMessageClose_FS();">
+        <div class="searchpopinner2_FS searchpopinner12_FS">
+            <div style="float: right">Close(X)</div>
+            <br />
+            <br />
+            <h3>Sorry! This e-mail id is already registered for our newsletter.</h3>
+            <div class="searcpoprow2_FS">
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <input type="hidden" id="hfTripType" name="hfTripType" value=@Html.Raw(Model.triptype)>
+    <input type="hidden" id="hfFromDestination" name="hfFromDestination" value="">
+    <input type="hidden" id="hfToDestination" name="hfToDestination" value="">
+    <input type="hidden" id="hfFromDate" name="hfFromDate" value=@Html.Raw(Model.fromdate)>
+    <input type="hidden" id="hfToDate" name="hfToDate" value=@Html.Raw(Model.todate)>
+    <input type="hidden" id="hfAdult" name="hfAdult" value=@Html.Raw(Model.adult)>
+    <input type="hidden" id="hfChild" name="hfChild" value=@Html.Raw(Model.child)>
+    <input type="hidden" id="hfInfant" name="hfInfant" value=@Html.Raw(Model.infant)>
+    <input type="hidden" id="hfflex" value="false" name="hfflex" />
+    <input type="hidden" id="hfdirect" value="false" name="hfdirect" />
+    <input type="hidden" id="hfcontact" value="false" name="hfcontact" />
+}
+
+@*<script src="~/Scripts/jquery-migrate-1.0.0.js"></script>*@
+@*<script src="~/js/autocomplete.js"></script>*@
+<style type="text/css">
+
+    .ui-datepicker .ui-datepicker-next, .ui-datepicker .ui-datepicker-prev {
+        position: absolute;
+        top: 2px;
+        width: 2.8em;
+        height: 2.8em;
+    }
+    #ui-datepicker-div {
+        width: 20em !important;
+    }
+    .ui-datepicker td a, .ui-datepicker td span {
+        text-align: center;
+
+    }
+
+
+
+
+    .ac_results {
+        padding: 0;
+        border: 1px solid black;
+        background-color: white;
+        overflow: hidden;
+        z-index: 9999;
+        width: 470px !important;
+        position: absolute;
+    }
+
+        .ac_results ul {
+            width: 100%;
+            list-style-position: outside;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            box-shadow: 0 0 1px 1px #CCC;
+            background-color: #fff;
+        }
+
+        .ac_results li {
+            margin: 0;
+            cursor: default;
+            display: block;
+            font: menu;
+            font-size: 14px; /*  	it is very important, if line-height not setted or setted  	in relative units scroll will be broken in firefox 	*/
+            overflow: hidden;
+        }
+
+    .ac_loading {
+        /*background: white url(//Faressaver.com/images/ajax-loader.gif) right center no-repeat;*/
+    }
+
+    .ac_odd {
+        float: left;
+        width: 100%;
+        /*background: #f00 url("//Faressaver.com/images/loc1.png") no-repeat scroll 96% 40%;*/
+        color: #063553;
+        padding: 6px 10px 6px 10px;
+        margin-top: 5px;
+    }
+
+    .ac_even {
+        float: left;
+        width: 100%;
+        padding: 6px 10px 6px 10px;
+        color: #0A6473;
+        /*background: #f00 url("//Faressaver.com/images/plane1.png") no-repeat scroll 5% 40%;*/
+    }
+
+    .ac_over {
+        background-color: #e1e7ee;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(document).ready(function () { $("#flying_from").autocomplete("/handler.ashx", { delay: 10, minChars: 3, matchSubset: 1, matchContains: 1, cacheLength: 10, selectFirst: true, width: 346, autoFill: false, scroll: true }); });
+        $(document).ready(function () { $("#flying_to").autocomplete("/handler.ashx", { delay: 10, minChars: 3, matchSubset: 1, matchContains: 1, cacheLength: 10, selectFirst: true, width: 346, autoFill: false, scroll: true }); });
+    });
+</script>
+<script>
+    $(".others").click(function () {
+        $(".other-option").slideToggle();
+        $(".done").click(function () {
+            $(".other-option").hide();
+        });
+    });
+
+    $("#btn_pax").click(function (e) {
+        if (parseInt($('#Adult').val()) + parseInt($('#Children').val()) + parseInt($('#Infant').val()) > 9) {
+            jAlert('Pax Count Could\'t be Greater Then 9', 'Validation Message');
+            return false;
+        }
+        if (parseInt($('#Infant').val()) > parseInt($('#Adult').val())) {
+            jAlert('Infant Count Could\'t be Greater Then Adult', 'Validation Message');
+            return false;
+        }
+    });
+
+    $('.qtyplus').click(function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $target = $this.prev('input[field=' + $this.attr('field') + ']');
+        var currentVal = parseInt($target.val());
+        if (!isNaN(currentVal)) {
+            if (parseInt($('#Adult').val()) + parseInt($('#Children').val()) + parseInt($('#Infant').val()) >= 9) {
+                jAlert('Pax Count Could\'t be Greater Then 9', 'Validation Message');
+                return false;
+            } else {
+                $target.val(currentVal + 1);
+                getPassenger();
+            }
+        } else {
+            $target.val(0);
+        }
+    });
+    $(".qtyminus").click(function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $target = $this.next('input[field=' + $this.attr('field') + ']');
+        var currentVal = parseInt($target.val());
+        if ($target[0].id == "Adult" && currentVal == 1) {
+            e.preventDefault();
+            return false;
+        }
+        if (!isNaN(currentVal)) {
+            $target.val((currentVal == 0) ? 0 : currentVal - 1);
+            getPassenger();
+        } else {
+            $target.val(0);
+        }
+    });
+
+    function UpdateTextBox() {
+        $("#Adult,#Children,#Infant").click()
+        {
+            //e.preventDefault();
+
+            if (parseInt($('#Infant').val()) > parseInt($('#Adult').val())) {
+                jAlert('Infant Count Could\'t be Greater Then Adult', 'Validation Message');
+                $('#Infant').val(parseInt($('#Infant').val()) - 1);
+                return false;
+            }
+
+            if (parseInt($('#Adult').val()) + parseInt($('#Children').val()) + parseInt($('#Infant').val()) > 9) {
+                jAlert('Pax Count Could\'t be Greater Then 9', 'Validation Message');
+                return false;
+            }
+
+            var adultcount = $('#Adult').val();
+            var childcount = $('#Children').val();
+            var Infantcount = $('#Infant').val();
+            var TextBoxvalue = "";
+            if (parseInt(adultcount) > 0 && parseInt(childcount) == 0 && parseInt(Infantcount) == 0) {
+                TextBoxvalue = parseInt(adultcount) + " Adults, " + $('#ddl_class :selected').text();
+            }
+            else if (parseInt(adultcount) > 0 && parseInt(childcount) > 0 && parseInt(Infantcount) == 0) {
+                TextBoxvalue = parseInt(adultcount) + " Adults, " + parseInt(childcount) + " Children, " + $('#ddl_class :selected').text();
+            }
+            else if (parseInt(adultcount) > 0 && parseInt(childcount) == 0 && parseInt(Infantcount) > 0) {
+                TextBoxvalue = parseInt(adultcount) + " Adults, " + parseInt(Infantcount) + " Infants," + $('#ddl_class :selected').text();
+            }
+            else if (parseInt(adultcount) > 0 && parseInt(childcount) > 0 && parseInt(Infantcount) > 0) {
+                TextBoxvalue = parseInt(adultcount) + " Adults, " + parseInt(childcount) + " Children, " + parseInt(Infantcount) + " Infants, " + $('#ddl_class :selected').text();
+            }
+            if (parseInt(adultcount) == 1) {
+                TextBoxvalue = TextBoxvalue.replace("Adults", "Adult");
+            }
+            if (parseInt(childcount) == 1) {
+                TextBoxvalue = TextBoxvalue.replace("Children", "Child");
+            }
+            if (parseInt(Infantcount) == 1) {
+                TextBoxvalue = TextBoxvalue.replace("Infants", "Infant");
+            }
+            $("#txtclasstype").val(TextBoxvalue);
+        }
+    }
+
+
+</script>
+<script type="text/javascript">
+
+    function getPassenger() {
+        var str = (parseInt($("#Adult").val()) + parseInt($("#Children").val()) + parseInt($("#Infant").val())) + " Traveller";
+        var chk_cls = $('#CabinClass').val();
+        console.log(chk_cls);
+        if (chk_cls == "Y") {
+            str += ", Economy";
+        }
+        else if (chk_cls == "W") {
+            str += ", Premium Eco";
+        }
+        else if (chk_cls == "C") {
+            str += ",Business";
+        }
+        else {
+            str += ",First Class";
+        }
+        document.getElementById('divPaxInfo').value = str;
+        console.log(str + "ami");
+        $("#spanTotalPax_Flight").html(str);
+    }
+
+
+    $("#prsn_done").click(function () {
+        $("#divPaxInfo").addClass("collapsed");
+        $("#divPaxInfo").attr("aria-expanded", "false");
+        $("#divPaxInfo_Fight1").addClass("collapse");
+        $("#divPaxInfo_Fight1").addClass("d-none1");
+        $("#divPaxInfo_Fight1").removeClass("in");
+        $("#divPaxInfo_Fight1").removeClass("show");
+        $("#divPaxInfo_Fight1").attr("aria-expanded", "false");
+        $("#divPaxInfo_Fight1").attr("style", "position: absolute; height: 0px;");
+    });
+
+
+    $(document).ready(function () {
+
+        $(".return").prop("disabled", true);
+
+        $("#oneway").click(function () {
+            $("#oneway").prop("checked", "checked"),
+                $("#return").prop("checked", ""),
+                $(".return").prop("disabled", true);
+                //$(".return").hide()
+        }),
+            $("#return").click(function () {
+                $("#return").prop("checked", "checked"),
+                    //$(".return").show();
+                 $(".return").prop("disabled", false);
+
+    })
+
+        // var ss = $("#contactsecond").val();
+
+        //$("#hfcontact").val(ss);
+        var from = $("#hfFromDestination").val();
+        var to = $("#hfToDestination").val();
+
+        $("#hfFromDestination").val("@Html.Raw(Model.destfrom)")
+        var from = $("#hfFromDestination").val();
+
+        $("#hfToDestination").val("@Html.Raw(Model.destto)")
+        var to = $("#hfToDestination").val();
+        $("#flying_from").val(from);
+        $("#flying_to").val(to);
+
+        $("#from").val($("#hfFromDate").val());
+
+
+
+        var to1 = $("#hfToDate").val();
+        if (to1 == "") {
+            $("#hfFromDate").val("");
+        }
+        if ($("#hfTripType").val() == "true") {
+
+            var to1 = $("#hfToDate").val();
+                $("#to").val($("#hfToDate").val());
+        }
+        else {
+
+        }
+
+        if ($("#hfAdult").val() == "") {
+        }
+        else {
+
+            $("#adult").val(parseInt($("#hfAdult").val()) + parseInt($("#hfChild").val()) + parseInt($("#hfInfant").val()));
+            $("#Adult").val(parseInt($("#hfAdult").val()));
+            $("#Children").val(parseInt($("#hfChild").val()));
+            $("#Infant").val(parseInt($("#hfInfant").val()));
+        }
+        if ($("#hfTripType").val() == "false") {
+            $('#oneway').attr("checked", "checked");
+        }
+        else {
+            $("#to").show();
+            $('#retrun').attr("checked", "checked");
+        }
+
+    });
+
+
+    function CheckValidation() {
+
+        debugger;
+        try {
+
+            $("#hfFromDate").val($("#from").val());
+            $("#hfToDate").val($("#to").val());
+
+            var Adult = 0, Child = 0, Infant = 0, total = 0;
+            Adult = new Number($("#Adult").val());
+            Child = new Number($("#Children").val());
+            Infant = new Number($("#Infant").val());
+            total = (Adult + Child + Infant);
+            if ($("#flying_from").val() == "" || $("#flying_from").val().length < 3) {
+                alert("Please enter departure");
+                $("#flying_from").focus();
+                return false;
+            }
+
+            if ($("#flying_to").val() == "" || $("#flying_to").val().length < 3) {
+                alert("Please enter destination");
+                $("#flying_to").focus();
+                return false;
+            }
+
+            if ($("#flying_from").val() == $("#flying_to").val()) {
+                alert("Airports can not be same");
+                $("#flying_to").focus();
+                return false;
+            }
+            $("#hfTripType").val($("#return").is(':checked') ? "true" : "false")
+
+            if ($("#hfFromDate").val() == "") {
+                alert("Please select departure date");
+                return false;
+            }
+            if ($("#hfTripType").val() == "true") {
+                if ($("#to").val() == "") {
+                    alert("Please select return date");
+                    return false;
+                }
+            }
+
+            if (Infant > Adult) {
+                alert("No of infants should not greater than adults");
+                return false;
+            }
+            if (Child > (Adult * 2)) {
+                alert("Childs should not greater than twice of adults");
+                return false;
+            }
+            if (total > 9) {
+                alert("Total passengers should not greater than 9");
+                return false;
+            }
+            if (total == 0) {
+                alert("Please choose passenger");
+                return false;
+            }
+            var validformat = /^\d{2}\/\d{2}\/\d{4}$/
+            var date2 = new Date();
+            date2.setDate(date2.getDate());
+            var d2 = date2.getDate();
+            var day2 = (d2 < 10) ? '0' + d2 : d2;
+            var m2 = date2.getMonth() + 1;
+            var month2 = (m2 < 10) ? '0' + m2 : m2;
+            var yy2 = date2.getYear();
+            var year2 = (yy2 < 1000) ? yy2 + 1900 : yy2;
+
+            var CurrDate = new Date(year2, (month2 - 1), day2);
+            var one_day = 1000 * 60 * 60 * 24;
+            var x;
+            var fromDat = $("#hfFromDate");
+            if (fromDat.val().indexOf("/") != -1) { x = fromDat.val().split("/"); } else { x = fromDat.val().split("-"); }
+
+            var Dptdate = new Date(x[2], (x[1] - 1), x[0]);
+            var contactno = '@TempData.Peek("PhoneNumber")';
+            //if ($("#chkIsFlexi").is(":checked")) {
+
+            //    if (Math.ceil((Dptdate.getTime() - CurrDate.getTime()) / (one_day)) < 5) {
+            //        alert("Date range not valid");
+            //        return false;
+            //    }
+            //}
+            //else
+            {
+                if (Math.ceil((Dptdate.getTime() - CurrDate.getTime()) / (one_day)) < 2) {
+                    alert("Departure should be greater than one day " + contactno);
+
+                    return false;
+                }
+            }
+            if ($("#hfTripType").val() == "true") {
+                var Todate = $("#hfToDate");
+                if (Todate.val().indexOf("/") != -1) { x = Todate.val().split("/"); } else { x = Todate.val().split("-"); }
+                var RetDate = new Date(x[2], (x[1] - 1), x[0]);
+                if ($("#chkIsFlexi").is(":checked")) {
+                    if (Math.ceil((RetDate.getTime() - Dptdate.getTime()) / (one_day)) < 7) {
+                        alert("Date difference should be 7 days")
+
+                        return false;
+                    }
+                }
+                else {
+                    if (RetDate < Dptdate) {
+                        alert("Return date must be greater than departure");
+                        return false;
+                    }
+                }
+            }
+            var flex = $("#chkIsFlexi").is(":checked");
+            var direct = $("#chkIsDirect").is(":checked");
+            $("#hfflex").val(flex);
+            $("#hfdirect").val(direct);
+            $("#hfFromDestination").val($("#flying_from").val());
+            $("#hfToDestination").val($("#flying_to").val());
+
+            $("#hfAdult").val(Adult);
+            $("#hfChild").val(Child);
+            $("#hfInfant").val(Infant);
+
+            $("#dvWait").html(WaitSearch());
+            $("dvWait").show();
+            $(".searchpop1").show();
+        }
+        catch (err) {
+            alert(err);
+        }
+        return true;
+    }
+
+
+    function WaitSearch() {
+
+        //debugger;
+        try {
+        var path = '@TravelSite.Models.CompCredentials.LogoPath1';
+        var contact = '+1-888-583-3462 ';
+
+        var sData = "<div class='mob_gif_center'><p><strong> Please wait</strong>. <br> We are searching best fares for you. </p> <div class='plane_gif'></div> </div>" +
+
+        "<div class='wait-popup'>" +
+        "<div  class='wait-logo hidden-xs'>" +
+         "<img src='../iimg/logoo.png' /> </div>" +
+        " <div id='progressbar' style='width: 577px;'>" +
+        "<div id='progressLine'>" +
+        "<div id='pbaranim'></div>" +
+        "  </div>" +
+        "</div>" +
+        " <div class='wait-txe'>" +
+                " <h3> Search in progress </h3><p class='text-center hidden-xs' style='color: #fff;'> Searching for the best deal for you. Kindly wait, this may take a little time</p> " +
+        " </div>" +
+
+        " <div class='clearfix'></div>" +
+        "<div class='wait-main'>" +
+                "<div class='wait-1'>";
+
+        if ($("#hfFromDestination").val().indexOf("(") != -1) {
+            sData += "   <span class='wait-txt-small'>" + $("#hfFromDestination").val().split('-')[0].split('(')[0] + "</span><br />" +
+             "  <span class='wait-txt-big'>" + $("#hfFromDestination").val().split('(')[1].substring(0, 3) + "</span>";
+        }
+        else {
+            sData += "" + $("#hfFromDestination").val() + "";
+        }
+        sData += " </div>" +
+           "  <div class='wait-1'>";
+        if ($("#hfTripType").val() == "false") {
+            sData += "<div class='arrowmiddle-1 search_wtg_divider' ><img src='../images/wait-arrow.png' /> </span>";
+        }
+        else {
+            sData += " <div class='arrowmiddle search_wtg_divider' ><img src='../images/wait-arrow.png' /> </span>";
+        }
+        sData += " </div></div>" +
+           " <div class='wait-1'>";
+        if ($("#hfToDestination").val().indexOf("(") != -1) {
+            sData += "  <span class='wait-txt-small'>" + $("#hfToDestination").val().split('-')[0].split('(')[0] + "</span><br />" +
+              "    <span class='wait-txt-big'>" + $("#hfToDestination").val().split('(')[1].substring(0, 3) + "</span>";
+        }
+        else {
+            sData += "" + $("#hfToDestination").val() + "";
+        }
+        sData += "  </div>" +
+          "  </div>" +
+          " <div class='clearfix'></div>" +
+          "<div class='wait-depart'>" +
+          " <div class='col-md-3 col-xs-6'>" +
+          "<span class='wait-dest-txt'>Departure</span><br />" +
+                  "<span class='wait-dest-txt-small'>" + $("#hfFromDate").val() + "</span>" +
+                "   </div>";
+        if ($("#hfTripType").val() == "true") {
+            sData += "  <div class='col-md-3 col-xs-6 no-pad-mobile'>" +
+             "      <span class='wait-dest-txt'>Return</span><br />" +
+             "       <span class='wait-dest-txt-small'> " + $("#hfToDate").val() + "</span>" +
+             "   </div>";
+        }
+
+            sData += "   <div class='col-md-3 col-xs-6 no-pad-mobile'>" +
+         "     <span class='wait-dest-txt'>Class</span><br />" +
+         "      <span class='wait-dest-txt-small'>" + $("#CabinClass option:selected").text() + "</span>" +
+         "   </div>" +
+         "    <div class='col-md-3 col-xs-6'>" +
+         "      <span class='wait-dest-txt'>Travellers</span><br />" +
+        "       <span class='wait-dest-txt-small'>";
+
+        if (parseInt($("#hfAdult").val()) == 1) {
+            sData += "" + $("#hfAdult").val() + " Adults";
+        }
+        else {
+            sData += "" + $("#hfAdult").val() + " Adults";
+        }
+
+        if (parseInt($("#hfChild").val()) > 0) {
+            if (parseInt($("#hfChild").val()) == 1) {
+                sData += ", " + $("#hfChild").val() + " Child";
+            }
+            else {
+                sData += ", " + $("#hfChild").val() + " Children";
+            }
+        }
+
+        if (parseInt($("#hfInfant").val()) > 0) {
+            if (parseInt($("#hfInfant").val()) == 1) {
+                sData += ", " + $("#hfInfant").val() + " Infant";
+            }
+            else {
+                sData += ", " + $("#hfInfant").val() + " Infant";
+            }
+        }
+
+
+        sData += "</span>" +
+         "   </div>" +
+         " </div>" +
+         " <div class='wait-talk-main'>" +
+         " <div class='talk-txt-1'>" +
+         "  <i class='fa fa-phone-square fa-rotate-90'></i>&nbsp;" + contact + "" +
+         " </div>" +
+         "  </div>" +
+         ""
+        "</div><span class='clearfix'></span> <div class='search_wtg_fotter'></div> ";
+
+
+
+             }
+        catch (err) {
+            alert(err);
+        }
+        return sData;
+    }
+
+
+</script>
+<input type="hidden" id="depchk" value="1" />
+<input type="hidden" id="depflexi" value="1" />
+<input type="hidden" id="depsub" value="1" />
+
+<script>
+
+    function subdata() {
+        var str1 = depsub.value;
+        if (str1 == "1") {
+            document.getElementById("sub").innerHTML = "<i class='fa fa-angle-up' ></i>";
+            $("#depsub").val(2);
+        }
+        if (str1 == "2") {
+            document.getElementById("sub").innerHTML = "<i class='fa fa-angle-down' ></i>";
+            $("#depsub").val(1);
+        }
+    }
+
+    function chkflight() {
+        var str1 = depchk.value;
+        if (str1 == "1") {
+            $('#chkIsDirect').attr("checked", true);
+            $("#depchk").val(2);
+        }
+        if (str1 == "2") {
+            $('#chkIsDirect').attr("checked", false);
+            $("#depchk").val(1);
+        }
+    }
+    function chkflexi() {
+        var str1 = depflexi.value;
+        if (str1 == "1") {
+            $('#chkIsFlexi').attr("checked", true);
+            $("#depflexi").val(2);
+        }
+        if (str1 == "2") {
+            $('#chkIsFlexi').attr("checked", false);
+            $("#depflexi").val(1);
+        }
+    }
+    function checkdata() {
+        var downKeyEvent = $.Event("keydown");
+        downKeyEvent.keyCode = $.ui.keyCode.DOWN;  // event for pressing "down" key
+        var enterKeyEvent = $.Event("keydown");
+        enterKeyEvent.keyCode = $.ui.keyCode.ENTER;  // event for pressing "enter" key
+        $("#flying_from").trigger(enterKeyEvent); // Enter key selects highlighted item
+
+
+    }
+    function checkdata1() {
+        var downKeyEvent1 = $.Event("keydown");
+        downKeyEvent1.keyCode = $.ui.keyCode.DOWN;  // event for pressing "down" key
+        var enterKeyEvent1 = $.Event("keydown");
+        enterKeyEvent1.keyCode = $.ui.keyCode.ENTER;  // event for pressing "enter" key
+        $("#flying_to").trigger(enterKeyEvent1); // Enter key selects highlighted item
+
+    }
+    function CheckValidationNewsLetterMails_FS() {
+        var btrue = true;
+        var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+        var email_address = $("#txtEmailFlightSerch").val();
+        var phone = $('#Phone').val();
+        intRegex = /[0-9 -()+]+$/;
+        if (email_address == '') {
+            alert("Please enter email");
+        }
+        else if (!emailReg.test(email_address)) {
+            alert('Please enter valid email');
+            $("#EmailId").focus();
+            btrue = false;
+        }
+        else {
+            GetSendNewletterMails();
+        }
+    }
+
+    function GetSendNewletterMails() {
+        $.ajax({
+            url: '@Url.Action("NewsEmail", "Common")',
+            type: 'POST',
+            data: {
+                EmailID: $('#txtEmail').val(),
+            },
+            success: function (msg) {
+                alert(msg);
+            },
+            error: function (msg) {
+            }
+        });
+    }
+    function datebind() {
+        $("#from").focus();
+    }
+</script>

@@ -1,0 +1,41 @@
+﻿
+@*@model TravelSite.ViewModels.HomeBanner*@
+@{
+    ViewBag.Title = "Index";
+}
+
+<section class="pt-20 pb-50 home-searchbg">
+    <div class="container p-0">
+        <div class="home-title col-md-12 text-center">
+            <h1>Flights to @Model.DestName</h1>
+            <h2>We compare flight deals from over 150 airlines to find you the best price</h2>
+        </div>
+        <div class="form-bg col-md-12 col-xs-12 p-0">
+            <div class="tabbable custom-tabs tabs-animated flat flat-all hide-label-980 shadow track-url auto-scroll">
+                <div class="tab-content p-15">
+                    <div class="tab-pane active" id="panel1">
+                        @{Html.RenderPartial("~/Views/Shared/_SearchEngine.cshtml");}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container pt-30">
+        <p class="text-left mt-20 mb-20 font12">
+            <span style="color:red">Note : As availability is constantly changing, Fares may not be available on chosen dates, Please call us.</span>
+        </p>
+        @Html.Raw(Model.Itinerary)
+        
+    </div>
+</section>
+
+<section>
+    <div class="container pt-30">
+        <p class="text-left mt-20 mb-20 font12">
+            <span style="color:red">  @Html.Raw(Model.PageContent)</span>
+        </p>
+    </div>
+</section>
+

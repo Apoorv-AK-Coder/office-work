@@ -1,0 +1,236 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+<script>
+    $(".others").click(function () {
+        $(".other-option").slideToggle();
+        $(".done").click(function () {
+            $(".other-option").hide();
+        });
+    });
+
+    $("#btn_pax").click(function (e) {
+        if (parseInt($('#Adult').val()) + parseInt($('#Children').val()) + parseInt($('#Infant').val()) > 9) {
+            jAlert('Pax Count Could\'t be Greater Then 9', 'Validation Message');
+            return false;
+        }
+        if (parseInt($('#Infant').val()) > parseInt($('#Adult').val())) {
+            jAlert('Infant Count Could\'t be Greater Then Adult', 'Validation Message');
+            return false;
+        }
+    });
+
+    $('.qtyplus').click(function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $target = $this.prev('input[field=' + $this.attr('field') + ']');
+        var currentVal = parseInt($target.val());
+        if (!isNaN(currentVal)) {
+            if (parseInt($('#Adult').val()) + parseInt($('#Children').val()) + parseInt($('#Infant').val()) >= 9) {
+                jAlert('Pax Count Could\'t be Greater Then 9', 'Validation Message');
+                return false;
+            } else {
+                $target.val(currentVal + 1);
+                UpdateTextBox();
+            }
+        } else {
+            $target.val(0);
+        }
+    });
+    $(".qtyminus").click(function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $target = $this.next('input[field=' + $this.attr('field') + ']');
+        var currentVal = parseInt($target.val());
+        if ($target[0].id == "Adult" && currentVal == 1) {
+            e.preventDefault();
+            return false;
+        }
+        if (!isNaN(currentVal)) {
+            $target.val((currentVal == 0) ? 0 : currentVal - 1);
+            UpdateTextBox();
+        } else {
+            $target.val(0);
+        }
+    });
+    function UpdateTextBox() {
+        $("#Adult,#Children,#Infant").click()
+        {
+            //e.preventDefault();
+
+            if (parseInt($('#Infant').val()) > parseInt($('#Adult').val())) {
+                jAlert('Infant Count Could\'t be Greater Then Adult', 'Validation Message');
+                $('#Infant').val(parseInt($('#Infant').val()) - 1);
+                return false;
+            }
+
+            if (parseInt($('#Adult').val()) + parseInt($('#Children').val()) + parseInt($('#Infant').val()) > 9) {
+                jAlert('Pax Count Could\'t be Greater Then 9', 'Validation Message');
+                return false;
+            }
+
+            var adultcount = $('#Adult').val();
+            var childcount = $('#Children').val();
+            var Infantcount = $('#Infant').val();
+            var TextBoxvalue = "";
+            if (parseInt(adultcount) > 0 && parseInt(childcount) == 0 && parseInt(Infantcount) == 0) {
+                TextBoxvalue = parseInt(adultcount) + " Adults, " + $('#ddl_class :selected').text();
+            }
+            else if (parseInt(adultcount) > 0 && parseInt(childcount) > 0 && parseInt(Infantcount) == 0) {
+                TextBoxvalue = parseInt(adultcount) + " Adults, " + parseInt(childcount) + " Children, " + $('#ddl_class :selected').text();
+            }
+            else if (parseInt(adultcount) > 0 && parseInt(childcount) == 0 && parseInt(Infantcount) > 0) {
+                TextBoxvalue = parseInt(adultcount) + " Adults, " + parseInt(Infantcount) + " Infants," + $('#ddl_class :selected').text();
+            }
+            else if (parseInt(adultcount) > 0 && parseInt(childcount) > 0 && parseInt(Infantcount) > 0) {
+                TextBoxvalue = parseInt(adultcount) + " Adults, " + parseInt(childcount) + " Children, " + parseInt(Infantcount) + " Infants, " + $('#ddl_class :selected').text();
+            }
+            if (parseInt(adultcount) == 1) {
+                TextBoxvalue = TextBoxvalue.replace("Adults", "Adult");
+            }
+            if (parseInt(childcount) == 1) {
+                TextBoxvalue = TextBoxvalue.replace("Children", "Child");
+            }
+            if (parseInt(Infantcount) == 1) {
+                TextBoxvalue = TextBoxvalue.replace("Infants", "Infant");
+            }
+            $("#txtclasstype").val(TextBoxvalue);
+        }
+    }
+
+
+</script>
+
+
+<div class="container-fluid banner-bg p-0" style="background-image:url(/iimg/Main-banner.jpg)">
+    <div class="container searh-engain">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-lg-6 col-xl-6">
+                <div class="marg-top">
+                    <h1>CREATE MEMORIES, EMBRACE THE WORLD</h1>
+                    <p>Explore a world of unforgettable experiences with our exciting trips to far-off destinations. Discover unique adventures that will create memories to last a lifetime.</p>
+                    <div class="contactno"><a href="tel:+1-888-583-3462 " class="banner-contactnav">+1-888-583-3462 </a></div>
+                </div>
+            </div>
+            @{Html.RenderPartial("~/Views/Shared/_SearchEngine.cshtml");}
+        </div>
+    </div>
+</div>
+
+
+<div class="hotelmain ">
+    <div class="container">
+        <div class="row explore-main">
+            <div class="col-sm-12 mt-5">
+                <h2>Best Places to Visit Around the World</h2>
+                <p>Unlock the best deals by finding the most affordable flights to any airport across the globe.</p>
+            </div>
+            <div class="col-12 col-sm-4 mb-2 p-1">
+                <div class="hotel">
+                    <img alt="" loading="lazy" class="card-LazyImage" src="/iimg/Los-Angeles.jpg">
+                    <span class="hotelbg">
+                        <h2>Los Angeles <span>California</span></h2>
+
+                    </span>
+                </div>
+            </div>
+            <div class="col-12 col-sm-4 mb-2 p-1">
+                <div class="hotel">
+                    <img alt="" loading="lazy" class="card-LazyImage" src="/iimg/Africa.jpg">
+                    <span class="hotelbg">
+                        <h2>Africa <span>Continent</span></h2>
+
+                    </span>
+                </div>
+            </div>
+            <div class="col-12 col-sm-4 mb-2 p-1">
+                <div class="hotel">
+                    <img alt="" loading="lazy" class="card-LazyImage" src="/iimg/Vienna.jpg">
+                    <span class="hotelbg">
+                        <h2>Vienna <span>Austria</span></h2>
+
+                    </span>
+                </div>
+            </div>
+            <div class="col-12 col-sm-4 mb-2 p-1">
+                <div class="hotel">
+                    <img alt="" loading="lazy" class="card-LazyImage" src="/iimg/Italy.jpg">
+                    <span class="hotelbg">
+                        <h2>Italy <span>Europe</span></h2>
+
+                    </span>
+                </div>
+            </div>
+            <div class="col-12 col-sm-4 mb-2 p-1">
+                <div class="hotel">
+                    <img alt="" loading="lazy" class="card-LazyImage" src="/iimg/Rome.jpg">
+                    <span class="hotelbg">
+                        <h2>Rome<span>Italy</span></h2>
+
+                    </span>
+                </div>
+            </div>
+            <div class="col-12 col-sm-4 mb-2 p-1">
+                <div class="hotel">
+                    <img alt="" loading="lazy" class="card-LazyImage" src="/iimg/Vacation1.jpg">
+                    <span class="hotelbg">
+                        <h2>Dubai <span>UAE</span></h2>
+
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="clearfix"></div>
+<div class="whyus">
+    <div class="container">
+        <br>
+        <div class="row wus">
+            <div class="col-lg-12 col-md-12">
+
+                <p class="mb-5">Explore the convenience and affordability of travel with Planeflybooking.com, your reliable companion for booking flights to your ideal destinations. Whether you're arranging a peaceful holiday, a romantic escape, or an exciting family adventure, Planeflybooking.com provides budget-friendly tickets tailored to all your travel requirements. Our easy-to-use search technology streamlines the flight booking process, offering you economical options to popular destinations throughout the US and globally.</p>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+
+
+<section>
+    <div class="container-fluid secure">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="features-item">
+                        <div class="features-content">
+                            <p>Discover effortless flight booking with our attractive deals and user-friendly platform.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="features-item">
+                        <div class="features-content">
+                            <p>We are committed to providing affordable hotel reservations, vacation packages, and airline tickets tailored to your needs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="features-item">
+                        <div class="features-content">
+                            <p>Our dedicated support team is available 24/7 to assist with any travel-related questions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

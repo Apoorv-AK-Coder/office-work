@@ -1,0 +1,172 @@
+﻿
+@{
+    ViewBag.Title = "Contactus";
+}
+<section>
+    <div class="bg-scroll pos-rel contact-page">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+                </ol>
+            </nav>
+            <h1 class="breadcrumbs-title">Contact Us</h1>
+            <div class="breadcrumbs-description">
+                Meet the amazing team behind this company and find out more about how we work.
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@using (Html.BeginForm("contactdata", "contact"))
+{
+    <section class="contact-area">
+        <div class="container pt-30 pb-20">
+            <div class="row">
+                <div class="contact-items bg-contain">
+                    <div class="col-md-4 address">
+                        <div class="address-items">
+                            <ul class="info">
+                                <li>
+                                    <h4>Office Location</h4>
+                                    <div class="icon"><i class="fa fa-map-marker"></i></div>
+                                    <span>
+                                        2440 broad way suite 219, New York NY 10024
+                                    </span>
+                                </li>
+
+                                <li>
+                                    <h4>Phone</h4>
+                                    <div class="icon"><i class="fa fa-phone fa-rotate-90"></i></div>
+                                    <span>866-699-8919</span>
+                                </li>
+                                <li>
+                                    <h4>Email</h4>
+                                    <div class="icon"><i class="fa fa-envelope"></i> </div>
+                                    <span>support@faressaver.com</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-8 contact-form">
+                        <h1>Send a Message</h1>
+                        <p>
+                            Providing you have any questions don’t hesitate to contact our team. We are always here to answer your questions.
+                        </p>
+                        <form action="assets/mail/contact.php" method="POST" class="contact-form">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <input class="input-bg-new" id="txtFName" name="txtFName" placeholder="Name" type="text">
+                                    <span class="alert-error"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input class="input-bg-new" id="txtEmail" name="txtEmail" placeholder="Email*" type="email">
+                                    <span class="alert-error"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="input-bg-new" id="txtPhone" name="txtPhone" placeholder="Phone" type="text">
+                                    <span class="alert-error"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <textarea class="textarea-bg-new" id="MsgTextBox" name="MsgTextBox" placeholder="Tell Us About Project *"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <input type="button" id="btnsend" value="Send Message" class="btn" onclick="ContactValidate(1)" />
+                                    @*<button type="submit" name="submit" id="submit">
+                                        Send Message <i class="fa fa-paper-plane"></i>
+                                    </button>*@
+                                </div>
+                            </div>
+                            <!-- Alert Message -->
+                            <div class="col-md-12 alert-notification">
+                                <div id="message" class="alert-msg"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+
+@*<section>
+    <script src='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAAMlbS0owTLxTqZMLdsS0k6vPIEbERs48'></script><div style='overflow:hidden;height:350px;width:1600px;'>
+        <div id='gmap_canvas' style='height:350px;width:1600px;'></div>
+        <style>
+            #gmap_canvas img {
+                max-width: none !important;
+                background: none !important
+            }
+        </style>
+    </div> <a href='https://add-map.com/'>add google map to website</a>
+    <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=fc6e3aa16bc995a2900d1cb61c4832dbd83bc7e0'></script>
+    <script type='text/javascript'>function init_map() { var myOptions = { zoom: 12, center: new google.maps.LatLng(51.4703676, -0.3978567000000339), mapTypeId: google.maps.MapTypeId.ROADMAP }; map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions); marker = new google.maps.Marker({ map: map, position: new google.maps.LatLng(51.4703676, -0.3978567000000339) }); infowindow = new google.maps.InfoWindow({ content: '<strong>Faressaver</strong><br>Suite B2:11 Vista Centre Salisbury road<br>TW4 6JQ Hounslow, United Kingdom<br>' }); google.maps.event.addListener(marker, 'click', function () { infowindow.open(map, marker); }); infowindow.open(map, marker); } google.maps.event.addDomListener(window, 'load', init_map);</script>
+</section>*@
+
+
+<script type="text/javascript">
+    function ContactValidate(id) {
+        var btrue = true;
+
+        var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+        var email_address = $("#txtEmail").val();
+        var phone = $('#txtPhone').val(),
+        intRegex = /[0-9 -()+]+$/;
+        if ($('#txtFName').val() == "") {
+            alert("Please enter your Name");
+            btrue = false;
+        }
+        else if (!emailReg.test(email_address) || email_address == '') {
+            alert('Please enter a valid email address.');
+            btrue = false;
+        }
+        else if ((phone.length < 10) || (!intRegex.test(phone))) {
+            alert('Please enter a valid phone number.');
+            btrue = false;
+        }
+        else if ($('#Message').val() == "") {
+            alert("Please enter your comment or question in the Message box.");
+            btrue = false;
+        }
+        if (btrue == true) {
+            onsavecontactus(1);
+        }
+    }
+
+    function onsavecontactus(id) {
+        //debugger;
+        $.ajax({
+            url: '@Url.Action("ContactusEnquiry", "Common")',
+            type: 'POST',
+            data: {
+                name: $('#txtFName').val(),
+                Phone: $('#txtPhone').val(),
+                Email: $('#txtEmail').val(),
+                Message: $('#MsgTextBox').val()
+            },
+            success: function (msg) {
+                $('#Waitpopup').hide();
+                $('#txtFName').val("");
+                $('#txtPhone').val("");
+                $('#txtEmail').val("");
+                $('#MsgTextBox').val("");
+                alert(msg);
+            },
+            error: function (msg) {
+                alert(msg);
+            }
+        });
+
+    }
+    // ]]>
+</script>
+

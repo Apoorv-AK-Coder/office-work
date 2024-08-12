@@ -1,0 +1,903 @@
+﻿@model TravelSite.Models.Flight
+@using Newtonsoft.Json
+@{
+    ViewBag.Title = "Alternate Flights";
+
+}
+@{
+
+    var item = Model;
+    var bagg = "";
+
+    DateTime firstSegmentArrTime = DateTime.Now;
+    TimeSpan stopovertTime = new TimeSpan();
+
+    string newuniqe = Model.unique + "~" + "1";
+    var counter = 0;
+    var selcteditem = "";
+    int NoPax = 0;
+    int SegmentCount = 0;
+
+}
+<section class="bg_grey pb-15">
+    <div class="container">
+        <div class="col-md-3 col-sm-12 no-pad-lft" style="position:static">
+           
+                <div class="left-sidebar">
+                    <div class="left-sec-box">
+                        <section>
+                            @{Html.RenderAction("_ModifySearch", "Result");}
+                        </section>
+                    </div>
+                </div>
+                <div class="filterOptins" id="js-filterOptins" style="display: none;">
+                    <div class="">
+                        <div class="locationFilter autocomplete_from" style="display: block;">
+                            <div class="ui-widget ui-widget-content results"> </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div id="GetContractFilter">
+                    <button class="btn btn-block visible-xs  hidden-md hidden-lg" data-toggle="collapse" data-target="#Foo">Filter Result</button>
+
+                    <div id="Foo" class="filter-box collapse in">
+                        <div class="clearfix"></div>
+                        <section id="" class="by-stop">
+                            <h3 href="#stop" class="accordion-toggle" data-toggle="collapse"><img src="../images/stop-icon.png">By <span>Stops </span> <i class="fa fa-angle-down pull-right mt-10"></i></h3>
+                            <div id="stop" class="collapse">
+                                <div id="stopsftr">
+                                    @if (Model.stop1 != "NoFare" && Model.stop1 != null)
+                                    {
+                                        <div class="frow1">
+                                            <label>
+                                                <input type="checkbox" name="Stops" id="Chk1Stop" onchange='MasterFiltering();' checked="checked" value="" class="checkStops">
+                                                Non Stop
+                                            </label>
+                                            <span class="only_clik only" onclick="MasterFilteringStopOnly(1)">only</span> <span class="s1 pull-right" id="span1Stop">@Model.stop1</span>
+                                        </div>
+                                    }
+                                    @if (Model.stop2 != "NoFare" && Model.stop2 != null)
+                                    {
+                                        <div class="frow1">
+                                            <label>
+                                                <input type="checkbox" name="Stops" id="Chk2Stop" onchange='MasterFiltering();' checked="checked" value="" class="checkStops">
+                                                One Stop
+                                            </label>
+                                            <span class="only_clik only" onclick="MasterFilteringStopOnly(2)">only</span> <span class="s1 pull-right" id="span2Stop">@Model.stop2</span>
+                                        </div>
+                                    }
+                                    @if (Model.stop3 != "NoFare" && Model.stop3 != null)
+                                    {
+                                        <div class="frow1">
+                                            <label>
+                                                <input type="checkbox" name="Stops" id="Chk3Stop" onchange='MasterFiltering();' checked="checked" value="" class="checkStops">
+                                                2+ Stop
+                                            </label>
+                                            <span class="only_clik only" onclick="MasterFilteringStopOnly(3)">only</span> <span class="s1 pull-right" id="span3Stop">@Model.stop3</span>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </section>
+                        <div class="clearfix"></div>
+                        <section>
+                            <div class="filter1">
+                                <h3 href="#flightime" class="accordion-toggle" data-toggle="collapse"> <img src="../images/f2.png"> Flight Time<span id="flttime"><i class="fa fa-angle-down pull-right mt-10"></i></span> </h3>
+                                <div id="flightime" class="collapse">
+                                    <div class="frow1 text-center">
+                                        @if (!string.IsNullOrEmpty(Model.depdate) && Model.mincost != 0.0)
+                                        {<span class="outbound pull-left"><b>OUT FLIGHT</b></span><br />
+                                            <span class="outbound text-center"><span id="divSelectedStartDepart" class="slider-time">10:00AM</span> - <span id="divSelectedEndDepart" class="slider-time2">12:00PM</span></span> <span class="outbound">
+                                                <div id="Depart-slider-container" class="mb-20 mt-15"> </div>
+                                            </span>}
+
+                                        @if (!string.IsNullOrEmpty(Model.retdate) && Model.mincost != 0.0)
+                                        {<span class="outbound pull-left"><b>IN FLIGHT</b></span><br />
+                                            <span class="outbound"><span id="divSelectedStartReturn" class="slider-time3">10:00AM</span> - <span id="divSelectedEndReturn" class="slider-time4">12:00PM</span></span> <span class="outbound">
+                                                <div id="Return-slider-container" class="mb-20 mt-15"> </div>
+                                            </span>}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <div class="clearfix"></div>
+                        <section>
+                            <div class="filter1">
+                                <h3 href="#flightduration" class="accordion-toggle" data-toggle="collapse"> <img src="../images/duration-icon.png"> Flight Duration <span id="fltdur"><i class="fa fa-angle-down pull-right mt-10"></i></span> </h3>
+                                <div id="flightduration" class="collapse">
+                                    <div class="frow1 text-center">
+                                        @if (!string.IsNullOrEmpty(Model.depdate) && Model.mincost != 0.0)
+                                        {<span class="outbound pull-left"><b>Outbount Flight</b></span><br />
+                                            <span class="outbound"><span id="divSelectedStartDepartDuration" class="slider-time">00:00</span> - <span id="divSelectedEndDepartDuration" class="slider-time2">59:59</span></span> <span class="outbound">
+                                                <div id="DepartDuration-slider-container" class="mb-20 mt-15"> </div>
+                                            </span>}
+
+                                        @if (!string.IsNullOrEmpty(Model.retdate) && Model.mincost != 0.0)
+                                        {<span class="outbound pull-left"><b>Inbound Flight</b></span><br />
+                                            <span class="outbound"><span id="divSelectedStartReturnDuration" class="slider-time3">00:00</span> - <span id="divSelectedEndReturnDuration" class="slider-time2">50:59</span></span> <span class="outbound">
+                                                <div id="ReturnDuration-slider-container" class="mb-20 mt-15"> </div>
+                                            </span>}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <div class="clearfix"></div>
+                        <section>
+                            <div class="filter1">
+                                <h3 href="#flightprice" class="accordion-toggle" data-toggle="collapse"> <img src="../images/flight-price-icon.png"> Flight Price<span id="fltprice"><i class="fa fa-angle-down pull-right mt-10"></i></span> </h3>
+                                @if (Model.mincost != 0.0)
+                                {
+                                    <div id="flightprice" class="collapse">
+                                        <div class="frow1 text-center">
+                                            <span class="outbound" style="margin-left: 9px;">@TravelSite.Models.CompCredentials.Currency_Symbol <span id="divSelectedStart" class="slider-time">0</span> -  @TravelSite.Models.CompCredentials.Currency_Symbol <span id="divSelectedEnd" class="slider-time2">10000</span></span> <span class="outbound">
+                                                <div id="demo-slider-container" class="mb-20 mt-15"> </div>
+                                                <div class="normal_font_size_all">
+                                                    <div id="price_slider"> </div>
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </section>
+                        <div class="clearfix"></div>
+                        <section>
+                            <div class="filter1">
+                                <h3 href="#departairport" class="accordion-toggle" data-toggle="collapse">
+                                    <img src="../images/airport-icon.png" />  Departure Airport <span id="dep"><i class="fa fa-angle-down pull-right mt-10"></i></span>
+                                </h3>
+                                <div id="departairport" class="collapse"> @Html.Raw(Model.airport) </div>
+                            </div>
+                        </section>
+                        <div class="clearfix"></div>
+                        <div class="line"></div>
+                        <section>
+                            <div class="filter1">
+                                <h3 href="#airlines" class="accordion-toggle" data-toggle="collapse">
+                                    <img src="../images/airline-icon.png" />
+                                    Airlines <span id="air"><i class="fa fa-angle-down pull-right"></i></span>
+                                </h3>
+                                <div id="airlines" class="collapse"> @Html.Raw(Model.airline) </div>
+                            </div>
+                        </section>
+                        @*<section id="" class="get-alert hidden-xs">
+                <h3 href="#fare-alert" class="accordion-toggle" data-toggle="collapse">GET fare <span>Alerts </span> <i class="fa fa-angle-down pull-right mt-10"></i></h3>
+                <div id="fare-alert" class="collapse in">
+                    <p>Create Fare Alert<span> (Get an alert when price drops)</span></p>
+                    <div id="fareAlert">
+                        <input type="hidden" class="subscriptionType" name="subscriptionType" value="1">
+                        <input type="email" class="form-control email" placeholder="Email">
+                        <div class="btn" onclick="newsLetter('fareAlert')">Subscribe</div>
+                    </div>
+                    <div class="pro-code"> Promo Code is off service fees and in addition to any available instant savings. </div>
+                </div>
+            </section>*@
+                    </div>
+
+                    <div class="why-book hidden-xs">
+                        <h5>Book with <span>confidence</span></h5>
+                        <ul>
+                            <li>Price Match Promise!</li>
+                            <li>Safe Shopping Guarantee</li>
+                            <li>Discount Fares Updated Daily</li>
+                            <li>24/7 Toll Free Customer Care</li>
+                        </ul>
+                    </div>
+                    <div class="why-book hidden-xs">
+                        <h5>Book with <span>Faressaver</span></h5>
+                        <ul>
+                            <li>20 Years of Service Excellence</li>
+                            <li>Travel Industry Award Winner</li>
+                            <li>IATA, ATOL, CLIA Member</li>
+                            <li>Travel Weekly Power List</li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+        <div class="clearfix-mob"></div>
+        <div class="col-md-9 col-sm-12 mt-15">
+            <div class="result-title col-sm-12 no-pad  mb-10">
+                <div class="col-md-10 col-sm-9 no-pad-lft text-left"> @item.from1 @*<span class="city-code">(@item.from2)</span>*@ to @item.to1 @*<span class="city-code">(@item.to2)</span>*@ <span>@Convert.ToDateTime(item.depdate).ToString("ddd, MMM dd, yyyy")  - @Convert.ToDateTime(item.retdate).ToString("ddd, MMM dd, yyyy") </span> </div>
+                <div class="col-md-2 col-sm-3 result-found hidden-xs"> <b id="cuurentCount"> @item.Count </b> Results Found </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="listing" id="containerListing">
+                <div class="new-listing-unit">
+
+                    @{
+                        if (item.Items != null)
+                        {
+                            NoPax = item.adult + item.child;
+
+                            List<string> AirlineList = new List<string>();
+                            <input id="hdnMinCost" type="hidden" value="@item.mincost.ToString("f2")" />
+                            <input id="hdnMaxCost" type="hidden" value="@item.maxcost.ToString("f2")" />
+                            <input id="hdnTotalCount" type="hidden" value="@item.Count" />
+                            foreach (var flt in @item.Items)
+                            {
+
+                                SegmentCount = 0;
+
+                                var SectorDept = flt.Sectors.Where(x => x.IsReturn.ToString().ToLower() == "false").ToList();
+                                var SectorRet = flt.Sectors.Where(x => x.IsReturn.ToString().ToLower() == "true").ToList();
+
+                                selcteditem = Model.unique + "~" + flt.IndexNumber + "~" + flt.Provider;
+
+                                string redirectpage = "href=/passengerdetails/passenger?q=" + selcteditem + "";
+                                <!--new result-->
+                                <div class="contract-block" id="@("div" + flt.IndexNumber + "_" + flt.Provider)">
+
+                                    <input id="@("hdnTotalCost"+ counter)" type="hidden" class="clshdnTotalCost" value="@((flt.GrandTotal / NoPax).ToString("f2"))" />
+                                    <input id="@("hdnId" +counter)" type="hidden" value="@("div" + flt.IndexNumber + "_" + flt.Provider)" />
+                                    <input id="@("hdnDepTime" + counter)" type="hidden" value="@flt.Sectors[0].Departure.Time" />
+                                    <input id="@("hdnDepDuration" + counter)" type="hidden" value="@SectorDept[@SectorDept.Count - 1].ActualTime" />
+                                    <input type="hidden" value="@(Convert.ToInt32(SectorDept[SectorDept.Count - 1].ActualTime.Replace(":", "")) + Convert.ToInt32(SectorRet.Count > 0 ? SectorRet[SectorRet.Count - 1].ActualTime.Replace(":", ""): "0"))" class="clshdnduration" />
+
+                                    @if (SectorRet.Count > 0)
+                                    {
+                                        <input id="@("hdnRetTime" + counter)" type="hidden" value="@SectorRet[0].Departure.Time" />
+                                        <input id="@("hdnRetDuration" + counter)" type="hidden" value="@SectorRet[SectorRet.Count - 1].ActualTime" />
+                                        <input id="hdnIsReturn" type="hidden" value="true" />
+                                    }
+
+                                    <div class="metas_details_contract col-xs-12">
+                                        <div class="contract__content">
+                                            <section class="contract__segment col-sm-8">
+                                                <div class="col-xs-12 contract__trip trip-block">
+                                                    <div class="col-xs-2 trip__airline">
+                                                        <figure> <img src=@("/images/airlinelogo/" + SectorDept[0].AirV + "s.gif" ) class="airline__logo" alt=@SectorDept[0].AirlineName title=@SectorDept[0].AirlineName> <span class="airline__title"> <span class="airline__name"> @SectorDept[0].AirlineName </span> </span> </figure>
+                                                    </div>
+                                                    <div class="col-xs-8 trip__timeline">
+                                                        <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(SectorDept[0].Departure.Date).ToString("ddd") </span> <span class="is--flight-month">@Convert.ToDateTime(SectorDept[0].Departure.Date).ToString("MMM dd")</span> </div>
+                                                        <div class="trip__time is--depart-source">
+                                                            <time class="is--flight-time">@SectorDept[0].Departure.Time</time>
+                                                            <span class="is--airport-name"> <span data-toggle="tooltip" title=@SectorDept[0].Departure.AirportName>@SectorDept[0].Departure.AirportCode</span> </span>
+                                                        </div>
+                                                        <div class="trip__duration">
+                                                            <div class="msg__flight-time is--total"><span class="is--total-trip"> @(SectorDept[SectorDept.Count - 1].ActualTime.Replace(":", "h ") + "m")</span></div>
+                                                            <div class="timeline__stops">
+                                                                <span class="icon ic-bullet"><i class="fa fa-circle" aria-hidden="true"></i></span> <span class="stop_number">@(SectorDept.Count == 1 ? "Non Stop" : (SectorDept.Count == 2 ? (SectorDept.Count - 1).ToString() + " Stop" : (SectorDept.Count - 1).ToString() + " Stops")) </span>
+                                                                <div class="popover contract-popover fade bottom in stops-informations" style="display: none;">
+                                                                    <div class="arrow"></div>
+                                                                    <div class="popover-content">
+                                                                        <div class="stops__heading"> <strong>@(SectorDept.Count == 1 ? "Non Stop" : (SectorDept.Count == 2 ? (SectorDept.Count - 1).ToString() + " Stop" : (SectorDept.Count - 1).ToString() + " Stops"))</strong> </div>
+                                                                        <ul class="stops__name-list">
+                                                                            <li class="icon ic-bullet">@SectorDept[SectorDept.Count - 1].Departure.AirportCode - @SectorDept[SectorDept.Count - 1].Departure.AirportCityName </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="trip__time is--return-source">
+                                                            <time class="is--flight-time"> <span> @SectorDept[SectorDept.Count - 1].Arrival.Time  </span> </time>
+                                                            <span class="is--airport-name"> <span data-toggle="tooltip" title=@SectorDept[SectorDept.Count - 1].Arrival.AirportName>@SectorDept[SectorDept.Count - 1].Arrival.AirportCode</span></span>
+                                                        </div>
+
+                                                        <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(SectorDept[SectorDept.Count - 1].Arrival.Date).ToString("ddd")</span> <span class="is--flight-month">@Convert.ToDateTime(SectorDept[SectorDept.Count - 1].Arrival.Date).ToString("MMM dd")</span> </div>
+                                                    </div>
+                                                </div>
+
+
+                                                @if (SectorRet.Count > 0)
+                                                {
+                                                    <div class="col-xs-12 contract__trip trip-block">
+                                                        <div class="col-xs-2 trip__airline">
+                                                            <figure> <img src=@("/images/airlinelogo/" + SectorRet[0].AirV + "s.gif" ) class="airline__logo" alt=@SectorRet[0].AirlineName title=@SectorRet[0].AirlineName> <span class="airline__title"> <span class="airline__name"> @SectorRet[0].AirlineName </span> </span> </figure>
+                                                        </div>
+                                                        <div class="col-xs-8 trip__timeline">
+                                                            <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(SectorRet[0].Departure.Date).ToString("ddd") </span> <span class="is--flight-month">@Convert.ToDateTime(SectorRet[0].Departure.Date).ToString("MMM dd")</span> </div>
+                                                            <div class="trip__time is--depart-source">
+                                                                <time class="is--flight-time">@SectorRet[0].Departure.Time</time>
+                                                                <span class="is--airport-name"> <span data-toggle="tooltip" title=@SectorRet[0].Departure.AirportName>@SectorRet[0].Departure.AirportCode</span> </span>
+                                                            </div>
+                                                            <div class="trip__duration">
+                                                                <div class="msg__flight-time is--total"><span class="is--total-trip"> @(SectorRet[SectorRet.Count - 1].ActualTime.Replace(":", "h ") + "m")</span></div>
+                                                                <div class="timeline__stops">
+                                                                    <span class="icon ic-bullet"><i class="fa fa-circle" aria-hidden="true"></i></span> <span class="stop_number">@(SectorRet.Count == 1 ? "Non Stop" : (SectorRet.Count == 2 ? (SectorRet.Count - 1).ToString() + " Stop" : (SectorRet.Count - 1).ToString() + " Stops")) </span>
+                                                                    <div class="popover contract-popover fade bottom in stops-informations" style="display: none;">
+                                                                        <div class="arrow"></div>
+                                                                        <div class="popover-content">
+                                                                            <div class="stops__heading"> <strong>@(SectorRet.Count == 1 ? "Non Stop" : (SectorRet.Count == 2 ? (SectorRet.Count - 1).ToString() + " Stop" : (SectorRet.Count - 1).ToString() + " Stops"))</strong> </div>
+                                                                            <ul class="stops__name-list">
+                                                                                <li class="icon ic-bullet">@SectorRet[SectorRet.Count - 1].Departure.AirportCode - @SectorRet[SectorRet.Count - 1].Departure.AirportCityName</li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="trip__time is--return-source">
+                                                                <time class="is--flight-time"> <span> @SectorRet[SectorRet.Count - 1].Arrival.Time  </span> </time>
+                                                                <span class="is--airport-name"> <span data-toggle="tooltip" title=@SectorRet[SectorRet.Count - 1].Arrival.AirportName>@SectorRet[SectorRet.Count - 1].Arrival.AirportCode</span></span>
+                                                            </div>
+
+                                                            <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(SectorRet[SectorRet.Count - 1].Arrival.Date).ToString("ddd")</span> <span class="is--flight-month">@Convert.ToDateTime(SectorRet[SectorRet.Count - 1].Arrival.Date).ToString("MMM dd")</span> </div>
+                                                        </div>
+                                                    </div>
+
+                                                }
+
+                                            </section>
+                                            <header class="contract__header col-sm-4">
+                                                <div class="contract__fare col-xs-12">
+                                                    <div class="fare__total is--break">
+                                                        <div class="contract__farebreakup"> <span class="fare__amount is--base contract__breakup__price" style="" id="baggage_estimator_totalbasefare_2181"> <span class="currency" title=@TravelSite.Models.CompCredentials.Currency_Symbol@((flt.GrandTotal / NoPax).ToString("f2"))>@TravelSite.Models.CompCredentials.Currency_Symbol@((flt.GrandTotal / NoPax).ToString("f2"))</span> <span class="fpSuper" title=@TravelSite.Models.CompCredentials.Currency_Symbol@((flt.GrandTotal / NoPax).ToString("f2"))><sup></sup></span> </span> </div>
+                                                    </div>
+                                                    <div class="fare__label is--bouns-applied">Per Person<span>(Incl taxes & fees)</span> </div>
+                                                </div>
+                                                <div class="contract__select col-xs-12">
+                                                    <div class="cta-1st select__cta"> <a href="/passengerdetails/passenger?q=@selcteditem">SELECT <i class="fa fa-chevron-right"></i></a></div>
+                                                </div>
+                                            </header>
+                                        </div>
+                                        <footer class="contract__footer col-xs-12">
+                                            <div class="col-xs-2 text-left contract__flight-details"> <a href="#" class="flight-details-link link-down"> <span onclick="showdetail(@("'" + flt.IndexNumber + flt.Provider+"'"))">Flight Details <i class="fa fa-angle-down" aria-hidden="true"></i></span> </a> <span> <a href="#" onclick="BackToResultPage(@("'"+item.unique+"'"))" class="txt-dark"> Back to Result </a> </span> <span class="pull-right"> <i class="fa fa-briefcase"></i>@SectorDept[0].Baggage_Info.Description</span> </div>
+                                        </footer>
+
+                                        <!--  Detail Section -->
+                                        @{
+                                            SegmentCount = 0;
+                                        }
+                                        <div class="flight-details-block col-xs-12" style=" display:none;" id=@(flt.IndexNumber + flt.Provider)>
+                                            <div class="flight-details__content">
+                                                <section class="segment__single is--eachway-CTA">
+                                                    <div class="col-xs-12 segment__boundinfo"> <strong>Depart</strong> <span class="">@Convert.ToDateTime(SectorDept[0].Departure.Date).ToString("ddd, MMM dd ") </span> </div>
+                                                    @foreach (var sec in SectorDept)
+                                                    {
+                                                        stopovertTime = new TimeSpan();
+                                                        SegmentCount++;
+                                                        if (SegmentCount == 1)
+                                                        {
+                                                            bagg = sec.BaggageInfo;
+                                                            firstSegmentArrTime = Convert.ToDateTime(Convert.ToDateTime(sec.Arrival.Date).ToString("yyyy-MM-dd") + "T" + sec.Arrival.Time + ":00");
+                                                        }
+                                                        else
+                                                        {
+                                                            string timemerge = Convert.ToDateTime(SectorDept[SegmentCount - 2].Arrival.Date).ToString("yyyy-MM-dd") + "T" + SectorDept[SegmentCount - 2].Arrival.Time + ":00";
+                                                            firstSegmentArrTime = Convert.ToDateTime(timemerge);
+                                                            stopovertTime = (Convert.ToDateTime((Convert.ToDateTime(sec.Departure.Date).ToString("yyyy-MM-dd") + "T" + sec.Departure.Time + ":00")) - firstSegmentArrTime);
+                                                        }
+
+                                                        if (stopovertTime.ToString("hh") + ":" + stopovertTime.ToString("mm") != "00:00")
+                                                        {
+                                                            <ul class="layover col-xs-12">
+                                                                <span>Layover: @stopovertTime.ToString("hh")h @stopovertTime.ToString("mm")m at @sec.Departure.AirportCityName</span>
+                                                            </ul>
+                                                        }
+                                                        <ul class="segment__itinerary col-xs-12">
+                                                            <li class="sr-only"> <span class="outbound">Outbound</span> </li>
+                                                            <li class="itinerary__airline col-xs-2">
+                                                                <figure>
+                                                                    <img src=@("/images/airlinelogo/" + sec.AirV + "s.gif" ) class="airline__logo" alt=@sec.AirlineName title=@sec.AirlineName>
+                                                                    <figcaption class="airline__info">
+                                                                        <span class="airline__title">@sec.AirlineName</span>
+                                                                        <div class="info__flight hidden-xs"> <span class="flight__num">Flight @sec.FltNum</span> </div>
+                                                                    </figcaption>
+                                                                </figure>
+                                                            </li>
+                                                            <li class="itinerary__airport col-xs-8">
+                                                                <div class="airport__info">
+                                                                    <div class="col-xs-2 itinerary__date">
+                                                                        <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(sec.Departure.Date).ToString("ddd")</span> <span class="is--flight-month">@Convert.ToDateTime(sec.Departure.Date).ToString("MMM dd ")</span> </div>
+                                                                    </div>
+                                                                    <div class="col-xs-4 itinerary__time">
+                                                                        <div class="is--itinerary-flight-stop hidden"> <span class="flight-stop__info">@(SectorDept.Count == 1 ? "Non Stop" : (SectorDept.Count == 2 ? (SectorDept.Count - 1).ToString() + " Stop" : (SectorDept.Count - 1).ToString() + " Stops"))</span> </div>
+                                                                        <time class="airport__time">@sec.Departure.Time</time>
+                                                                        <span class="airport__name"><span class="" title="London Heathrow - LHR">@sec.Departure.AirportCityName - @sec.Departure.AirportCode</span></span>
+                                                                    </div>
+                                                                    <div class="col-xs-4 itinerary__time">
+                                                                        <time class="airport__time">@sec.Arrival.Time</time>
+                                                                        <span class="airport__name"><span title="Abu Dhabi - AUH">@sec.Arrival.AirportCityName - @sec.Arrival.AirportCode</span></span>
+                                                                    </div>
+                                                                    <div class="col-xs-2 itinerary__date">
+                                                                        <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(sec.Departure.Date).ToString("ddd")</span> <span class="is--flight-month">@Convert.ToDateTime(sec.Departure.Date).ToString("MMM dd ")</span> </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="itinerary__info col-xs-2">
+                                                                <div class="flight-info__class col-xs-12"> <span class="FlightCabin">@sec.CabinClass.Name</span> </div>
+                                                                <ul class="flight-info__list col-xs-12 flight-info__alllist">
+                                                                    <li class="flight-info__item">
+                                                                        <div class="baggage-listing">
+                                                                            <div class="baggage-listing__icons popover__action popover__action-hover"><span><i class="fa fa-briefcase" aria-hidden="true"></i>@sec.BaggageInfo</span> </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    }
+                                                    <div class="col-xs-12 segment__footer">
+                                                        <div class="msg__flight-time is--total"> <span>Total trip <span class="TripDurationHideXs">duration</span>: <span class="is--total-trip">@(SectorDept[0].ActualTime.Replace(":", "h ") + "m") </span></span> <span class="is--duration"></span> </div>
+                                                    </div>
+                                                </section>
+
+                                                <!-- Return Details  -->
+                                                @if (SectorRet.Count > 0)
+                                                {
+                                                    SegmentCount = 0;
+                                                    <section class="segment__single is--eachway-CTA">
+                                                        <div class="col-xs-12 segment__boundinfo"> <strong>Return</strong> <span class="">@Convert.ToDateTime(SectorRet[0].Departure.Date).ToString("ddd, MMM dd ")</span> </div>
+
+                                                        @foreach (var sec in SectorRet)
+                                                        {
+                                                            stopovertTime = new TimeSpan();
+                                                            SegmentCount++;
+                                                            if (SegmentCount == 1)
+                                                            {
+                                                                bagg = sec.BaggageInfo;
+                                                                firstSegmentArrTime = Convert.ToDateTime(Convert.ToDateTime(sec.Arrival.Date).ToString("yyyy-MM-dd") + "T" + sec.Arrival.Time + ":00");
+                                                            }
+                                                            else
+                                                            {
+                                                                string timemerge = Convert.ToDateTime(SectorRet[SegmentCount - 2].Arrival.Date).ToString("yyyy-MM-dd") + "T" + SectorRet[SegmentCount - 2].Arrival.Time + ":00";
+
+                                                                firstSegmentArrTime = Convert.ToDateTime(timemerge);
+                                                                stopovertTime = (Convert.ToDateTime((Convert.ToDateTime(sec.Departure.Date).ToString("yyyy-MM-dd") + "T" + sec.Departure.Time + ":00")) - firstSegmentArrTime);
+
+                                                            }
+
+                                                            if (stopovertTime.ToString("hh") + ":" + stopovertTime.ToString("mm") != "00:00")
+                                                            {
+                                                                <ul class="layover col-xs-12">
+                                                                    <span>Layover: @stopovertTime.ToString("hh")h @stopovertTime.ToString("mm")m at @sec.Departure.AirportCityName</span>
+                                                                </ul>
+                                                            }
+
+                                                            <ul class="segment__itinerary col-xs-12">
+                                                                <li class="sr-only"> <span class="outbound">Outbound</span> </li>
+                                                                <li class="itinerary__airline col-xs-2">
+                                                                    <figure>
+                                                                        <img src=@("/images/airlinelogo/" + sec.AirV + "s.gif" ) class="airline__logo" alt=@sec.AirlineName title=@sec.AirlineName>
+                                                                        <figcaption class="airline__info">
+                                                                            <span class="airline__title">@sec.AirlineName</span>
+                                                                            <div class="info__flight hidden-xs"> <span class="flight__num">Flight @sec.FltNum</span> </div>
+                                                                        </figcaption>
+                                                                    </figure>
+
+                                                                </li>
+                                                                <li class="itinerary__airport col-xs-8">
+                                                                    <div class="airport__info">
+                                                                        <div class="col-xs-2 itinerary__date">
+                                                                            <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(sec.Departure.Date).ToString("ddd")</span> <span class="is--flight-month">@Convert.ToDateTime(sec.Departure.Date).ToString("MMM dd ")</span> </div>
+                                                                        </div>
+                                                                        <div class="col-xs-4 itinerary__time">
+                                                                            <div class="is--itinerary-flight-stop hidden"> <span class="flight-stop__info">@(SectorRet.Count == 1 ? "Non Stop" : (SectorRet.Count == 2 ? (SectorRet.Count - 1).ToString() + " Stop" : (SectorRet.Count - 1).ToString() + " Stops"))</span> </div>
+                                                                            <time class="airport__time">@sec.Departure.Time</time>
+                                                                            <span class="airport__name"><span class="" title="London Heathrow - LHR">@sec.Departure.AirportCityName - @sec.Departure.AirportCode</span></span>
+                                                                        </div>
+                                                                        <div class="col-xs-4 itinerary__time">
+                                                                            <time class="airport__time">@sec.Arrival.Time</time>
+                                                                            <span class="airport__name"><span title="Abu Dhabi - AUH">@sec.Arrival.AirportCityName - @sec.Arrival.AirportCode</span></span>
+                                                                        </div>
+                                                                        <div class="col-xs-2 itinerary__date">
+                                                                            <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(sec.Departure.Date).ToString("ddd")</span> <span class="is--flight-month">@Convert.ToDateTime(sec.Departure.Date).ToString("MMM dd ")</span> </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="itinerary__info col-xs-2">
+                                                                    <div class="flight-info__class col-xs-12"> <span class="FlightCabin">@sec.CabinClass.Name</span> </div>
+                                                                    <ul class="flight-info__list col-xs-12 flight-info__alllist">
+                                                                        <li class="flight-info__item">
+                                                                            <div class="baggage-listing">
+                                                                                <div class="baggage-listing__icons popover__action popover__action-hover"><span><i class="fa fa-briefcase mr-5" aria-hidden="true"></i>@sec.BaggageInfo</span> </div>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </li>
+                                                            </ul>
+
+                                                        }
+
+                                                        <div class="col-xs-12 segment__footer">
+                                                            <div class="msg__flight-time is--total"> <span>Total trip <span class="TripDurationHideXs">duration</span>: <span class="is--total-trip">@(SectorRet[0].ActualTime.Replace(":", "h ") + "m")</span></span> <span class="is--duration"></span> </div>
+                                                        </div>
+                                                    </section>
+                                                }
+                                                <!-- Return Details End -->
+
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+
+                                        <!--  Detail Section End -->
+                                    </div>
+                                </div>
+
+                                <!--new result end-->
+
+                                counter++;
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</section>
+
+
+
+<script type="text/javascript">
+
+    $('.btn-airline').click(function () {
+        $(".show-more-airline").slideToggle('slow');
+        var $this = $(this);
+        $this.toggleClass('btn-airline');
+        if ($this.hasClass('btn-airline')) {
+            $this.text('+ View More');
+        } else {
+            $this.text('- View Less');
+        }
+    });
+    $('.btn-dest').click(function () {
+        $(".show-more-dest").slideToggle('slow');
+        var $this = $(this);
+        $this.toggleClass('btn-dest');
+        if ($this.hasClass('btn-dest')) {
+            $this.text('+ View More');
+        } else {
+            $this.text('- View Less');
+        }
+    });
+    $('.btn-inter-dest').click(function () {
+        $(".show-more-inter-dest").slideToggle('slow');
+        var $this = $(this);
+        $this.toggleClass('btn-inter-dest');
+        if ($this.hasClass('btn-inter-dest')) {
+            $this.text('+ View More');
+        } else {
+            $this.text('- View Less');
+        }
+    });
+    $('.btn-pop-route').click(function () {
+        $(".show-pop-route").slideToggle('slow');
+        var $this = $(this);
+        $this.toggleClass('btn-pop-route');
+        if ($this.hasClass('btn-pop-route')) {
+            $this.text('+ View More');
+        } else {
+            $this.text('- View Less');
+        }
+    });
+</script>
+
+<div class="back-to-top"><img src="~/images/back-to-top.png" alt="back to top" /></div>
+@*
+    <link href="~/Content/css/slider.css" rel="stylesheet" />
+*@
+<script src="~/js/time.js"></script>
+<script>
+
+    function stopover() {
+        var str = val1.value;
+        if (str == "1") {           
+            $("#val1").val(2);
+        }
+        if (str == "2") {           
+            $("#val1").val(1);
+        }
+    }
+    function flighttime() {
+
+        var str1 = flt.value;
+        if (str1 == "1") {           
+            $("#flt").val(2);
+        }
+        if (str1 == "2") {            
+            $("#flt").val(1);
+        }
+    }
+    function flightduration() {
+
+        var str1 = dur.value;
+        if (str1 == "1") {            
+            $("#dur").val(2);
+        }
+        if (str1 == "2") {            
+            $("#dur").val(1);
+        }
+    }
+    function flightprice() {
+        var str1 = price.value;
+        if (str1 == "1") {            
+            $("#price").val(2);
+        }
+        if (str1 == "2") {            
+            $("#price").val(1);
+        }
+    }
+    function depairport() {
+        var str1 = depair.value;
+        if (str1 == "1") {            
+            $("#depair").val(2);
+        }
+        if (str1 == "2") {           
+            $("#depair").val(1);
+        }
+    }
+    function airline() {
+        var str1 = depairline.value;
+        if (str1 == "1") {           
+            $("#depairline").val(2);
+        }
+        if (str1 == "2") {           
+            $("#depairline").val(1);
+        }
+    }
+</script>
+<input type="hidden" value="1" id="val1" />
+<input type="hidden" value="1" id="flt" />
+<input type="hidden" value="1" id="dur" />
+<input type="hidden" value="1" id="price" />
+<input type="hidden" value="1" id="depair" />
+<input type="hidden" value="1" id="depairline" />
+<input type="hidden" value="" id="mindata" />
+<input type="hidden" value="" id="maxdata" />
+<input type="hidden" value="" id="returntype" />
+<input type="hidden" value="" id="totaldata" />
+<input type="hidden" id="hdUnique" value=@Html.Raw(Model.unique) />
+<input type="hidden" id="hurl" value="" />
+<input type="hidden" id="ss" value=@Html.Raw(Model.stop1) />
+<input type="hidden" id="ss1" value=@Html.Raw(Model.stop2) />
+<input type="hidden" id="ss2" value=@Html.Raw(Model.stop3) />
+<input id='hfFilterData' type='hidden' value='@Html.Raw(Model.filterdata)' />
+<script src="~/Scripts/SliderFilter.js"></script>
+<script type="text/javascript">
+    var min = 0;
+    var max = 10000;
+
+    $(function () {
+        min = $("#hdnMinCost").val();
+        max = $("#hdnMaxCost").val();     
+        
+        SetSlider();
+        min = 0;
+        max = 1440;
+        SetSliderDepart();
+        min = 0;
+        max = 1440;
+        SetSliderReturn();
+        min = 0;
+        max = 3000;
+        SetSliderOutDuration();
+        if ($("#hdnIsReturn").val() == 'true')
+            SetSliderInDuration();
+    });
+
+</script>
+<script type="text/javascript">
+
+    function showdetail(dtldiv) {
+
+        $("#" + dtldiv).toggle();
+    }
+
+    var FilterDate = null;
+    function CheckAirline(airline) {
+
+        if ($("#Chk" + airline).prop('checked')) {
+            $("#Chk" + airline).prop("checked", false);
+        }
+        else {
+            $("#Chk" + airline).prop("checked", true);
+        }
+        MasterFiltering();
+    }
+    function MasterFiltering() {
+
+        var TotalCount = parseInt($("#hdnTotalCount").val())
+        x = TotalCount;
+        if (FilterDate == null) {
+            FilterDate = jsdata = JSON.parse($("#hfFilterData").val());
+        }
+        $.each(FilterDate, function (key, value) {
+
+            if ($("#Chk" + value.AirV).is(':checked') && $("#Chk" + value.DAirp).is(':checked') && CheckStop(value.Stop)) {
+                $("#div" + value.IndexNumber + "_" + value.Provider).show();
+                x = x + 1;
+            }
+            else {
+                $("#div" + value.IndexNumber + "_" + value.Provider).hide();
+                x = x - 1;
+            }
+        });
+       
+        //ScrollTop();
+    }
+    function MasterFilteringAirOnly(code) {
+        var TotalCount = parseInt($("#hdnTotalCount").val())
+        x = TotalCount;
+        if (FilterDate == null)
+            FilterDate = jsdata = JSON.parse($("#hfFilterData").val());
+        $.each(FilterDate, function (key, value) {
+            if (value.AirV == code) {
+                $("#div" + value.IndexNumber + "_" + value.Provider).show();
+                $("#Chk" + value.AirV).attr("checked", true);
+                x = x + 1;
+            }
+            else {
+                $("#div" + value.IndexNumber + "_" + value.Provider).hide();
+                $("#Chk" + value.AirV).attr("checked", false);
+                x = x - 1;
+            }
+        });
+       // document.getElementById('count').innerHTML = x / 2;
+        //ScrollTop();
+    }
+    function MasterFilteringSelectAll() {
+        var TotalCount = parseInt($("#hdnTotalCount").val())
+        x = TotalCount;
+        if (FilterDate == null)
+            FilterDate = jsdata = JSON.parse($("#hfFilterData").val());
+        $.each(FilterDate, function (key, value) {           
+            $("#div" + value.IndexNumber + "_" + value.Provider).show();            
+            $("#Chk" + value.AirV).prop("checked", true);
+            x = x + 1;
+        });
+       
+    }
+    function MasterFilteringStopOnly(Stop) {
+        var TotalCount = parseInt($("#hdnTotalCount").val())
+        x = TotalCount;
+        if (FilterDate == null)
+            FilterDate = jsdata = JSON.parse($("#hfFilterData").val());
+        $.each(FilterDate, function (key, value) {
+            if (parseInt(value.Stop) == parseInt(Stop)) {
+                $("#div" + value.IndexNumber + "_" + value.Provider).show();
+                $("#Chk" + Stop + "Stop").attr("checked", true);
+                x = x + 1;
+            }
+            else {
+                $("#div" + value.IndexNumber + "_" + value.Provider).hide();
+                x = x - 1;
+            }
+        });
+       
+        if (Stop == 1) {
+            $("#Chk2Stop").attr("checked", false);
+            $("#Chk3Stop").attr("checked", false);
+        }
+        else if (Stop == 2) {
+            $("#Chk1Stop").attr("checked", false);
+            $("#Chk3Stop").attr("checked", false);
+        }
+        else {
+            $("#Chk1Stop").attr("checked", false);
+            $("#Chk2Stop").attr("checked", false);
+        }
+    }
+    function MasterFilteringDepartOnly(code) {
+        var TotalCount = parseInt($("#hdnTotalCount").val())
+        x = TotalCount;
+        if (FilterDate == null)
+            FilterDate = jsdata = JSON.parse($("#hfFilterData").val());
+        $.each(FilterDate, function (key, value) {
+            if (value.DAirp == code) {
+                $("#div" + value.IndexNumber + "_" + value.Provider).show();
+                $("#Chk" + value.DAirp).attr("checked", true);
+                x = x + 1;
+            }
+            else {
+                $("#div" + value.IndexNumber + "_" + value.Provider).hide();
+                $("#Chk" + value.DAirp).attr("checked", false);
+                x = x - 1;
+            }
+        });
+        
+    }
+    function CheckStop(Stop) {
+        Stop = Stop >= 3 ? 3 : Stop
+        if (Stop <= 3)
+            return $("#Chk" + Stop + "Stop").is(':checked');
+        else
+            return true;
+    }
+    function ShowOnlyCheapest(gTot) {
+        var TotalCount = parseInt($("#hdnTotalCount").val())
+        x = TotalCount;
+
+        if (FilterDate == null)
+            FilterDate = jsdata = JSON.parse($("#hfFilterData").val());
+        $.each(FilterDate, function (key, value) {
+
+            if (parseFloat(gTot) == parseFloat(value.GrandTotal)) {
+                $("#div" + value.IndexNumber + "_" + value.Provider).show();
+                x = x + 1;
+            }
+            else {
+                $("#div" + value.IndexNumber + "_" + value.Provider).hide();
+                x = x - 1;
+            }
+        });
+        
+    }
+    function ShowOnlyQuickest(Stop) {
+        var TotalCount = parseInt($("#hdnTotalCount").val())
+        x = TotalCount;
+        if (FilterDate == null)
+            FilterDate = jsdata = JSON.parse($("#hfFilterData").val());
+        $.each(FilterDate, function (key, value) {
+
+            if (parseInt(value.Stop) == parseInt(Stop)) {
+                $("#div" + value.IndexNumber + "_" + value.Provider).show();
+                x = x + 1;
+            }
+            else {
+                $("#div" + value.IndexNumber + "_" + value.Provider).hide();
+                x = x - 1;
+            }
+        });
+       
+    }
+    function ScrollTop() {
+        $('html, body').animate({
+            scrollTop: $('.rightpanel').offset().top - 10
+        }, 'slow');
+    }
+
+    var sessionTimeout = 30;
+    window.onload = DisplaySessionTimeout;
+    function DisplaySessionTimeout() {
+        sessionTimeout = sessionTimeout - 1;
+        if (sessionTimeout >= 0)
+            window.setTimeout("DisplaySessionTimeout()", 60000);
+        else {
+            callSessionTimeOut();
+        }
+    }
+    function callSessionTimeOut() {
+        $(".sessionpop").show();
+        return true;
+    }
+    function ShowWait() {
+       // debugger;
+
+        $(".sessionpop").hide();
+        $(".searchpop1").show();
+        var unique = $("#hdUnique").val();
+        $("#hurl").val("@Html.Raw(Model.url)")
+        var data = $("#hurl").val();
+        var url = "";
+        url = "http://www.Faressaver.com/searchres/Search?q=" + data + "";
+        window.location.href = url.replace('__id__', data);
+        $(".searchpop1").hide();
+    }
+
+    $('#divModyfi2').click(function () {
+        if ($('#divModyfi').css('display') == "none") {
+
+            $("#divModyfi").css("display", "block");
+        }
+        else {
+            $("#divModyfi").css("display", "none");
+        }
+    });
+    
+    function AlternatePage(id) {
+         $("#divprogress").show();
+        var IDTest = id;
+        var url = '@Url.Action("AlternateResult", "Result", new { q = "__id__" })';
+        window.location.href = url.replace('__id__', IDTest);
+    }
+    function redirectPage(id) {
+
+         $("#divprogress").show();
+        var IDTest = id;
+        var url = '@Url.Action("passenger", "PassengerDetails", new { q = "__id__" })';
+        window.location.href = url.replace('__id__', IDTest);
+    }
+
+    function BackToResultPage(id) {
+         $("#divprogress").show();
+        var IDTest = id;
+        var url = '@Url.Action("FlightResult", "Result", new { q = "__id__" })';
+        window.location.href = url.replace('__id__', IDTest);
+    }
+
+</script>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>

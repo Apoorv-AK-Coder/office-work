@@ -1,0 +1,136 @@
+﻿@model TravelSite.ViewModels.Enquiry
+@{
+    ViewBag.Title = "Flight Enquiry";
+    Layout = null;
+}
+<input type="hidden" id="hdnGuid" value=@Model.Guid />
+<script src="~/Scripts/jquery-migrate-1.0.0.js"></script>
+
+<div id="dvenquiry" class="searchpop1" style="display: none;">
+    <div class="searchpopinner searchpopinner1">
+        <h2>PLEASE WAIT...</h2>
+
+        <div class="searcpoprow">
+            <img src="/Content/images/loading.gif" alt="Loading" title="Loading" />
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<section class="middle bg_requ_w3">
+    <div class="inner">
+        <div class="banner_tab_f1">
+            Flight Enquiry
+        </div>
+        <h2 class="requ_box_hd">We just need</h2>
+        <div class="clearfix"></div>
+        <div class="form_box_f1">
+            <div class="inner">
+                <div class="clearfix"></div>
+                <div class="form_box_f1">
+                    <div class="row">
+                        <div class="left_w1_fom3 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <label>Firstname *</label>
+                            <input type="text" id="txtfname" />
+                        </div>
+                        <div class="left_w1_fom3 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <label>LastName *</label>
+                            <input type="text" id="txtlname" />
+                        </div>
+                        <div class="left_w1_fom3 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <label>Phone *</label>
+                            <input type="text" id="txtphoneno" />
+                        </div>
+                        <div class="left_w1_fom3 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <label>Email *</label>
+                            <input type="text" id="txtemail1" />
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">                       
+                        <input type="submit" name="Submit" onclick="Enquriesvalidate();" class="sub_bt_w2" value="Submit Enquiry">
+                        <div class="form_box_f1_right">
+                            <asp:label id="lblMsg" forecolor="Red"></asp:label>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</section> 
+
+
+<script type="text/javascript">
+    function Enquriesvalidate() {
+        debugger;
+        var btrue = true;
+        var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+        var email_address = $("#txtemail1").val();
+        var phone = $('#txtphoneno').val();
+        intRegex = /[0-9 -()+]+$/;
+       
+        if ($('#txtfname').val() == "") {
+            alert("Please enter your Name");
+            $('#txtfname').focus();
+            btrue = false;
+        }
+        else if ((phone.length < 10) || (!intRegex.test(phone))) {
+            alert('Please enter a valid phone number.');
+            $('#txtphoneno').focus();
+            btrue = false;
+        }
+        else if (!emailReg.test(email_address) || email_address == '') {
+            alert('Please enter a valid email address.');
+            $("#txtemail1").focus();
+            btrue = false;
+        }
+        else if ($('#txtremarks').val() == "") {
+            alert("Please enter your enquiry.");
+            $("#txtremarks").focus();
+            btrue = false;
+        }
+        if (btrue == true) {
+            $('#Waitpopup').show();
+            Submitenquiry(1);
+        }
+    }
+
+    function Submitenquiry(id) {
+        $("#dvenquiry").show();
+        $.ajax({
+            url: '@Url.Action("enquiry", "Enquiry")',
+            type: 'POST',
+            data: {                
+                FName: $('#txtfname').val(),
+                LName: $('#txtlname').val(),
+                Phone: $('#txtphoneno').val(),
+                Email: $('#txtemail1').val(),
+                Remarks: $('#txtremarks').val(),
+                Guid: $('#hdnGuid').val(),                
+            },
+            success: function (msg) {
+                //debugger;
+                $('#Waitpopup').hide();
+                $('#txtfname').val("");
+                $('#txtlname').val("");
+                $('#txtphoneno').val("");
+                $('#txtemail').val("");
+                $('#txtremarks').val("");
+                $('#msgdiv').html(msg);                
+                //alert(msg);
+                var IDTest = $("#hdnGuid").val();
+                $("#dvenquiry").hide();
+                var url = '@Url.Action("Thanku", "Thanku", new { q = "__id__" })';
+                window.location.href = url.replace('__id__', "Flight");
+            },
+            error: function (msg) {
+                $("#dvProgress").hide();
+                // alert(msg);
+            }
+        });
+
+    }
+    // ]]>
+</script>

@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "contactus";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    ::placeholder {
+        color:#000 !important;
+    }
+</style>
+
+<section>
+    <div class="container-fluid title-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2><em>Contact Us</em></h2>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li>/</li>
+                        <li class="active">Contact Us</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container pt-5 inner-page">
+        <div class="col-sm-12">
+            <h2>Contact Us</h2>
+            <div class="row mt-4 pb-5">
+
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 cont-left">
+                    <h5>Contact Us</h5>
+                    <form class="row g-3 mt-3">
+                        <div class="col-md-6"><input type="text" class="form-control" placeholder="Your Name" name="name" value=""></div>
+                        <div class="col-md-6"><input type="email" class="form-control" placeholder="Your Email" name="email" value=""></div>
+                        <div class="col-md-6"><input type="tel" class="form-control" placeholder="Your Phone" name="phone" value=""></div>
+                        <div class="col-md-6"><input type="text" class="form-control" placeholder="Subject" name="subject" value=""></div>
+                        <div class="col-md-12"><textarea class="form-control" rows="4" placeholder="Your Message" name="message"></textarea></div>
+                        <div class="col-md-12"><button type="submit" class="btn btn-primary">Submit</button></div>
+                        <div class="col-md-12 text-success"></div>
+                    </form>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 cont-right">
+                    <ul>
+                        <li>
+                            <div class="cont-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                            <div class="cont-text">
+                                <h6>Company Location</h6>
+                                <p class="mb-0">Wing Star Travels LLC <br>1723 Shadowood Pkwy, Atlanta, GA, 30339, USA </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="cont-icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                            <div class="cont-text">
+                                <h6>Contact Number</h6>
+                                <p class="mb-0"><a href="tel:+1-888-583-3462 ">+1-888-583-3462 </a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="cont-icon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+                            <div class="cont-text">
+                                <h6>Email Id</h6>
+                                <p class="mb-0"><a href="mailto:info@planeflybooking">info@planeflybooking</a></p>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

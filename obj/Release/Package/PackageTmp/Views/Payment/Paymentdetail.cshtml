@@ -1,0 +1,1055 @@
+﻿@model TravelSite.Models.PaymentModel
+@{
+    ViewBag.Title = "Paymentdetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var item = Model;
+}
+@{
+
+
+    var bagg = "";
+
+    DateTime firstSegmentArrTime = DateTime.Now;
+    TimeSpan stopovertTime = new TimeSpan();
+
+    string newuniqe = Model.unique + "~" + "1";
+    var counter = 0;
+    var selcteditem = "";
+    int NoPax = 0;
+    int SegmentCount = 0;
+
+}
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="~/Content/css/responsive.css" rel="stylesheet" />
+<!-- js for scrool right side fixed -->
+@*<link href="~/Content/css/pay.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-scrolltofixed-min.js"></script>
+
+    <script src="~/Scripts/jquery.mask.min.js"></script>*@
+
+<script language="javascript" type="text/javascript">
+    window.history.forward();
+</script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<section class="payment-detail-page-section">
+
+    <div id="dvProg" class="searchpop1" style="display: none;">
+        <div class="mob_gif_center"><p><strong> Please wait.</strong></p> <div class='clearfix'></div><div class='loading-plane-pop'></div> </div>
+        <div class="searchpopinner searchpopinner-pass">
+            <div class="mid_srch_box">
+                <div class="load-small" style="margin:-37px 0 0;">
+                    Loading<img src="~/images/Lod.gif" />
+                </div>
+                <div class="mid_srch_box_bg">
+
+                    <h3 class="book-with-txt"><img src="/content/images/icon_confidence.png" alt="">&nbsp;&nbsp;Book with Confidence</h3>
+                    <hr />
+                    <p><i class="fa fa-check" style="color:#0183f5;"></i> Best Price Guarantee!</p>
+                    <p><i class="fa fa-check" style="color:#0183f5;"></i> 100% Safe & Secure Booking</p>
+                    <p><i class="fa fa-check" style="color:#0183f5;"></i> Discount Fares Updated Daily</p>
+                    <div class="clearfix"></div>
+
+                    <br />
+                    <img src="/images/src_feefo_btm.png" alt=" " class="">
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div style="margin:9px auto; text-align:center;" class="bottom_payment_icon"><img src="/images/bottom_payment_icon.png" alt=" " class=""></div>
+    </div>
+
+    @*<script type="text/javascript" src="~/Scripts/progress.js"></script>
+        <script src="~/Scripts/Timer.js"></script>*@
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+
+
+        <input type="hidden" id="Guid" name="Guid" value=@item.sGuid />
+        <input type="hidden" id="hdIndex" name="hdIndex" />
+        <input type="hidden" id="hdProvider" name="hdProvider" />
+        @*<input type="hidden" id="hdIsInsurance" name="hdIsInsurance" value='' />
+            <input type="hidden" id="hdInsuranceCharge" name="hdInsuranceCharge" value='' />
+            <input type="hidden" id="hdInsuranceId" name="hdInsuranceId" value='' />*@
+        <input type="hidden" id="hdGTotal" name="hdGTotal" value=@item.GrandTotal />
+        <input type="hidden" id="hdCopDiscount" name="hdCopDiscount" value="0" />
+        <input type="hidden" id="hdIsCoupon" name="hdIsCoupon" value=@item.IsCouponDiscount />
+        <input type="hidden" id="hdCouponValue" name="hdCouponValue" value=@item.CouponValue />
+        <input type="hidden" id="companyid" name="companyid" value=@item.CompanyId />
+        <input type="hidden" value=@item.CountryCode name="hdCountryCode" id="hdCountryCode" />
+        <input type="hidden" id="FNPLReference" name="FNPLReference" value="" />
+        <input type="hidden" id="negmarkup" name="negmarkup" value="300">
+        <input type="hidden" id="postmarkup" name="postmarkup" value="120">
+        <input type="hidden" id="weswsapcheck" name="weswsapcheck" value="false">
+        <div id="dvProgress" class="searchpop1" style="display: none;">
+            <div class="searchpopinner searchpopinner1">
+                <h2>PLEASE WAIT...</h2>
+                <p>We are confirming the flights, give us a moment. </p>
+                <div class="searcpoprow">
+                    <img src="../Content/images/loading.gif" alt="Loading" title="Loading" />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div id="dvProgress1" class="searchpop1" style="display: none;">
+            <div class="mob_gif_center"><p><strong> Please wait.</strong>. <br> we are searching best fares for you.</p><img src="~/images/loading-plane-pop.gif" alt=""> </div>
+        </div>
+        <div class="sessionpop" style="display: none;">
+            <div class="searchpopinner searchpopinner1">
+                <h2>Your search expired</h2>
+                <p>To ensure accurate prices and availability of the flight, you must refresh the results.</p>
+                <div class="searcpoprow">
+                    <asp:hyperlink id="hlRefresResult" onclick="ShowWait();"><img src="/images/refresh-btn.png" alt="Refresh" style="cursor:pointer;" /></asp:hyperlink>
+                </div>
+                <a href='@Url.Action("Index", "Home")'>or go to homepage.</a>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <section class="bg_grey">
+            <div class="container pt-20 pb-20">
+                <!-- Flight Section  -->
+                @{
+                    if (item.Itinerary != null)
+                    {
+                        //NoPax = item.Adult + item.Child;
+                        SegmentCount = 0;
+                        var SectorDept = item.Itinerary.Sectors.Where(x => x.IsReturn.ToString().ToLower() == "false").ToList();
+                        var SectorRet = item.Itinerary.Sectors.Where(x => x.IsReturn.ToString().ToLower() == "true").ToList();
+                        selcteditem = Model.unique + "~" + item.Itinerary.IndexNumber + "~" + item.Itinerary.Provider;
+                        <!--new result-->
+                        <ul class="nav nav-wizard">
+                            <li class="active"> <a href="#"><i class="fa fa-plane mr-5" aria-hidden="true"></i> Review Flights</a> </li>
+                        </ul>
+                        <div class="new-listing-unit">
+
+                            <div class="contract-block" id="@("div" + item.Itinerary.IndexNumber + "_" + item.Itinerary.Provider)">
+                                <div class="metas_details_contract col-xs-12">
+                                    <div class="contract__content">
+                                        <section class="contract__segment col-sm-8">
+                                            <div class="col-xs-12 contract__trip trip-block">
+                                                <div class="col-xs-2 trip__airline">
+                                                    <figure> <img src=@("/images/airlinelogo/" + SectorDept[0].AirV + "s.gif" ) class="airline__logo" alt=@SectorDept[0].AirlineName title=@SectorDept[0].AirlineName> <span class="airline__title"> <span class="airline__name"> @SectorDept[0].AirlineName </span> </span> </figure>
+                                                </div>
+                                                <div class="col-xs-8 trip__timeline">
+                                                    <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(SectorDept[0].Departure.Date).ToString("ddd") </span> <span class="is--flight-month">@Convert.ToDateTime(SectorDept[0].Departure.Date).ToString("MMM dd")</span> </div>
+                                                    <div class="trip__time is--depart-source">
+                                                        <time class="is--flight-time">@SectorDept[0].Departure.Time</time>
+                                                        <span class="is--airport-name"> <span data-toggle="tooltip" title="London Heathrow">@SectorDept[0].Departure.AirportCode</span> </span>
+                                                    </div>
+                                                    <div class="trip__duration">
+                                                        <div class="msg__flight-time is--total"><span class="is--total-trip"> @(SectorDept[SectorDept.Count - 1].ActualTime.Replace(":", "h ") + "m")</span></div>
+                                                        <div class="timeline__stops">
+                                                            <span class="icon ic-bullet"><i class="fa fa-circle" aria-hidden="true"></i></span> <span class="stop_number">@(SectorDept.Count == 1 ? "Non Stop" : (SectorDept.Count == 2 ? (SectorDept.Count - 1).ToString() + " Stop" : (SectorDept.Count - 1).ToString() + " Stops")) </span>
+                                                            <div class="popover contract-popover fade bottom in stops-informations" style="display: none;">
+                                                                <div class="arrow"></div>
+                                                                <div class="popover-content">
+                                                                    <div class="stops__heading"> <strong>@(SectorDept.Count == 1 ? "Non Stop" : (SectorDept.Count == 2 ? (SectorDept.Count - 1).ToString() + " Stop" : (SectorDept.Count - 1).ToString() + " Stops"))</strong> </div>
+                                                                    <ul class="stops__name-list">
+                                                                        <li class="icon ic-bullet">@SectorDept[SectorDept.Count - 1].Departure.AirportCode - @SectorDept[SectorDept.Count - 1].Departure.AirportCityName </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="trip__time is--return-source">
+                                                        <time class="is--flight-time"> <span> @SectorDept[SectorDept.Count - 1].Arrival.Time  </span> </time>
+                                                        <span class="is--airport-name"> <span data-toggle="tooltip" title="Bangkok">@SectorDept[SectorDept.Count - 1].Arrival.AirportCode</span></span>
+                                                    </div>
+                                                    <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(SectorDept[SectorDept.Count - 1].Arrival.Date).ToString("ddd")</span> <span class="is--flight-month">@Convert.ToDateTime(SectorDept[SectorDept.Count - 1].Arrival.Date).ToString("MMM dd")</span> </div>
+                                                </div>
+                                            </div>
+
+                                            @if (SectorRet.Count > 0)
+                                            {
+                                                <div class="col-xs-12 contract__trip trip-block">
+                                                    <div class="col-xs-2 trip__airline">
+                                                        <figure> <img src=@("/images/airlinelogo/" + SectorRet[0].AirV + "s.gif" ) class="airline__logo" alt=@SectorRet[0].AirlineName title=@SectorRet[0].AirlineName> <span class="airline__title"> <span class="airline__name"> @SectorRet[0].AirlineName </span> </span> </figure>
+                                                    </div>
+                                                    <div class="col-xs-8 trip__timeline">
+                                                        <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(SectorRet[0].Departure.Date).ToString("ddd") </span> <span class="is--flight-month">@Convert.ToDateTime(SectorRet[0].Departure.Date).ToString("MMM dd")</span> </div>
+                                                        <div class="trip__time is--depart-source">
+                                                            <time class="is--flight-time">@SectorRet[0].Departure.Time</time>
+                                                            <span class="is--airport-name"> <span data-toggle="tooltip" title="London Heathrow">@SectorRet[0].Departure.AirportCode</span> </span>
+                                                        </div>
+                                                        <div class="trip__duration">
+                                                            <div class="msg__flight-time is--total"><span class="is--total-trip"> @(SectorRet[SectorRet.Count - 1].ActualTime.Replace(":", "h ") + "m")</span></div>
+                                                            <div class="timeline__stops">
+                                                                <span class="icon ic-bullet"><i class="fa fa-circle" aria-hidden="true"></i></span> <span class="stop_number">@(SectorRet.Count == 1 ? "Non Stop" : (SectorRet.Count == 2 ? (SectorRet.Count - 1).ToString() + " Stop" : (SectorRet.Count - 1).ToString() + " Stops")) </span>
+                                                                <div class="popover contract-popover fade bottom in stops-informations" style="display: none;">
+                                                                    <div class="arrow"></div>
+                                                                    <div class="popover-content">
+                                                                        <div class="stops__heading"> <strong>@(SectorRet.Count == 1 ? "Non Stop" : (SectorRet.Count == 2 ? (SectorRet.Count - 1).ToString() + " Stop" : (SectorRet.Count - 1).ToString() + " Stops"))</strong> </div>
+                                                                        <ul class="stops__name-list">
+                                                                            <li class="icon ic-bullet">@SectorRet[SectorRet.Count - 1].Departure.AirportCode - @SectorRet[SectorRet.Count - 1].Departure.AirportCityName</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="trip__time is--return-source">
+                                                            <time class="is--flight-time"> <span> @SectorRet[SectorRet.Count - 1].Arrival.Time  </span> </time>
+                                                            <span class="is--airport-name"> <span data-toggle="tooltip" title="Bangkok">@SectorRet[SectorRet.Count - 1].Arrival.AirportCode</span></span>
+                                                        </div>
+
+                                                        <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(SectorRet[SectorRet.Count - 1].Arrival.Date).ToString("ddd")</span> <span class="is--flight-month">@Convert.ToDateTime(SectorRet[SectorRet.Count - 1].Arrival.Date).ToString("MMM dd")</span> </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </section>
+                                        <header class="contract__header col-sm-4">
+                                            <div class="contract__fare col-xs-12">
+                                                <div class="fare__total is--break">
+                                                    <div class="contract__farebreakup"> <span class="fare__amount is--base contract__breakup__price" style="" id="baggage_estimator_totalbasefare_2181"> <span class="currency" title=@TravelSite.Models.CompCredentials.Currency_Symbol@((item.Itinerary.GrandTotal).ToString("f2"))>@TravelSite.Models.CompCredentials.Currency_Symbol@((item.Itinerary.GrandTotal).ToString("f2"))</span> <span class="fpSuper" title=@TravelSite.Models.CompCredentials.Currency_Symbol@((item.Itinerary.GrandTotal).ToString("f2"))><sup></sup></span> </span> </div>
+                                                </div>
+                                                <div class="fare__label is--bouns-applied"><span>(Incl taxes & fees)</span> </div>
+                                            </div>
+                                            <div class="contract__select col-xs-12">
+                                            </div>
+                                        </header>
+                                    </div>
+                                    <footer class="contract__footer col-xs-12">
+                                        <div class="col-xs-6"> <a href="#" class="flight-details-link link-down"> <span class="flightDetails" onclick="showdetail(@("'" + item.Itinerary.IndexNumber + item.Itinerary.Provider+"'"))">Flight Details <i class="fa fa-angle-down" aria-hidden="true"></i></span> </a>   </div>
+                                        <div class="col-xs-6"><span class="pull-right hidden-xs"> <i class="fa fa-briefcase"></i> @SectorDept[0].Baggage_Info.Description</span></div>
+
+                                    </footer>
+                                    <!--  Detail Section -->
+                                    @{
+                                        SegmentCount = 0;
+                                    }
+                                    <div class="flight-details-block col-xs-12" style=" display:none;" id=@(item.Itinerary.IndexNumber + item.Itinerary.Provider)>
+                                        <div class="flight-details__content">
+                                            <section class="segment__single is--eachway-CTA">
+                                                <div class="col-xs-12 segment__boundinfo"> <strong>Depart</strong> <span class="">@Convert.ToDateTime(SectorDept[0].Departure.Date).ToString("ddd, MMM dd ") </span> </div>
+                                                @foreach (var sec in SectorDept)
+                                                {
+                                                    stopovertTime = new TimeSpan();
+                                                    SegmentCount++;
+                                                    if (SegmentCount == 1)
+                                                    {
+                                                        bagg = sec.BaggageInfo;
+                                                        firstSegmentArrTime = Convert.ToDateTime(Convert.ToDateTime(sec.Arrival.Date).ToString("yyyy-MM-dd") + "T" + sec.Arrival.Time + ":00");
+                                                    }
+                                                    else
+                                                    {
+                                                        string timemerge = Convert.ToDateTime(SectorDept[SegmentCount - 2].Arrival.Date).ToString("yyyy-MM-dd") + "T" + SectorDept[SegmentCount - 2].Arrival.Time + ":00";
+                                                        firstSegmentArrTime = Convert.ToDateTime(timemerge);
+                                                        stopovertTime = (Convert.ToDateTime((Convert.ToDateTime(sec.Departure.Date).ToString("yyyy-MM-dd") + "T" + sec.Departure.Time + ":00")) - firstSegmentArrTime);
+                                                    }
+
+                                                    if (stopovertTime.ToString("hh") + ":" + stopovertTime.ToString("mm") != "00:00")
+                                                    {
+                                                        <ul class="layover col-xs-12">
+                                                            <span>Layover: @stopovertTime.ToString("hh")h @stopovertTime.ToString("mm")m at @sec.Departure.AirportCityName</span>
+                                                        </ul>
+                                                    }
+                                                    <ul class="segment__itinerary col-xs-12">
+                                                        <li class="sr-only"> <span class="outbound">Outbound</span> </li>
+                                                        <li class="itinerary__airline col-xs-2">
+                                                            <figure>
+                                                                <img src=@("/images/airlinelogo/" + sec.AirV + "s.gif" ) class="airline__logo" alt=@sec.AirlineName title=@sec.AirlineName>
+                                                                <figcaption class="airline__info">
+                                                                    <span class="airline__title">@sec.AirlineName</span>
+                                                                    <div class="info__flight hidden-xs"> <span class="flight__num">Flight @sec.FltNum</span> </div>
+                                                                </figcaption>
+                                                            </figure>
+                                                        </li>
+                                                        <li class="itinerary__airport col-xs-8">
+                                                            <div class="airport__info">
+                                                                <div class="col-xs-2 itinerary__date">
+                                                                    <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(sec.Departure.Date).ToString("ddd")</span> <span class="is--flight-month">@Convert.ToDateTime(sec.Departure.Date).ToString("MMM dd ")</span> </div>
+                                                                </div>
+                                                                <div class="col-xs-4 itinerary__time">
+                                                                    <div class="is--itinerary-flight-stop hidden"> <span class="flight-stop__info">@(SectorDept.Count == 1 ? "Non Stop" : (SectorDept.Count == 2 ? (SectorDept.Count - 1).ToString() + " Stop" : (SectorDept.Count - 1).ToString() + " Stops"))</span> </div>
+                                                                    <time class="airport__time">@sec.Departure.Time</time>
+                                                                    <span class="airport__name"><span class="" title="London Heathrow - LHR">@sec.Departure.AirportCityName - @sec.Departure.AirportCode</span></span>
+                                                                </div>
+                                                                <div class="col-xs-4 itinerary__time">
+                                                                    <time class="airport__time">@sec.Arrival.Time</time>
+                                                                    <span class="airport__name"><span title="Abu Dhabi - AUH">@sec.Arrival.AirportCityName - @sec.Arrival.AirportCode</span></span>
+                                                                </div>
+                                                                <div class="col-xs-2 itinerary__date">
+                                                                    <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(sec.Departure.Date).ToString("ddd")</span> <span class="is--flight-month">@Convert.ToDateTime(sec.Departure.Date).ToString("MMM dd ")</span> </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="itinerary__info col-xs-2">
+                                                            <div class="flight-info__class col-xs-12"> <span class="FlightCabin">@sec.CabinClass.Name</span> </div>
+                                                            <ul class="flight-info__list col-xs-12 flight-info__alllist">
+                                                                <li class="flight-info__item">
+                                                                    <div class="baggage-listing">
+                                                                        <div class="baggage-listing__icons popover__action popover__action-hover"><span><i class="fa fa-briefcase" aria-hidden="true"></i>@sec.BaggageInfo</span> </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                }
+                                                <div class="col-xs-12 segment__footer">
+                                                    <div class="msg__flight-time is--total"> <span>Total trip <span class="TripDurationHideXs">duration</span>: <span class="is--total-trip">@(SectorDept[0].ActualTime.Replace(":", "h ") + "m") </span></span> <span class="is--duration">(Flight: <span class="is--duration">13h 15m</span>)</span> </div>
+                                                </div>
+                                            </section>
+
+                                            <!-- Return Details  -->
+                                            @if (SectorRet.Count > 0)
+                                            {
+                                                SegmentCount = 0;
+                                                <section class="segment__single is--eachway-CTA">
+                                                    <div class="col-xs-12 segment__boundinfo"> <strong>Return</strong> <span class="">@Convert.ToDateTime(SectorRet[0].Departure.Date).ToString("ddd, MMM dd ")</span> </div>
+
+                                                    @foreach (var sec in SectorRet)
+                                                    {
+                                                        stopovertTime = new TimeSpan();
+                                                        SegmentCount++;
+                                                        if (SegmentCount == 1)
+                                                        {
+                                                            bagg = sec.BaggageInfo;
+                                                            firstSegmentArrTime = Convert.ToDateTime(Convert.ToDateTime(sec.Arrival.Date).ToString("yyyy-MM-dd") + "T" + sec.Arrival.Time + ":00");
+                                                        }
+                                                        else
+                                                        {
+                                                            string timemerge = Convert.ToDateTime(SectorRet[SegmentCount - 2].Arrival.Date).ToString("yyyy-MM-dd") + "T" + SectorRet[SegmentCount - 2].Arrival.Time + ":00";
+                                                            firstSegmentArrTime = Convert.ToDateTime(timemerge);
+                                                            stopovertTime = (Convert.ToDateTime((Convert.ToDateTime(sec.Departure.Date).ToString("yyyy-MM-dd") + "T" + sec.Departure.Time + ":00")) - firstSegmentArrTime);
+                                                        }
+
+                                                        if (stopovertTime.ToString("hh") + ":" + stopovertTime.ToString("mm") != "00:00")
+                                                        {
+                                                            <ul class="layover col-xs-12">
+                                                                <span>Layover: @stopovertTime.ToString("hh")h @stopovertTime.ToString("mm")m at @sec.Departure.AirportCityName</span>
+                                                            </ul>
+                                                        }
+
+                                                        <ul class="segment__itinerary col-xs-12">
+                                                            <li class="sr-only"> <span class="outbound">Outbound</span> </li>
+                                                            <li class="itinerary__airline col-xs-2">
+                                                                <figure>
+                                                                    <img src=@("/images/airlinelogo/" + sec.AirV + "s.gif" ) class="airline__logo" alt=@sec.AirlineName title=@sec.AirlineName>
+                                                                    <figcaption class="airline__info">
+                                                                        <span class="airline__title">@sec.AirlineName</span>
+                                                                        <div class="info__flight hidden-xs"> <span class="flight__num">Flight @sec.FltNum</span> </div>
+                                                                    </figcaption>
+                                                                </figure>
+                                                            </li>
+                                                            <li class="itinerary__airport col-xs-8">
+                                                                <div class="airport__info">
+                                                                    <div class="col-xs-2 itinerary__date">
+                                                                        <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(sec.Departure.Date).ToString("ddd")</span> <span class="is--flight-month">@Convert.ToDateTime(sec.Departure.Date).ToString("MMM dd ")</span> </div>
+                                                                    </div>
+                                                                    <div class="col-xs-4 itinerary__time">
+                                                                        <div class="is--itinerary-flight-stop hidden"> <span class="flight-stop__info">@(SectorRet.Count == 1 ? "Non Stop" : (SectorRet.Count == 2 ? (SectorRet.Count - 1).ToString() + " Stop" : (SectorRet.Count - 1).ToString() + " Stops"))</span> </div>
+                                                                        <time class="airport__time">@sec.Departure.Time</time>
+                                                                        <span class="airport__name"><span class="" title="London Heathrow - LHR">@sec.Departure.AirportCityName - @sec.Departure.AirportCode</span></span>
+                                                                    </div>
+                                                                    <div class="col-xs-4 itinerary__time">
+                                                                        <time class="airport__time">@sec.Arrival.Time</time>
+                                                                        <span class="airport__name"><span title="Abu Dhabi - AUH">@sec.Arrival.AirportCityName - @sec.Arrival.AirportCode</span></span>
+                                                                    </div>
+                                                                    <div class="col-xs-2 itinerary__date">
+                                                                        <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(sec.Departure.Date).ToString("ddd")</span> <span class="is--flight-month">@Convert.ToDateTime(sec.Departure.Date).ToString("MMM dd ")</span> </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="itinerary__info col-xs-2">
+                                                                <div class="flight-info__class col-xs-12"> <span class="FlightCabin">@sec.CabinClass.Name</span> </div>
+                                                                <ul class="flight-info__list col-xs-12 flight-info__alllist">
+                                                                    <li class="flight-info__item">
+                                                                        <div class="baggage-listing">
+                                                                            <div class="baggage-listing__icons popover__action popover__action-hover"><span><i class="fa fa-briefcase" aria-hidden="true"></i>@sec.BaggageInfo</span> </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    }
+
+                                                    <div class="col-xs-12 segment__footer">
+                                                        <div class="msg__flight-time is--total"> <span>Total trip <span class="TripDurationHideXs">duration</span>: <span class="is--total-trip">19h 40m</span></span> <span class="is--duration">(Flight: <span class="is--duration">15h 10m</span>)</span> </div>
+                                                    </div>
+                                                </section>
+                                            }
+                                            <!-- Return Details End -->
+
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+
+                                    <!--  Detail Section End -->
+                                </div>
+                            </div>
+                        </div>
+                        <!--new result end-->
+                    }
+                }
+
+                <!-- End flight -->
+
+
+                <div class="payment-block">
+                    <div class="col-md-8">
+                        <div class="payment__header">Credit or Debit Card Payment</div>
+                        <div class="pt-15 pb-15">
+                            <div class="col-md-12 p-0 mb-10">
+                                <div class="cartform" style="display: none;">
+                                    <div class="cartrow3" id="dvValidFrom">
+                                        <div class="cart_1 selectbox">
+                                            <label>Valid from</label>
+                                            <select name="ddlMastroMonth" id="ddlMastroMonth" class="form-control bod">
+                                                <option selected="selected" value="">--</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                            </select>
+
+                                        </div>
+                                        <div class="cart_1 selectbox">
+                                            <label class="labelnone">&nbsp;</label>
+                                            <select name="ddlMastroYear" id="ddlMastroYear" class="form-control bod">
+                                                <option selected="selected" value="">--</option>
+                                                <option value="00">00</option>
+                                                <option value="01">01</option>
+                                                <option value="02">02</option>
+                                                <option value="03">03</option>
+                                                <option value="04">04</option>
+                                                <option value="05">05</option>
+                                                <option value="06">06</option>
+                                                <option value="07">07</option>
+                                                <option value="08">08</option>
+                                                <option value="09">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                            </select>
+
+                                        </div>
+
+                                        <div class="cart_1 cart_2">
+                                            <label>Issue Number</label>
+                                            <input name="txtIssueNumber" maxlength="4" type="text" id="txtIssueNumber" class="form-control pad">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-4 no-pad-mobile">Select Card Type:</div>
+                                <div class="col-md-8 no-pad-mobile">
+                                    @Html.DropDownListFor(a => a.cardtype, new SelectList(ViewBag.cardtype, "ID", "Value"), new { @onchange = "CalcuteAmt(0,false,0);", @class = "form-input-full" })
+                                    <p> @Html.ValidationMessageFor(a => a.cardtype, String.Empty, new { @class = "validation-txt" })</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 p-0 mb-10">
+                                <div class="col-md-4 no-pad-mobile">Card Number</div>
+                                <div class="col-md-8 no-pad-mobile">
+                                    @Html.TextBoxFor(a => a.Card_No, new { autocomplete = "off", @onkeypress = "CheckCardType()", @onchange = "CheckCardType()", @class = "form-input-full", @placeholder = "16 Digits Number on the front of your card" })
+
+                                    <p> @Html.ValidationMessageFor(a => a.Card_No, String.Empty, new { @class = "validation-txt" })</p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 p-0 mb-10">
+                                <div class="col-md-4 no-pad-mobile">Name On The Card</div>
+                                <div class="col-md-8 no-pad-mobile">
+                                    @Html.TextBoxFor(a => a.Card_Name, new { autocomplete = "off", @class = "form-input-full", @placeholder = "Name on your card" }) <div class="clearfix"></div>
+                                    <p> @Html.ValidationMessageFor(a => a.Card_Name, String.Empty, new { @class = "validation-txt" })</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 p-0 mb-10">
+                                <div class="col-md-4 no-pad-mobile">Expiry Date</div>
+                                <div class="col-md-8 no-pad-mobile">
+                                    <div class="pull-left mr-5">
+                                        @*@Html.TextBoxFor(a => a.card_month, new { @class = "form-control dMonth", @id = "card_month", @spellcheck = "false", @maxlength = 30, @autocomplete = "off" })*@
+                                        @Html.DropDownListFor(a => a.card_month, new SelectList(ViewBag.cardmonth, "ID", "Value"), new { placeholder = "Month", @class = "form-input-auto" })
+                                        <p> @Html.ValidationMessageFor(a => a.card_month, String.Empty, new { @class = "validation-txt" })</p>
+                                    </div>
+                                    <div class="pull-left mr-5">
+                                        @Html.DropDownListFor(a => a.card_year, new SelectList(ViewBag.cardyear, "ID", "Value"), new { placeholder = "Year", @class = "form-input-auto" })
+                                        <p> @Html.ValidationMessageFor(a => a.card_year, String.Empty, new { @class = "validation-txt" })</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 p-0 mb-10">
+                                <div class="col-md-4 no-pad-mobile"> CVV/CCV</div>
+                                <div class="col-md-8 no-pad-mobile">
+                                    @Html.TextBoxFor(model => model.CardCVV_No, new { placeholder = "CVV/CCV", autocomplete = "off", type = "password", onkeypress = "return isNumberKey(event)", @class = "form-input-auto" })
+                                    <a class='tooltips'>  <img src="~/images/cvv-card.png"><p>The last 3 digit printed on the signature panel on the back of your card.</p> </a>
+                                    <div class="clearfix"></div>
+                                    <p> @Html.ValidationMessageFor(a => a.CardCVV_No, String.Empty, new { @class = "validation-txt" })</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12  mb-15 no-pad-mobile">  <h2> Address Details</h2></div>
+                            <div class="col-md-12 p-0 mb-10">
+                                <div class="col-md-4 no-pad-mobile"> Address Line1</div>
+                                <div class="col-md-8 no-pad-mobile">
+                                    @Html.TextBoxFor(a => a.Passenger_Addressone, new { @class = "form-input-auto", ID = "txtaddress1" })
+                                    <p> @Html.ValidationMessageFor(a => a.Passenger_Addressone, String.Empty, new { @class = "validation-txt" })</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 p-0 mb-10">
+                                <div class="col-md-4 no-pad-mobile"> Address Line2</div>
+                                <div class="col-md-8 no-pad-mobile">
+                                    @Html.TextBoxFor(a => a.Passenger_Addresstwo, new { @class = "form-input-auto", ID = "txtaddress2" })
+                                    <p>@Html.ValidationMessageFor(a => a.Passenger_Addresstwo, String.Empty, new { @class = "validation-txt" })</p>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 p-0 mb-10">
+                                <div class="col-md-4 no-pad-mobile">City</div>
+                                <div class="col-md-8 no-pad-mobile">
+                                    @Html.TextBoxFor(a => a.Passenger_city, new { @class = "form-input-auto", ID = "txttown", onkeypress = "return IsStringKey(event)" })
+                                    <p> @Html.ValidationMessageFor(a => a.Passenger_city, String.Empty, new { @class = "validation-txt" })</p>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 p-0 mb-10">
+                                <div class="col-md-4 no-pad-mobile"> Country/State/province</div>
+                                <div class="col-md-8 no-pad-mobile">
+                                    @Html.TextBoxFor(a => a.Passenger_State, new { @class = "form-input-auto", ID = "txtcountry", onkeypress = "return IsStringKey(event)" })
+                                    <p>@Html.ValidationMessageFor(a => a.Passenger_State, String.Empty, new { @class = "validation-txt" })</p>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 p-0 mb-10">
+                                <div class="col-md-4 no-pad-mobile"> Country</div>
+                                <div class="col-md-8 no-pad-mobile">
+                                    @Html.DropDownListFor(a => a.Passenger_countrylist, new SelectList(ViewBag.cardcountry, "ID", "Value"), new { @class = "form-input-auto", @onchange = "getTosun()" })
+                                    <p> @Html.ValidationMessageFor(a => a.Passenger_countrylist, String.Empty, new { @class = "validation-txt" })</p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 p-0 mb-10">
+                                <div class="col-md-4 no-pad-mobile"> Postal Code</div>
+                                <div class="col-md-8 no-pad-mobile">
+                                    @Html.TextBoxFor(a => a.Passenger_Pin, new { @class = "form-input-auto", @onchange = "CheckCardType()", ID = "txtpostcode" })
+                                    <p> @Html.ValidationMessageFor(a => a.Passenger_Pin, String.Empty, new { @class = "validation-txt" })</p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="dark_blue_bg">
+                            <div class="clearfix"></div>
+                            <div class="termsapply text-center mt-15 mb-15" id="btnbook">
+                                <label class="terms-condition-check-box">
+                                    @Html.CheckBoxFor(m => m.TermsAndConditionsAccepted, new { @class = "styled", @onclick = "CheckCardType()" }) By clicking, you agree to our @Html.ValidationMessageFor(m => m.TermsAndConditionsAccepted, String.Empty, new { @class = "validpayment" })
+                                    <a href="/privacy-policy" target="_blank">Privacy Policy</a>  and the   <a href="/terms-conditions" target="_blank">Terms & Conditions</a>.  We would however recommend reading them before proceeding further.
+                                    <span class="terms-condition-check-box-checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="submit" id="btnbook1">
+                                <button type="submit" id="btnSave" name="Command" class="confirm-btn center-block" value="Save"> <i class="fa fa-lock"></i> Pay Now   </button>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4 hidden-xs">
+                        <div class="sidebar-other-outer">
+                            <div class="side-other-head">Why Choose Us</div>
+                            <div class="sidebar-other-area">
+                                <ul>
+                                    <li>
+                                        <div class="why-img"><img src="/images/reason1.png" alt="Why Book Cheap Flights at Faressaver"></div>
+                                        <div class="why-txt">Best Price Guarantee</div>
+                                    </li>
+                                    <li>
+                                        <div class="why-img"><img src="/images/reason2.png" alt="Reason to Book Cheap Flights at Faressaver"></div>
+                                        <div class="why-txt">Quick &amp; Secure Bookings</div>
+                                    </li>
+                                    <li>
+                                        <div class="why-img"><img src="/images/reason3.png" alt="Reason to Book Cheap Airline Tickets at Faressaver"></div>
+                                        <div class="why-txt">Exclusive deals &amp; Offers</div>
+                                    </li>
+                                    <li>
+                                        <div class="why-img"><img src="/images/reason4.png" alt="Reason to Book Cheap Airplane Tickets at Faressaver"></div>
+                                        <div class="why-txt">24/7 Customer support</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                       
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+        </section>
+
+    }
+</section>
+<input type="hidden" id="errormsg" value="">
+
+<script>
+     function showdetail(dtldiv) {
+
+        $("#" + dtldiv).toggle();
+    }
+
+    function addcode() {
+        var ss = $("#ddaddress").val();
+        var str = ss.split(",");
+        $("#txtaddress1").val(str[0]);
+        $("#txtaddress2").val(str[1]);
+        $("#txttown").val(str[2]);
+        //$("#txtpostcode").val(str[3]);
+    }
+
+    $(document).ready(function () {
+        $("#txtaddress1").val("@Html.Raw(Model.Addr1)");
+        $("#txtaddress2").val("@Html.Raw(Model.Addr2)");
+        $("#txttown").val("@Html.Raw(Model.City)");
+        $("#txtcountry").val("@Html.Raw(Model.Country)");
+        $("#txtpostcode").val("@Html.Raw(Model.PostalCode)");
+        $("#Card_Name").val("@Html.Raw(Model.CardName)");
+        $("#errormsg").val("@Html.Raw(Model.Msg)")
+        var msg = $("#errormsg").val();
+        if (msg != "") {
+            document.getElementById('cardmsg').innerHTML = "<span class='cardmsg' >" + msg + "</span>";
+            document.getElementById('cardmsg').style.display="block";
+        }
+    });
+</script>
+
+<script>
+    function IsStringKey(e) {
+        var key = [event.keyCode || event.which];
+        if ((key > 64 && key < 91) || (key > 96 && key < 123) || (key == 32 || key == 08 || key == 09)) {
+            return event.returnValue = true;
+        }
+        else {
+            return event.returnValue = false;
+        }
+    };
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
+</script>
+
+<script>
+    $(document).ready(function () {
+
+        $('#Passenger_countrylist').val('@item.CountryCode');
+
+        $("#btnSave").click(function (e) {
+            //debugger;
+                var value = document.getElementById("TermsAndConditionsAccepted").checked;
+                if(value==false)
+                {
+                    alert("Kindly accept the terms and conditions in order to proceed.");
+                    return false;
+                }
+                else
+                {
+                    // $("#dvProg").show();
+                }
+                var isValid = true;
+                var value = document.getElementById("TermsAndConditionsAccepted").checked;
+
+                var cardtype = document.getElementById("cardtype");
+
+                var mestroddlmonthe = document.getElementById("ddlMastroMonth");
+                var mestroddlyear = document.getElementById("ddlMastroYear");
+                var mestroissuno = document.getElementById("txtIssueNumber");
+                var cardno = document.getElementById('Card_No');
+                var cardname = document.getElementById('Card_Name').value;
+                var cardmonth = document.getElementById('card_month').value;
+                var cardyear = document.getElementById('card_year').value;
+                var cvv = document.getElementById('CardCVV_No').value;
+
+                var text = ""; var txt = ""; var sst = ""; var sst1 = ""; var sst2 = ""; var sst3 = "";
+                text = "<ul>"; test = "<ul>"; txt = "<ul>"; sst = "<ul>"; sst1 = "<ul>"; sst2 = "<ul>"; sst3 = "<ul>";
+                var btrue = true;
+                if (cardtype.value == "") {
+                    text = text + "<li>Please select card type</li>";
+                    $("#card").html(text);
+                    $("#card").show();
+                    document.getElementById("cardtype").focus();
+                    btrue = false;
+                }
+                if (cardno.value == "") {
+                    txt = txt + "<li>Please select card no</li>";
+                    $("#cardno").html(txt);
+                    $("#cardno").show();
+                    document.getElementById("cardtype").focus();
+                    btrue = false;
+                }
+                if (cardmonth == "") {
+                    sst1 = sst1 + "<li>Please select expiry month</li>";
+                    $("#cardmonth").html(sst1);
+                    $("#cardmonth").show();
+                    btrue = false;
+                }
+
+                if (cvv == "") {
+                    sst3 = sst3 + "<li>Please enter cvv</li>";
+                    $("#cardcvv").html(sst3);
+                    $("#cardcvv").show();
+                    btrue = false;
+                }
+                if (cardname == "") {
+                    sst = sst + "<li>Please select card name</li>";
+                    $("#cardname").html(sst);
+                    $("#cardname").show();
+                    btrue = false;
+                }
+                if (cardtype.value == "SWITCH") {
+                    if (mestroddlmonthe.value == "") {
+                        alert("Please select an Valid Date Month!");
+                        document.getElementById("ddlMastroMonth").focus();
+                        btrue = false;
+                    }
+                    if (mestroddlyear.value == "") {
+                        alert("Please select an Valid Date year!");
+                        document.getElementById("ddlMastroYear").focus();
+                        btrue = false;
+                    }
+                    if (mestroissuno.value == "") {
+                        alert("Please select Issu No!");
+                        document.getElementById("txtIssueNumber").focus();
+                        btrue = false;
+                    }
+                }
+                if($("#txtcountry").val()=="")
+                {
+                    btrue = false;
+                }
+                if($("#txtaddress1").val()=="")
+                {
+                    btrue = false;
+                }
+                if($("#txttown").val()=="")
+                {
+                    btrue = false;
+                }
+                if($("#Passenger_countrylist").val()=="")
+                {
+                    btrue = false;
+                }
+                if($("#txtpostcode").val()=="")
+                {
+                    btrue = false;
+                }
+                if (btrue == true) {
+                    if (!value) {
+                        isValid = false;
+                        $(".styled").css({
+                            "border": "1px solid red",
+                            "background": "#ffcece"
+                        });
+                        alert("Kindly accept the terms and conditions in order to proceed.");
+                    }
+                    else {
+                        $(".checkbox").css({
+                            "border": "",
+                            "background": ""
+                        });
+                    }
+                    if (!isValid) {
+
+                        e.preventDefault();
+                    }
+                    else
+                    {
+                        //$("#dvProg").show();
+                    }
+                }
+
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+
+    $('select.custom option[value=-1]').each(function () {
+        $(this).attr("disabled", "disabled");
+    });
+    function displayCupon() {
+        $("#divCoupon").toggle(1000);
+    }
+    function Progressing() {
+
+        var _Text = 0;
+        $('form input[type="text"]').each(function () {
+            if ((this.value == '') && (this.id != "Card_No") && (this.id != "txtIssueNumber") && (this.id != "idCardCharge") && (this.id != "TotalFareID") && (this.id != "smail")) {
+                _Text++;
+            }
+            else {
+                _Text = _Text + 0;
+            }
+        });
+
+        $('form select').each(function () {
+            if ((this.value == '') && (this.id != "ddlMastroMonth") && (this.id != "ddlMastroYear")) {
+                _Text++;
+            }
+            else {
+                _Text = _Text + 0;
+            }
+        });
+
+
+        var tt = $('#TermsAndConditionsAccepted').prop('checked');
+
+        if ($('#TermsAndConditionsAccepted').prop('checked')) {
+            _Text = _Text + 0;
+        }
+        else {
+            _Text++;
+        }
+
+        if ($('#CardCVV_No').val() == '') {
+            _Text++;
+        }
+        else {
+            _Text = _Text + 0;
+        }
+
+        if (_Text > 0) {
+            $('#dvProgress').hide();
+        }
+        else {
+            $('#dvProgress').show();
+        }
+    }
+</script>
+<input type="hidden" id="prvider" value="@Model.Provider">
+<input type="hidden" id="cffcharge" value="@Model.CffCharge">
+
+<input type="hidden" id="fly" value="2">
+<input type="hidden" id="arr2" value="1">
+<input type="hidden" value="1" id="arrcar" />
+<input type="hidden" value="1" id="arrcar1" />
+<script type="text/javascript">
+
+    function CalcuteAmt(Amt, paypal, Point) {
+        var provider = $("#prvider").val();
+
+        var _cardCharge = 0.00;
+        var hidTotal = $("#hdGTotal").val();
+        var discount = $("#hdCouponValue").val();
+        hidTotal = parseFloat(hidTotal).toFixed(2) - parseFloat(discount).toFixed(2);
+        var Card = $("#cardtype").val();
+        if (Card == "SWITCH") {
+            $("#dvValidFrom").show();
+        }
+        else {
+            $("#dvValidFrom").hide();
+        }
+        var compny = $("#companyid").val();
+
+
+        if (Card == "VISA" || Card == "MC" || Card == "AMEX") {
+            _cardCharge = (hidTotal * 0.0);
+        }
+        else {
+            _cardCharge = (hidTotal * 0.0);
+        }
+        if (paypal == true) {
+            _cardCharge = (hidTotal * 0.0);
+        }
+
+        if (Card != "") {
+            document.getElementById('divcardcharge').style.display = "none";
+        }
+        else {
+            document.getElementById('divcardcharge').style.display = "none";
+        }
+
+
+        $("#dvPCCharge").html(parseFloat(_cardCharge).toFixed(2));
+        $("#dvCCharge").html(parseFloat(_cardCharge).toFixed(2));
+        $("#dvGTotal").html((parseFloat(hidTotal) + _cardCharge).toFixed(2));
+        $("#dvPGTotal").html((parseFloat(hidTotal) + _cardCharge).toFixed(2));
+        $("#dvCCharge1").html(parseFloat(_cardCharge).toFixed(2));
+        $("#dvGTotal1").html((parseFloat(hidTotal) + _cardCharge).toFixed(2));
+
+        $("#total").html((parseFloat(hidTotal) + _cardCharge).toFixed(2));
+        $("#total1").html("£" + (parseFloat(hidTotal) + _cardCharge).toFixed(2));
+        $("#totalm").html("£" + (parseFloat(hidTotal) + _cardCharge).toFixed(2));
+        $("#cardcharge").html(parseFloat(_cardCharge).toFixed(2));
+
+
+    }
+
+    function AdditionalInfo() {
+        $("#dvAdditionalInfo").toggle('slow');
+    }
+
+    $(document).ready(function () {
+        CalcuteAmt(0, false, 0);
+    });
+
+</script>
+
+
+<input type="hidden" value="1" id="arr1" />
+<input type="hidden" id="hdUnique" value=@Html.Raw(Model.unique) />
+<input type="hidden" id="hurl" value="" />
+
+<script>
+    function _autoadd() {
+        if ($("#txtpostcode").val() == "") {
+            alert("Please Enter PostCode!");
+            $("#txtpostcode").focus();
+            return false;
+        }
+        else {
+
+            $.ajax({
+                type: "GET",
+                url: "../../post-code/postcode_finder.asp?pc=" + $("#txtpostcode").val(),
+                contentType: "text/xml;",
+                dataType: "text",
+                async: true,
+                success: function (datac) {
+                    $("#postcode_area").html(datac);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+
+                    alert(thrownError);
+                    $("#postcode_area").hide();
+                }
+            });
+        }
+    }
+    function refresh_postcode(selected_postcode) {
+        if (selected_postcode != "") {
+            var add_list = selected_postcode.split("|");
+            $('#txtaddress1').val(add_list[0] + " " + add_list[1] + " " + add_list[2]);
+            $('#txttown').val(add_list[3]);
+        }
+        else {
+            $('#txtaddress1').val("");
+            $('#txttown').val("");
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $('.txtCardNumber').payment('formatCardNumber');
+    });
+</script>
+<input type="hidden" id="sector" value=@Model.DepSector>
+<input type="hidden" id="count" value=@Model.Count>
+
+<script>
+    $(document).ready(function () {
+        $f.c.setItinery({ JSON })
+        $('input').keyup(function () {
+            var ss = $(this).attr('id');
+            if (ss == "Card_Name") {
+                var $th = $(this);
+                $th.val($th.val().replace(/[^a-zA-Z\s]/g, function (str) { return ''; }));
+            }
+            if (ss == "txttown") {
+                var $th = $(this);
+                $th.val($th.val().replace(/[^a-zA-Z\s]/g, function (str) { return ''; }));
+            }
+            if (ss == "txtcountry") {
+                var $th = $(this);
+                $th.val($th.val().replace(/[^a-zA-Z\s]/g, function (str) { return ''; }));
+            }
+        });
+    });
+
+</script>
+
+
+
+
+
+<!-- Session Expire  -->
+
+<div class="sessiontimeoutpop" id="sessionpop" style="display:none;">
+    <div class="main-box">
+        <div class="msg-box info text-center">
+            <p>
+                <img src="~/images/session-expire-icon.png" />
+            </p>
+            <div class="content">
+                <div class="content-wrapper text-center">
+                    <h2 class="header">Session has expired!</h2>
+                    <p class="description">Please search again.</p>
+                    <p class="description action-link">
+                        <a onclick="ShowWait();" value="Refresh" class="btn pt-5 pb-5 pl-60 pr-60">Refresh</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<script>
+    var sessionTimeout = 30;
+    window.onload = DisplaySessionTimeout;
+    function DisplaySessionTimeout() {
+        sessionTimeout = sessionTimeout - 1;
+        if (sessionTimeout >= 0)
+            window.setTimeout("DisplaySessionTimeout()", 10000);
+        else {
+            callSessionTimeOut();
+        }
+    }
+    function callSessionTimeOut() {
+        $("#sessionpop").show();
+        return true;
+    }
+
+     function ShowWait() {
+
+        $("#divprogress").hide();
+        $("#divprogress").show();
+        var unique = $("#hdUnique").val();
+        $("#hurl").val("@Html.Raw(Model.url)")
+        var data = $("#hurl").val();
+        var url = "";
+        url = "https://www.Faressaver.com/searchres/Search?" + data + "";
+        window.location.href = url.replace('__id__', data);
+        $("#divprogress").hide();
+    }
+</script>
+<!-- End Popup    -->

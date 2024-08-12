@@ -1,0 +1,1638 @@
+﻿@model TravelSite.Models.PassengerDetailsModel
+@{
+    ViewBag.Title = "Pax Details";
+    var item = Model;
+}
+@{
+    var bagg = "";
+    DateTime firstSegmentArrTime = DateTime.Now;
+    TimeSpan stopovertTime = new TimeSpan();
+    string newuniqe = Model.unique + "~" + "1";
+    var counter = 0;
+    var selcteditem = "";
+    int NoPax = 0;
+    int SegmentCount = 0;
+
+}
+<style type="text/css">
+    .fotter_one {
+        position: relative !important;
+    }
+</style>
+
+<style type="text/css">
+    .errorSummary {
+        border: 1px solid red;
+        margin: 11px 0 0 0;
+        padding: 10px;
+        font-family: DinMedium;
+        line-height: 22px;
+        color: red;
+    }
+
+    .timeinpu {
+        margin: 5px;
+        padding: 0;
+        background: none;
+        border: none;
+        font-size: 12px;
+        color: #2d2d2d;
+        font-weight: normal;
+        text-align: left;
+        text-decoration: none;
+        width: 245px;
+    }
+</style>
+@*<script src="~/Scripts/Timer.js"></script>*@
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script language="javascript" type="text/javascript">
+    window.history.forward();
+</script>
+<script>
+    jQuery.validator.unobtrusive.adapters.add("dropdown", function (options) {
+        if (options.element.tagName.toUpperCase() == "SELECT" && options.element.type.toUpperCase() == "SELECT-ONE") {
+            options.rules["required"] = true;
+            if (options.message) {
+                options.messages["required"] = options.message;
+            }
+        }
+    });
+</script>
+<script language="javascript" type="text/javascript">
+    window.history.forward();
+</script>
+
+
+@using (Html.BeginForm("Passenger", "PassengerDetails", new { id = "paxfrm" }))
+{
+    @Html.ValidationSummary(true)
+    <input type="hidden" id="Guid" name="Guid" value=@item.Guid />
+    if (Model.ShowFltOption)
+    {
+        <div class="alternate-flight-option" id="NoSeatAvaildiv">
+            <div class="innerpop">
+                <h2>  <img src='@TravelSite.Models.CompCredentials.LogoPath1' width="220" /> </h2>
+                <div class="popmessage">
+                    <img src="../Content/images/micon.png" />
+                    @*Update from @item.Airline1 : This fare has been increased by @item.Opt1DiffFare*@
+                    Update from @item.Airline1 : We're sorry, the price of this flight has changed by @item.Opt1DiffFare
+                </div>
+                <div class="clearfix"></div>
+                <div class="updatefare">
+                    <div class="col-lg-6 pri_le_up">@item.Opt1UpdateFare <span>per adult</span></div>
+                    <div class="col-lg-6 pull-right"><img src='@item.ImageUrl1' class="ar_lin_log" alt="" /> </div>
+                    <div class="clearfix"></div>
+                    <div class="submit-new center-block">
+                        <button type="Submit" value="Choose1" name="command" class="Confirmed-new center-block">Select</button>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="updatefull">
+                        <div class="update_br_gry">
+                            <h3>Or Book with </h3>
+                            <input type="hidden" id="OptOneIndProvider" name="OptOneIndProvider" value=@item.Opt1IndexProvider />
+                            @if (item.Opt1IndexProvider != "" && item.Opt1IndexProvider != null)
+                            {
+                                <p>
+                                    @item.Airline1
+                                    <button type="Submit" value="Choose1" name="command" class="Confirmed-new">Select</button><span>@item.Opt1UpdateFare</span>
+                                </p>
+                            }
+
+                            @if (item.Opt2IndexProvider != "" && item.Opt2IndexProvider != null)
+                            {
+                                <p>
+                                    @item.Airline2
+                                    <input type="hidden" id="OptTwoIndProvider" name="OptTwoIndProvider" value=@item.Opt2IndexProvider />
+                                    <button type="Submit" value="Choose2" name="command" class="Confirmed-new ">Select</button><span>@item.Opt2UpdateFare</span>
+                                </p>
+                            }
+                            @if (item.Opt3IndexProvider != null && item.Opt2IndexProvider != null)
+                            {
+                                <p>
+                                    @item.Airline3
+                                    <input type="hidden" id="OptThreeIndProvider" name="OptThreeIndProvider" value=@item.Opt3IndexProvider />
+                                    <button type="Submit" value="Choose3" name="command" class="Confirmed-new ">Select</button><span>@item.Opt3UpdateFare</span>
+                                </p>
+                            }
+                            @if (item.Opt4IndexProvider != null && item.Opt2IndexProvider != null)
+                            {
+                                <p>
+                                    @item.Airline4
+                                    <input type="hidden" id="OptFourIndProvider" name="OptFourIndProvider" value=@item.Opt4IndexProvider />
+                                    <button type="Submit" value="Choose4" name="command" class="Confirmed-new ">Select</button><span>@item.Opt4UpdateFare</span>
+                                </p>
+                            }
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <a class="btn btn__dark-blue center-block" href='@Url.Action("FlightResult", "Result", new { q = item.Guid.Split('~')[0] })'><i class="fa fa-chevron-left"></i><a href='@Url.Action("FlightResult", "Result", new { q = item.Guid.Split('~')[0] })'>Back to Results</a> </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    }
+
+
+    if (Model.IsPriceChange)
+    {
+        <div class="popup-outer-box">
+            <div class="alternate-flight-option" id="PriceChangeddiv">
+                <div class="innerpop">
+                    <h2 class="text-center">
+                        <img src="~/images/Logo.png" />
+                    </h2>
+                    <div class="popmessage">
+                        <p class="text-center"><img src="../images/information.png" /></p>
+                        @*We're sorry, the price of this flight has changed from @TravelSite.Models.CompCredentials.Currency_Symbol @item.OldPrice to @TravelSite.Models.CompCredentials.Currency_Symbol @item.NewPrice*@
+                        <p class="text-center">Update from @item.AirlineName : We're sorry, the price of this flight has changed by @TravelSite.Models.CompCredentials.Currency_Symbol @item.Difference</p>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="updatefare">
+                        <div class="col-md-12 mb-20 p-0">
+                            <div class="col-lg-6 col-md-6 pull-left">@TravelSite.Models.CompCredentials.Currency_Symbol @item.NewPrice <span>per adult</span></div>
+                            <div class="col-lg-6 col-md-6 pull-right"><img src='@item.AirlineLogo' class="ar_lin_log" alt="" /> </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="submit-new center-block">
+                            <input type="submit" onclick="ContinueBooking()" name="command" value="Continue" style="border:none;" class="center-block mb-15 btn-success p-10" />
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="updatefull">
+                            <div class="clearfix"></div>
+                            <a href='@Url.Action("FlightResult", "Result", new { q = item.Guid.Split('~')[0] })' class="btn btn__dark-blue center-block p-10"><i class="fa fa-chevron-left mr-5"></i>Back to Results</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+    }
+
+    <!-- flight details start here -->
+    <section class="review-trip hidden-xs">
+        <div class="container">
+            <div class="back"><a href='@Url.Action("FlightResult", "Result", new { q = item.Guid.Split('~')[0] })' style="cursor:pointer" class="btn">Back</a></div>
+            <div class="review-txt">
+                <span>Review Trip Details and Book </span>
+                You're on the final step. Only a few more minutes to finish!
+            </div>
+        </div>
+    </section>
+    <section class="bg_grey">
+        <div class="container pt-20 pb-20">
+            <div class="col-md-9 no-pad-mobile p-0">
+                @{
+                    if (item.Itinerary != null)
+                    {
+                        NoPax = item.Adult + item.Child + item.Infant;
+                        SegmentCount = 0;
+
+                        //try
+                        //{
+                        //    var SectorDept = item.Itinerary.Sectors.Where(x => x.IsReturn.ToString().ToLower() == "false").ToList();
+                        //    var SectorRet = item.Itinerary.Sectors.Where(x => x.IsReturn.ToString().ToLower() == "true").ToList();
+                        //}
+                        //catch (Exception ex)
+                        //{
+                        //    var SectorDept = item.Itinerary.Sectors.Where(x => x.IsReturn == false).ToList();
+                        //    var SectorRet = item.Itinerary.Sectors.Where(x => x.IsReturn == true).ToList();
+                        //}
+
+                        var SectorDept = item.Itinerary.Sectors.Where(x => x.IsReturn.ToString().ToLower() == "false").ToList();
+                        var SectorRet = item.Itinerary.Sectors.Where(x => x.IsReturn.ToString().ToLower() == "true").ToList();
+
+                        <!--new result-->
+                        <ul class="nav nav-wizard">
+                            <li class="active"> <a href="#"><i class="fa fa-plane mr-5" aria-hidden="true"></i> Review Flights</a> </li>
+                        </ul>
+                        <div class="new-listing-unit">
+                            <div class="contract-block" id="@("div" + item.Itinerary.IndexNumber + "_" + item.Itinerary.Provider)">
+                                <div class="metas_details_contract col-xs-12">
+                                    <div class="contract__content">
+                                        <section class="contract__segment col-sm-8">
+                                            <div class="col-xs-12 contract__trip trip-block">
+                                                <div class="col-xs-2 trip__airline">
+                                                    <figure> <img src=@("/images/airlinelogo/" + SectorDept[0].AirV + "s.gif" ) class="airline__logo" alt=@SectorDept[0].AirlineName title=@SectorDept[0].AirlineName> <span class="airline__title"> <span class="airline__name"> @SectorDept[0].AirlineName </span> </span> </figure>
+                                                </div>
+                                                <div class="col-xs-8 trip__timeline">
+                                                    <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(SectorDept[0].Departure.Date).ToString("ddd") </span> <span class="is--flight-month">@Convert.ToDateTime(SectorDept[0].Departure.Date).ToString("MMM dd")</span> </div>
+                                                    <div class="trip__time is--depart-source">
+                                                        <time class="is--flight-time">@SectorDept[0].Departure.Time</time>
+                                                        <span class="is--airport-name"> <span data-toggle="tooltip" title="London Heathrow">@SectorDept[0].Departure.AirportCode</span> </span>
+                                                    </div>
+                                                    <div class="trip__duration">
+                                                        <div class="msg__flight-time is--total"><span class="is--total-trip"> @(SectorDept[SectorDept.Count - 1].ActualTime.Replace(":", "h ") + "m")</span></div>
+                                                        <div class="timeline__stops">
+                                                            <span class="icon ic-bullet"><i class="fa fa-circle" aria-hidden="true"></i></span> <span class="stop_number">@(SectorDept.Count == 1 ? "Non Stop" : (SectorDept.Count == 2 ? (SectorDept.Count - 1).ToString() + " Stop" : (SectorDept.Count - 1).ToString() + " Stops")) </span>
+                                                            <div class="popover contract-popover fade bottom in stops-informations" style="display: none;">
+                                                                <div class="arrow"></div>
+                                                                <div class="popover-content">
+                                                                    <div class="stops__heading"> <strong>@(SectorDept.Count == 1 ? "Non Stop" : (SectorDept.Count == 2 ? (SectorDept.Count - 1).ToString() + " Stop" : (SectorDept.Count - 1).ToString() + " Stops"))</strong> </div>
+                                                                    <ul class="stops__name-list">
+                                                                        <li class="icon ic-bullet">@SectorDept[SectorDept.Count - 1].Departure.AirportCode - @SectorDept[SectorDept.Count - 1].Departure.AirportCityName </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="trip__time is--return-source">
+                                                        <time class="is--flight-time"> <span> @SectorDept[SectorDept.Count - 1].Arrival.Time  </span> </time>
+                                                        <span class="is--airport-name"> <span data-toggle="tooltip" title="Bangkok">@SectorDept[SectorDept.Count - 1].Arrival.AirportCode</span></span>
+                                                    </div>
+                                                    <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(SectorDept[SectorDept.Count - 1].Arrival.Date).ToString("ddd")</span> <span class="is--flight-month">@Convert.ToDateTime(SectorDept[SectorDept.Count - 1].Arrival.Date).ToString("MMM dd")</span> </div>
+                                                </div>
+                                            </div>
+
+                                            @if (SectorRet.Count > 0)
+                                            {
+                                                <div class="col-xs-12 contract__trip trip-block">
+                                                    <div class="col-xs-2 trip__airline">
+                                                        <figure> <img src=@("/images/airlinelogo/" + SectorRet[0].AirV + "s.gif" ) class="airline__logo" alt=@SectorRet[0].AirlineName title=@SectorRet[0].AirlineName> <span class="airline__title"> <span class="airline__name"> @SectorRet[0].AirlineName </span> </span> </figure>
+                                                    </div>
+                                                    <div class="col-xs-8 trip__timeline">
+                                                        <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(SectorRet[0].Departure.Date).ToString("ddd") </span> <span class="is--flight-month">@Convert.ToDateTime(SectorRet[0].Departure.Date).ToString("MMM dd")</span> </div>
+                                                        <div class="trip__time is--depart-source">
+                                                            <time class="is--flight-time">@SectorRet[0].Departure.Time</time>
+                                                            <span class="is--airport-name"> <span data-toggle="tooltip" title="London Heathrow">@SectorRet[0].Departure.AirportCode</span> </span>
+                                                        </div>
+                                                        <div class="trip__duration">
+                                                            <div class="msg__flight-time is--total"><span class="is--total-trip"> @(SectorRet[SectorRet.Count - 1].ActualTime.Replace(":", "h ") + "m")</span></div>
+                                                            <div class="timeline__stops">
+                                                                <span class="icon ic-bullet"><i class="fa fa-circle" aria-hidden="true"></i></span> <span class="stop_number">@(SectorRet.Count == 1 ? "Non Stop" : (SectorRet.Count == 2 ? (SectorRet.Count - 1).ToString() + " Stop" : (SectorRet.Count - 1).ToString() + " Stops")) </span>
+                                                                <div class="popover contract-popover fade bottom in stops-informations" style="display: none;">
+                                                                    <div class="arrow"></div>
+                                                                    <div class="popover-content">
+                                                                        <div class="stops__heading"> <strong>@(SectorRet.Count == 1 ? "Non Stop" : (SectorRet.Count == 2 ? (SectorRet.Count - 1).ToString() + " Stop" : (SectorRet.Count - 1).ToString() + " Stops"))</strong> </div>
+                                                                        <ul class="stops__name-list">
+                                                                            <li class="icon ic-bullet">@SectorRet[SectorRet.Count - 1].Departure.AirportCode - @SectorRet[SectorRet.Count - 1].Departure.AirportCityName</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="trip__time is--return-source">
+                                                            <time class="is--flight-time"> <span> @SectorRet[SectorRet.Count - 1].Arrival.Time  </span> </time>
+                                                            <span class="is--airport-name"> <span data-toggle="tooltip" title="Bangkok">@SectorRet[SectorRet.Count - 1].Arrival.AirportCode</span></span>
+                                                        </div>
+
+                                                        <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(SectorRet[SectorRet.Count - 1].Arrival.Date).ToString("ddd")</span> <span class="is--flight-month">@Convert.ToDateTime(SectorRet[SectorRet.Count - 1].Arrival.Date).ToString("MMM dd")</span> </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </section>
+                                        <header class="contract__header col-sm-4 hidden-xs">
+                                            <div class="contract__fare col-xs-12">
+                                                <div class="fare__total is--break">
+                                                    <div class="contract__farebreakup"> <span class="fare__amount is--base contract__breakup__price" style="" id="baggage_estimator_totalbasefare_2181"> <span class="currency" title=@TravelSite.Models.CompCredentials.Currency_Symbol@((item.Itinerary.GrandTotal).ToString("f2"))>@TravelSite.Models.CompCredentials.Currency_Symbol@((item.Itinerary.GrandTotal).ToString("f2"))</span> <span class="fpSuper" title=@TravelSite.Models.CompCredentials.Currency_Symbol@((item.Itinerary.GrandTotal).ToString("f2"))><sup></sup></span> </span> </div>
+                                                </div>
+                                                <div class="fare__label is--bouns-applied"><span>(Incl taxes & fees)</span> </div>
+                                            </div>
+                                            <div class="contract__select col-xs-12">
+                                            </div>
+                                        </header>
+                                    </div>
+                                    <footer class="contract__footer col-xs-12 hidden-xs visible-lg">
+                                        <div class="col-xs-6"> <a href="#" class="flight-details-link link-down"> <span class="flightDetails" onclick="showdetail(@("'" + item.Itinerary.IndexNumber + item.Itinerary.Provider+"'"))">Flight Details <i class="fa fa-angle-down" aria-hidden="true"></i></span> </a>   </div>
+                                        <div class="col-xs-6"><span class="pull-right hidden-xs"> <i class="fa fa-briefcase mr-5"></i> @SectorDept[0].Baggage_Info.Description</span></div>
+
+                                    </footer>
+                                    <footer class="contract__footer col-xs-12 visible-xs hidden-lg">
+                                        <div class="col-xs-6"> <a href="#" class="flight-details-link link-down"> <span class="flightDetails" onclick="showdetail(@("'" + item.Itinerary.IndexNumber + item.Itinerary.Provider+"'"))">Flight Details <i class="fa fa-angle-down" aria-hidden="true"></i></span> </a>   </div>
+                                        <div class="col-xs-6"><div class="cta-1st select__cta"> <span class="currency">@TravelSite.Models.CompCredentials.Currency_Symbol@((item.Itinerary.GrandTotal).ToString("f2"))PP</span></div></div>
+
+                                    </footer>
+                                    <!--  Detail Section -->
+                                    @{
+                                        SegmentCount = 0;
+                                    }
+                                    <div class="flight-details-block col-xs-12" style=" display:none;" id=@(item.Itinerary.IndexNumber + item.Itinerary.Provider)>
+                                        <div class="flight-details__content">
+                                            <section class="segment__single is--eachway-CTA">
+                                                <div class="col-xs-12 segment__boundinfo"> <strong>Depart</strong> <span class="">@Convert.ToDateTime(SectorDept[0].Departure.Date).ToString("ddd, MMM dd ") </span> </div>
+                                                @foreach (var sec in SectorDept)
+                                                {
+                                                    stopovertTime = new TimeSpan();
+                                                    SegmentCount++;
+                                                    if (SegmentCount == 1)
+                                                    {
+                                                        bagg = sec.BaggageInfo;
+                                                        firstSegmentArrTime = Convert.ToDateTime(Convert.ToDateTime(sec.Arrival.Date).ToString("yyyy-MM-dd") + "T" + sec.Arrival.Time + ":00");
+                                                    }
+                                                    else
+                                                    {
+                                                        string timemerge = Convert.ToDateTime(SectorDept[SegmentCount - 2].Arrival.Date).ToString("yyyy-MM-dd") + "T" + SectorDept[SegmentCount - 2].Arrival.Time + ":00";
+                                                        firstSegmentArrTime = Convert.ToDateTime(timemerge);
+                                                        stopovertTime = (Convert.ToDateTime((Convert.ToDateTime(sec.Departure.Date).ToString("yyyy-MM-dd") + "T" + sec.Departure.Time + ":00")) - firstSegmentArrTime);
+                                                    }
+
+                                                    if (stopovertTime.ToString("hh") + ":" + stopovertTime.ToString("mm") != "00:00")
+                                                    {
+                                                        <ul class="layover col-xs-12">
+                                                            <span>Layover: @stopovertTime.ToString("hh")h @stopovertTime.ToString("mm")m at @sec.Departure.AirportCityName</span>
+                                                        </ul>
+                                                    }
+                                                    <ul class="segment__itinerary col-xs-12">
+                                                        <li class="sr-only"> <span class="outbound">Outbound</span> </li>
+                                                        <li class="itinerary__airline col-xs-2">
+                                                            <figure>
+                                                                <img src=@("/images/airlinelogo/" + sec.AirV + "s.gif" ) class="airline__logo" alt=@sec.AirlineName title=@sec.AirlineName>
+                                                                <figcaption class="airline__info">
+                                                                    <span class="airline__title">@sec.AirlineName</span>
+                                                                    <div class="info__flight hidden-xs"> <span class="flight__num">Flight @sec.FltNum</span> </div>
+                                                                </figcaption>
+                                                            </figure>
+                                                        </li>
+                                                        <li class="itinerary__airport col-xs-8">
+                                                            <div class="airport__info">
+                                                                <div class="col-xs-2 itinerary__date">
+                                                                    <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(sec.Departure.Date).ToString("ddd")</span> <span class="is--flight-month">@Convert.ToDateTime(sec.Departure.Date).ToString("MMM dd ")</span> </div>
+                                                                </div>
+                                                                <div class="col-xs-4 itinerary__time">
+                                                                    <div class="is--itinerary-flight-stop hidden"> <span class="flight-stop__info">@(SectorDept.Count == 1 ? "Non Stop" : (SectorDept.Count == 2 ? (SectorDept.Count - 1).ToString() + " Stop" : (SectorDept.Count - 1).ToString() + " Stops"))</span> </div>
+                                                                    <time class="airport__time">@sec.Departure.Time</time>
+                                                                    <span class="airport__name"><span class="" title="London Heathrow - LHR">@sec.Departure.AirportCityName - @sec.Departure.AirportCode</span></span>
+                                                                </div>
+                                                                <div class="col-xs-4 itinerary__time">
+                                                                    <time class="airport__time">@sec.Arrival.Time</time>
+                                                                    <span class="airport__name"><span title="Abu Dhabi - AUH">@sec.Arrival.AirportCityName - @sec.Arrival.AirportCode</span></span>
+                                                                </div>
+                                                                <div class="col-xs-2 itinerary__date">
+                                                                    <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(sec.Departure.Date).ToString("ddd")</span> <span class="is--flight-month">@Convert.ToDateTime(sec.Departure.Date).ToString("MMM dd ")</span> </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="itinerary__info col-xs-2">
+                                                            <div class="flight-info__class col-xs-12"> <span class="FlightCabin">@sec.CabinClass.Name</span> </div>
+                                                            <ul class="flight-info__list col-xs-12 flight-info__alllist">
+                                                                <li class="flight-info__item">
+                                                                    <div class="baggage-listing">
+                                                                        <div class="baggage-listing__icons popover__action popover__action-hover"><span><i class="fa fa-briefcase mr-5" aria-hidden="true"></i>@sec.BaggageInfo</span> </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                }
+                                                <div class="col-xs-12 segment__footer">
+                                                    <div class="msg__flight-time is--total"> <span>Total trip <span class="TripDurationHideXs">duration</span>: <span class="is--total-trip">@(SectorDept[0].ActualTime.Replace(":", "h ") + "m") </span></span> <span class="is--duration">(Flight: <span class="is--duration">13h 15m</span>)</span> </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </section>
+
+                                            <!-- Return Details  -->
+                                            @if (SectorRet.Count > 0)
+                                            {
+                                                SegmentCount = 0;
+                                                <section class="segment__single is--eachway-CTA">
+                                                    <div class="col-xs-12 segment__boundinfo"> <strong>Return</strong> <span class="">@Convert.ToDateTime(SectorRet[0].Departure.Date).ToString("ddd, MMM dd ")</span> </div>
+
+                                                    @foreach (var sec in SectorRet)
+                                                    {
+                                                        stopovertTime = new TimeSpan();
+                                                        SegmentCount++;
+                                                        if (SegmentCount == 1)
+                                                        {
+                                                            bagg = sec.BaggageInfo;
+                                                            firstSegmentArrTime = Convert.ToDateTime(Convert.ToDateTime(sec.Arrival.Date).ToString("yyyy-MM-dd") + "T" + sec.Arrival.Time + ":00");
+                                                        }
+                                                        else
+                                                        {
+                                                            string timemerge = Convert.ToDateTime(SectorRet[SegmentCount - 2].Arrival.Date).ToString("yyyy-MM-dd") + "T" + SectorRet[SegmentCount - 2].Arrival.Time + ":00";
+
+                                                            firstSegmentArrTime = Convert.ToDateTime(timemerge);
+                                                            stopovertTime = (Convert.ToDateTime((Convert.ToDateTime(sec.Departure.Date).ToString("yyyy-MM-dd") + "T" + sec.Departure.Time + ":00")) - firstSegmentArrTime);
+
+                                                        }
+
+                                                        if (stopovertTime.ToString("hh") + ":" + stopovertTime.ToString("mm") != "00:00")
+                                                        {
+                                                            <ul class="layover col-xs-12">
+                                                                <span>Layover: @stopovertTime.ToString("hh")h @stopovertTime.ToString("mm")m at @sec.Departure.AirportCityName</span>
+                                                            </ul>
+                                                        }
+
+                                                        <ul class="segment__itinerary col-xs-12">
+                                                            <li class="sr-only"> <span class="outbound">Outbound</span> </li>
+                                                            <li class="itinerary__airline col-xs-2">
+                                                                <figure>
+                                                                    <img src=@("/images/airlinelogo/" + sec.AirV + "s.gif" ) class="airline__logo" alt=@sec.AirlineName title=@sec.AirlineName>
+                                                                    <figcaption class="airline__info">
+                                                                        <span class="airline__title">@sec.AirlineName</span>
+                                                                        <div class="info__flight hidden-xs"> <span class="flight__num">Flight @sec.FltNum</span> </div>
+                                                                    </figcaption>
+                                                                </figure>
+
+                                                            </li>
+                                                            <li class="itinerary__airport col-xs-8">
+                                                                <div class="airport__info">
+                                                                    <div class="col-xs-2 itinerary__date">
+                                                                        <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(sec.Departure.Date).ToString("ddd")</span> <span class="is--flight-month">@Convert.ToDateTime(sec.Departure.Date).ToString("MMM dd ")</span> </div>
+                                                                    </div>
+                                                                    <div class="col-xs-4 itinerary__time">
+                                                                        <div class="is--itinerary-flight-stop hidden"> <span class="flight-stop__info">@(SectorRet.Count == 1 ? "Non Stop" : (SectorRet.Count == 2 ? (SectorRet.Count - 1).ToString() + " Stop" : (SectorRet.Count - 1).ToString() + " Stops"))</span> </div>
+                                                                        <time class="airport__time">@sec.Departure.Time</time>
+                                                                        <span class="airport__name"><span class="" title="London Heathrow - LHR">@sec.Departure.AirportCityName - @sec.Departure.AirportCode</span></span>
+                                                                    </div>
+                                                                    <div class="col-xs-4 itinerary__time">
+                                                                        <time class="airport__time">@sec.Arrival.Time</time>
+                                                                        <span class="airport__name"><span title="Abu Dhabi - AUH">@sec.Arrival.AirportCityName - @sec.Arrival.AirportCode</span></span>
+                                                                    </div>
+                                                                    <div class="col-xs-2 itinerary__date">
+                                                                        <div class="trip__date"> <span class="is--flight-day">@Convert.ToDateTime(sec.Departure.Date).ToString("ddd")</span> <span class="is--flight-month">@Convert.ToDateTime(sec.Departure.Date).ToString("MMM dd ")</span> </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="itinerary__info col-xs-2">
+                                                                <div class="flight-info__class col-xs-12"> <span class="FlightCabin">@sec.CabinClass.Name</span> </div>
+                                                                <ul class="flight-info__list col-xs-12 flight-info__alllist">
+                                                                    <li class="flight-info__item">
+                                                                        <div class="baggage-listing">
+                                                                            <div class="baggage-listing__icons popover__action popover__action-hover"><span><i class="fa fa-briefcase mr-5" aria-hidden="true"></i>@sec.BaggageInfo</span> </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+
+                                                    }
+
+                                                    <div class="col-xs-12 segment__footer">
+                                                        <div class="msg__flight-time is--total"> <span>Total trip <span class="TripDurationHideXs">duration</span>: <span class="is--total-trip">19h 40m</span></span> <span class="is--duration">(Flight: <span class="is--duration">15h 10m</span>)</span> </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </section>
+                                            }
+                                            <!-- Return Details End -->
+
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+
+                                    <!--  Detail Section End -->
+                                </div>
+                            </div>
+                        </div>
+                        <!--new result end-->
+                    }
+                }
+
+                <section>
+                    <div class="wizard">
+                        <ul class="nav nav-wizard">
+                            <li class="active"> <a href="#" data-toggle="tab"><i class="fa fa-user mr-5" aria-hidden="true"></i> Passenger Info</a> </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active">
+                                <div class="pax-bound-section">
+                                    <div class="list-container-other">
+                                        <div class="col-xs-12 col-md-12 col-lg-12">
+                                            <div class="row">
+                                                <div class="form-inline">
+                                                    @if (Model != null && Model._ViewModel.Count > 0)
+                                                    {
+                                                        var ii = 0;
+                                                        var countpassenger = 0;
+                                                        for (int i = 0; i < Model._ViewModel[0]._AdultM.Count; i++)
+                                                        {
+                                                            var countadult = @i + 1;
+                                                            @countpassenger = countadult;
+
+                                                            <div class="pax-wrapper">
+                                                                <div class="form-group traveller">
+                                                                    @countpassenger: Adults | <span class="font10">
+                                                                        Above 12 Years
+                                                                    </span>
+                                                                </div>
+                                                                <div class="form-group pax-title">
+                                                                    <label for="email">Title:</label>
+                                                                    @Html.DropDownListFor(a => a._ViewModel[0]._AdultM[i].Title.ID, new SelectList(ViewBag.TitleAdultList, "ID", "Value"), new { @class = "form-control", ID = "_ViewModel[0]._AdultM[" + i + "].Title.ID", @onchange = "dateCheck('_ViewModel[0]._AdultM[" + i + "].Title.ID' ,'_ViewModel[0]._AdultM[" + i + "].Gender.ID' ,'_ViewModel[0]._AdultM[" + i + "].Day.ID' ,'_ViewModel[0]._AdultM[" + i + "].Month.ID','_ViewModel[0]._AdultM[" + i + "].Year.ID','A');" })
+                                                                    <p> @Html.ValidationMessageFor(a => a._ViewModel[0]._AdultM[i].Title.ID, String.Empty, new { @class = "validation-txt" })</p>
+                                                                </div>
+                                                                <div class="form-group pax-name pax-fname">
+                                                                    <label for="email">First Name:</label>
+                                                                    @Html.TextBoxFor(a => a._ViewModel[0]._AdultM[i].FirstName, new { @class = "form-control", id = "divfirstname" + ii, onkeypress = "return ignoreNumeric(event)" })
+                                                                    <p> @Html.ValidationMessageFor(a => a._ViewModel[0]._AdultM[i].FirstName, String.Empty, new { @class = "validation-txt" })</p>
+                                                                </div>
+                                                                <div class="form-group pax-name pax-mname">
+                                                                    <label for="email">Middle Name:</label>
+                                                                    @Html.TextBoxFor(a => a._ViewModel[0]._AdultM[i].MiddleName, new { @class = "form-control", id = "divmiddlename" + ii, onkeypress = "return ignoreNumeric(event)" })
+                                                                    <p> @Html.ValidationMessageFor(a => a._ViewModel[0]._AdultM[i].MiddleName, String.Empty, new { @class = "validation-txt" })</p>
+                                                                </div>
+                                                                <div class="form-group pax-name pax-lname">
+                                                                    <label for="email">Last Name:</label>
+                                                                    @Html.TextBoxFor(a => a._ViewModel[0]._AdultM[i].LastName, new { @class = "form-control", id = "divlastname" + ii, onkeypress = "return ignoreNumeric(event)" })
+                                                                    <p>@Html.ValidationMessageFor(a => a._ViewModel[0]._AdultM[i].LastName, String.Empty, new { @class = "validation-txt" })</p>
+                                                                </div>
+                                                                <div class="form-group pax-dob">
+                                                                    <label for="email">DOB:</label>
+                                                                    <div class="pax-dob-box">
+                                                                        @Html.DropDownListFor(a => a._ViewModel[0]._AdultM[i].Day.ID, new SelectList(ViewBag.Day, "ID", "Value"), new { @class = "form-control month" })
+                                                                        <p>@Html.ValidationMessageFor(a => a._ViewModel[0]._AdultM[i].Day.ID, String.Empty, new { @class = "validation-txt" })</p>
+                                                                    </div>
+                                                                    <div class="pax-dob-box">
+                                                                        @Html.DropDownListFor(a => a._ViewModel[0]._AdultM[i].Month.ID, new SelectList(ViewBag.Month, "ID", "Value"), new { @class = "form-control month" })
+                                                                        <p>@Html.ValidationMessageFor(a => a._ViewModel[0]._AdultM[i].Month.ID, String.Empty, new { @class = "validation-txt" })</p>
+                                                                    </div>
+                                                                    <div class="pax-dob-box">
+                                                                        @Html.DropDownListFor(a => a._ViewModel[0]._AdultM[i].Year.ID, new SelectList(ViewBag.AdultYear, "ID", "Value"), new { @class = "form-control month" })
+                                                                        <p>@Html.ValidationMessageFor(a => a._ViewModel[0]._AdultM[i].Year.ID, String.Empty, new { @class = "validation-txt" })</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group gender pax-gender">
+                                                                    <label>Gender <span>*</span></label>
+                                                                    @Html.DropDownListFor(a => a._ViewModel[0]._AdultM[i].Gender.ID, new SelectList(ViewBag.GenderList, "ID", "Value"), new { @class = "form-control", ID = "_ViewModel[0]._AdultM[" + i + "].Gender.ID", @onchange = "dateCheck('_ViewModel[0]._AdultM[" + i + "].Title.ID' ,'_ViewModel[0]._AdultM[" + i + "].Gender.ID' ,'_ViewModel[0]._AdultM[" + i + "].Day.ID' ,'_ViewModel[0]._AdultM[" + i + "].Month.ID','_ViewModel[0]._AdultM[" + i + "].Year.ID','A');" })
+                                                                    <p>@Html.ValidationMessageFor(a => a._ViewModel[0]._AdultM[i].Gender.ID, String.Empty, new { @class = "validation-txt" })</p>
+
+                                                                </div>
+                                                                <div class="form1">
+                                                                    <div class="selectouters mb-15">
+                                                                        <div class="requst" onclick="SpecialRequest('@countpassenger');">
+                                                                            <span id="@("plus"+countpassenger)"><i class="fa fa-plus-circle fa-lg txt-theme"></i></span>&nbsp;SpecialRequest
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form1">
+                                                                    <div class="selectouter" id="@("dvSpl"+@countpassenger)" style="display:none;">
+                                                                        <div class="form-group">
+                                                                            <label id="st1">SeatRequest</label>
+                                                                            @Html.DropDownListFor(a => a._ViewModel[0]._AdultM[i].Seat.ID, new SelectList(ViewBag.SeatList, "ID", "Value"), new { @class = "form-control" })
+                                                                            <p> @Html.ValidationMessageFor(a => a._ViewModel[0]._AdultM[i].Seat.ID, String.Empty, new { @class = "validation-txt" })</p>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>MealRequest</label>
+                                                                            @Html.DropDownListFor(a => a._ViewModel[0]._AdultM[i].Meal.ID, new SelectList(ViewBag.MealList, "ID", "Value"), new { @class = "form-control" })
+                                                                            <p> @Html.ValidationMessageFor(a => a._ViewModel[0]._AdultM[i].Meal.ID, String.Empty, new { @class = "validation-txt" })</p>
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            ii++;
+                                                        }
+                                                        if (Model._ViewModel[0]._ChildM != null)
+                                                        {
+                                                            for (int i = 0; i < Model._ViewModel[0]._ChildM.Count; i++)
+                                                            {
+                                                                countpassenger += 1;
+                                                                <div class="pax-wrapper">
+                                                                    <div class="form-group traveller">
+                                                                        @countpassenger: Childs | <span class="font10">
+                                                                            2 To 12 Years
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="email">Title:</label>
+                                                                        @Html.DropDownListFor(a => a._ViewModel[0]._ChildM[i].Title.ID, new SelectList(ViewBag.TitleChildList, "ID", "Value"), new { @class = "form-control", ID = "_ViewModel[0]._ChildM[" + i + "].Title.ID", @onchange = "dateCheck('_ViewModel[0]._ChildM[" + i + "].Title.ID' ,'_ViewModel[0]._ChildM[" + i + "].Gender.ID' ,'_ViewModel[0]._ChildM[" + i + "].Day.ID' ,'_ViewModel[0]._ChildM[" + i + "].Month.ID','_ViewModel[0]._ChildM[" + i + "].Year.ID','C');" })
+                                                                        <p> @Html.ValidationMessageFor(a => a._ViewModel[0]._ChildM[i].Title.ID, String.Empty, new { @class = "validation-txt" })</p>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="email">First Name:</label>
+                                                                        @Html.TextBoxFor(a => a._ViewModel[0]._ChildM[i].FirstName, new { @class = "form-control", id = "divfirstname" + ii, onkeypress = "return ignoreNumeric(event)" })
+                                                                        <p> @Html.ValidationMessageFor(a => a._ViewModel[0]._ChildM[i].FirstName, String.Empty, new { @class = "validation-txt" })</p>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="email">Middle Name:</label>
+                                                                        @Html.TextBoxFor(a => a._ViewModel[0]._ChildM[i].MiddleName, new { @class = "form-control", id = "divmiddlename" + ii, onkeypress = "return ignoreNumeric(event)" })
+                                                                        <p> @Html.ValidationMessageFor(a => a._ViewModel[0]._ChildM[i].MiddleName, String.Empty, new { @class = "validation-txt" })</p>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="email">Last Name:</label>
+                                                                        @Html.TextBoxFor(a => a._ViewModel[0]._ChildM[i].LastName, new { @class = "form-control", id = "divlastname" + ii, onkeypress = "return ignoreNumeric(event)" })
+                                                                        <p>@Html.ValidationMessageFor(a => a._ViewModel[0]._ChildM[i].LastName, String.Empty, new { @class = "validation-txt" })</p>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="pull-left mr-5 mt-7">
+                                                                            <label for="email">DOB:</label>
+                                                                        </div>
+                                                                        <div class="pull-left mr-5">
+                                                                            @Html.DropDownListFor(a => a._ViewModel[0]._ChildM[i].Day.ID, new SelectList(ViewBag.Day, "ID", "Value"), new { @class = "form-control month" })
+                                                                            <p> @Html.ValidationMessageFor(a => a._ViewModel[0]._ChildM[i].Day.ID, String.Empty, new { @class = "validation-txt" })</p>
+                                                                        </div>
+
+                                                                        <div class="pull-left mr-5">
+                                                                            @Html.DropDownListFor(a => a._ViewModel[0]._ChildM[i].Month.ID, new SelectList(ViewBag.Month, "ID", "Value"), new { @class = "form-control month" })
+                                                                            <p> @Html.ValidationMessageFor(a => a._ViewModel[0]._ChildM[i].Month.ID, String.Empty, new { @class = "validation-txt" })</p>
+                                                                        </div>
+                                                                        <div class="pull-left mr-5">
+                                                                            @Html.DropDownListFor(a => a._ViewModel[0]._ChildM[i].Year.ID, new SelectList(ViewBag.ChildYear, "ID", "Value"), new { @class = "form-control month" })
+                                                                            <p> @Html.ValidationMessageFor(a => a._ViewModel[0]._ChildM[i].Year.ID, String.Empty, new { @class = "validation-txt" })</p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="form-group gender">
+                                                                        <label>Gender <span>*</span></label>
+                                                                        @Html.DropDownListFor(a => a._ViewModel[0]._ChildM[i].Gender.ID, new SelectList(ViewBag.GenderList, "ID", "Value"), new { @class = "form-control", ID = "_ViewModel[0]._ChildM[" + i + "].Gender.ID", @onchange = "dateCheck('_ViewModel[0]._ChildM[" + i + "].Title.ID' ,'_ViewModel[0]._ChildM[" + i + "].Gender.ID' ,'_ViewModel[0]._ChildM[" + i + "].Day.ID' ,'_ViewModel[0]._ChildM[" + i + "].Month.ID','_ViewModel[0]._ChildM[" + i + "].Year.ID','C');" })
+                                                                        <p> @Html.ValidationMessageFor(a => a._ViewModel[0]._ChildM[i].Gender.ID, String.Empty, new { @class = "validation-txt" })</p>
+                                                                    </div>
+                                                                    <div class="form1">
+                                                                        <div class="selectouters">
+                                                                            <div class="requst" onclick="SpecialRequest('@countpassenger');">
+                                                                                <span id="@("plus"+countpassenger)"><i class="fa fa-plus-circle fa-lg txt-theme"></i></span>&nbsp;SpecialRequest
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form1">
+                                                                        <div class="selectouter" id="@("dvSpl"+@countpassenger)" style="display:none;">
+                                                                            <div class="form-group">
+                                                                                <label id="st1">SeatRequest</label>
+                                                                                @Html.DropDownListFor(a => a._ViewModel[0]._ChildM[i].Seat.ID, new SelectList(ViewBag.SeatList, "ID", "Value"), new { @class = "form-control" })
+                                                                                <p>@Html.ValidationMessageFor(a => a._ViewModel[0]._ChildM[i].Seat.ID, String.Empty, new { @class = "validation-txt" })</p>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>MealRequest</label>
+                                                                                @Html.DropDownListFor(a => a._ViewModel[0]._ChildM[i].Meal.ID, new SelectList(ViewBag.MealList, "ID", "Value"), new { @class = "form-control" })
+                                                                                <p> @Html.ValidationMessageFor(a => a._ViewModel[0]._ChildM[i].Meal.ID, String.Empty, new { @class = "validation-txt" })</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                ii++;
+                                                            }
+                                                        }
+
+                                                        if (Model._ViewModel[0]._InfantM != null)
+                                                        {
+                                                            for (int i = 0; i < Model._ViewModel[0]._InfantM.Count; i++)
+                                                            {
+                                                                countpassenger += 1;
+                                                                <div class="pax-wrapper">
+                                                                    <div class="form-group traveller">
+                                                                        @countpassenger: Infant | <span class="font10">Below 2 Years</span>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="email">Title:</label>
+                                                                        @Html.DropDownListFor(a => a._ViewModel[0]._InfantM[i].Title.ID, new SelectList(ViewBag.TitleInfantList, "ID", "Value"), new { @class = "form-control", ID = "_ViewModel[0]._InfantM[" + i + "].Title.ID", @onchange = "dateCheck('_ViewModel[0]._InfantM[" + i + "].Title.ID' ,'_ViewModel[0]._InfantM[" + i + "].Gender.ID' ,'_ViewModel[0]._InfantM[" + i + "].Day.ID' ,'_ViewModel[0]._InfantM[" + i + "].Month.ID','_ViewModel[0]._InfantM[" + i + "].Year.ID','I');" })
+                                                                        <p> @Html.ValidationMessageFor(a => a._ViewModel[0]._InfantM[i].Title.ID, String.Empty, new { @class = "validation-txt" })</p>
+
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="email">First Name:</label>
+                                                                        @Html.TextBoxFor(a => a._ViewModel[0]._InfantM[i].FirstName, new { @class = "form-control", id = "divfirstname" + ii, onkeypress = "return ignoreNumeric(event)" })
+                                                                        <p> @Html.ValidationMessageFor(a => a._ViewModel[0]._InfantM[i].FirstName, String.Empty, new { @class = "validation-txt" })</p>
+
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="email">Middle Name:</label>
+                                                                        @Html.TextBoxFor(a => a._ViewModel[0]._InfantM[i].MiddleName, new { @class = "form-control", id = "divmiddlename" + ii, onkeypress = "return ignoreNumeric(event)" })
+                                                                        <p>@Html.ValidationMessageFor(a => a._ViewModel[0]._InfantM[i].MiddleName, String.Empty, new { @class = "validation-txt" })</p>
+
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="email">Last Name:</label>
+                                                                        @Html.TextBoxFor(a => a._ViewModel[0]._InfantM[i].LastName, new { @class = "form-control", id = "divlastname" + ii, onkeypress = "return ignoreNumeric(event)" })
+                                                                        <p>@Html.ValidationMessageFor(a => a._ViewModel[0]._InfantM[i].LastName, String.Empty, new { @class = "validation-txt" })</p>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="pull-left mr-5 mt-7">
+                                                                            <label for="email">DOB:</label>
+                                                                        </div>
+                                                                        <div class="pull-left mr-5">
+                                                                            @Html.DropDownListFor(a => a._ViewModel[0]._InfantM[i].Day.ID, new SelectList(ViewBag.Day, "ID", "Value"), new { @class = "form-control month" })
+                                                                            <p> @Html.ValidationMessageFor(a => a._ViewModel[0]._InfantM[i].Day.ID, String.Empty, new { @class = "validation-txt" })</p>
+                                                                        </div>
+
+                                                                        <div class="pull-left mr-5">
+                                                                            @Html.DropDownListFor(a => a._ViewModel[0]._InfantM[i].Month.ID, new SelectList(ViewBag.Month, "ID", "Value"), new { @class = "form-control month" })
+                                                                            <p>@Html.ValidationMessageFor(a => a._ViewModel[0]._InfantM[i].Month.ID, String.Empty, new { @class = "validation-txt" })</p>
+                                                                        </div>
+                                                                        <div class="pull-left mr-5">
+                                                                            @Html.DropDownListFor(a => a._ViewModel[0]._InfantM[i].Year.ID, new SelectList(ViewBag.InfantYear, "ID", "Value"), new { @class = "form-control month" })
+                                                                            <p>@Html.ValidationMessageFor(a => a._ViewModel[0]._InfantM[i].Year.ID, String.Empty, new { @class = "validation-txt" })</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group gender">
+                                                                        <label>Gender <span>*</span></label>
+                                                                        @Html.DropDownListFor(a => a._ViewModel[0]._InfantM[i].Gender.ID, new SelectList(ViewBag.GenderList, "ID", "Value"), new { @class = "form-control", ID = "_ViewModel[0]._InfantM[" + i + "].Gender.ID", @onchange = "dateCheck('_ViewModel[0]._InfantM[" + i + "].Title.ID' ,'_ViewModel[0]._InfantM[" + i + "].Gender.ID' ,'_ViewModel[0]._InfantM[" + i + "].Day.ID' ,'_ViewModel[0]._InfantM[" + i + "].Month.ID','_ViewModel[0]._InfantM[" + i + "].Year.ID','I');" })
+                                                                        <p> @Html.ValidationMessageFor(a => a._ViewModel[0]._InfantM[i].Gender.ID, String.Empty, new { @class = "validation-txt" })</p>
+                                                                    </div>
+                                                                    <div class="form1">
+                                                                        <div class="selectouters">
+                                                                            <div class="requst" onclick="SpecialRequest('@countpassenger');">
+                                                                                <span id="@("plus"+countpassenger)"><i class="fa fa-plus-circle fa-lg txt-theme"></i></span>&nbsp;SpecialRequest
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form1">
+                                                                        <div class="selectouter" id="@("dvSpl"+@countpassenger)" style="display:none;">
+                                                                            <div class="form-group">
+                                                                                <label id="st1">SeatRequest</label>
+                                                                                @Html.DropDownListFor(a => a._ViewModel[0]._InfantM[i].Seat.ID, new SelectList(ViewBag.SeatList, "ID", "Value"), new { @class = "form-control" })
+                                                                                <p> @Html.ValidationMessageFor(a => a._ViewModel[0]._InfantM[i].Seat.ID, String.Empty, new { @class = "validation-txt" })</p>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>MealRequest</label>
+                                                                                @Html.DropDownListFor(a => a._ViewModel[0]._InfantM[i].Meal.ID, new SelectList(ViewBag.MealList, "ID", "Value"), new { @class = "form-control" })
+                                                                                <p> @Html.ValidationMessageFor(a => a._ViewModel[0]._InfantM[i].Meal.ID, String.Empty, new { @class = "validation-txt" })</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                ii++;
+                                                            }
+                                                        }
+                                                    }
+
+
+                                                    <div class="clearfix"></div>
+
+                                                    <ul class="nav nav-wizard">
+                                                        <li class="active"> <a href="#"><i class="fa fa-phone fa-rotate-90 mr-5" aria-hidden="true"></i> Contact Information</a> </li>
+
+                                                    </ul>
+                                                    <div class="pax-contact-wr">
+                                                        <div class="col-md-4 col-sm-6 col-xs-12 pm-0">
+                                                            <div class="form-group phone mob-flt-rht">
+                                                                <label for="Mobile">Mobile<span class="important-field">*</span></label>
+                                                                @Html.TextBoxFor(a => a.MobNo, new { @class = "form-control", type = "phone", minlength = "10", maxlength = "10", onkeypress = "return isNumberKey(event)" })
+                                                                <p>@Html.ValidationMessageFor(a => a.MobNo, String.Empty, new { @class = "validation-txt" })</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-6 col-xs-12 pm-0">
+                                                            <div class="form-group phone">
+                                                                <label for="Mobile">Email<span class="important-field">*</span></label>
+                                                                @Html.TextBoxFor(a => a.Email, new { @class = "form-control" })
+                                                                <p> @Html.ValidationMessageFor(a => a.Email, String.Empty, new { @class = "validation-txt" })</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-6 col-xs-12 pm-0">
+                                                            <div class="form-group phone">
+                                                                <label for="Mobile">Alternate Phone</label>
+                                                                @Html.TextBoxFor(a => a.homePhone, new { @class = "form-control", type = "phone", maxlength = "15", onkeypress = "return isNumberKey(event)" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="note"><span>Note: </span>Enter Your full name and date of birth as mentioned in the Passport or Government issued photo ID.</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="col-md-12 pb-20">
+                                        <button class="btn btn-sm" type="submit" id="btnsubmit" onclick='return Process();'>Book Now<i class="fa fa-arrow-right ml-5"></i></button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div id="sidebar" class="sidebar col-md-3 no-pad-mobile">
+                <div class="flight-summary">Fare Summary</div>
+                <div class="sidebar-outer">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th>Pax</th>
+                                <th>Fare</th>
+                            </tr>
+
+                            <tr>
+                                <td>@item.Itinerary.AdultInfo.NoAdult Adult </td>
+                                <td>@TravelSite.Models.CompCredentials.Currency_Symbol@Convert.ToDouble(((item.Itinerary.AdultInfo.AdtBFare + item.Itinerary.AdultInfo.AdTax + item.Itinerary.AdultInfo.Commission + item.Itinerary.AdultInfo.Safi + item.Itinerary.AdultInfo.MarkUp) * item.Itinerary.AdultInfo.NoAdult)).ToString("f2")  </td>
+                            </tr>
+
+                            @if (item.Itinerary.ChildInfo.NoChild > 0)
+                            {
+                                <tr>
+                                    <td>@item.Itinerary.ChildInfo.NoChild Child </td>
+                                    <td>@TravelSite.Models.CompCredentials.Currency_Symbol@Convert.ToDouble(((item.Itinerary.ChildInfo.ChdBFare + item.Itinerary.ChildInfo.CHTax + item.Itinerary.ChildInfo.Commission + item.Itinerary.ChildInfo.Safi + item.Itinerary.ChildInfo.MarkUp) * item.Itinerary.ChildInfo.NoChild)).ToString("f2")  </td>
+                                </tr>
+                            }
+                            @if (item.Itinerary.InfantInfo.NoInfant > 0)
+                            {
+                                <tr>
+                                    <td>@item.Itinerary.InfantInfo.NoInfant Infant </td>
+                                    <td>@TravelSite.Models.CompCredentials.Currency_Symbol@Convert.ToDouble(((item.Itinerary.InfantInfo.InfBFare + item.Itinerary.InfantInfo.InTax + item.Itinerary.InfantInfo.Commission + item.Itinerary.InfantInfo.Safi + item.Itinerary.InfantInfo.MarkUp) * item.Itinerary.InfantInfo.NoInfant)).ToString("f2")  </td>
+                                </tr>
+                            }
+
+
+                            <tr class="grand-total-row">
+                                <td colspan="0">Total Price </td>
+                                <td><span>@TravelSite.Models.CompCredentials.Currency_Symbol<span id="spn_TotalFare">@item.Itinerary.GrandTotal.ToString("f2") </span></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="clearfix"></div>
+
+                </div>
+                <div class="fare-disclaimer hidden-xs"> <span>Please Note:</span> All Fares displayed are quoted in USD and inclusive of base fare, taxes and all fees. Additional baggage fees may apply as per the airline policies. </div>
+                <div class="sidebar-other-outer hidden-xs hidden">
+                    <div class="side-other-head">Why Choose Us</div>
+                    <div class="sidebar-other-area">
+                        <ul>
+                            <li>
+                                <div class="why-img"><img src="~/images/reason1.png" alt="Why Book Cheap Flights at Faressaver"></div>
+                                <div class="why-txt">Best Price Guarantee</div>
+                            </li>
+                            <li>
+                                <div class="why-img"><img src="~/images/reason2.png" alt="Reason to Book Cheap Flights at Faressaver"></div>
+                                <div class="why-txt">Quick &amp; Secure Bookings</div>
+                            </li>
+                            <li>
+                                <div class="why-img"><img src="~/images/reason3.png" alt="Reason to Book Cheap Airline Tickets at Faressaver"></div>
+                                <div class="why-txt">Exclusive deals &amp; Offers</div>
+                            </li>
+                            <li>
+                                <div class="why-img"><img src="~/images/reason4.png" alt="Reason to Book Cheap Airplane Tickets at Faressaver"></div>
+                                <div class="why-txt">24/7 Customer support</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <!--one secure panel ends -->
+            </div>
+        </div>
+    </section>
+
+    <input type="hidden" value="1" id="val" />
+    <input type="hidden" value="1" id="val1" />
+    <input type="hidden" value="1" id="arr1" />
+    <input type="hidden" value="1" id="arr2" />
+    <input type="hidden" value="1" id="arr3" />
+    <input type="hidden" value="1" id="arr4" />
+    <input type="hidden" value="1" id="arr5" />
+    <input type="hidden" value="1" id="date1" />
+    <input type="hidden" value="1" id="arrcar" />
+    <input type="hidden" value="1" id="arrcar1" />
+    <input type="hidden" id="hdUnique" value=@Html.Raw(Model.unique) />
+    <input type="hidden" id="hdDOBDate" value=@Html.Raw(Model.hdDOBDate) />
+    <input type="hidden" id="hdRetDate" value=@Html.Raw(Model.hdRetDate) />
+    <input type="hidden" id="hdMinPaxage" value=@Html.Raw(Model.MinPaxAge) />
+    <input type="hidden" id="hurl" value="" />
+}
+<input type="hidden" id="datacount" value=@Model.TotalDataCount>
+<input type="hidden" id="divcount" value="0" />
+<input type="hidden" id="divbagg" value="0" />
+
+<!-- Session Expire  -->
+
+<div class="sessiontimeoutpop" id="sessionpop" style="display:none;">
+    <div class="main-box">
+        <div class="msg-box info text-center">
+            <p>
+                <img src="~/images/session-expire-icon.png" />
+            </p>
+            <div class="content">
+                <div class="content-wrapper text-center">
+                    <h2 class="header">Session has expired!</h2>
+                    <p class="description">Please search again.</p>
+                    <p class="description action-link">
+                        <a onclick="ShowWait();" value="Refresh" class="btn pt-5 pb-5 pl-60 pr-60">Refresh</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<script>
+    //var sessionTimeout = 50;
+    //window.onload = DisplaySessionTimeout;
+    //function DisplaySessionTimeout() {
+    //    sessionTimeout = sessionTimeout - 1;
+    //    if (sessionTimeout >= 0)
+    //        window.setTimeout("DisplaySessionTimeout()", 10000);
+    //    else {
+    //        callSessionTimeOut();
+    //    }
+    //}
+    //function callSessionTimeOut() {
+    //    $("#sessionpop").show();
+    //    return true;
+    //}
+
+     function ShowWait() {
+
+        $("#divprogress").hide();
+        $("#divprogress").show();
+        var unique = $("#hdUnique").val();
+        $("#hurl").val("@Html.Raw(Model.url)")
+        var data = $("#hurl").val();
+        var url = "";
+         url = "https://www.Faressaver.com/searchres/Search?" + data + "";
+         //url = "https://localhost:44397/searchres/Search?" + data + "";
+        window.location.href = url.replace('__id__', data);
+        $("#divprogress").hide();
+    }
+</script>
+<!-- End Popup    -->
+
+
+<script>
+
+    function showdetail(dtldiv) {
+        $("#" + dtldiv).toggle();
+    }
+
+    var data = "";
+    var sum = 0;
+    var adtprice = 0;
+    var baggageList = [];
+
+    function AddBaggage(id, id1, type) {
+        var status = 1;
+        var AdtCount = 0;
+        var ChdCount = 0;
+        var AdtSum = 0.00;
+        var ChildSum = 0.00;
+        var code = document.getElementById(id).value;
+        var e = document.getElementById(id);
+        var fee = e.options[e.selectedIndex].text;
+
+        if (e.options[e.selectedIndex].text != "Select Baggage") {
+            $("#dvpassdtl" + id1).show();
+        }
+        else {
+            $("#dvpassdtl" + id1).hide();
+        }
+
+        if (fee != "Select Baggage") {
+            $("#" + id).show();
+            if (baggageList.length == 0) {
+                var obj = {};
+                obj.BaggageId = id1;
+                obj.BaggageText = fee;
+                obj.PassengerType = type;
+                obj.BaggaeValue = code;
+                baggageList.push(obj);
+            }
+            else {
+                $(baggageList).each(function (index, obj1) {
+                    if (obj1.BaggageId == id1) {
+                        obj1.BaggageId = id1;
+                        obj1.BaggageText = fee;
+                        obj1.PassengerType = type;
+                        obj1.BaggaeValue = code;
+                        status = 0;
+                    }
+                })
+
+                if (status == 1) {
+                    var obj = {};
+                    obj.BaggageId = id1;
+                    obj.BaggageText = fee;
+                    obj.PassengerType = type;
+                    obj.BaggaeValue = code;
+                    baggageList.push(obj);
+                }
+            }
+        }
+        else {
+            if (baggageList.length != 0) {
+                baggageList = jQuery.grep(baggageList, function (n, i) {
+                    return (n.BaggageId != id1);
+                });
+            }
+        }
+
+        $(baggageList).each(function (index, obj1) {
+            if (obj1.PassengerType == "Adt") {
+                AdtCount = AdtCount + 1;
+
+                AdtSum = parseFloat(parseFloat(obj1.BaggageText.split('-')[1]) + parseFloat(AdtSum)).toFixed(2);
+
+            }
+            if (obj1.PassengerType == "Chd") {
+                ChdCount = ChdCount + 1;
+                ChildSum = parseFloat(parseFloat(obj1.BaggageText.split('-')[1]) + parseFloat(ChildSum)).toFixed(2);
+            }
+        });
+        var data = "";
+        if (AdtCount > 0) {
+            data = data + "<p>" + AdtCount + " x Adult Baggage <strong>@TravelSite.Models.CompCredentials.Currency_Symbol" + AdtSum + "</strong></p>";
+        }
+        if (ChdCount > 0) {
+            data = data + "<p>" + ChdCount + " x Child Baggage <strong>@TravelSite.Models.CompCredentials.Currency_Symbol " + ChildSum + "</strong></p>";
+        }
+        var total = parseFloat(@Model.GrandTotal).toFixed(2);
+
+        var grandtotal = parseFloat(parseFloat(@Model.GrandTotal) + parseFloat(AdtSum) + parseFloat(ChildSum)).toFixed(2);
+
+        $('#divtotal').html(grandtotal);
+        $('#divtotalm').html(grandtotal);
+        if (data != "") {
+            $('#spnshow').html(data);
+            $('#spnshow').show();
+        }
+        else {
+            $('#spnshow').hide();
+        }
+    }
+
+    $(document).ready(function () {
+        $('input').keyup(function () {
+            var ss = $(this).attr('id');
+            if (ss != "Email" && ss != "txtloginemail" && ss != "txtloginpassword" && ss != "txtemail" && ss != "txtpassword" && ss != "MobNo" && ss != "homePhone" && ss != "divfreq" && !ss.includes("divpass")) {
+                var $th = $(this);
+                $th.val($th.val().replace(/[^a-zA-Z\s]/g, function (str) { return ''; }));
+            }
+            if (ss == "MobNo") {
+                var $th = $(this);
+                $th.val($th.val().replace(/[^0-9]/g, function (str) { return ''; }));
+            }
+            if (ss == "homePhone") {
+                var $th = $(this);
+                $th.val($th.val().replace(/[^0-9]/g, function (str) { return ''; }));
+            }
+            if (ss.includes("divpass")) {
+                var $th = $(this);
+                $th.val($th.val().replace(/[^a-zA-Z0-9]/g, function (str) { return ''; }));
+            }
+            if (ss == "divfreq") {
+                var $th = $(this);
+                $th.val($th.val().replace(/[^a-zA-Z0-9]/g, function (str) { return ''; }));
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#paxfrm').submit(function () {
+            if ($(this).valid()) {
+                $("#divprogress").show();
+                //$("#wait").show();
+                //$(".transparentCover").show();
+            }
+            else {
+                $("#divprogress").hide();
+            }
+        });
+
+        $('.mob_show_click_show').click(function (event) {
+            event.stopPropagation();
+            $(".light_blue_bg").slideToggle("fast");
+        });
+        $(".light_blue_bg").on("click", function (event) {
+            event.stopPropagation();
+        });
+    });
+
+    $(document).on("mob_show_click_show", function () {
+        $(".light_blue_bg").hide();
+    });
+</script>
+<script type="text/javascript">
+    $('.price-breck').click(function () {
+        $('.size-small').slideToggle();
+    });
+    //window.onload = callFn();
+    //function callFn() {
+    //    setVar(15);
+    //}
+    function ignoreNumeric(event) {
+        if (event.keyCode >= 48 && event.keyCode <= 57) {
+            //alert("input was 0-9");
+            return false;
+        }
+        if (event.keyCode >= 65 && event.keyCode <= 90) {
+            //alert("input was a-z");
+            return true;
+        }
+    }
+    function IsStringKey(e) {
+        if (e.shiftKey || e.ctrlKey || e.altKey) {
+            e.preventDefault();
+        } else {
+            var key = e.keyCode;
+            if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                return false;
+            }
+        }
+        return true;
+    };
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+</script>
+<script type="text/javascript">
+
+    function Process() {
+               
+        var _Text = 0;
+        var email = $("#Email").val();
+        var countdata = $("#datacount").val();
+        var inputTypes = [];
+        var selectTypes = [];
+        $('form input[type="text"]').each(function () {
+            inputTypes.push(this.id);
+        });
+
+        $('form select').each(function () {
+            selectTypes.push(this.value);
+        });
+
+        for (i = 1; i <= countdata; i++) {
+            var k = i - 1;
+            if ($("#dvpassdtl" + i).css("display") == "none") {
+                for (var j = 0; j < inputTypes.length; j++) {
+
+                    if ((inputTypes[j] != "") && (inputTypes[j] != "smail") && (inputTypes[j] != "MobNo") && (inputTypes[j] != "Email") && (!inputTypes[j].includes("divpass")) && (!inputTypes[j].includes("divissue")) && (!inputTypes[j].includes("divexpiry")) && (!inputTypes[j].includes("divcity")) && (!inputTypes[j].includes("divlastname")) && (!inputTypes[j].includes("divfirstname"))) {
+                        _Text++;
+                    }
+                    else {
+                        _Text = _Text + 0;
+                    }
+                }
+            }
+            else {
+                $('form input[type="text"]').each(function () {
+                    if ((this.value == '') && (this.id != "MobNo") && (this.id != "Email") && $("#divpass" + k).val() == "" && $("#divissue" + k).val() == "" && $("#divexpiry" + k).val() == "" && $("#divcity" + k).val() == "") {
+                        _Text++;
+                    }
+                    else {
+                        _Text = _Text + 0;
+                    }
+                });
+            }
+        }
+
+        var paxage = document.getElementById("hdMinPaxage").value;
+        if (paxage != "/" && AdultAgeArr != "") {
+            var count = 0;
+            $(AdultAgeArr).each(function (index, obj) {
+                if (obj.YearAge >= paxage) {
+                    count = count + 1;
+                }
+            });
+            if (count == 0) {
+                alert("One passenger age must be greater than " + paxage + "");
+                return false;
+            }
+        }
+
+        if ($("#MobNo").val() != "" && $("#Email").val() != "") {
+            _Text = _Text + 0;
+        }
+        else {
+            _Text++;
+        }
+
+        for (i = 0; i < countdata; i++) {
+            var firstname = $("#divfirstname" + i + "").val();
+
+            var lastname = $("#divlastname" + i + "").val();
+            if (!validatename(firstname)) {
+                _Text++;
+            }
+            if (!validatename(lastname)) {
+                _Text++;
+            }
+        }
+
+        //if (_Text > 0) {
+        //    $("#divprogress").hide();
+        //}
+
+        //else {
+        //    $("#btnsubmit").hide();
+        //    $("#divprogress").show();
+        //}
+    }
+
+</script>
+
+<script type="text/javascript">
+    //window.onload = callFn();
+    //function callFn() {
+    //    setVar(20);
+    //}
+
+
+
+
+    function ContinueBooking() {
+        var sGuid = $('#Guid').val();
+        window.location.href = '@Url.Action("Continue", "PassengerDetails", new { Guid = item.Guid })';
+    }
+
+    function Progressing() {
+        document.getElementById("dvProgress").style.display = "block";
+    }
+
+    function TermCondition() {
+        window.open("../terms-conditions.aspx", "Terms&Conditions", "width=600, height=400");
+    }
+
+    function SpecialRequest(id) {
+
+        var str = 1;
+        if (str == "1") {
+            $("#val1").val(2);
+        }
+        if (str == "2") {
+            $("#val1").val(1);
+        }
+        $("#dvSpl" + id).toggle();
+    }
+
+    function ShowPassDetail(id) {
+
+        $("#dvpassdtl" + id).toggle();
+    }
+    function AdditionalInfo() {
+        $("#dvAdditionalInfo").toggle('slow');
+    }
+    function ShowMail() {
+        $("#dvIteneraryMail").show('slow');
+    }
+
+    function HideMail() {
+        $("#dvIteneraryMail").hide('slow');
+    }
+
+    function SendMailIten() {
+        var url = "/PassengerDetails/SendIten";
+        var email = $("#smail").val();
+        if (email.length == 0) {
+            $("#emailmsg").html("Please enter email address.");
+            return false;
+        }
+        if (!validateEmail(email)) {
+            $("#emailmsg").html("Invalid email address.");
+            return false;
+        }
+        else {
+
+            $.post(url, { Email: email, sUnique: $('#Guid').val() }, function (data) {
+
+                $("#emailmsg").html(data);
+                $("#smail").val(' ');
+            });
+        }
+    }
+    function validateEmail(email) {
+        var regex = /^[a-z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*)?@@[a-z][a-zA-Z-0-9]*\.[a-z]+(\.[a-z]+)?$/;
+        if (regex.test(email)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    function validatename(name) {
+
+        var reg = /^[a-zA-Z]+[ a-zA-Z-_]*.{1,}$/;
+        if (reg.test(name)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    function printContent(dv) {
+        $("#dvSDetail").show();
+        var restorepage = document.body.innerHTML;
+        var printcontent = document.getElementById(dv).innerHTML;
+        document.body.innerHTML = printcontent;
+        window.print();
+        $("#dvSDetail").hide();
+        document.body.innerHTML = restorepage;
+    }
+
+</script>
+
+<script>
+    var AdultAgeArr = [];
+    function dateCheck(tt, gg, dd, mn, yy, px) {
+
+        //var tt= document.getElementById(dd);
+        var dpd, depDate, bDate;
+        var chktt = document.getElementById(tt).value
+        if (chktt != "Dr") {
+            if (chktt == "Mr" || chktt == "Mrs" || chktt == "Miss" || chktt == "Mstr") {
+                if (chktt == "Mr" || chktt == "Mstr") {
+                    document.getElementById(gg).value = "M";
+                }
+                else {
+                    document.getElementById(gg).value = "F";
+                }
+            }
+            else {
+                document.getElementById(gg).value = "";
+            }
+        }
+
+        if (px == "A") {
+
+            if (document.getElementById(dd) != null && document.getElementById(dd).value != "" && document.getElementById(mn) != null && document.getElementById(mn).value != "" && document.getElementById(yy) != null && document.getElementById(yy).value != "") {
+                dpd = document.getElementById("hdDOBDate").value;
+                dpd = dpd.split("-");
+                depDate = new Date(dpd[2], (dpd[1] - 1), dpd[0]);
+                var newdate = document.getElementById(dd).value + "-" + document.getElementById(mn).value + "-" + document.getElementById(yy).value + "-" + px;
+                bDate = new Date(document.getElementById(yy).value, parseInt(document.getElementById(mn).value) - 1, document.getElementById(dd).value);
+
+                var age = getAge(bDate);
+                //  alert(JSON.stringify(age));
+                var currendate = new Date();
+                curdate = new Date(currendate.getFullYear(), currendate.getMonth(), currendate.getDate());
+                if (age == null) {
+                    alert("Invalid date of birth ");
+                    document.getElementById(dd).value = ""
+                    document.getElementById(mn).value = ""
+                    document.getElementById(yy).value = ""
+                }
+                else if (bDate > curdate) {
+                    alert("Invalid date of birth ");
+                    document.getElementById(dd).value = ""
+                    document.getElementById(mn).value = ""
+                    document.getElementById(yy).value = ""
+                }
+                else if (age.years >= 100) {
+                    alert("Passenger must be under the age of 100 years");
+                    document.getElementById(dd).value = ""
+                    document.getElementById(mn).value = ""
+                    document.getElementById(yy).value = ""
+                }
+                else if (age.years < 12) {
+                    alert("Adult Age must be above 12 Years");
+                    document.getElementById(dd).value = ""
+                    document.getElementById(mn).value = ""
+                    document.getElementById(yy).value = ""
+                }
+                else {
+                    var abc = true;
+                    if (AdultAgeArr.length > 0) {
+                        $(AdultAgeArr).each(function (index, obj) {
+                            if (obj.AdultId == date_id) {
+                                obj.YearAge = age.years;
+                                abc = false;
+                            }
+                        })
+                    }
+                    else {
+                        var AppObj = {};
+                        AppObj.AdultId = date_id;
+                        AppObj.YearAge = age.years;
+                        AdultAgeArr.push(AppObj);
+                        abc = false;
+                    }
+                    if (abc) {
+                        var AppObj = {};
+                        AppObj.AdultId = date_id;
+                        AppObj.YearAge = age.years;
+                        AdultAgeArr.push(AppObj);
+                    }
+
+
+                    $("#divissue" + date_id).val("");
+                    $('#divexpiry' + date_id).val("");
+                    $("#divissue" + date_id).datepicker("option", "minDate", bDate);
+                    $("#divissue" + date_id).datepicker("option", "maxDate", 0);
+
+                }
+            }
+        }
+        if (px == "I" || px == "C") {
+            if (document.getElementById(dd).value != null && document.getElementById(mn).value != null && document.getElementById(yy).value != null && document.getElementById(dd).value != "" && document.getElementById(mn).value != "" && document.getElementById(yy).value != "") {
+                dpd = document.getElementById("hdDOBDate").value;
+                dpd = dpd.split("-");
+                depDate = new Date(dpd[2], (dpd[1] - 1), dpd[0]);
+                var newdate = document.getElementById(dd).value + "-" + document.getElementById(mn).value + "-" + document.getElementById(yy).value + "-" + px;
+                bDate = new Date(document.getElementById(yy).value, parseInt(document.getElementById(mn).value) - 1, document.getElementById(dd).value);
+                var age = getAge(bDate);
+                //alert(JSON.stringify(age));
+                var currendate = new Date();
+                curdate = new Date(currendate.getFullYear(), currendate.getMonth(), currendate.getDate());
+
+                if (age == null) {
+                    alert("Invalid date of birth ");
+                    document.getElementById(dd).value = ""
+                    document.getElementById(mn).value = ""
+                    document.getElementById(yy).value = ""
+                }
+                else if (bDate > curdate) {
+                    alert("Invalid date of birth ");
+                    document.getElementById(dd).value = ""
+                    document.getElementById(mn).value = ""
+                    document.getElementById(yy).value = ""
+                }
+                else {
+                    if (px == "C") {
+                        var date_check_val = true;
+                        if (age.years < 2) {
+                            alert("Child age must be greater than 2 year");
+                            document.getElementById(dd).value = ""
+                            document.getElementById(mn).value = ""
+                            document.getElementById(yy).value = ""
+                            date_check_val = false;
+                        }
+                        if (age.years > 12) {
+                            alert("Child Age should not greater than 12 year!");
+                            document.getElementById(dd).value = ""
+                            document.getElementById(mn).value = ""
+                            document.getElementById(yy).value = ""
+                            date_check_val = false;
+                        }
+                        if (age.years == 12) {
+                            if (age.months > 0) {
+                                alert("Child Age should not greater than 12 year!");
+                                document.getElementById(dd).value = ""
+                                document.getElementById(mn).value = ""
+                                document.getElementById(yy).value = ""
+                                date_check_val = false;
+                            }
+                            else {
+                                if (age.months == 0) {
+                                    if (age.days > 0) {
+                                        alert("Child Age should not greater than 12 year!");
+                                        document.getElementById(dd).value = ""
+                                        document.getElementById(mn).value = ""
+                                        document.getElementById(yy).value = ""
+                                        date_check_val = false;
+                                    }
+                                }
+                            }
+                        }
+                        if (date_check_val) {
+
+                            $("#divissue" + date_id).val("");
+                            $('#divexpiry' + date_id).val("");
+                            $("#divissue" + date_id).datepicker("option", "minDate", bDate);
+                            $("#divissue" + date_id).datepicker("option", "maxDate", 0);
+                        }
+                    }
+                    else {
+                        var date_check_val = true;
+                        depDate.setFullYear(depDate.getFullYear() - 2);
+                        if (age.years > 2) {
+                            alert("Infant must be under the age of 2 years for the entire journey ");
+                            document.getElementById(dd).value = ""
+                            document.getElementById(mn).value = ""
+                            document.getElementById(yy).value = ""
+                            date_check_val = false;
+                        }
+                        else {
+                            if (age.years == 2) {
+                                if (age.months > 0) {
+                                    alert("Infant must be under the age of 2 years for the entire journey ");
+                                    document.getElementById(dd).value = ""
+                                    document.getElementById(mn).value = ""
+                                    document.getElementById(yy).value = ""
+                                    date_check_val = false;
+                                }
+                                else {
+                                    if (age.months == 0) {
+                                        if (age.days > 0) {
+                                            alert("Infant must be under the age of 2 years for the entire journey ");
+                                            document.getElementById(dd).value = ""
+                                            document.getElementById(mn).value = ""
+                                            document.getElementById(yy).value = ""
+                                            date_check_val = false;
+                                        }
+                                    }
+                                }
+                            }
+                            if (date_check_val) {
+                                $("#divissue" + date_id).val("");
+                                $('#divexpiry' + date_id).val("");
+                                $("#divissue" + date_id).datepicker("option", "minDate", bDate);
+                                $("#divissue" + date_id).datepicker("option", "maxDate", 0);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (document.getElementById(dd) != null && document.getElementById(dd).value != "" && document.getElementById(mn) != null && document.getElementById(yy).value != null) {
+            if (parseInt(document.getElementById(dd).value) == 29 && parseInt(document.getElementById(mn).value) == 2) {
+                if (isLeapYear(document.getElementById(yy).value)) {
+                    $("#divissue" + date_id).val("");
+                    $("#divissue" + date_id).datepicker("option", "minDate", bDate);
+                    $("#divissue" + date_id).datepicker("option", "maxDate", 0);
+                }
+                else {
+                    alert("Invalid Date");
+                    document.getElementById(dd).value = "";
+                    document.getElementById(mn).value = "";
+                    document.getElementById(yy).value = "";
+                }
+            }
+        }
+    }
+
+    function getAge(dateString) {
+
+        var dpd = document.getElementById("hdDOBDate").value;
+        dpd = dpd.split("-");
+        var depDate = new Date(dpd[2], (dpd[1] - 1), dpd[0]);
+        var yearNow = depDate.getFullYear();
+        var monthNow = depDate.getMonth();
+        var dateNow = depDate.getDate();
+        var dob = dateString;
+
+        var yearDob = dob.getFullYear();
+        var monthDob = dob.getMonth();
+        var dateDob = dob.getDate();
+        var age = {};
+        var ageString = "";
+        var yearString = "";
+        var monthString = "";
+        var dayString = "";
+
+
+        yearAge = yearNow - yearDob;
+
+        if (monthNow >= monthDob)
+            var monthAge = monthNow - monthDob;
+        else {
+            yearAge--;
+            var monthAge = 12 + monthNow - monthDob;
+        }
+
+        if (dateNow >= dateDob)
+            var dateAge = dateNow - dateDob;
+        else {
+            monthAge--;
+            var dateAge = 31 + dateNow - dateDob;
+
+            if (monthAge < 0) {
+                monthAge = 11;
+                yearAge--;
+            }
+        }
+
+        age = {
+            years: yearAge,
+            months: monthAge,
+            days: dateAge
+        };
+
+
+        if (age.years > 1) yearString = " years";
+        else yearString = " year";
+        if (age.months > 1) monthString = " months";
+        else monthString = " month";
+        if (age.days > 1) dayString = " days";
+        else dayString = " day";
+
+
+        if ((age.years > 0) && (age.months > 0) && (age.days > 0)) {
+            ageString = age.years + yearString + ", " + age.months + monthString + ", and " + age.days + dayString + " old.";
+        }
+        else if ((age.years == 0) && (age.months == 0) && (age.days > 0)) {
+            ageString = "Only " + age.days + dayString + " old!";
+        }
+        else if ((age.years > 0) && (age.months == 0) && (age.days == 0)) {
+            ageString = age.years + yearString + " old. Happy Birthday!!";
+        }
+        else if ((age.years > 0) && (age.months > 0) && (age.days == 0)) {
+            ageString = age.years + yearString + " and " + age.months + monthString + " old.";
+        }
+        else if ((age.years == 0) && (age.months > 0) && (age.days > 0)) {
+            ageString = age.months + monthString + " and " + age.days + dayString + " old.";
+        }
+        else if ((age.years > 0) && (age.months == 0) && (age.days > 0)) {
+            ageString = age.years + yearString + " and " + age.days + dayString + " old.";
+        }
+        else if ((age.years == 0) && (age.months > 0) && (age.days == 0)) {
+            ageString = age.months + monthString + " old.";
+        }
+        else {
+            ageString = "Oops! Could not calculate age!";
+            age = null;
+        }
+
+        return age;
+    }
+
+    function isLeapYear(yr) {
+        return ((yr % 4 == 0) && (yr % 100 != 0)) || (yr % 400 == 0);
+    }
+</script>
+<style>
+    .disable_a_href {
+        pointer-events: none;
+    }
+</style>
+
+
+
+
+
+
+
