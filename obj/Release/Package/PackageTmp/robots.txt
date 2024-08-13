@@ -1,6 +1,0 @@
-User-agent: *
-disallow :
-sitemap : https://www.Faressaver.com/sitemap.xml
-
-
-
