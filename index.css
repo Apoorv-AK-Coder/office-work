@@ -104,11 +104,11 @@ a {
 button {
     font-family: var(--secondary-font) !important;
     line-height: 2 !important;
-    font-size: 16px !important;
+    font-size: 17px !important;
     font-weight: 700 !important;
-    margin: 0 !important;
+    margin: 10px 0 !important;
     padding: 0 !important;
-    padding: 5px 20px !important;
+    padding: 5px 25px !important;
     border-radius: 5px !important;
     cursor: pointer !important;
     color: var(--fourth-color) !important;
@@ -121,8 +121,10 @@ button:hover {
 }
 
 .gap {
-    gap: 30px !important;
+    gap: 40px !important;
 }
+
+.gap1 {gap: 15px !important;}
 
 .bg {
     background-color: var(--secondary-color) !important;
@@ -154,7 +156,7 @@ button:hover {
     background-repeat: no-repeat !important;
     background-size: cover !important;
 
-    p {
+    p, h3 {
         color: var(--fourth-color) !important;
     }
 
@@ -164,10 +166,15 @@ button:hover {
 
     .column {
         flex: 1 !important;
+        margin: auto 0 !important;
     }
 
     h1 {
-        margin-bottom: 15px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .right {
+        margin-left: 20px !important;
     }
 }
 
@@ -213,23 +220,35 @@ form {
         font-size: 16px !important;
         margin-top: 10px !important;
         text-align: left !important;
-
     }
 
     button {
-        background-color: var(--primary-color) !important;
-        border: none !important;
-        color: var(--fourth-color) !important;
         margin: auto 0 15px 0 !important;
     }
+}
 
-    button:hover {
+.cta {
+    text-align:center !important;
+
+    .column {
         background-color: var(--secondary-color) !important;
+        padding: 30px !important;
+        border-radius: 10px !important;
+        margin: auto !important;
+        width: 70% !important;
     }
+
+    h2, h3 {
+        color: var(--fourth-color) !important;
+    }
+
+    button {border: 2px solid transparent !important;}
+    button:hover {border: 2px solid var(--fourth-color) !important;}
 }
 
 .usp {
     text-align: center !important;
+    background-color: rgba(20, 20, 20, 0.1);
 
     h2 {
         text-align: center !important;
@@ -268,20 +287,10 @@ form {
 
     .column {
         flex: 1 !important;
-        margin: auto !important;
-        /* text-align: center !important; */
+    }
 
-        video {
-            width: 100% !important;
-            border-radius: 10px !important;
-            box-shadow: 0px 0px 20px 5px #141414 !important;
-        }
-
-        hr {
-            height: 2px !important;
-            background-color: var(--secondary-color) !important;
-            margin-bottom: 10px !important;
-        }
+    .text {
+        column-count: 2 !important;
     }
 }
 
@@ -297,7 +306,7 @@ form {
 
     .right {
         background-color: var(--secondary-color) !important;
-        padding: 20px 40px !important;
+        padding: 40px !important;
         text-align: center !important;
         width: 50%;
 
@@ -305,22 +314,10 @@ form {
             color: #fff !important;
             margin: 10px 0 !important;
         }
-
-        img {
-            width: 50px !important;
-        }
     }
 
     button {
-        background-color: var(--primary-color) !important;
-        border: none !important;
-        margin-top: 15px !important;
-        color: var(--fourth-color) !important;
-        font-size: 20px !important;
-    }
-
-    button:hover {
-        background-color: var(--secondary-color) !important;
+        border: 2px solid var(--fourth-color) !important;
     }
 }
 
@@ -538,9 +535,6 @@ ul#ui-id-1 {
         width: 100% !important;
     }}
 
-    .service {
-        .right {
-            margin: 20px 0 0 0 !important;
-        }
-    }
+    .cta {.column {width: 100% !important;}}
+
 }
