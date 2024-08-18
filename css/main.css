@@ -3732,7 +3732,7 @@ output {
 	display: block;
 	width: 100% !important;
 	margin: 5px 0 !important;
-	padding: 5px 15px !important;
+	padding: 10px 15px !important;
 	font-size: 14px;
 	line-height: 1.42857143;
 	color: #555;
@@ -19141,13 +19141,9 @@ footer .copyright .copy-right ul li span#siteseal {
 
 	.form-control {
 		width: 100%;
-		padding: 8px 6px;
-		height: 50px;
 		font-size: 14px;
-		border-radius: 2px;
 		background-color: #fff;
 		color: #777;
-		border: none;
 	}
 
 	.form-control:focus {

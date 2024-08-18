@@ -18,8 +18,8 @@ function mufun() {
     })
 }
 
-setInterval(mufun, 1000);
-function mufun() {
+setInterval(myfunction, 1000);
+function myfunction() {
     let d1 = document.getElementById("stays");
     let d2 = document.getElementById("flights");
     let d3 = document.getElementById("car");

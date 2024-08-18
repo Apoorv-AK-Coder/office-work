@@ -7,7 +7,7 @@ header {
     box-shadow: 0 2px 2px 0 rgba(20, 20, 20, 0.2);
 
     .head {
-        width: 1200px !important;
+        width: 1200px;
         margin: auto !important;
         padding: 15px 20px !important;
         border: 0;
@@ -82,6 +82,7 @@ header {
         display: flex;
         justify-content: center;
         border-bottom: 1px solid #bebebe;
+        gap: 20px !important;
 
         p {
             font-weight: 700;
@@ -131,7 +132,7 @@ form {
     select,
     textarea {
         width: 100% !important;
-        padding: 5px 15px !important;
+        padding: 15px 10px !important;
         margin: 5px 0 !important;
         border: 1px solid var(--fifth-color) !important;
         border-radius: 5px !important;
@@ -350,7 +351,6 @@ form {
     }
 }
 
-
 .mainslide {
     .column {
         background-image: linear-gradient(to right, rgba(20, 20, 20, 0.7), rgba(20, 20, 20, 0.7)), url(../images/bg.jpg) !important;
@@ -358,7 +358,7 @@ form {
         background-repeat: no-repeat !important;
         background-size: cover !important;
         border-radius: 10px;
-        padding: 100px 40px 220px 40px !important;
+        padding: 75px 30px 220px 30px !important;
 
         h2,
         h3,
@@ -406,7 +406,7 @@ form {
 
         .slide3 {
             height: auto;
-            min-width: 275px;
+            min-width: 263px;
 
             img {
                 width: 100%;
@@ -450,11 +450,6 @@ form {
         div {
             padding-top: 20px !important;
         }
-    }
-
-    .slidebutton {
-        top: 305%;
-        width: 1160px;
     }
 }
 
