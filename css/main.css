@@ -3732,7 +3732,7 @@ output {
 	display: block;
 	width: 100% !important;
 	margin: 5px 0 !important;
-	padding: 10px 15px !important;
+	padding: 15px 15px !important;
 	font-size: 14px;
 	line-height: 1.42857143;
 	color: #555;
@@ -8349,8 +8349,7 @@ button.close {
 .pager:before,
 .panel-body:after,
 .panel-body:before,
-.row:after,
-.row:before {
+.row:after {
 	display: table;
 	content: " "
 }
@@ -16553,40 +16552,6 @@ button.close {
 		left: 20%;
 		padding-bottom: 30px;
 	}
-}
-
-.clearfix:before,
-.clearfix:after,
-.dl-horizontal dd:before,
-.dl-horizontal dd:after,
-.container:before,
-.container:after,
-.container-fluid:before,
-.container-fluid:after,
-.row:before,
-.row:after,
-.form-horizontal .form-group:before,
-.form-horizontal .form-group:after,
-.btn-toolbar:before,
-.btn-toolbar:after,
-.btn-group-vertical>.btn-group:before,
-.btn-group-vertical>.btn-group:after,
-.nav:before,
-.nav:after,
-.navbar:before,
-.navbar:after,
-.navbar-header:before,
-.navbar-header:after,
-.navbar-collapse:before,
-.navbar-collapse:after,
-.pager:before,
-.pager:after,
-.panel-body:before,
-.panel-body:after,
-.modal-footer:before,
-.modal-footer:after {
-	display: table;
-	content: " ";
 }
 
 .clearfix:after,

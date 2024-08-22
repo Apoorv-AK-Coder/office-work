@@ -20,14 +20,14 @@ function mufun() {
 
 setInterval(myfunction, 1000);
 function myfunction() {
-    let d1 = document.getElementById("stays");
-    let d2 = document.getElementById("flights");
-    let d3 = document.getElementById("car");
-    let d4 = document.getElementById("package");
-    let view1 = document.getElementById("onstay");
-    let view2 = document.getElementById("onflight");
-    let view3 = document.getElementById("oncar");
-    let view4 = document.getElementById("onpackage");
+    let d1 = document.getElementById("trip");
+    let d2 = document.getElementById("map");
+    let d3 = document.getElementById("app");
+    let d4 = document.getElementById("access");
+    let view1 = document.getElementById("section1");
+    let view2 = document.getElementById("section2");
+    let view3 = document.getElementById("section3");
+    let view4 = document.getElementById("section4");
 
 
 
@@ -37,10 +37,10 @@ function myfunction() {
             view2.style.display = "none";
             view3.style.display = "none";
             view4.style.display = "none";
-            d1.style.borderBottom = "2px solid #FDDB32";
-            d2.style.border = "none";
-            d3.style.border = "none";
-            d4.style.border = "none";
+            d1.style.backgroundColor = "rgba(20, 20, 20, 0.05)";
+            d2.style.backgroundColor = "transparent";
+            d3.style.backgroundColor = "transparent";
+            d4.style.backgroundColor = "transparent";
 
         }
     })
@@ -51,10 +51,10 @@ function myfunction() {
             view2.style.display = "block";
             view3.style.display = "none";
             view4.style.display = "none";
-            d1.style.border = "none";
-            d2.style.borderBottom = "2px solid #FDDB32";
-            d3.style.border = "none";
-            d4.style.border = "none";
+            d1.style.backgroundColor = "transparent";
+            d2.style.backgroundColor = "rgba(20, 20, 20, 0.05)";
+            d3.style.backgroundColor = "transparent";
+            d4.style.backgroundColor = "transparent";
         }
     })
 
@@ -64,10 +64,10 @@ function myfunction() {
             view2.style.display = "none";
             view3.style.display = "block";
             view4.style.display = "none";
-            d1.style.border = "none";
-            d2.style.border = "none";
-            d3.style.borderBottom = "2px solid #FDDB32";
-            d4.style.border = "none";
+            d1.style.backgroundColor = "transparent";
+            d2.style.backgroundColor = "transparent";
+            d3.style.backgroundColor = "rgba(20, 20, 20, 0.05)";
+            d4.style.backgroundColor = "transparent";
         }
     })
 
@@ -77,10 +77,10 @@ function myfunction() {
             view2.style.display = "none";
             view3.style.display = "none";
             view4.style.display = "block";
-            d1.style.border = "none";
-            d2.style.border = "none";
-            d3.style.border = "none";
-            d4.style.borderBottom = "2px solid #FDDB32";
+            d1.style.backgroundColor = "transparent";
+            d2.style.backgroundColor = "transparent";
+            d3.style.backgroundColor = "transparent";
+            d4.style.backgroundColor = "rgba(20, 20, 20, 0.05)";
         }
     })
 }

@@ -1,5 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Dosis');
-@import url('https://fonts.googleapis.com/css2?family=Lato');
+@import url('https://fonts.googleapis.com/css2?family=Open Sans');
+@import url('https://fonts.googleapis.com/css2?family=Laila');
+@import url('https://fonts.googleapis.com/css2?family=Marcellus');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat');
 
 * {
     margin: 0 !important;
@@ -12,21 +14,29 @@
     max-width: 100% !important;
 }
 
+/*
+#2F4F4F
+*/
+.bgadfg{
+
+    color: #D7BDE2 #2F4F4F #1ABC9C;
+}
+
 :root {
-    --primary-color: #191E3B !important;
-    --secondary-color: #FDDB32 !important;
+    --primary-color: #0068EF !important;
+    --secondary-color: #004499 !important;
     --third-color: #575757 !important;
     --fourth-color: #ffffff !important;
     --fifth-color: #141414 !important;
     /*fonts*/
-    --primary-font: Dosis !important;
-    --secondary-font: Lato !important;
+    --primary-font: Marcellus !important;
+    --secondary-font: Montserrat !important;
 }
 
 .row {
-    width: 1200px !important;
+    width: 1280px !important;
     margin: auto !important;
-    padding: 6% 20px !important;
+    padding: 100px 20px !important;
 }
 
 .column {
@@ -38,7 +48,7 @@
 }
 
 .flex {
-    display: flex !important;
+    display: flex;
 }
 
 p,
@@ -65,13 +75,23 @@ h6 {
 }
 
 h1 {
-    font-size: 55px !important;
+    font-size: 50px !important;
     font-weight: 400 !important;
+    opacity: 0;
+    transform: translateX(-100px);
+    animation: fadeInLeft 3s forwards;
+}
+
+@keyframes fadeInLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 h2 {
     padding: 15px 0 !important;
-    font-size: 40px !important;
+    font-size: 33px !important;
     font-weight: 700 !important;
 }
 
@@ -129,7 +149,7 @@ ul#ui-id-1 {
 }
 
 footer {
-    background-color: var(--primary-color) !important;
+    background-color: var(--secondary-color) !important;
 
     .foot {
         width: 1200px !important;
@@ -173,10 +193,7 @@ footer {
         }
 
         img {
-            width: 80% !important;
-            padding: 10px !important;
-            background-color: var(--fourth-color);
-            border-radius: 5px !important;
+            width: 50% !important;
         }
     }
 }
@@ -208,7 +225,6 @@ footer {
 
     button {
         font-size: 16px !important;
-        ;
     }
 
     header {
@@ -240,11 +256,20 @@ footer {
                 right: 0;
                 width: 50%;
                 height: 100vh;
+                background-color: var(--secondary-color);
+
+                i {
+                    color: var(--fourth-color);
+                }
 
                 ul {
                     text-align: left !important;
                     flex-direction: column !important;
                 }
+            }
+
+            .icon {
+                color: var(--fourth-color);
             }
         }
     }
@@ -257,6 +282,7 @@ footer {
     }
 
     form {
+
         input,
         select,
         textarea {
@@ -264,42 +290,16 @@ footer {
         }
     }
 
-    .slide1,
-    .slide2,
-    .slide3,
-    .slide4 {
-        min-width: 200px !important;
-    }
-
-    .qresection {
-
-        .right,
-        .left,
-        .center {
-            width: 100% !important;
-        }
-
-        .center {
-            padding: 20px !important;
-        }
-
-        img {
-            border-radius: 10px 10px 0 0 !important;
-        }
-
-        .img {
-            width: 50%;
-        }
+    .slide1 {
+        min-width: 100% !important;
     }
 
     footer {
         .foot {
             width: 100% !important;
-            ;
 
             p {
                 font-size: 15px !important;
-                ;
             }
         }
 
@@ -312,6 +312,44 @@ footer {
             .column {
                 margin-bottom: 15px !important;
             }
+        }
+    }
+
+    .gallery {
+        .row {
+            grid-template-columns: repeat(1, 1fr) !important;
+        }
+    }
+
+    .contact {
+        .form {
+            margin-right: 0 !important;
+        }
+    }
+
+    .flipit {
+        .right {
+            text-align: left !important;
+        }
+    
+        .newnav {
+            display: grid !important;
+            grid-template-columns: auto auto;
+            text-align: center !important;
+        }
+    
+        .d-flex {
+            flex-direction: column-reverse !important;
+        }
+
+        img {
+            width: 60% !important;
+        }
+    }
+
+    .about {
+        .column div {
+            column-count: 1 !important;
         }
     }
 }
