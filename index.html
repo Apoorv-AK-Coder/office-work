@@ -70,8 +70,8 @@
                         </div>
                     </div>
 
-                    <!-- <div class="d-flex" style="margin-top: 15px !important;"> -->
-                    <div class="column d-flex" style="margin-top: 15px !important;">
+                    <div class="d-flex" style="margin-top: 15px !important;">
+                    <div class="column d-flex">
                         <input name="flying_from" type="text" placeholder="🛫 Origin" id="flying_from"
                             onchange="checkdata();" onclick="this.select();" />
                         <input name="flying_to" type="text" placeholder="🛬 Destination" id="flying_to"
@@ -89,9 +89,8 @@
                             readonly style="cursor:pointer" type="text" value="" />
                     </div>
 
-                    <!-- </div> -->
 
-                    <div class="d-flex">
+                    <div class="column d-flex">
                         <div class="dropdown-container">
                             <div class="form_full">
                                 <div class="form-group">
@@ -174,14 +173,7 @@
                         <button type="submit" id="flight_submit" name="flight_submit"
                             onclick="return CheckValidation();">Search</button>
                     </div>
-                    <div class="column radio flex">
-                        <div>
-                            <input name="return" type="checkbox" value="Return" checked="checked"
-                                class="slct_btn rndtrp trpact" />
-                            <label for="radio1"><span><span></span></span>Passenger with Disability or Assistance
-                                Needed?</label>
-                        </div>
-                    </div>
+                </div>
                     <div class="form-group col-md-3 col-sm-4 col-xs-12 search-col-padding has-feedback"
                         style="display:none!important">
                         <label>Airline</label>
@@ -367,7 +359,32 @@
                     <input type="hidden" id="hfcontact" value="false" name="hfcontact" />
                 </form>
             </div>
-            <div class="column"></div>
+        </div>
+    </div>
+
+    <div class="container ctasection">
+        <div class="row">
+            <div class="column d-flex">
+                <div class="col">
+                    <p><b>Call us 24/7 at <a href="">1-646-738-4832</a></b></p>
+                    <p>Need help booking? Our agents are ready!</p>
+                    <p>Choose from over 500 airlines.</p>
+                </div>
+                <div class="col flex">
+                    <div>
+                        <img src="./images/hawai.png">
+                        <p>Hawaiian Airlines</p>
+                    </div>
+                    <div class="center">
+                        <img src="./images/jetblue.png">
+                        <p>JetBlue Airways</p>
+                    </div>
+                    <div>
+                        <img src="./images/turkish.png">
+                        <p>Turkish Airlines</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -426,9 +443,10 @@
                 </div>
                 <div class="innerrow flex gap1">
                     <div class="column">
+                        <img src="./images/hero1.jpg" alt="place">
                         <div class="flex">
                             <div>
-                                <h3>Dev</h3>
+                                <h3>DEV</h3>
                                 <p>Denver</p>
                             </div>
                             <img src="./images/routMap.png" alt="location-map-icon">
@@ -444,56 +462,59 @@
                         </div>
                     </div>
                     <div class="column">
+                        <img src="./images/hero1.jpg" alt="place">
                         <div class="flex">
                             <div>
-                                <h3>Dev</h3>
-                                <p>Denver</p>
+                                <h3>WAS</h3>
+                                <p>Washington</p>
                             </div>
                             <img src="./images/routMap.png" alt="location-map-icon">
                             <div>
-                                <h3>HOU</h3>
-                                <p>Houston</p>
+                                <h3>BOS</h3>
+                                <p>Boston</p>
                             </div>
                         </div>
 
                         <div class="price">
-                            <h3>$ 99.99*</h3>
+                            <h3>$ 149.49*</h3>
                             <p>Round Trip</p>
                         </div>
                     </div>
                     <div class="column">
+                        <img src="./images/hero1.jpg" alt="place">
                         <div class="flex">
                             <div>
-                                <h3>Dev</h3>
-                                <p>Denver</p>
+                                <h3>BOS</h3>
+                                <p>Boston</p>
                             </div>
                             <img src="./images/routMap.png" alt="location-map-icon">
                             <div>
-                                <h3>HOU</h3>
-                                <p>Houston</p>
+                                <h3>CHI</h3>
+                                <p>Chicago</p>
                             </div>
                         </div>
 
                         <div class="price">
-                            <h3>$ 99.99*</h3>
+                            <h3>$ 199.99*</h3>
                             <p>Round Trip</p>
                         </div>
                     </div>
                     <div class="column">
+                        <img src="./images/hero1.jpg" alt="place">
                         <div class="flex">
                             <div>
-                                <h3>Dev</h3>
-                                <p>Denver</p>
+                                <h3>CHI</h3>
+                                <p>Chicago</p>
                             </div>
                             <img src="./images/routMap.png" alt="location-map-icon">
                             <div>
-                                <h3>HOU</h3>
-                                <p>Houston</p>
+                                <h3>YVR</h3>
+                                <p>Vancouver</p>
                             </div>
                         </div>
 
                         <div class="price">
-                            <h3>$ 99.99*</h3>
+                            <h3>$ 499.49*</h3>
                             <p>Round Trip</p>
                         </div>
                     </div>
@@ -501,74 +522,78 @@
 
                 <div class="innerrow flex gap1">
                     <div class="column">
+                        <img src="./images/hero1.jpg" alt="place">
                         <div class="flex">
                             <div>
-                                <h3>Dev</h3>
-                                <p>Denver</p>
+                                <h3>DFW</h3>
+                                <p>Dallas</p>
                             </div>
                             <img src="./images/routMap.png" alt="location-map-icon">
                             <div>
-                                <h3>HOU</h3>
-                                <p>Houston</p>
+                                <h3>PHX</h3>
+                                <p>Phoenix</p>
                             </div>
                         </div>
 
                         <div class="price">
-                            <h3>$ 99.99*</h3>
+                            <h3>$ 111.10*</h3>
                             <p>Round Trip</p>
                         </div>
                     </div>
                     <div class="column">
+                        <img src="./images/hero1.jpg" alt="place">
                         <div class="flex">
                             <div>
-                                <h3>Dev</h3>
-                                <p>Denver</p>
+                                <h3>SFO</h3>
+                                <p>San Francisco</p>
                             </div>
                             <img src="./images/routMap.png" alt="location-map-icon">
                             <div>
-                                <h3>HOU</h3>
-                                <p>Houston</p>
+                                <h3>DFW</h3>
+                                <p>Dallas</p>
                             </div>
                         </div>
 
                         <div class="price">
-                            <h3>$ 99.99*</h3>
+                            <h3>$ 170.85*</h3>
                             <p>Round Trip</p>
                         </div>
                     </div>
                     <div class="column">
+                        <img src="./images/hero1.jpg" alt="place">
                         <div class="flex">
                             <div>
-                                <h3>Dev</h3>
-                                <p>Denver</p>
+                                <h3>NYC</h3>
+                                <p>New York</p>
                             </div>
                             <img src="./images/routMap.png" alt="location-map-icon">
                             <div>
-                                <h3>HOU</h3>
-                                <p>Houston</p>
+                                <h3>CLE</h3>
+                                <p>Cleveland</p>
                             </div>
                         </div>
 
                         <div class="price">
-                            <h3>$ 99.99*</h3>
+                            <h3>$ 350.50*</h3>
                             <p>Round Trip</p>
                         </div>
                     </div>
                     <div class="column">
+                        <img src="./images/hero1.jpg" alt="place">
                         <div class="flex">
                             <div>
-                                <h3>Dev</h3>
-                                <p>Denver</p>
+                                <h3>NYC</h3>
+                                <p>New York</p>
                             </div>
                             <img src="./images/routMap.png" alt="location-map-icon">
                             <div>
-                                <h3>HOU</h3>
-                                <p>Houston</p>
+                                <h3>LON</h3>
+                                <p>London</p>
                             </div>
                         </div>
 
                         <div class="price">
-                            <h3>$ 99.99*</h3>
+                            <h3>$ 499.49*</h3>
                             <p>Round Trip</p>
                         </div>
                     </div>
