@@ -19,68 +19,40 @@ function mufun() {
 }
 
 setInterval(myfunction, 1000);
+
 function myfunction() {
-    let d1 = document.getElementById("trip");
-    let d2 = document.getElementById("map");
-    let d3 = document.getElementById("app");
-    let d4 = document.getElementById("access");
-    let view1 = document.getElementById("section1");
-    let view2 = document.getElementById("section2");
-    let view3 = document.getElementById("section3");
-    let view4 = document.getElementById("section4");
+    const buttons = [
+        { on: "faqon", off: "faqoff", view: "faq1" },
+        { on: "faqon1", off: "faqoff1", view: "faq2" },
+        { on: "faqon2", off: "faqoff2", view: "faq3" },
+        { on: "faqon3", off: "faqoff3", view: "faq4" },
+        { on: "faqon4", off: "faqoff4", view: "faq5" },
+        { on: "faqon5", off: "faqoff5", view: "faq6" },
+        { on: "faqon6", off: "faqoff6", view: "faq7" },
+        { on: "faqon7", off: "faqoff7", view: "faq8" },
+        { on: "faqon8", off: "faqoff8", view: "faq9" },
+        { on: "faqon9", off: "faqoff9", view: "faq10" }
+    ];
 
+    buttons.forEach(({ on, off, view }) => {
+        const onButton = document.getElementById(on);
+        const offButton = document.getElementById(off);
+        const viewElement = document.getElementById(view);
 
+        onButton.addEventListener("click", function () {
+            if (viewElement.style.display = "none") {
+                viewElement.style.display = "block";
+                onButton.style.display = "none";
+                offButton.style.display = "block";
+            }
+        });
 
-    d1.addEventListener("click", function () {
-        if ((view1.style.display = "none")) {
-            view1.style.display = "block";
-            view2.style.display = "none";
-            view3.style.display = "none";
-            view4.style.display = "none";
-            d1.style.backgroundColor = "rgba(20, 20, 20, 0.05)";
-            d2.style.backgroundColor = "transparent";
-            d3.style.backgroundColor = "transparent";
-            d4.style.backgroundColor = "transparent";
-
-        }
-    })
-
-    d2.addEventListener("click", function(){
-        if((view2.style.display = "none")) {
-            view1.style.display = "none";
-            view2.style.display = "block";
-            view3.style.display = "none";
-            view4.style.display = "none";
-            d1.style.backgroundColor = "transparent";
-            d2.style.backgroundColor = "rgba(20, 20, 20, 0.05)";
-            d3.style.backgroundColor = "transparent";
-            d4.style.backgroundColor = "transparent";
-        }
-    })
-
-    d3.addEventListener("click", function(){
-        if((view3.style.display = "none")) {
-            view1.style.display = "none";
-            view2.style.display = "none";
-            view3.style.display = "block";
-            view4.style.display = "none";
-            d1.style.backgroundColor = "transparent";
-            d2.style.backgroundColor = "transparent";
-            d3.style.backgroundColor = "rgba(20, 20, 20, 0.05)";
-            d4.style.backgroundColor = "transparent";
-        }
-    })
-
-    d4.addEventListener("click", function(){
-        if((view4.style.display = "none")) {
-            view1.style.display = "none";
-            view2.style.display = "none";
-            view3.style.display = "none";
-            view4.style.display = "block";
-            d1.style.backgroundColor = "transparent";
-            d2.style.backgroundColor = "transparent";
-            d3.style.backgroundColor = "transparent";
-            d4.style.backgroundColor = "rgba(20, 20, 20, 0.05)";
-        }
-    })
+        offButton.addEventListener("click", function () {
+            if (viewElement.style.display = "block") {
+                viewElement.style.display = "none";
+                onButton.style.display = "block";
+                offButton.style.display = "none";
+            }
+        });
+    });
 }

@@ -3,6 +3,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Marcellus');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat');
 
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../helvetica-neue-5/HelveticaNeueMedium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 * {
     margin: 0 !important;
     padding: 0 !important;
@@ -17,7 +25,7 @@
 /*
 #2F4F4F
 */
-.bgadfg{
+.bgadfg {
 
     color: #D7BDE2 #2F4F4F #1ABC9C;
 }
@@ -25,17 +33,18 @@
 :root {
     --primary-color: #0068EF !important;
     --secondary-color: #004499 !important;
+    /* --secondary-color: #0068ef !important; */
     --third-color: #575757 !important;
     --fourth-color: #ffffff !important;
     --fifth-color: #141414 !important;
     --sixth-color: #FFB600 !important;
     /*fonts*/
-    --primary-font: Marcellus !important;
+    --primary-font: 'Helvetica Neue' !important;
     --secondary-font: Montserrat !important;
 }
 
 .row {
-    width: 1280px !important;
+    width: 1200px !important;
     margin: auto !important;
     padding: 100px 20px !important;
 }
@@ -103,7 +112,7 @@ h3 {
 
 h4 {
     font-size: 18px !important;
-    font-weight: 600 !important;
+    font-weight: 400 !important;
 }
 
 a {
@@ -332,13 +341,13 @@ footer {
         .right {
             text-align: left !important;
         }
-    
+
         .newnav {
             display: grid !important;
             grid-template-columns: auto auto;
             text-align: center !important;
         }
-    
+
         .d-flex {
             flex-direction: column-reverse !important;
         }

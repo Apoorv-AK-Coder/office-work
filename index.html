@@ -70,110 +70,115 @@
                         </div>
                     </div>
 
-                    <div class="d-flex" style="margin-top: 15px !important;">
-                    <div class="column d-flex">
-                        <input name="flying_from" type="text" placeholder="🛫 Origin" id="flying_from"
-                            onchange="checkdata();" onclick="this.select();" />
-                        <input name="flying_to" type="text" placeholder="🛬 Destination" id="flying_to"
-                            onchange="checkdata1();" onclick="this.select();" />
-                    </div>
-                    <div class="column flex">
-                        <input autocomplete="off" class="cal mid-dspc-lt" data-val="true"
-                            data-val-required="Please Select Depart Date" id="from" name="from"
-                            onclick="this.focus(); this.setSelectionRange(0, 9999);" placeholder="🗓️ Departing Date"
-                            readonly style="cursor:pointer" type="text" value="" />
-
-                        <input autocomplete="off" class="pad-left return" data-val="true"
-                            data-val-required="Please Select Return Date" id="to" name="to"
-                            onclick="this.focus(); this.setSelectionRange(0, 9999);" placeholder="🗓️ Return Date"
-                            readonly style="cursor:pointer" type="text" value="" />
-                    </div>
-
-
-                    <div class="column d-flex">
-                        <div class="dropdown-container">
-                            <div class="form_full">
-                                <div class="form-group">
-                                    <div id="divPaxInfo" data-toggle="collapse" data-target="#divPaxInfo_Fight1"
-                                        class="form-control f-traveller collapsed" aria-expanded="false">
-                                        <span id="spanTotalPax_Flight">👤 1 Traveller, Economy</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="divPaxInfo_Fight1" class="adult-class-dropdown flight-pax collapse"
-                                style="position: absolute; height: 0px;" aria-expanded="false">
-                                <div class="dropdown-content" id="divFlightRoom1">
-                                    <div class="form-group">
-                                        <label>Cabin Class:</label>
-                                        <select id="CabinClass" name="CabinClass" class="form-control"
-                                            onclick="getPassenger()">
-                                            <option value="Y">Economy</option>
-                                            <option value="W">Premium Eco</option>
-                                            <option value="C">Business</option>
-                                            <option value="F">First Class</option>
-                                        </select>
-                                    </div>
-                                    <div class="adult-panel">
-
-                                        <div class="min-max-outer">
-                                            <span class="age-text">Adult(s)</span>
-                                            <div class="min-max">
-                                                <input class="input-btn1 qtyminus" value="-" id="mins_adt" type="button"
-                                                    field='quantity'>
-                                                <input Value="1" class="input-text" data-val="true"
-                                                    data-val-number="The field Adult must be a number."
-                                                    data-val-required="The Adult field is required." field="quantity"
-                                                    id="Adult" name="Adult" readonly type="text" value="" />
-                                                <input class="input-btn2 qtyplus" value="+" id="plus_adt" type="button"
-                                                    field='quantity'>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="adult-panel">
-
-                                        <div class="min-max-outer">
-                                            <span class="age-text">Child(ren)</span>
-                                            <div class="min-max">
-                                                <input class="input-btn1 qtyminus" data-field="Children" value="-"
-                                                    id="mins_chd" type="button" field='quantity'>
-                                                <input Value="0" class="input-text" data-val="true"
-                                                    data-val-number="The field Children must be a number."
-                                                    data-val-required="The Children field is required." field="quantity"
-                                                    id="Children" name="Children" readonly type="text" value="" />
-                                                <input class="input-btn2 qtyplus" data-field="Children" value="+"
-                                                    id="plus_chd" type="button" field='quantity'>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="adult-panel">
-                                        <div class="min-max-outer">
-                                            <span class="age-text">Infant(s)</span>
-                                            <div class="min-max">
-                                                <input class="input-btn1 qtyminus" value="-" id="mins_inf" type="button"
-                                                    field='quantity'>
-                                                <input Value="0" class="input-text" data-val="true"
-                                                    data-val-number="The field Infant must be a number."
-                                                    data-val-required="The Infant field is required." field="quantity"
-                                                    id="Infant" name="Infant" readonly type="text" value="" />
-                                                <input class="input-btn2 qtyplus" value="+" id="plus_inf" type="button"
-                                                    field='quantity'>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="done-btn-full">
-                                        <a href="javascript:void(0);" class="done-btn" id="prsn_done">Done</a>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="col3 d-flex">
+                        <div class="column d-flex">
+                            <input name="flying_from" type="text" placeholder="🛫 Origin" id="flying_from"
+                                onchange="checkdata();" onclick="this.select();" />
+                                <i class="fa-solid fa-right-left"></i>
+                            <input name="flying_to" type="text" placeholder="🛬 Destination" id="flying_to"
+                                onchange="checkdata1();" onclick="this.select();" />
                         </div>
-                        <!-- <input type="text" placeholder="👤 Full Name" required />
+                        <div class="column flex">
+                            <input autocomplete="off" class="cal mid-dspc-lt" data-val="true"
+                                data-val-required="Please Select Depart Date" id="from" name="from"
+                                onclick="this.focus(); this.setSelectionRange(0, 9999);"
+                                placeholder="🗓️ Departing Date" readonly style="cursor:pointer" type="text" value="" />
+
+                            <input autocomplete="off" class="pad-left return" data-val="true"
+                                data-val-required="Please Select Return Date" id="to" name="to"
+                                onclick="this.focus(); this.setSelectionRange(0, 9999);" placeholder="🗓️ Return Date"
+                                readonly style="cursor:pointer" type="text" value="" />
+                        </div>
+
+
+                        <div class="column d-flex">
+                            <div class="dropdown-container">
+                                <div class="form_full">
+                                    <div class="form-group">
+                                        <div id="divPaxInfo" data-toggle="collapse" data-target="#divPaxInfo_Fight1"
+                                            class="form-control f-traveller collapsed" aria-expanded="false">
+                                            <span id="spanTotalPax_Flight">👤 1 Traveller, Economy</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="divPaxInfo_Fight1" class="adult-class-dropdown flight-pax collapse"
+                                    style="position: absolute; height: 0px;" aria-expanded="false">
+                                    <div class="dropdown-content" id="divFlightRoom1">
+                                        <div class="form-group">
+                                            <label>Cabin Class:</label>
+                                            <select id="CabinClass" name="CabinClass" class="form-control"
+                                                onclick="getPassenger()">
+                                                <option value="Y">Economy</option>
+                                                <option value="W">Premium Eco</option>
+                                                <option value="C">Business</option>
+                                                <option value="F">First Class</option>
+                                            </select>
+                                        </div>
+                                        <div class="adult-panel">
+
+                                            <div class="min-max-outer">
+                                                <span class="age-text">Adult(s)</span>
+                                                <div class="min-max">
+                                                    <input class="input-btn1 qtyminus" value="-" id="mins_adt"
+                                                        type="button" field='quantity'>
+                                                    <input Value="1" class="input-text" data-val="true"
+                                                        data-val-number="The field Adult must be a number."
+                                                        data-val-required="The Adult field is required."
+                                                        field="quantity" id="Adult" name="Adult" readonly type="text"
+                                                        value="" />
+                                                    <input class="input-btn2 qtyplus" value="+" id="plus_adt"
+                                                        type="button" field='quantity'>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="adult-panel">
+
+                                            <div class="min-max-outer">
+                                                <span class="age-text">Child(ren)</span>
+                                                <div class="min-max">
+                                                    <input class="input-btn1 qtyminus" data-field="Children" value="-"
+                                                        id="mins_chd" type="button" field='quantity'>
+                                                    <input Value="0" class="input-text" data-val="true"
+                                                        data-val-number="The field Children must be a number."
+                                                        data-val-required="The Children field is required."
+                                                        field="quantity" id="Children" name="Children" readonly
+                                                        type="text" value="" />
+                                                    <input class="input-btn2 qtyplus" data-field="Children" value="+"
+                                                        id="plus_chd" type="button" field='quantity'>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="adult-panel">
+                                            <div class="min-max-outer">
+                                                <span class="age-text">Infant(s)</span>
+                                                <div class="min-max">
+                                                    <input class="input-btn1 qtyminus" value="-" id="mins_inf"
+                                                        type="button" field='quantity'>
+                                                    <input Value="0" class="input-text" data-val="true"
+                                                        data-val-number="The field Infant must be a number."
+                                                        data-val-required="The Infant field is required."
+                                                        field="quantity" id="Infant" name="Infant" readonly type="text"
+                                                        value="" />
+                                                    <input class="input-btn2 qtyplus" value="+" id="plus_inf"
+                                                        type="button" field='quantity'>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="done-btn-full">
+                                            <a href="javascript:void(0);" class="done-btn" id="prsn_done">Done</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <input type="text" placeholder="👤 Full Name" required />
                         <input type="tel" placeholder="📞 Phone Number" required />
                         <input type="mail" placeholder="📧 E-mail" required /> -->
-                        <button type="submit" id="flight_submit" name="flight_submit"
-                            onclick="return CheckValidation();">Search</button>
+                            <button type="submit" id="flight_submit" name="flight_submit"
+                                onclick="return CheckValidation();"><i
+                                    class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
                     </div>
-                </div>
                     <div class="form-group col-md-3 col-sm-4 col-xs-12 search-col-padding has-feedback"
                         style="display:none!important">
                         <label>Airline</label>
@@ -388,34 +393,347 @@
         </div>
     </div>
 
+    <div class="container bg2">
+        <div class="row">
+            <div class="column">
+                <div class="detail">
+                    <h2>Cheap Flight Deals</h2>
+                    <p>Presents to you some not-to-be missed, elite arrangements on airfares that will undoubtedly
+                        advance your movement experience. These arrangements are the most recent and all that you can
+                        get. Along these lines, don't continue to pause. Book them now!</p>
+                </div>
+                <div class="innerrow flex gap1">
+                    <div class="column">
+                        <img src="./images/hero1.jpg" alt="place">
+                        <div class="padding">
+                            <div class="flex">
+                                <div class="left">
+                                    <h4>Houston City</h4>
+                                    <p>DEN - HOU</p>
+                                </div>
+                                <img src="./images/routMap.png" alt="location-map-icon">
+                                <div class="right">
+                                    <h4>$ 99.99*</h4>
+                                    <p>Round Trip</p>
+                                </div>
+                            </div>
+                            <div class="center"></div>
+                            <div class="flex">
+                                <div class="left">
+                                    <p>$ 1,000</p>
+                                </div>
+                                <div></div>
+                                <div class="right">
+                                    <p>$ 1,400</p>
+                                </div>
+                            </div>
+                            <p style="text-align: center; margin-top: 20px !important;">Similar trips cost to ...</p>
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <img src="./images/hero1.jpg" alt="place">
+                        <div class="padding">
+                            <div class="flex">
+                                <div class="left">
+                                    <h4>Boston City</h4>
+                                    <p>WAS - BOS</p>
+                                </div>
+                                <img src="./images/routMap.png" alt="location-map-icon">
+                                <div class="right">
+                                    <h4>$ 149.99*</h4>
+                                    <p>Round Trip</p>
+                                </div>
+                            </div>
+                            <div class="center"></div>
+                            <div class="flex">
+                                <div class="left">
+                                    <p>$ 1,000</p>
+                                </div>
+                                <div></div>
+                                <div class="right">
+                                    <p>$ 1,400</p>
+                                </div>
+                            </div>
+                            <p style="text-align: center; margin-top: 20px !important;">Similar trips cost to ...</p>
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <img src="./images/hero1.jpg" alt="place">
+                        <div class="padding">
+                            <div class="flex">
+                                <div class="left">
+                                    <h4>Chicago City</h4>
+                                    <p>BOS - CHI</p>
+                                </div>
+                                <img src="./images/routMap.png" alt="location-map-icon">
+                                <div class="right">
+                                    <h4>$ 199.99*</h4>
+                                    <p>Round Trip</p>
+                                </div>
+                            </div>
+                            <div class="center"></div>
+                            <div class="flex">
+                                <div class="left">
+                                    <p>$ 1,000</p>
+                                </div>
+                                <div></div>
+                                <div class="right">
+                                    <p>$ 1,400</p>
+                                </div>
+                            </div>
+                            <p style="text-align: center; margin-top: 20px !important;">Similar trips cost to ...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="innerrow flex gap1">
+                    <div class="column">
+                        <img src="./images/hero1.jpg" alt="place">
+                        <div class="padding">
+                            <div class="flex">
+                                <div class="left">
+                                    <h4>Vancouver City</h4>
+                                    <p>CHI - YVR</p>
+                                </div>
+                                <img src="./images/routMap.png" alt="location-map-icon">
+                                <div class="right">
+                                    <h4>$ 499.49*</h4>
+                                    <p>Round Trip</p>
+                                </div>
+                            </div>
+                            <div class="center"></div>
+                            <div class="flex">
+                                <div class="left">
+                                    <p>$ 1,000</p>
+                                </div>
+                                <div></div>
+                                <div class="right">
+                                    <p>$ 1,400</p>
+                                </div>
+                            </div>
+                            <p style="text-align: center; margin-top: 20px !important;">Similar trips cost to ...</p>
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <img src="./images/hero1.jpg" alt="place">
+                        <div class="padding">
+                            <div class="flex">
+                                <div class="left">
+                                    <h4>Phoenix City</h4>
+                                    <p>DFW - PHX</p>
+                                </div>
+                                <img src="./images/routMap.png" alt="location-map-icon">
+                                <div class="right">
+                                    <h4>$ 111.10*</h4>
+                                    <p>Round Trip</p>
+                                </div>
+                            </div>
+                            <div class="center"></div>
+                            <div class="flex">
+                                <div class="left">
+                                    <p>$ 1,000</p>
+                                </div>
+                                <div></div>
+                                <div class="right">
+                                    <p>$ 1,400</p>
+                                </div>
+                            </div>
+                            <p style="text-align: center; margin-top: 20px !important;">Similar trips cost to ...</p>
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <img src="./images/hero1.jpg" alt="place">
+                        <div class="padding">
+                            <div class="flex">
+                                <div class="left">
+                                    <h4>Dallas City</h4>
+                                    <p>SFO - DFW</p>
+                                </div>
+                                <img src="./images/routMap.png" alt="location-map-icon">
+                                <div class="right">
+                                    <h4>$ 170.85*</h4>
+                                    <p>Round Trip</p>
+                                </div>
+                            </div>
+                            <div class="center"></div>
+                            <div class="flex">
+                                <div class="left">
+                                    <p>$ 1,000</p>
+                                </div>
+                                <div></div>
+                                <div class="right">
+                                    <p>$ 1,400</p>
+                                </div>
+                            </div>
+                            <p style="text-align: center; margin-top: 20px !important;">Similar trips cost to ...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container usp">
         <div class="row d-flex gap1">
-            <div class="column flex col1">
-                <i class="fa-solid fa-headset"></i>
-                <div>
-                    <h3>24/7 Customer Support</h3>
-                    <p>Always available for customer assistance.</p>
+            <div class="column">
+                <div class="column flex col1">
+                    <i class="fa-solid fa-headset"></i>
+                    <div>
+                        <h3>24/7 Customer Support</h3>
+                        <p>Always available for customer assistance.</p>
+                    </div>
+                </div>
+
+                <div class="column flex col2">
+                    <i class="fa-solid fa-tags"></i>
+                    <div>
+                        <h3>Transparent Pricing</h3>
+                        <p>Clear pricing, no hidden fees, upfront final cost.</p>
+                    </div>
+                </div>
+                <div class="column flex col1">
+                    <i class="fa-solid fa-handshake-angle"></i>
+                    <div>
+                        <h3>Reliable and Trusted</h3>
+                        <p>Guaranteed protection, reliable peace of mind.</p>
+                    </div>
+                </div>
+                <div class="column flex col2">
+                    <i class="fa-solid fa-ticket"></i>
+                    <div>
+                        <h3>Instant Reservations</h3>
+                        <p>On-call booking services provide 24/7 availability.</p>
+                    </div>
                 </div>
             </div>
-            <div class="column flex col2">
-                <i class="fa-solid fa-tags"></i>
-                <div>
-                    <h3>Transparent Pricing</h3>
-                    <p>Clear pricing, no hidden fees, upfront final cost.</p>
-                </div>
-            </div>
-            <div class="column flex col1">
-                <i class="fa-solid fa-handshake-angle"></i>
-                <div>
-                    <h3>Reliable and Trusted</h3>
-                    <p>Guaranteed protection, reliable peace of mind.</p>
-                </div>
-            </div>
-            <div class="column flex col2">
-                <i class="fa-solid fa-ticket"></i>
-                <div>
-                    <h3>Instant Reservations</h3>
-                    <p>On-call booking services provide 24/7 availability.</p>
+            <div class="column"></div>
+            
+            
+        </div>
+    </div>
+
+    <div class="container faq">
+        <div class="row">
+            <div class="column">
+                <h2>Booking flights with Skyscanner</h2>
+
+                <div class="flex gap2">
+                    <div class="column">
+                        <div class="main">
+                            <div class="flex">
+                                <h4>How does Skyscanner work?</h4>
+                                <div class="icon">
+                                    <i class="fa-solid fa-caret-up" id="faqoff"></i>
+                                    <i class="fa-solid fa-caret-down" id="faqon"></i>
+                                </div>
+                            </div>
+                            <p id="faq1">We’re a flight, car hire and hotel search engine. We scan all the top airlines and travel providers across the net, so you can compare flight fares and other travel costs in one place. Once you’ve found the best flight, car hire or hotel, you book directly with the provider.</p>
+                        </div>
+
+                        <div class="main">
+                            <div class="flex">
+                                <h4>How does Skyscanner work?</h4>
+                                <div class="icon">
+                                    <i class="fa-solid fa-caret-up" id="faqoff1"></i>
+                                    <i class="fa-solid fa-caret-down" id="faqon1"></i>
+                                </div>
+                            </div>
+                            <p id="faq2">We’re a flight, car hire and hotel search engine. We scan all the top airlines and travel providers across the net, so you can compare flight fares and other travel costs in one place. Once you’ve found the best flight, car hire or hotel, you book directly with the provider.</p>
+                        </div>
+
+                        <div class="main">
+                            <div class="flex">
+                                <h4>How does Skyscanner work?</h4>
+                                <div class="icon">
+                                    <i class="fa-solid fa-caret-up" id="faqoff2"></i>
+                                    <i class="fa-solid fa-caret-down" id="faqon2"></i>
+                                </div>
+                            </div>
+                            <p id="faq3">We’re a flight, car hire and hotel search engine. We scan all the top airlines and travel providers across the net, so you can compare flight fares and other travel costs in one place. Once you’ve found the best flight, car hire or hotel, you book directly with the provider.</p>
+                        </div>
+
+                        <div class="main">
+                            <div class="flex">
+                                <h4>How does Skyscanner work?</h4>
+                                <div class="icon">
+                                    <i class="fa-solid fa-caret-up" id="faqoff3"></i>
+                                    <i class="fa-solid fa-caret-down" id="faqon3"></i>
+                                </div>
+                            </div>
+                            <p id="faq4">We’re a flight, car hire and hotel search engine. We scan all the top airlines and travel providers across the net, so you can compare flight fares and other travel costs in one place. Once you’ve found the best flight, car hire or hotel, you book directly with the provider.</p>
+                        </div>
+
+                        <div class="main">
+                            <div class="flex">
+                                <h4>How does Skyscanner work?</h4>
+                                <div class="icon">
+                                    <i class="fa-solid fa-caret-up" id="faqoff4"></i>
+                                    <i class="fa-solid fa-caret-down" id="faqon4"></i>
+                                </div>
+                            </div>
+                            <p id="faq5">We’re a flight, car hire and hotel search engine. We scan all the top airlines and travel providers across the net, so you can compare flight fares and other travel costs in one place. Once you’ve found the best flight, car hire or hotel, you book directly with the provider.</p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="main">
+                            <div class="flex">
+                                <h4>How does Skyscanner work?</h4>
+                                <div class="icon">
+                                    <i class="fa-solid fa-caret-up" id="faqoff5"></i>
+                                    <i class="fa-solid fa-caret-down" id="faqon5"></i>
+                                </div>
+                            </div>
+                            <p id="faq6">We’re a flight, car hire and hotel search engine. We scan all the top airlines and travel providers across the net, so you can compare flight fares and other travel costs in one place. Once you’ve found the best flight, car hire or hotel, you book directly with the provider.</p>
+                        </div>
+
+                        <div class="main">
+                            <div class="flex">
+                                <h4>How does Skyscanner work?</h4>
+                                <div class="icon">
+                                    <i class="fa-solid fa-caret-up" id="faqoff6"></i>
+                                    <i class="fa-solid fa-caret-down" id="faqon6"></i>
+                                </div>
+                            </div>
+                            <p id="faq7">We’re a flight, car hire and hotel search engine. We scan all the top airlines and travel providers across the net, so you can compare flight fares and other travel costs in one place. Once you’ve found the best flight, car hire or hotel, you book directly with the provider.</p>
+                        </div>
+
+                        <div class="main">
+                            <div class="flex">
+                                <h4>How does Skyscanner work?</h4>
+                                <div class="icon">
+                                    <i class="fa-solid fa-caret-up" id="faqoff7"></i>
+                                    <i class="fa-solid fa-caret-down" id="faqon7"></i>
+                                </div>
+                            </div>
+                            <p id="faq8">We’re a flight, car hire and hotel search engine. We scan all the top airlines and travel providers across the net, so you can compare flight fares and other travel costs in one place. Once you’ve found the best flight, car hire or hotel, you book directly with the provider.</p>
+                        </div>
+
+                        <div class="main">
+                            <div class="flex">
+                                <h4>How does Skyscanner work?</h4>
+                                <div class="icon">
+                                    <i class="fa-solid fa-caret-up" id="faqoff8"></i>
+                                    <i class="fa-solid fa-caret-down" id="faqon8"></i>
+                                </div>
+                            </div>
+                            <p id="faq9">We’re a flight, car hire and hotel search engine. We scan all the top airlines and travel providers across the net, so you can compare flight fares and other travel costs in one place. Once you’ve found the best flight, car hire or hotel, you book directly with the provider.</p>
+                        </div>
+
+                        <div class="main">
+                            <div class="flex">
+                                <h4>How does Skyscanner work?</h4>
+                                <div class="icon">
+                                    <i class="fa-solid fa-caret-up" id="faqoff9"></i>
+                                    <i class="fa-solid fa-caret-down" id="faqon9"></i>
+                                </div>
+                            </div>
+                            <p id="faq10">We’re a flight, car hire and hotel search engine. We scan all the top airlines and travel providers across the net, so you can compare flight fares and other travel costs in one place. Once you’ve found the best flight, car hire or hotel, you book directly with the provider.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -432,175 +750,7 @@
         </div>
     </div>
 
-    <div class="container bg2">
-        <div class="row">
-            <div class="column">
-                <div class="detail">
-                    <h2>Cheap Flight Deals</h2>
-                    <p>Presents to you some not-to-be missed, elite arrangements on airfares that will undoubtedly
-                        advance your movement experience. These arrangements are the most recent and all that you can
-                        get. Along these lines, don't continue to pause. Book them now!</p>
-                </div>
-                <div class="innerrow flex gap1">
-                    <div class="column">
-                        <img src="./images/hero1.jpg" alt="place">
-                        <div class="flex">
-                            <div>
-                                <h3>DEV</h3>
-                                <p>Denver</p>
-                            </div>
-                            <img src="./images/routMap.png" alt="location-map-icon">
-                            <div>
-                                <h3>HOU</h3>
-                                <p>Houston</p>
-                            </div>
-                        </div>
 
-                        <div class="price">
-                            <h3>$ 99.99*</h3>
-                            <p>Round Trip</p>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <img src="./images/hero1.jpg" alt="place">
-                        <div class="flex">
-                            <div>
-                                <h3>WAS</h3>
-                                <p>Washington</p>
-                            </div>
-                            <img src="./images/routMap.png" alt="location-map-icon">
-                            <div>
-                                <h3>BOS</h3>
-                                <p>Boston</p>
-                            </div>
-                        </div>
-
-                        <div class="price">
-                            <h3>$ 149.49*</h3>
-                            <p>Round Trip</p>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <img src="./images/hero1.jpg" alt="place">
-                        <div class="flex">
-                            <div>
-                                <h3>BOS</h3>
-                                <p>Boston</p>
-                            </div>
-                            <img src="./images/routMap.png" alt="location-map-icon">
-                            <div>
-                                <h3>CHI</h3>
-                                <p>Chicago</p>
-                            </div>
-                        </div>
-
-                        <div class="price">
-                            <h3>$ 199.99*</h3>
-                            <p>Round Trip</p>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <img src="./images/hero1.jpg" alt="place">
-                        <div class="flex">
-                            <div>
-                                <h3>CHI</h3>
-                                <p>Chicago</p>
-                            </div>
-                            <img src="./images/routMap.png" alt="location-map-icon">
-                            <div>
-                                <h3>YVR</h3>
-                                <p>Vancouver</p>
-                            </div>
-                        </div>
-
-                        <div class="price">
-                            <h3>$ 499.49*</h3>
-                            <p>Round Trip</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="innerrow flex gap1">
-                    <div class="column">
-                        <img src="./images/hero1.jpg" alt="place">
-                        <div class="flex">
-                            <div>
-                                <h3>DFW</h3>
-                                <p>Dallas</p>
-                            </div>
-                            <img src="./images/routMap.png" alt="location-map-icon">
-                            <div>
-                                <h3>PHX</h3>
-                                <p>Phoenix</p>
-                            </div>
-                        </div>
-
-                        <div class="price">
-                            <h3>$ 111.10*</h3>
-                            <p>Round Trip</p>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <img src="./images/hero1.jpg" alt="place">
-                        <div class="flex">
-                            <div>
-                                <h3>SFO</h3>
-                                <p>San Francisco</p>
-                            </div>
-                            <img src="./images/routMap.png" alt="location-map-icon">
-                            <div>
-                                <h3>DFW</h3>
-                                <p>Dallas</p>
-                            </div>
-                        </div>
-
-                        <div class="price">
-                            <h3>$ 170.85*</h3>
-                            <p>Round Trip</p>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <img src="./images/hero1.jpg" alt="place">
-                        <div class="flex">
-                            <div>
-                                <h3>NYC</h3>
-                                <p>New York</p>
-                            </div>
-                            <img src="./images/routMap.png" alt="location-map-icon">
-                            <div>
-                                <h3>CLE</h3>
-                                <p>Cleveland</p>
-                            </div>
-                        </div>
-
-                        <div class="price">
-                            <h3>$ 350.50*</h3>
-                            <p>Round Trip</p>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <img src="./images/hero1.jpg" alt="place">
-                        <div class="flex">
-                            <div>
-                                <h3>NYC</h3>
-                                <p>New York</p>
-                            </div>
-                            <img src="./images/routMap.png" alt="location-map-icon">
-                            <div>
-                                <h3>LON</h3>
-                                <p>London</p>
-                            </div>
-                        </div>
-
-                        <div class="price">
-                            <h3>$ 499.49*</h3>
-                            <p>Round Trip</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- <div class="container">
         <div class="column">
