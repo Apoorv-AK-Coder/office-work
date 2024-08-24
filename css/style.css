@@ -81,7 +81,7 @@ h6 {
     line-height: 1.35 !important;
     margin: 0 !important;
     padding: 0 !important;
-    color: var(--primary-color) !important;
+    color: var(--fifth-color) !important;
 }
 
 h1 {
@@ -156,56 +156,6 @@ ul#ui-id-2 {
 ul#ui-id-1 {
     background-color: #fff !important;
     padding: 5px !important;
-}
-
-footer {
-    background-color: var(--secondary-color) !important;
-
-    .foot {
-        width: 1200px !important;
-        padding: 20px !important;
-        margin: auto !important;
-        text-align: center !important;
-        color: var(--fourth-color) !important;
-    }
-
-    a {
-        color: var(--fourth-color) !important;
-        text-decoration: none !important;
-    }
-
-    .mainfooter {
-        width: 1200px !important;
-        padding: 80px 20px !important;
-        margin: auto !important;
-        border-bottom: 1px solid var(--fourth-color);
-
-        .column {
-            flex: 1 !important;
-
-            p {
-                color: var(--fourth-color);
-            }
-
-            b {
-                font-size: 22px;
-                padding-bottom: 2px !important;
-                border-bottom: 1px solid var(--fourth-color);
-            }
-
-            a {
-                text-decoration: underline dashed !important;
-            }
-
-            a:hover {
-                text-decoration: none !important;
-            }
-        }
-
-        img {
-            width: 50% !important;
-        }
-    }
 }
 
 @media only screen and (max-width: 1024px) {
