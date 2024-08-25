@@ -255,7 +255,7 @@ form {
         margin: auto -17px !important;
         font-size: 15px;
         z-index: 1;
-        background-color: var(--sixth-color);
+        background-color: var(--primary-color);
         border-radius: 50px;
         padding: 10px !important;
         color: var(--fourth-color);
@@ -269,7 +269,8 @@ form {
     }
 
     form {
-        background-color: rgba(255, 255, 255, 0.8);
+        /* background-color: rgba(255, 255, 255, 0.8); */
+        background-color: var(--sixth-color);
         border-radius: 10px;
         padding: 20px !important;
         margin-top: 15px !important;
@@ -283,6 +284,10 @@ form {
 
         .column {
             flex: 1 !important;
+        }
+
+        input, .form-control, .f-traveller {
+            border: none !important;
         }
     }
 
@@ -627,7 +632,7 @@ form {
         background-size: cover !important;
         min-width: 217.5px;
         height: 300px;
-        padding: 235px 20px 20px 20px !important;
+        padding: 240px 20px 20px 20px !important;
         border-radius: 15px;
 
         p {
@@ -737,11 +742,6 @@ footer {
         color: var(--fourth-color) !important;
     }
 
-    a {
-        color: var(--fourth-color) !important;
-        text-decoration: none !important;
-    }
-
     .mainfooter {
         width: 1200px !important;
         padding: 40px 20px 0 20px !important;
@@ -774,6 +774,13 @@ footer {
             border-bottom: 1px solid var(--fourth-color);
             padding: 20px 0 !important;
             margin-top: 20px !important;
+
+            a::before {
+                content: "\f105"; /* Unicode for the Font Awesome angle-right icon */
+                font-family: "Font Awesome 6 Free"; /* Ensure you're using the correct Font Awesome version */
+                font-weight: 900; /* Font Awesome solid weight */
+                margin-right: 8px; /* Space between the icon and the link text */
+            }
         }
 
         .column {
@@ -788,11 +795,12 @@ footer {
             }
 
             a {
-                text-decoration: underline dashed !important;
-            }
-
-            a:hover {
+                color: var(--fourth-color) !important;
                 text-decoration: none !important;
+            }
+            
+            a:hover {
+                text-decoration: underline dashed !important;
             }
         }
 
