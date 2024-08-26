@@ -185,7 +185,11 @@ ul#ui-id-1 {
             .right {
                 text-align: center !important;
                 margin: 0 auto !important;
-                width: 45%;
+                width: 52%;
+
+                p {
+                    font-size: 15px !important;
+                }
             }
 
             button {
@@ -193,7 +197,7 @@ ul#ui-id-1 {
             }
 
             img {
-                width: 150px !important;
+                width: 113px !important;
                 height: auto !important;
             }
 

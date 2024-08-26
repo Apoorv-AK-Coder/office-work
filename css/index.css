@@ -31,14 +31,14 @@ header {
         border: 1px solid var(--fourth-color);
         display: flex;
         border-radius: 50px;
-        width: 7%;
+        width: 5%;
         margin: auto !important;
         
         p {
             margin: auto !important;
             color: var(--fourth-color);
             margin-top: 6px !important;
-            font-size: 17px !important;
+            font-size: 17px;
         }
         
         i {
