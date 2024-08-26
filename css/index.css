@@ -18,7 +18,7 @@ header {
         }
 
         img {
-            width: 150px !important;
+            width: 150px;
         }
     }
 
@@ -31,17 +31,18 @@ header {
         border: 1px solid var(--fourth-color);
         display: flex;
         border-radius: 50px;
-        width: 21%;
+        width: 7%;
         margin: auto !important;
-
+        
         p {
             margin: auto !important;
             color: var(--fourth-color);
-            /* font-size: 16px !important; */
             margin-top: 6px !important;
+            font-size: 17px !important;
         }
-
+        
         i {
+            color: var(--primary-color) !important;
             background-color: var(--fourth-color);
             font-size: 25px;
             padding: 10px !important;
@@ -75,7 +76,6 @@ header {
     }
 
     #airlinesnav, #amtraknav, #travelnav {
-        position: relative;
         position: absolute;
         background-color: var(--secondary-color);
         right: 0;
@@ -127,7 +127,6 @@ header {
     h1 {
         color: var(--fourth-color) !important;
         font-size: 32px !important;
-        font-weight: 600 !important;
     }
 
     form {
@@ -181,6 +180,7 @@ form {
     ::placeholder {
         font-size: 17px;
         color: var(--fifth-color);
+        padding-left: 10px !important;
     }
 
     input,
@@ -402,11 +402,6 @@ form {
 }
 
 .bg3 {
-    a {
-        text-decoration: underline !important;
-        color: var(--primary-color) !important;
-    }
-
     .row {
         border-radius: 20px;
         background-color: rgb(0, 68, 153, 0.2);
@@ -479,7 +474,7 @@ form {
 
         i {
             font-size: 30px;
-            color: var(--fourth-color);
+            color: var(--primary-color);
             cursor: pointer;
         }
 
@@ -490,8 +485,8 @@ form {
             align-items: end !important;
             margin-top: 137px !important;
             margin-right: -20px !important;
-            box-shadow: 0 0 2px 2px rgba(20, 20, 20, 0.3);
-            background-color: var(--primary-color);
+            /* box-shadow: 0 0 2px 2px rgba(20, 20, 20, 0.3); */
+            background-color: var(--fourth-color);
             border-radius: 50px;
         }
 
@@ -499,8 +494,8 @@ form {
             z-index: 1 !important;
             margin-top: 137px !important;
             margin-left: -20px !important;
-            box-shadow: 0 0 2px 2px rgba(20, 20, 20, 0.3);
-            background-color: var(--primary-color);
+            /* box-shadow: 0 0 2px 2px rgba(20, 20, 20, 0.3); */
+            background-color: var(--fourth-color);
             border-radius: 50px;
         }
     }
@@ -549,7 +544,7 @@ form {
 }
 
 footer {
-    background-color: var(--secondary-color) !important;
+    background-color: var(--third-color) !important;
 
     .mainfooter {
         width: 1200px;

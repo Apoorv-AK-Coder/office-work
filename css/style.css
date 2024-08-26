@@ -95,7 +95,7 @@ h1 {
 h2 {
     padding: 15px 0 !important;
     font-size: 33px !important;
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 h3 {
@@ -185,11 +185,7 @@ ul#ui-id-1 {
             .right {
                 text-align: center !important;
                 margin: 0 auto !important;
-                width: 100%;
-                p {
-                    font-size: 10px !important;
-                    margin-top: 10px !important;
-                }
+                width: 45%;
             }
 
             button {
@@ -197,7 +193,7 @@ ul#ui-id-1 {
             }
 
             img {
-                width: 80px !important;
+                width: 150px !important;
                 height: auto !important;
             }
 
@@ -227,6 +223,12 @@ ul#ui-id-1 {
                 color: var(--fourth-color);
             }
         }
+
+        #airlinesnav, #amtraknav, #travelnav {
+            position: relative !important;
+            top: 0 !important;
+            left: 0 !important;
+        }
     }
 
     #off,
@@ -243,10 +245,6 @@ ul#ui-id-1 {
         textarea {
             padding: 15px 10px !important;
         }
-    }
-
-    .slide1 {
-        min-width: 40% !important;
     }
 
     footer {
