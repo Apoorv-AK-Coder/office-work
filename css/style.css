@@ -317,4 +317,15 @@ ul#ui-id-1 {
             }
         }
     }
+
+    .bg1 {
+        .arrowicon {
+            margin: -35px 0 -20px 0 !important;
+            padding-right: 17px !important;
+        }
+
+        button {
+            width: 100% !important;
+        }
+    }
 }

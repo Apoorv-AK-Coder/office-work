@@ -107,10 +107,12 @@
                     </div>
 
                     <div class="col3 d-flex">
-                        <div class="column flex">
+                        <div class="column d-flex">
                             <input name="flying_from" type="text" placeholder="Origin" id="flying_from"
                                 onchange="checkdata();" onclick="this.select();" />
-                            <i class="fa-solid fa-right-left"></i>
+                                <div class="arrowicon">
+                                    <i class="fa-solid fa-right-left"></i>
+                                </div>
                             <input name="flying_to" type="text" placeholder="Destination" id="flying_to"
                                 onchange="checkdata1();" onclick="this.select();" />
                         </div>
@@ -203,9 +205,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" id="flight_submit" name="flight_submit"
+                            <div class="button">
+                                <button type="submit" id="flight_submit" name="flight_submit"
                                 onclick="return CheckValidation();"><i
-                                    class="fa-solid fa-magnifying-glass"></i></button>
+                                class="fa-solid fa-magnifying-glass"></i></button>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group col-md-3 col-sm-4 col-xs-12 search-col-padding has-feedback"
@@ -633,9 +637,7 @@
                                     href="tel:+18009183039">1-800-918-3039</a>. They will do the cheapest flight search
                                 on your behalf.</p>
                         </div>
-                    </div>
 
-                    <div class="column">
                         <div class="main">
                             <div class="flex">
                                 <p><b>Can FaresMatch help me book plane tickets at the last minute?</b></p>
@@ -662,7 +664,9 @@
                                 take up to 15 days. Any refundable amount on the eligible ticket cancellation will take
                                 10 to 15 working days to get refunded.</p>
                         </div>
+                    </div>
 
+                    <div class="column">
                         <div class="main">
                             <div class="flex">
                                 <p><b>How can I book the cheapest flight on FaresMatch?</b></p>
@@ -672,6 +676,58 @@
                                 </div>
                             </div>
                             <p id="faq6">Booking the cheapest flight on FaresMatch is easy. You can browse through the
+                                website and find the best deals for your air travel. You can also contact our 24*7
+                                customer support to help you find cheap flight tickets.</p>
+                        </div>
+
+                        <div class="main">
+                            <div class="flex">
+                                <p><b>How can I book the cheapest flight on FaresMatch?</b></p>
+                                <div class="icon">
+                                    <i class="fa-solid fa-caret-up" id="faqoff6"></i>
+                                    <i class="fa-solid fa-caret-down" id="faqon6"></i>
+                                </div>
+                            </div>
+                            <p id="faq7">Booking the cheapest flight on FaresMatch is easy. You can browse through the
+                                website and find the best deals for your air travel. You can also contact our 24*7
+                                customer support to help you find cheap flight tickets.</p>
+                        </div>
+
+                        <div class="main">
+                            <div class="flex">
+                                <p><b>How can I book the cheapest flight on FaresMatch?</b></p>
+                                <div class="icon">
+                                    <i class="fa-solid fa-caret-up" id="faqoff7"></i>
+                                    <i class="fa-solid fa-caret-down" id="faqon7"></i>
+                                </div>
+                            </div>
+                            <p id="faq8">Booking the cheapest flight on FaresMatch is easy. You can browse through the
+                                website and find the best deals for your air travel. You can also contact our 24*7
+                                customer support to help you find cheap flight tickets.</p>
+                        </div>
+
+                        <div class="main">
+                            <div class="flex">
+                                <p><b>How can I book the cheapest flight on FaresMatch?</b></p>
+                                <div class="icon">
+                                    <i class="fa-solid fa-caret-up" id="faqoff8"></i>
+                                    <i class="fa-solid fa-caret-down" id="faqon8"></i>
+                                </div>
+                            </div>
+                            <p id="faq9">Booking the cheapest flight on FaresMatch is easy. You can browse through the
+                                website and find the best deals for your air travel. You can also contact our 24*7
+                                customer support to help you find cheap flight tickets.</p>
+                        </div>
+
+                        <div class="main">
+                            <div class="flex">
+                                <p><b>How can I book the cheapest flight on FaresMatch?</b></p>
+                                <div class="icon">
+                                    <i class="fa-solid fa-caret-up" id="faqoff9"></i>
+                                    <i class="fa-solid fa-caret-down" id="faqon9"></i>
+                                </div>
+                            </div>
+                            <p id="faq10">Booking the cheapest flight on FaresMatch is easy. You can browse through the
                                 website and find the best deals for your air travel. You can also contact our 24*7
                                 customer support to help you find cheap flight tickets.</p>
                         </div>
@@ -690,9 +746,6 @@
                     <p>CAR RENTAL</p>
                     <h4>Book Now</h4>
                     <p>Affordable Car Rentals Deals at <b><a href="https://www.faresmatch.com/">FaresMatch.com</a></b>!</p>
-                    <a href="#">
-                        <p><b>Book Now</b></p>
-                    </a>
                 </div>
             </div>
             </div>
@@ -705,9 +758,6 @@
                     <h4>Book Now</h4>
                     <p>Find the Perfect Hotel Deals on <b><a href="https://www.faresmatch.com/">FaresMatch.com</a></b> - Book
                         Today!</p>
-                    <a href="#">
-                        <p><b>Book Now</b></p>
-                    </a>
                 </div>
                 </div>
             </div>

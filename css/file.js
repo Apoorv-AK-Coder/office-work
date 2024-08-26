@@ -29,6 +29,9 @@ function myfunction() {
         { on: "faqon4", off: "faqoff4", view: "faq5" },
         { on: "faqon5", off: "faqoff5", view: "faq6" },
         { on: "faqon6", off: "faqoff6", view: "faq7" },
+        { on: "faqon7", off: "faqoff7", view: "faq8" },
+        { on: "faqon8", off: "faqoff8", view: "faq9" },
+        { on: "faqon9", off: "faqoff9", view: "faq10" }
     ];
 
     buttons.forEach(({ on, off, view }) => {

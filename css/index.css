@@ -31,7 +31,7 @@ header {
         border: 1px solid var(--fourth-color);
         display: flex;
         border-radius: 50px;
-        width: 5%;
+        width: 7%;
         margin: auto !important;
         
         p {
@@ -115,13 +115,23 @@ header {
     background-color: var(--third-color);
 
     .fa-right-left {
-        margin: auto -17px !important;
+        margin-right: -17px !important;
+        margin-left: -17px !important;
         font-size: 15px;
         z-index: 1;
         background-color: var(--primary-color);
         border-radius: 50px;
         padding: 10px !important;
         color: var(--fourth-color);
+        width: fit-content;
+        height: fit-content;
+    }
+
+    .arrowicon {
+        justify-content: end !important;
+        text-align: right;
+        padding-top: 12px !important;
+        z-index: 1;
     }
 
     h1 {
@@ -138,8 +148,8 @@ header {
         margin-bottom: -50px !important;
 
         button {
-            margin: 6px 0 !important;
-            width: 20% !important;
+            width: 100% !important;
+            margin: 7px 0 !important;
         }
 
         .column {
@@ -179,7 +189,7 @@ form {
 
     ::placeholder {
         font-size: 17px;
-        color: var(--fifth-color);
+        color: #7a7a7a;
         padding-left: 10px !important;
     }
 
@@ -458,7 +468,9 @@ form {
 }
 
 .mainslider {
-    background-color: rgba(20, 20, 20, 0.05);
+    .row {
+        padding-top: 0 !important;
+    }
 
     .firstslider {
         overflow: hidden;
