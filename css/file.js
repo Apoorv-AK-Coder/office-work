@@ -29,9 +29,6 @@ function myfunction() {
         { on: "faqon4", off: "faqoff4", view: "faq5" },
         { on: "faqon5", off: "faqoff5", view: "faq6" },
         { on: "faqon6", off: "faqoff6", view: "faq7" },
-        { on: "faqon7", off: "faqoff7", view: "faq8" },
-        { on: "faqon8", off: "faqoff8", view: "faq9" },
-        { on: "faqon9", off: "faqoff9", view: "faq10" }
     ];
 
     buttons.forEach(({ on, off, view }) => {
@@ -55,4 +52,58 @@ function myfunction() {
             }
         });
     });
+}
+
+// Get the current page's URL
+const currentPage = window.location.pathname.split("/").pop() || 'index.html';
+
+// Select all navigation links
+const navLinks = document.querySelectorAll('ul li a');
+
+navLinks.forEach(link => {
+    // Check if the href of the link matches the current page or if it's the root page
+    if (link.getAttribute('href') === `./${currentPage}` || currentPage === '') {
+        // Add the active class to the parent li
+        link.parentElement.classList.add('active');
+    }
+});
+
+
+setInterval(submenu, 1000);
+function submenu() {
+    let airlinesnav = document.getElementsByClassName("airlinesnav");
+    let amtrak = document.getElementsByClassName("amtraknav");
+    let travelnav = document.getElementsByClassName("travelnav");
+
+    let hoverairlines = document.getElementById('majorairlines');
+
+    hoverairlines.addEventListener('mouseenter', () => {
+        if (airlinesnav.style.display = 'none') {
+            airlinesnav.style.display = 'block';
+            console.log("hello");
+        }
+    });
+    // console.log(airlines);
+
+
+    //     const menuItems = document.querySelectorAll('ul > li');
+
+    // // Add event listeners to each parent item
+    // menuItems.forEach(item => {
+    //     item.addEventListener('mouseenter', () => {
+    //         // Show the submenu on hover
+    //         const submenu = item.querySelector('.airlinesnav, .amtracnav');
+    //         if (submenu) {
+    //             submenu.style.display = 'block';
+    //         }
+    //     });
+
+    //     item.addEventListener('mouseleave', () => {
+    //         // Hide the submenu when not hovering
+    //         const submenu = item.querySelector('.airlinesnav, .amtracnav');
+    //         if (submenu) {
+    //             submenu.style.display = 'none';
+    //         }
+    //     });
+    // });
 }

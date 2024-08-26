@@ -29,22 +29,45 @@
                     <div class="column nav" id="view">
                         <i class="fa-solid fa-xmark icon" id="off" style="margin-bottom: 30px !important;"></i>
                         <ul>
-                            <a href="./index.html">
-                                <li>Home</li>
-                            </a>
-                            <a href="./about.html">
-                                <li>About Us</li>
-                            </a>
-                            <a href="./contact.html">
-                                <li>Contact Us</li>
-                            </a>
+                            <li><a href="./index.html">Home</a></li>
+                            <li><a href="./flights.aspx">Flights</a></li>
+                            <li id="majorairlines"><a href="./major-airlines.aspx">Major Airlines</a></li>
+                                <div class="airlinesnav">
+                                    <ul>
+                                        <li><a href="./delta-airlines-flights-reservations.aspx">Delta Airlines</a></li>
+                                        <li><a href="./alaska-airlines-flights-reservations.aspx">Alaska Airlines</a></li>
+                                        <li><a href="./united-airlines-flights-reservations.aspx">United Airlines</a></li>
+                                        <li><a href="./frontier-airlines-flights-reservations.aspx">Frontier Airlines</a></li>
+                                        <li><a href="./allegiant-airlines-flights-reservations.aspx">Allegiant Airlines</a></li>
+                                        <li><a href="./southwest-airlines.aspx">Southwest Airlines</a></li>
+                                        <li><a href="./jetblue-airlines-flights.aspx">JetBlue Airways</a></li>
+                                        <li><a href="./major-airlines.aspx">More Airlines</a></li>
+                                    </ul>
+                                </div>
+                            <li><a href="./amtrak.aspx">Amtrak</a></li>
+                                <div class="amtraknav">
+                                    <ul>
+                                        <li><a href="./amtrak/vacations.aspx">Amtrak Vacations</a></li>
+                                        <li><a href="./amtrak/trains.aspx">Amtrak Trains</a></li>
+                                        <li><a href="./amtrak/guest-rewards.aspx">Amtrak Guest Rewards</a></li>
+                                    </ul>
+                                </div>
+                            <li><a href="#">Travel</a></li>
+                                <div class="travelnav">
+                                    <ul>
+                                        <li><a href="./travel/travel-insurance.aspx">Travel Insurance</a></li>
+                                        <li><a href="./travel/budget-travel.aspx">Budget Travel</a></li>
+                                    </ul>
+                                </div>
+                            <li><a href="./deals.aspx">Deals</a></li>
+                            <li><a href="./blog.aspx">Blog</a></li>
+
                         </ul>
                     </div>
                     <div class="column right gap1">
                         <i class="fa-solid fa-phone-volume fa-shake"></i>
                         <div>
                             <p>Call us 24/7 +1-800-918-3039</p>
-                            <!-- <i class="fa-solid fa-headset"></i> -->
                         </div>
                     </div>
                     <div class="column" id="on">
@@ -73,25 +96,24 @@
                     </div>
 
                     <div class="col3 d-flex">
-                        <div class="column d-flex">
-                            <input name="flying_from" type="text" placeholder="🛫 Origin" id="flying_from"
+                        <div class="column flex">
+                            <input name="flying_from" type="text" placeholder="🛪 Origin" id="flying_from"
                                 onchange="checkdata();" onclick="this.select();" />
                             <i class="fa-solid fa-right-left"></i>
-                            <input name="flying_to" type="text" placeholder="🛬 Destination" id="flying_to"
+                            <input name="flying_to" type="text" placeholder="🛪 Destination" id="flying_to"
                                 onchange="checkdata1();" onclick="this.select();" />
                         </div>
                         <div class="column flex">
                             <input autocomplete="off" class="cal mid-dspc-lt" data-val="true"
                                 data-val-required="Please Select Depart Date" id="from" name="from"
                                 onclick="this.focus(); this.setSelectionRange(0, 9999);"
-                                placeholder="🗓️ Departing Date" readonly style="cursor:pointer" type="text" value="" />
+                                placeholder="🗖 Departing Date" readonly style="cursor:pointer" type="text" value="" />
 
                             <input autocomplete="off" class="pad-left return" data-val="true"
                                 data-val-required="Please Select Return Date" id="to" name="to"
-                                onclick="this.focus(); this.setSelectionRange(0, 9999);" placeholder="🗓️ Return Date"
+                                onclick="this.focus(); this.setSelectionRange(0, 9999);" placeholder="🗖 Return Date"
                                 readonly style="cursor:pointer" type="text" value="" />
                         </div>
-
 
                         <div class="column d-flex">
                             <div class="dropdown-container">
@@ -117,7 +139,6 @@
                                             </select>
                                         </div>
                                         <div class="adult-panel">
-
                                             <div class="min-max-outer">
                                                 <span class="age-text">Adult(s)</span>
                                                 <div class="min-max">
@@ -131,11 +152,9 @@
                                                     <input class="input-btn2 qtyplus" value="+" id="plus_adt"
                                                         type="button" field='quantity'>
                                                 </div>
-
                                             </div>
                                         </div>
                                         <div class="adult-panel">
-
                                             <div class="min-max-outer">
                                                 <span class="age-text">Child(ren)</span>
                                                 <div class="min-max">
@@ -173,9 +192,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <input type="text" placeholder="👤 Full Name" required />
-                        <input type="tel" placeholder="📞 Phone Number" required />
-                        <input type="mail" placeholder="📧 E-mail" required /> -->
                             <button type="submit" id="flight_submit" name="flight_submit"
                                 onclick="return CheckValidation();"><i
                                     class="fa-solid fa-magnifying-glass"></i></button>
@@ -377,7 +393,7 @@
                     <p>Need Booking Assistance? Our agents are ready!</p>
                     <p>Explore options from over 500 airlines.</p>
                 </div>
-                <div class="col flex">
+                <div class="col d-flex">
                     <div>
                         <img src="./images/hawai.png">
                         <p>Hawaiian Airlines</p>
@@ -404,169 +420,157 @@
                         advance your movement experience. These arrangements are the most recent and all that you can
                         get. Along these lines, don't continue to pause. Book them now!</p>
                 </div>
-                <div class="innerrow flex gap1">
+                <div class="innerrow d-flex gap1">
                     <div class="column">
-                        <div class="padding">
-                            <div class="flex">
-                                <div class="left">
-                                    <h4>Houston City</h4>
-                                    <p>DEN - HOU</p>
-                                </div>
-                                <img src="./images/routMap.png" alt="location-map-icon">
-                                <div class="right">
-                                    <h4>$ 99.99*</h4>
-                                    <p>Round Trip</p>
-                                </div>
+                        <div class="flex">
+                            <div class="left">
+                                <h4>Houston City</h4>
+                                <p>DEN - HOU</p>
                             </div>
-                            <div class="center"></div>
-                            <div class="flex">
-                                <div class="left">
-                                    <p>$ 99</p>
-                                </div>
-                                <div></div>
-                                <div class="right">
-                                    <p>$ 1,400</p>
-                                </div>
+                            <img src="./images/routMap.png" alt="location-map-icon">
+                            <div class="right">
+                                <h4>$ 99.99*</h4>
+                                <p>Round Trip</p>
                             </div>
-                            <p style="text-align: center; margin-top: 20px !important;">Similar trips cost to ...</p>
                         </div>
+                        <div class="center"></div>
+                        <div class="flex">
+                            <div class="left">
+                                <p>$ 99</p>
+                            </div>
+                            <div></div>
+                            <div class="right">
+                                <p>$ 1,400</p>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin-top: 20px !important;">Similar trips cost to ...</p>
                     </div>
 
                     <div class="column">
-                        <div class="padding">
-                            <div class="flex">
-                                <div class="left">
-                                    <h4>Phoenix</h4>
-                                    <p>DFW - PHX</p>
-                                </div>
-                                <img src="./images/routMap.png" alt="location-map-icon">
-                                <div class="right">
-                                    <h4>$ 65.10*</h4>
-                                    <p>Round Trip</p>
-                                </div>
+                        <div class="flex">
+                            <div class="left">
+                                <h4>Phoenix</h4>
+                                <p>DFW - PHX</p>
                             </div>
-                            <div class="center"></div>
-                            <div class="flex">
-                                <div class="left">
-                                    <p>$ 65</p>
-                                </div>
-                                <div></div>
-                                <div class="right">
-                                    <p>$ 1,400</p>
-                                </div>
+                            <img src="./images/routMap.png" alt="location-map-icon">
+                            <div class="right">
+                                <h4>$ 65.10*</h4>
+                                <p>Round Trip</p>
                             </div>
-                            <p style="text-align: center; margin-top: 20px !important;">Similar trips cost to ...</p>
                         </div>
+                        <div class="center"></div>
+                        <div class="flex">
+                            <div class="left">
+                                <p>$ 65</p>
+                            </div>
+                            <div></div>
+                            <div class="right">
+                                <p>$ 1,400</p>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin-top: 20px !important;">Similar trips cost to ...</p>
                     </div>
 
                     <div class="column">
-                        <div class="padding">
-                            <div class="flex">
-                                <div class="left">
-                                    <h4>Boston City</h4>
-                                    <p>WAS - BOS</p>
-                                </div>
-                                <img src="./images/routMap.png" alt="location-map-icon">
-                                <div class="right">
-                                    <h4>$ 149.49*</h4>
-                                    <p>Round Trip</p>
-                                </div>
+                        <div class="flex">
+                            <div class="left">
+                                <h4>Boston City</h4>
+                                <p>WAS - BOS</p>
                             </div>
-                            <div class="center"></div>
-                            <div class="flex">
-                                <div class="left">
-                                    <p>$ 149</p>
-                                </div>
-                                <div></div>
-                                <div class="right">
-                                    <p>$ 1,400</p>
-                                </div>
+                            <img src="./images/routMap.png" alt="location-map-icon">
+                            <div class="right">
+                                <h4>$ 149.49*</h4>
+                                <p>Round Trip</p>
                             </div>
-                            <p style="text-align: center; margin-top: 20px !important;">Similar trips cost to ...</p>
                         </div>
+                        <div class="center"></div>
+                        <div class="flex">
+                            <div class="left">
+                                <p>$ 149</p>
+                            </div>
+                            <div></div>
+                            <div class="right">
+                                <p>$ 1,400</p>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin-top: 20px !important;">Similar trips cost to ...</p>
                     </div>
                 </div>
 
-                <div class="innerrow flex gap1">
+                <div class="innerrow d-flex gap1">
                     <div class="column">
-                        <div class="padding">
-                            <div class="flex">
-                                <div class="left">
-                                    <h4>Dallas City</h4>
-                                    <p>SFO – DFW</p>
-                                </div>
-                                <img src="./images/routMap.png" alt="location-map-icon">
-                                <div class="right">
-                                    <h4>$ 170.85*</h4>
-                                    <p>Round Trip</p>
-                                </div>
+                        <div class="flex">
+                            <div class="left">
+                                <h4>Dallas City</h4>
+                                <p>SFO – DFW</p>
                             </div>
-                            <div class="center"></div>
-                            <div class="flex">
-                                <div class="left">
-                                    <p>$ 170</p>
-                                </div>
-                                <div></div>
-                                <div class="right">
-                                    <p>$ 1,400</p>
-                                </div>
+                            <img src="./images/routMap.png" alt="location-map-icon">
+                            <div class="right">
+                                <h4>$ 170.85*</h4>
+                                <p>Round Trip</p>
                             </div>
-                            <p style="text-align: center; margin-top: 20px !important;">Similar trips cost to ...</p>
                         </div>
+                        <div class="center"></div>
+                        <div class="flex">
+                            <div class="left">
+                                <p>$ 170</p>
+                            </div>
+                            <div></div>
+                            <div class="right">
+                                <p>$ 1,400</p>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin-top: 20px !important;">Similar trips cost to ...</p>
                     </div>
 
                     <div class="column">
-                        <div class="padding">
-                            <div class="flex">
-                                <div class="left">
-                                    <h4>Chicago City</h4>
-                                    <p>BOS – CHI</p>
-                                </div>
-                                <img src="./images/routMap.png" alt="location-map-icon">
-                                <div class="right">
-                                    <h4>$ 199.99*</h4>
-                                    <p>Round Trip</p>
-                                </div>
+                        <div class="flex">
+                            <div class="left">
+                                <h4>Chicago City</h4>
+                                <p>BOS – CHI</p>
                             </div>
-                            <div class="center"></div>
-                            <div class="flex">
-                                <div class="left">
-                                    <p>$ 199</p>
-                                </div>
-                                <div></div>
-                                <div class="right">
-                                    <p>$ 1,400</p>
-                                </div>
+                            <img src="./images/routMap.png" alt="location-map-icon">
+                            <div class="right">
+                                <h4>$ 199.99*</h4>
+                                <p>Round Trip</p>
                             </div>
-                            <p style="text-align: center; margin-top: 20px !important;">Similar trips cost to ...</p>
                         </div>
+                        <div class="center"></div>
+                        <div class="flex">
+                            <div class="left">
+                                <p>$ 199</p>
+                            </div>
+                            <div></div>
+                            <div class="right">
+                                <p>$ 1,400</p>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin-top: 20px !important;">Similar trips cost to ...</p>
                     </div>
 
                     <div class="column">
-                        <div class="padding">
-                            <div class="flex">
-                                <div class="left">
-                                    <h4>Cleveland City</h4>
-                                    <p>NYC – CLE</p>
-                                </div>
-                                <img src="./images/routMap.png" alt="location-map-icon">
-                                <div class="right">
-                                    <h4>$ 350.50*</h4>
-                                    <p>Round Trip</p>
-                                </div>
+                        <div class="flex">
+                            <div class="left">
+                                <h4>Cleveland City</h4>
+                                <p>NYC – CLE</p>
                             </div>
-                            <div class="center"></div>
-                            <div class="flex">
-                                <div class="left">
-                                    <p>$ 350</p>
-                                </div>
-                                <div></div>
-                                <div class="right">
-                                    <p>$ 1,400</p>
-                                </div>
+                            <img src="./images/routMap.png" alt="location-map-icon">
+                            <div class="right">
+                                <h4>$ 350.50*</h4>
+                                <p>Round Trip</p>
                             </div>
-                            <p style="text-align: center; margin-top: 20px !important;">Similar trips cost to ...</p>
                         </div>
+                        <div class="center"></div>
+                        <div class="flex">
+                            <div class="left">
+                                <p>$ 350</p>
+                            </div>
+                            <div></div>
+                            <div class="right">
+                                <p>$ 1,400</p>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin-top: 20px !important;">Similar trips cost to ...</p>
                     </div>
                 </div>
             </div>
@@ -577,7 +581,7 @@
         <div class="row">
             <div class="column">
                 <h2>Frequently Asked Questions</h2>
-                <div class="flex gap2">
+                <div class="d-flex gap2">
                     <div class="column">
                         <div class="main">
                             <div class="flex">
@@ -587,7 +591,9 @@
                                     <i class="fa-solid fa-caret-down" id="faqon"></i>
                                 </div>
                             </div>
-                            <p id="faq1">FaresMatch is your flight finder that helps you book domestic and international flight tickets at the lowest cost to all major countries of America, Europe, Canada, and Asia.</p>
+                            <p id="faq1">FaresMatch is your flight finder that helps you book domestic and international
+                                flight tickets at the lowest cost to all major countries of America, Europe, Canada, and
+                                Asia.</p>
                         </div>
 
                         <div class="main">
@@ -598,7 +604,9 @@
                                     <i class="fa-solid fa-caret-down" id="faqon1"></i>
                                 </div>
                             </div>
-                            <p id="faq2">Whether you want to plan a weekend getaway with family or friends, plan a romantic trip, or a business trip with colleagues, FaresMatch can help you book domestic and international plane tickets.</p>
+                            <p id="faq2">Whether you want to plan a weekend getaway with family or friends, plan a
+                                romantic trip, or a business trip with colleagues, FaresMatch can help you book domestic
+                                and international plane tickets.</p>
                         </div>
 
                         <div class="main">
@@ -609,7 +617,10 @@
                                     <i class="fa-solid fa-caret-down" id="faqon2"></i>
                                 </div>
                             </div>
-                            <p id="faq3">You can visit the Deals section on the FaresMatch website and choose the deal that best suit you or you can get in touch with our travel agents at <a href="tel:+18009183039">1-800-918-3039</a>. They will do the cheapest flight search on your behalf.</p>
+                            <p id="faq3">You can visit the Deals section on the FaresMatch website and choose the deal
+                                that best suit you or you can get in touch with our travel agents at <a
+                                    href="tel:+18009183039">1-800-918-3039</a>. They will do the cheapest flight search
+                                on your behalf.</p>
                         </div>
                     </div>
 
@@ -622,18 +633,23 @@
                                     <i class="fa-solid fa-caret-down" id="faqon3"></i>
                                 </div>
                             </div>
-                            <p id="faq4">Yes. We understand emergencies are part and parcel of life and one can’t avoid it. Therefore, with FaresMatch you can book hassle-free last-minute plane tickets.</p>
+                            <p id="faq4">Yes. We understand emergencies are part and parcel of life and one can’t avoid
+                                it. Therefore, with FaresMatch you can book hassle-free last-minute plane tickets.</p>
                         </div>
 
                         <div class="main">
                             <div class="flex">
-                                <p><b>What if I change or cancel my flight ticket? When will I receive the amount?</b></p>
+                                <p><b>What if I change or cancel my flight ticket? When will I receive the amount?</b>
+                                </p>
                                 <div class="icon">
                                     <i class="fa-solid fa-caret-up" id="faqoff4"></i>
                                     <i class="fa-solid fa-caret-down" id="faqon4"></i>
                                 </div>
                             </div>
-                            <p id="faq5">If you change or cancel your flight tickets within the same day before midnight, it is subject to our cancellation fees. Any refund or cancellation process may take up to 15 days. Any refundable amount on the eligible ticket cancellation will take 10 to 15 working days to get refunded.</p>
+                            <p id="faq5">If you change or cancel your flight tickets within the same day before
+                                midnight, it is subject to our cancellation fees. Any refund or cancellation process may
+                                take up to 15 days. Any refundable amount on the eligible ticket cancellation will take
+                                10 to 15 working days to get refunded.</p>
                         </div>
 
                         <div class="main">
@@ -644,7 +660,9 @@
                                     <i class="fa-solid fa-caret-down" id="faqon5"></i>
                                 </div>
                             </div>
-                            <p id="faq6">Booking the cheapest flight on FaresMatch is easy. You can browse through the website and find the best deals for your air travel. You can also contact our 24*7 customer support to help you find cheap flight tickets.</p>
+                            <p id="faq6">Booking the cheapest flight on FaresMatch is easy. You can browse through the
+                                website and find the best deals for your air travel. You can also contact our 24*7
+                                customer support to help you find cheap flight tickets.</p>
                         </div>
                     </div>
                 </div>
@@ -653,7 +671,8 @@
     </div>
 
     <div class="container bg3">
-        <div class="row d-flex gap1">
+        <div class="row d-flex row2">
+            <div class="left">
             <div class="column">
                 <img src="./images/carrent.jpg">
                 <div>
@@ -665,16 +684,20 @@
                     </a>
                 </div>
             </div>
+            </div>
 
+            <div class="right">
             <div class="column">
                 <img src="./images/hotelrent.jpg">
                 <div>
                     <p>Hotels</p>
                     <h4>Book Now</h4>
-                    <p>Find the Perfect Hotel Deals on <a href="https://www.faresmatch.com/">FaresMatch.com</a> - Book Today!</p>
+                    <p>Find the Perfect Hotel Deals on <a href="https://www.faresmatch.com/">FaresMatch.com</a> - Book
+                        Today!</p>
                     <a href="#">
                         <p>Book Now</p>
                     </a>
+                </div>
                 </div>
             </div>
         </div>
@@ -811,188 +834,6 @@
         </div>
     </div>
 
-
-
-    <!-- <div class="container">
-        <div class="column">
-            <div class="slider1">
-                <div class="firstslider">
-                    <div class="slides">
-                        <div class="slide1"
-                            style="background-image: linear-gradient(to right, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)), url('./images/hero1.jpg');">
-                            <div class="row d-flex">
-                                <div class="column col">
-                                    <h2>Students Save 15%</h2>
-                                    <p>Students 17 - 24 save 15% to top destinations across America.</p>
-                                    <button>BOOK NOW</button>
-                                </div>
-                                <div class="column"></div>
-                            </div>
-                        </div>
-                        <div class="slide1"
-                            style="background-image: linear-gradient(to right, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)), url('./images/hero3.jpg');">
-                            <div class="row d-flex">
-                                <div class="column col">
-                                    <h2>Discover the Convenience of Travel</h2>
-                                    <p>Book, board or modify your reservation with the Amtrak App.</p>
-                                    <button>LEARN MORE</button>
-                                </div>
-                                <div class="column"></div>
-                            </div>
-                        </div>
-                        <div class="slide1"
-                            style="background-image: linear-gradient(to right, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)), url('./images/hero2.jpg');">
-                            <div class="row d-flex">
-                                <div class="column col">
-                                    <h2>Introducing Points & Cash</h2>
-                                    <p>Book Amtrak travel with more options and fewer points.</p>
-                                    <button>LEARN MORE</button>
-                                </div>
-                                <div class="column"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slidebutton flex">
-                    <div class="leftBt">
-                        <i class="fa-solid fa-circle-left"></i>
-                    </div>
-
-                    <div class="rightBt">
-                        <i class="fa-solid fa-circle-right"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container gallery">
-        <div class="row">
-            <div class="column">
-                <img src="./images/1.jpg">
-                <div>
-                    <h3>High Temperatures May Require Lower Speeds</h3>
-                    <p>See if heat advisories may impact your journey.</p>
-                    <p><b>Learn More</b></p>
-                </div>
-            </div>
-            <div class="column">
-                <img src="./images/2.jpg">
-                <div>
-                    <h3>Enhance Your Travel</h3>
-                    <p>Earn 20,000 bonus points with the Amtrak Guest Rewards® Preferred Mastercard®. Must apply here
-                        for this offer. Offers vary elsewhere.</p>
-                    <p><b>Learn More</b></p>
-                </div>
-            </div>
-            <div class="column">
-                <img src="./images/3.jpeg">
-                <div>
-                    <h3>Road Trip with Your Car on Auto Train</h3>
-                    <p>Coach fares as low as $95 + the cost of your vehicle.</p>
-                    <p><b>Learn More</b></p>
-                </div>
-            </div>
-            <div class="column">
-                <img src="./images/4.jpeg">
-                <div>
-                    <h3>All Aboard with Just Your Phone</h3>
-                    <p>Download the Amtrak app for iPhone and Android today.</p>
-                    <p><b>Learn More</b></p>
-                </div>
-            </div>
-            <div class="column">
-                <img src="./images/5.jpeg">
-                <div>
-                    <h3>Save on Group Travel with Share Fares</h3>
-                    <p>Get up to 60% off.</p>
-                    <p><b>Learn More</b></p>
-                </div>
-            </div>
-            <div class="column">
-                <img src="./images/6.jpeg">
-                <div>
-                    <h3>Join Amtrak Guest Rewards</h3>
-                    <p>Get on board with rewards. Reward travel starts at just 400 points.</p>
-                    <p><b>Learn More</b></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container flipit">
-        <div class="row">
-            <div class="column">
-                <div id="section1">
-                    <div class="d-flex">
-                        <div class="column">
-                            <h2>Trip Planning Map</h2>
-                            <p><b>Discover more of America with our trip planning map.</b></p>
-                            <p>See our routes and stations on a map, find trips options between stations and book your
-                                next trip.</p>
-                            <button>START PLANNING</button>
-                        </div>
-                        <div class="column right">
-                            <img src="./images/tripplan.gif">
-                        </div>
-                    </div>
-                </div>
-
-                <div id="section2">
-
-                    <div class="d-flex">
-                        <div class="column">
-                            <h2>Track Your Train</h2>
-                            <p><b>Check train status and track your train's location.</b></p>
-                            <button>TRACK NOW</button>
-                        </div>
-                        <div class="column right">
-                            <img src="./images/routmap.gif">
-                        </div>
-                    </div>
-                </div>
-
-                <div id="section3">
-                    <div class="d-flex">
-                        <div class="column">
-                            <h2>Make Travel a Little Easier</h2>
-                            <p><b>With the Amtrak app.</b></p>
-                            <p>Download the Amtrak app to check train status, get gate and track information at select
-                                stations, travel with contact-free eTicket scanning and access helpful information at
-                                your fingertips.</p>
-                            <button>GET THE APP</button>
-                        </div>
-                        <div class="column right">
-                            <img src="./images/mobileapp.gif">
-                        </div>
-                    </div>
-                </div>
-
-                <div id="section4">
-                    <div class="d-flex">
-                        <div class="column">
-                            <h2>Accessible Travel Services</h2>
-                            <p><b>Our goal is to provide safe, efficient and comfortable service.</b></p>
-                            <p>We are pleased to provide additional services to passengers with disabilities, and we
-                                have worked to make our facilities more accessible to passengers with disabilities.</p>
-                            <button>LEARN MORE</button>
-                        </div>
-                        <div class="column right">
-                            <img src="./images/original.jpeg">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="newnav">
-                    <p id="trip">Trip Planning Map</p>
-                    <p id="map"> Track Your Train</p>
-                    <p id="app">Mobile App</p>
-                    <p id="access">Accessible Travel</p>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <footer>
         <div class="container">
             <div class="mainfooter">
@@ -1002,30 +843,43 @@
                             <img src="./images/logo.png" alt="logo">
                         </a>
                     </div>
-                    <div class="column flex gap1 social">
+                    <div class="column d-flex gap1 social">
                         <h3>Connect with Us</h3>
-                        <a href="https://www.facebook.com/faresmatchtravelagency" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="https://twitter.com/faresmatch" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="https://www.instagram.com/faresmatch9/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/company/faresmatchagency/" target="_blank"><i class="fa fa-linkedin"></i></a>
-                                <a href="https://www.pinterest.com/faresmatchagency/" target="_blank"><i class="fa fa-pinterest"></i></a>
-                                <a target="_blank" href="https://www.youtube.com/channel/UCVF0LhsyO15yOulfg82K4MQ"><i class="fa-brands fa-youtube"></i></a>
-                                <a target="_blank" href="https://faresmatchtravelagency.quora.com/"><i class="fa-brands fa-quora"></i></a>
+                        <div class="flex gap1">
+                            <a href="https://www.facebook.com/faresmatchtravelagency" target="_blank"><i
+                                    class="fa-brands fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/faresmatch" target="_blank"><i
+                                    class="fa-brands fa-x-twitter"></i></a>
+                            <a href="https://www.instagram.com/faresmatch9/" target="_blank"><i
+                                    class="fa-brands fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/company/faresmatchagency/" target="_blank"><i
+                                    class="fa fa-linkedin"></i></a>
+                            <a href="https://www.pinterest.com/faresmatchagency/" target="_blank"><i
+                                    class="fa fa-pinterest"></i></a>
+                            <a target="_blank" href="https://www.youtube.com/channel/UCVF0LhsyO15yOulfg82K4MQ"><i
+                                    class="fa-brands fa-youtube"></i></a>
+                            <a target="_blank" href="https://faresmatchtravelagency.quora.com/"><i
+                                    class="fa-brands fa-quora"></i></a>
+                        </div>
                     </div>
                 </div>
                 <div class="links d-flex gap1">
                     <div class="column">
                         <p><b>Quick Links</b></p>
-                        <p><a href="./refund-cancellation.aspx">Policies </a><a href="./vacations.aspx">Vacations </a><a href="./vacation-packages.aspx">Packages</a></p>
+                        <p><a href="./refund-cancellation.aspx">Policies </a></p>
+                        <p><a href="./vacations.aspx">Vacations </a></p>
+                        <p><a href="./vacation-packages.aspx">Packages</a></p>
                         <p><a href="./airline-destinations.aspx">Airlines Destinations</a></p>
                         <p><a href="./jetblue-fare-finder.aspx">Jetblue Fare Finder</a></p>
                         <p><a href="./low-fare-calendar.aspx">Low-Fare Calendar</a></p>
-                    </div> 
-                    
+                    </div>
+
                     <div class="column">
                         <p><b>Airlines</b></p>
-                        <p><a href="./delta-airlines-flights-reservations.aspx">Delta </a><a href="./united-airlines-flights-reservations.aspx">United</a></p>
-                        <p><a href="./alaska-airlines-flights-reservations.aspx">Alaska </a><a href="./allegiant-airlines-flights-reservations.aspx">Allegiant</a></p>
+                        <p><a href="./delta-airlines-flights-reservations.aspx">Delta</a></p>
+                        <p><a href="./united-airlines-flights-reservations.aspx">United</a></p>
+                        <p><a href="./alaska-airlines-flights-reservations.aspx">Alaska </a></p>
+                        <p><a href="./allegiant-airlines-flights-reservations.aspx">Allegiant</a></p>
                         <p><a href="./frontier-airlines-flights-reservations.aspx">Frontier</a></p>
                     </div>
                     <div class="column">
@@ -1033,7 +887,8 @@
                         <p><a href="./flights/cheap-flights-to-las-vegas.aspx">Las Vegas</a></p>
                         <p><a href="./flights/cheap-flights-to-new-york.aspx">New York</a></p>
                         <p><a href="./flights/cheap-flights-to-los-angeles.aspx">Los Angeles</a></p>
-                        <p><a href="./flights/cheap-flights-to-florida.aspx">Florida </a><a href="./flights/cheap-flights-to-california.aspx">California</a></p>
+                        <p><a href="./flights/cheap-flights-to-florida.aspx">Florida </a></p>
+                        <p><a href="./flights/cheap-flights-to-california.aspx">California</a></p>
                     </div>
                     <div class="column">
                         <p><b>Top Routes</b></p>
@@ -1045,17 +900,19 @@
                     </div>
                     <div class="column">
                         <p><b>Information</b></p>
-                        <p><a href="./about-us.aspx">About</a>
-                         <a href="./contact-us.aspx">Contact</a></p>
+                        <p><a href="./about-us.aspx">About</a></p>
+                        <p><a href="./contact-us.aspx">Contact</a></p>
                         <p><a href="./privacy-policy.aspx">Privacy Policy</a></p>
                         <p><a href="./terms.aspx">Terms & Conditions</a></p>
-                        <p><a href="./sitemap.aspx">Sitemap</a>&nbsp; <a href="./faq.aspx">FAQ's</a></p>
+                        <p><a href="./sitemap.aspx">Sitemap</a></p>
+                        <p><a href="./faq.aspx">FAQ's</a></p>
                     </div>
                 </div>
             </div>
             <div class="foot">
                 <div class="column">
-                    <p>© Copyright 2024 <b>Faresmatch</b>. All Rights Reserved. | Address: 6355 Haystack CT Cumming , GA 30040</p>
+                    <p>© Copyright 2024 <b>Faresmatch</b>. All Rights Reserved. | Address: 6355 Haystack CT Cumming , GA
+                        30040</p>
                 </div>
             </div>
         </div>
@@ -1067,9 +924,5 @@
 <script src="./css/bootstrap.js"></script>
 <script src="./css/jquery.js"></script>
 <script src="https://kit.fontawesome.com/513bc71f1a.js" crossorigin="anonymous"></script>
-
-<script>
-
-</script>
 
 </html>
