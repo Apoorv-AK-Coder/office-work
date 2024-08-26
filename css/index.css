@@ -1,7 +1,7 @@
 @import url(./style.css);
 
 header {
-    background-color: var(--primary-color);
+    background-color: var(--third-color);
     position: sticky !important;
     top: 0;
     border-bottom: 1px solid var(--fourth-color);
@@ -112,7 +112,7 @@ header {
 
 
 .bg1 {
-    background-color: var(--primary-color);
+    background-color: var(--third-color);
 
     .fa-right-left {
         margin: auto -17px !important;
