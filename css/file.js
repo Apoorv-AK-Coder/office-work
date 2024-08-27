@@ -18,44 +18,40 @@ function mufun() {
     })
 }
 
-setInterval(myfunction, 1000);
-
-function myfunction() {
+document.addEventListener("DOMContentLoaded", function () {
     const buttons = [
-        { on: "faqon", off: "faqoff", view: "faq1" },
-        { on: "faqon1", off: "faqoff1", view: "faq2" },
-        { on: "faqon2", off: "faqoff2", view: "faq3" },
-        { on: "faqon3", off: "faqoff3", view: "faq4" },
-        { on: "faqon4", off: "faqoff4", view: "faq5" },
-        { on: "faqon5", off: "faqoff5", view: "faq6" },
-        { on: "faqon6", off: "faqoff6", view: "faq7" },
-        { on: "faqon7", off: "faqoff7", view: "faq8" },
-        { on: "faqon8", off: "faqoff8", view: "faq9" },
-        { on: "faqon9", off: "faqoff9", view: "faq10" }
+        { click:"click1", on: "faqon", off: "faqoff", view: "faq1" },
+        { click:"click2", on: "faqon1", off: "faqoff1", view: "faq2" },
+        { click:"click3", on: "faqon2", off: "faqoff2", view: "faq3" },
+        { click:"click4", on: "faqon3", off: "faqoff3", view: "faq4" },
+        { click:"click5", on: "faqon4", off: "faqoff4", view: "faq5" },
+        { click:"click6", on: "faqon5", off: "faqoff5", view: "faq6" },
+        { click:"click7", on: "faqon6", off: "faqoff6", view: "faq7" },
+        { click:"click8", on: "faqon7", off: "faqoff7", view: "faq8" },
+        { click:"click9", on: "faqon8", off: "faqoff8", view: "faq9" },
+        { click:"click10", on: "faqon9", off: "faqoff9", view: "faq10" }
     ];
 
-    buttons.forEach(({ on, off, view }) => {
+    buttons.forEach(({ click, on, off, view }) => {
+        const clickButton = document.getElementById(click);
         const onButton = document.getElementById(on);
         const offButton = document.getElementById(off);
         const viewElement = document.getElementById(view);
 
-        onButton.addEventListener("click", function () {
-            if (viewElement.style.display = "none") {
+        clickButton.addEventListener("click", function () {
+            if (viewElement.style.display === "none" || viewElement.style.display === "") {
                 viewElement.style.display = "block";
                 onButton.style.display = "none";
                 offButton.style.display = "block";
-            }
-        });
-
-        offButton.addEventListener("click", function () {
-            if (viewElement.style.display = "block") {
+            } else {
                 viewElement.style.display = "none";
                 onButton.style.display = "block";
                 offButton.style.display = "none";
             }
         });
     });
-}
+});
+
 
 const currentPage = window.location.pathname.split("/").pop() || 'index.html';
 const navLinks = document.querySelectorAll('ul li a');

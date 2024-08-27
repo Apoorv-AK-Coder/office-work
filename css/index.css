@@ -331,6 +331,10 @@ form {
                 text-align: right;
             }
 
+            a {
+                color: var(--primary-color) !important;
+            }
+
             div {
                 flex: 1;
             }
