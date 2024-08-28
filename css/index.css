@@ -136,7 +136,7 @@ header {
 
     h1 {
         color: var(--fourth-color) !important;
-        font-size: 32px !important;
+        /* font-size: 32px !important; */
     }
 
     form {
@@ -182,8 +182,8 @@ form {
     }
 
     ::placeholder {
-        font-size: 17px;
-        color: #7a7a7a;
+        font-size: 18px;
+        color: #4b4b4b;
         padding-left: 10px !important;
     }
 
@@ -191,10 +191,11 @@ form {
     select,
     textarea {
         width: 100% !important;
-        padding: 15px 10px !important;
+        padding: 10px 10px !important;
         margin: 5px 0 !important;
         border: 1px solid var(--fifth-color) !important;
         border-radius: 5px !important;
+        font-size: 18px;
     }
 
     label {
@@ -306,7 +307,7 @@ form {
 
 .bg2 {
     .row {
-        padding: 0 20px 0 20px !important;
+        padding-top: 0 !important;
     }
 
     .column {
@@ -362,8 +363,6 @@ form {
     padding-left: 20px !important;
 }
 
-
-
 .user {
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url(../images/user.png);
     background-position: left !important;
@@ -377,7 +376,7 @@ form {
     background-position: left !important;
     background-repeat: no-repeat !important;
     background-size: 20px !important;
-    padding-left: 17px !important;
+    padding-left: 20px !important;
 }
 
 .calendar.typing, .location.typing, .user.typing, .calendar1.typing, .location1.typing {
@@ -568,11 +567,17 @@ form {
 }
 
 .bg {
-    background-color: var(--primary-color);
+    /* background-color: var(--primary-color); */
+    background-image: linear-gradient(to right, rgba(20, 20, 20, 0.6), rgba(20, 20, 20, 0.6)), url(../images/bg.jpg);
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed;
+    /* padding-left: 20px !important; */
     text-align: center;
 
     .row {
-        padding: 40px 20px !important;
+        /* padding: 40px 20px !important; */
     }
 
     h2,
@@ -651,7 +656,46 @@ footer {
     .foot {
         width: 1200px;
         padding: 20px !important;
-        margin: auto !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
         color: var(--fourth-color) !important;
+    }
+}
+
+.mobilecta {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 10px !important;
+    padding: 20px 10px !important;
+    border-radius: 10px;
+    display: none;
+    z-index: 1;
+    background-color: var(--secondary-color);
+    color: var(--fourth-color);
+    div {
+        margin: auto 0 !important;
+    }
+    p {
+        line-height: 1.5 !important;
+        font-size: 13px !important;
+    }
+
+    .img {
+        width: 50px;
+        background-color: #fff;
+        border-radius: 50%;
+        padding: 8px !important;
+        img {
+            width: 100%;
+        }
+    }
+
+    i {
+        background-color: var(--primary-color);
+        padding: 10px !important;
+        border-radius: 50px;
+        font-size: 20px;
     }
 }
