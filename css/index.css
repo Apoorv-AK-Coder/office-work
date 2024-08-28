@@ -367,7 +367,7 @@ form {
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url(../images/user.png);
     background-position: left !important;
     background-repeat: no-repeat !important;
-    background-size: 20px !important;
+    background-size: 17px !important;
     padding-left: 25px !important;
 }
 
@@ -375,8 +375,8 @@ form {
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url(../images/location.png);
     background-position: left !important;
     background-repeat: no-repeat !important;
-    background-size: 20px !important;
-    padding-left: 20px !important;
+    background-size: 25px !important;
+    padding-left: 25px !important;
 }
 
 .calendar.typing, .location.typing, .user.typing, .calendar1.typing, .location1.typing {
@@ -443,6 +443,10 @@ form {
         border-radius: 20px;
         background-color: rgb(0, 68, 153, 0.2);
         padding: 0 20px 20px 0 !important;
+    }
+
+    .hideshow1 {
+        display: none;
     }
 
     .right,
@@ -567,18 +571,8 @@ form {
 }
 
 .bg {
-    /* background-color: var(--primary-color); */
-    background-image: linear-gradient(to right, rgba(20, 20, 20, 0.6), rgba(20, 20, 20, 0.6)), url(../images/bg.jpg);
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
-    background-attachment: fixed;
-    /* padding-left: 20px !important; */
+    background-color: var(--primary-color);
     text-align: center;
-
-    .row {
-        /* padding: 40px 20px !important; */
-    }
 
     h2,
     p {
@@ -614,6 +608,10 @@ footer {
             i:hover {
                 background-color: var(--primary-color);
                 color: var(--fourth-color);
+            }
+
+            div {
+                gap: 12px;
             }
         }
 

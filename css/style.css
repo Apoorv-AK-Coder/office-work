@@ -189,14 +189,14 @@ ul#ui-id-1 {
             .right {
                 text-align: center !important;
                 margin: 0 auto !important;
-                width: 52%;
+                width: 38%;
 
                 p {
-                    font-size: 15px !important;
+                    font-size: 12px !important;
                 }
 
                 i {
-                    font-size: 19px !important;
+                    font-size: 15px !important;
                 }
             }
 
@@ -286,7 +286,7 @@ ul#ui-id-1 {
         }
     }
 
-    .bg {    
+    .bg {
         h2,
         p {
             max-width: 100% !important;
@@ -300,6 +300,14 @@ ul#ui-id-1 {
     .bg3 {
         .right, .left {
             padding-top: 85px !important;
+        }
+
+        .hideshow {
+            display: none;
+        }
+
+        .hideshow1 {
+            display: block !important;
         }
 
         .row {
@@ -356,5 +364,11 @@ ul#ui-id-1 {
     .mobilecta {
         display: flex !important;
         gap: 10px;
+    }
+
+    .uspsection {
+        .column {
+            padding: 0 20px !important;
+        }
     }
 }
