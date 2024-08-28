@@ -1,3 +1,4 @@
+//mobile hamburger
 setInterval(mufun, 1000);
 function mufun() {
     let b1 = document.getElementById("on");
@@ -18,18 +19,20 @@ function mufun() {
     })
 }
 
+
+//faq section
 document.addEventListener("DOMContentLoaded", function () {
     const buttons = [
-        { click:"click1", on: "faqon", off: "faqoff", view: "faq1" },
-        { click:"click2", on: "faqon1", off: "faqoff1", view: "faq2" },
-        { click:"click3", on: "faqon2", off: "faqoff2", view: "faq3" },
-        { click:"click4", on: "faqon3", off: "faqoff3", view: "faq4" },
-        { click:"click5", on: "faqon4", off: "faqoff4", view: "faq5" },
-        { click:"click6", on: "faqon5", off: "faqoff5", view: "faq6" },
-        { click:"click7", on: "faqon6", off: "faqoff6", view: "faq7" },
-        { click:"click8", on: "faqon7", off: "faqoff7", view: "faq8" },
-        { click:"click9", on: "faqon8", off: "faqoff8", view: "faq9" },
-        { click:"click10", on: "faqon9", off: "faqoff9", view: "faq10" }
+        { click: "click1", on: "faqon", off: "faqoff", view: "faq1" },
+        { click: "click2", on: "faqon1", off: "faqoff1", view: "faq2" },
+        { click: "click3", on: "faqon2", off: "faqoff2", view: "faq3" },
+        { click: "click4", on: "faqon3", off: "faqoff3", view: "faq4" },
+        { click: "click5", on: "faqon4", off: "faqoff4", view: "faq5" },
+        { click: "click6", on: "faqon5", off: "faqoff5", view: "faq6" },
+        { click: "click7", on: "faqon6", off: "faqoff6", view: "faq7" },
+        { click: "click8", on: "faqon7", off: "faqoff7", view: "faq8" },
+        { click: "click9", on: "faqon8", off: "faqoff8", view: "faq9" },
+        { click: "click10", on: "faqon9", off: "faqoff9", view: "faq10" }
     ];
 
     buttons.forEach(({ click, on, off, view }) => {
@@ -53,6 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
+// navigation active on click
 const currentPage = window.location.pathname.split("/").pop() || 'index.html';
 const navLinks = document.querySelectorAll('ul li a');
 navLinks.forEach(link => {
@@ -62,6 +67,8 @@ navLinks.forEach(link => {
 });
 
 
+
+// submenu
 setInterval(submenu, 1000);
 function submenu() {
     let airlinesnav = document.getElementById("airlinesnav");
@@ -100,15 +107,29 @@ function submenu() {
         }
     })
 
-    close.addEventListener("click", function() {
+    close.addEventListener("click", function () {
         airlinesnav.style.display = "none";
     })
 
-    close1.addEventListener("click", function() {
-            amtrak.style.display = "none";
+    close1.addEventListener("click", function () {
+        amtrak.style.display = "none";
     })
 
-    close2.addEventListener("click", function() {
-            travelnav.style.display = "none";
+    close2.addEventListener("click", function () {
+        travelnav.style.display = "none";
     })
 }
+
+
+// form placeholder
+const fields = document.querySelectorAll('.calendar, .calendar1, .user, .location, .location1');
+
+fields.forEach(field => {
+    field.addEventListener('input', function () {
+        if (this.value) {
+            this.classList.add('typing');
+        } else {
+            this.classList.remove('typing');
+        }
+    });
+});

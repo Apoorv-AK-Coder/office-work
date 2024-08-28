@@ -109,20 +109,20 @@
                     <div class="col3 d-flex">
                         <div class="column d-flex">
                             <input name="flying_from" type="text" placeholder="Origin" id="flying_from"
-                                onchange="checkdata();" onclick="this.select();" />
+                                onchange="checkdata();" onclick="this.select();" class="location" />
                                 <div class="arrowicon">
                                     <i class="fa-solid fa-right-left"></i>
                                 </div>
                             <input name="flying_to" type="text" placeholder="Destination" id="flying_to"
-                                onchange="checkdata1();" onclick="this.select();" />
+                                onchange="checkdata1();" onclick="this.select();" class="location1" />
                         </div>
                         <div class="column flex">
-                            <input autocomplete="off" class="cal mid-dspc-lt" data-val="true"
+                            <input autocomplete="off" class="cal calendar mid-dspc-lt" data-val="true"
                                 data-val-required="Please Select Depart Date" id="from" name="from"
                                 onclick="this.focus(); this.setSelectionRange(0, 9999);"
                                 placeholder="Departing Date" readonly style="cursor:pointer" type="text" value="" />
 
-                            <input autocomplete="off" class="pad-left return" data-val="true"
+                            <input autocomplete="off" class="pad-left calendar1 return" data-val="true"
                                 data-val-required="Please Select Return Date" id="to" name="to"
                                 onclick="this.focus(); this.setSelectionRange(0, 9999);" placeholder="Return Date"
                                 readonly style="cursor:pointer" type="text" value="" />
@@ -134,7 +134,7 @@
                                     <div class="form-group">
                                         <div id="divPaxInfo" data-toggle="collapse" data-target="#divPaxInfo_Fight1"
                                             class="form-control f-traveller collapsed" aria-expanded="false">
-                                            <span id="spanTotalPax_Flight">1 Traveller, Economy</span>
+                                            <span id="spanTotalPax_Flight" class="user">1 Traveller, Economy</span>
                                         </div>
                                     </div>
                                 </div>
