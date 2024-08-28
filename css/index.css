@@ -140,7 +140,7 @@ header {
     }
 
     form {
-        background-color: var(--sixth-color);
+        background-color: var(--fourth-color);
         border-radius: 10px;
         padding: 20px !important;
         margin-top: 20px !important;
@@ -154,12 +154,6 @@ header {
 
         .column {
             flex: 1 !important;
-        }
-
-        input,
-        .form-control,
-        .f-traveller {
-            border: none !important;
         }
     }
 
@@ -361,27 +355,29 @@ form {
 }
 
 .calendar, .calendar1 {
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url(../images/calendar.png);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url(../images/calendar.png);
     background-position: left !important;
     background-repeat: no-repeat !important;
     background-size: 20px !important;
-    padding-left: 15px !important;
+    padding-left: 20px !important;
 }
 
+
+
 .user {
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url(../images/user.png);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url(../images/user.png);
     background-position: left !important;
     background-repeat: no-repeat !important;
     background-size: 20px !important;
-    padding-left: 23px !important;
+    padding-left: 25px !important;
 }
 
 .location, .location1 {
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url(../images/location.png);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url(../images/location.png);
     background-position: left !important;
     background-repeat: no-repeat !important;
     background-size: 20px !important;
-    padding-left: 15px !important;
+    padding-left: 17px !important;
 }
 
 .calendar.typing, .location.typing, .user.typing, .calendar1.typing, .location1.typing {
