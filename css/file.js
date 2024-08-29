@@ -4,11 +4,12 @@ function mufun() {
     let b1 = document.getElementById("on");
     let b2 = document.getElementById("off");
     let view = document.getElementById("view");
+    let arrow = document.getElementById("arrowicon");
 
     b1.addEventListener("click", function () {
         if ((view.style.display = "none")) {
             view.style.display = "block";
-
+            arrow.style.zIndex = "-9999 !important";
         }
     })
 
@@ -69,56 +70,33 @@ navLinks.forEach(link => {
 
 
 // submenu
-setInterval(submenu, 1000);
-function submenu() {
-    let airlinesnav = document.getElementById("airlinesnav");
-    let amtrak = document.getElementById("amtraknav");
-    let travelnav = document.getElementById("travelnav");
+document.addEventListener('DOMContentLoaded', () => {
+    const sections = {
+        airlines: document.getElementById('airlinesnav'),
+        amtrak: document.getElementById('amtraknav'),
+        travel: document.getElementById('travelnav')
+    };
 
-    let airlines = document.getElementById('airlines');
-    let amtraka = document.getElementById('amtrak');
-    let travel = document.getElementById('travel');
+    const buttons = {
+        airlines: document.getElementById('airlines'),
+        amtrak: document.getElementById('amtrak'),
+        travel: document.getElementById('travel')
+    };
 
-    let close = document.getElementById('close');
-    let close1 = document.getElementById('close1');
-    let close2 = document.getElementById('close2');
-
-    airlines.addEventListener("click", function () {
-        if ((airlinesnav.style.display = "none")) {
-            airlinesnav.style.display = "block";
-            amtrak.style.display = "none";
-            travelnav.style.display = "none";
+    function toggleSection(sectionToToggle) {
+        const section = sections[sectionToToggle];
+        const isVisible = section.style.display === 'block';
+        Object.values(sections).forEach(sec => sec.style.display = 'none');
+        
+        if (!isVisible) {
+            section.style.display = 'block';
         }
-    })
+    }
 
-    amtraka.addEventListener("click", function () {
-        if ((amtrak.style.display = "none")) {
-            amtrak.style.display = "block";
-            travelnav.style.display = "none";
-            airlinesnav.style.display = "none";
-        }
-    })
-
-    travel.addEventListener("click", function () {
-        if ((travelnav.style.display = "none")) {
-            travelnav.style.display = "block";
-            amtrak.style.display = "none";
-            airlinesnav.style.display = "none";
-        }
-    })
-
-    close.addEventListener("click", function () {
-        airlinesnav.style.display = "none";
-    })
-
-    close1.addEventListener("click", function () {
-        amtrak.style.display = "none";
-    })
-
-    close2.addEventListener("click", function () {
-        travelnav.style.display = "none";
-    })
-}
+    Object.keys(buttons).forEach(key => {
+        buttons[key].addEventListener('click', () => toggleSection(key));
+    });
+});
 
 
 // form placeholder

@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        @import url('./css/style.css');
+
+        .container {
+            width: 100% !important;
+            max-width: 100% !important;
+            background-color: rgba(20, 20, 20, 0.95) !important;
+        }
+
+        .row {
+            width: 65% !important;
+            margin: auto !important;
+            height: 100vh;
+            
+            .column {
+                box-shadow: 0px 0px 5px 5px rgba(255, 255, 255, 0.2) !important;
+                background-color: var(--fourth-color) !important;
+                border-radius: 15px !important;
+
+                .icon {
+                    text-align: right;
+                    color: var(--fourth-color);
+                    font-size: 20px;
+                    margin: auto !important;
+                }
+
+                .right {
+                    padding: 30px 20px !important;
+                    text-align: center;
+                    height: fit-content;
+                }
+                
+                div {
+                    flex: 1 !important;
+                }
+
+                .logo {
+                    background-color: var(--secondary-color);
+                    padding: 10px !important;
+                    border-radius: 10px 10px 0 0;
+                    img {
+                        width: 30%;
+                    }
+                }
+
+                h3 {
+                    font-weight: 400 !important;
+                }
+
+                .highlight {
+                    color: red;
+                }
+
+                .fa-tags {
+                    font-size: 30px;
+                    border-radius: 100%;
+                    background-color: red;
+                    margin-bottom: 20px !important;
+                    padding: 10px !important;
+                    color: var(--fourth-color);
+                }
+
+                button {
+                    background-color: var(--sixth-color) !important;
+                    padding: 5px 50px !important;
+                    font-size: 20px !important;
+                    border-radius: 50px !important;
+                    box-shadow: 0 0 5px 5px rgba(20, 20, 20, 0.2);
+                    margin-top: 15px !important;
+                }
+
+                button:hover {
+                    background-color: red !important;
+                }
+
+                .left {
+                    background-image: url(./images/popupoffer.jpg);
+                    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    height: 310px;
+    padding: 100px !important;
+                }
+            }
+            
+        }
+
+        @media only screen and (max-width: 1024px) {
+            .row {
+                width: 95% !important;
+            }
+
+            img {
+                width: 60% !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container popup" id="popup">
+        <div class="row popup-content">
+            <div class="column">
+                <div class="logo flex">
+                    <div>
+                        <a href="./index.html"><img src="./images/logo.png"></a>
+                    </div>
+                    <div class="icon">
+                        <i class="fa-solid fa-xmark" onclick="parent.closePopup()"></i>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div class="left">
+                    </div>
+                    <div class="right">
+                        <i class="fa-solid fa-tags fa-beat"></i>
+                        <h3>Fly Smart, Pay Less: Connect with Our Experts for <i class="highlight">Exclusive 50% Off</i> on Online Flight Deals!</h3>
+                        <button>Call Us</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="https://kit.fontawesome.com/513bc71f1a.js" crossorigin="anonymous"></script>
+
+<script>
+    function showPopup() {
+        document.getElementById('popup-container').style.display = 'flex';
+    }
+
+    function closePopup() {
+        document.getElementById('popup-container').style.display = 'none';
+    }
+
+    window.onload = function () {
+        showPopup();
+    };
+</script>
+
+</html>

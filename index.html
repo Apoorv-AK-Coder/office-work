@@ -16,6 +16,41 @@
     <link href="./css/index.css" rel="stylesheet">
     <link href="./css/homepax.css" rel="stylesheet">
     <link href="./css/main.css" rel="stylesheet">
+
+    <style>
+        header {
+            z-index: 1;
+        }
+
+        .popup-container {
+            z-index: 1;
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 102vh !important;
+        }
+
+        #view,
+        .nav {
+            z-index: 9999 !important;
+        }
+
+        .popup-content {
+            background-color: transparent;
+            width: 100% !important;
+            position: relative;
+            z-index: 1;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -36,7 +71,6 @@
                                         id="airlines"></i></li>
                                 <div id="airlinesnav">
                                     <ul>
-                                        <i class="fa-solid fa-xmark" id="close"></i>
                                         <li><a href="./delta-airlines-flights-reservations.aspx">Delta Airlines</a></li>
                                         <li><a href="./alaska-airlines-flights-reservations.aspx">Alaska Airlines</a>
                                         </li>
@@ -55,7 +89,6 @@
                                         id="amtrak"></i></li>
                                 <div id="amtraknav">
                                     <ul>
-                                        <i class="fa-solid fa-xmark" id="close1"></i>
                                         <li><a href="./amtrak/vacations.aspx">Amtrak Vacations</a></li>
                                         <li><a href="./amtrak/trains.aspx">Amtrak Trains</a></li>
                                         <li><a href="./amtrak/guest-rewards.aspx">Amtrak Guest Rewards</a></li>
@@ -64,7 +97,6 @@
                                 <li><a href="#">Travel </a><i class="fa-solid fa-angle-down" id="travel"></i></li>
                                 <div id="travelnav">
                                     <ul>
-                                        <i class="fa-solid fa-xmark" id="close2"></i>
                                         <li><a href="./travel/travel-insurance.aspx">Travel Insurance</a></li>
                                         <li><a href="./travel/budget-travel.aspx">Budget Travel</a></li>
                                     </ul>
@@ -77,7 +109,9 @@
                         <div class="column right gap1">
                             <a href="tel:+18009183039"><i class="fa-solid fa-phone-volume fa-shake"></i></a>
                             <div>
-                                <a href="tel:+18009183039"><p>Call us 24/7</p></a>
+                                <a href="tel:+18009183039">
+                                    <p>Call us 24/7</p>
+                                </a>
                             </div>
                         </div>
                         <div class="column" id="on">
@@ -88,19 +122,6 @@
             </div>
         </div>
     </header>
-
-    <div class="mobilecta">
-        <div class="img">
-            <img src="./images/customer-support.png" alt="customer-support">
-        </div>
-        <div>
-            <p><b>Need Help Booking</b></p>
-            <p>Our agent is ready! Call us 24/7</p>
-        </div>
-        <div>
-            <i class="fa-solid fa-phone-volume fa-beat"></i>
-        </div>
-    </div>
 
     <div class="container bg1">
         <div class="row flex">
@@ -123,22 +144,22 @@
                         <div class="column d-flex">
                             <input name="flying_from" type="text" placeholder="Origin" id="flying_from"
                                 onchange="checkdata();" onclick="this.select();" class="location" />
-                                <div class="arrowicon">
-                                    <i class="fa-solid fa-right-left"></i>
-                                </div>
+                            <div class="arrowicon" id="arrowicon">
+                                <i class="fa-solid fa-right-left"></i>
+                            </div>
                             <input name="flying_to" type="text" placeholder="Destination" id="flying_to"
                                 onchange="checkdata1();" onclick="this.select();" class="location1" />
                         </div>
                         <div class="column flex">
                             <input autocomplete="off" class="cal calendar mid-dspc-lt" data-val="true"
                                 data-val-required="Please Select Depart Date" id="from" name="from"
-                                onclick="this.focus(); this.setSelectionRange(0, 9999);"
-                                placeholder="Depart" readonly style="cursor:pointer" type="text" value="" />
+                                onclick="this.focus(); this.setSelectionRange(0, 9999);" placeholder="Depart" readonly
+                                style="cursor:pointer" type="text" value="" />
 
                             <input autocomplete="off" class="pad-left calendar1 return" data-val="true"
                                 data-val-required="Please Select Return Date" id="to" name="to"
-                                onclick="this.focus(); this.setSelectionRange(0, 9999);" placeholder="Return"
-                                readonly style="cursor:pointer" type="text" value="" />
+                                onclick="this.focus(); this.setSelectionRange(0, 9999);" placeholder="Return" readonly
+                                style="cursor:pointer" type="text" value="" />
                         </div>
 
                         <div class="column d-flex">
@@ -220,8 +241,8 @@
                             </div>
                             <div class="button">
                                 <button type="submit" id="flight_submit" name="flight_submit"
-                                onclick="return CheckValidation();"><i
-                                class="fa-solid fa-magnifying-glass"></i></button>
+                                    onclick="return CheckValidation();"><i
+                                        class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                         </div>
                     </div>
@@ -630,7 +651,9 @@
                                     <i class="fa-solid fa-caret-down" id="faqon"></i>
                                 </div>
                             </div>
-                            <p id="faq1">FaresMatch has a team of dedicated and experienced travel agents who are present 24*7 to guide their customers with bookings, making changes and cancellations to your flight tickets. Their flight deals are ideal for last-minute flight booking.</p>
+                            <p id="faq1">FaresMatch has a team of dedicated and experienced travel agents who are
+                                present 24*7 to guide their customers with bookings, making changes and cancellations to
+                                your flight tickets. Their flight deals are ideal for last-minute flight booking.</p>
                         </div>
 
                         <div class="main">
@@ -641,7 +664,9 @@
                                     <i class="fa-solid fa-caret-down" id="faqon1"></i>
                                 </div>
                             </div>
-                            <p id="faq2">FaresMatch has partnered with numerous airlines across the world. Some of the popular airlines are- Delta, Alaska, American Airlines, Frontier, JetBlue and many more. Hence it offers a wide range of flight options.</p>
+                            <p id="faq2">FaresMatch has partnered with numerous airlines across the world. Some of the
+                                popular airlines are- Delta, Alaska, American Airlines, Frontier, JetBlue and many more.
+                                Hence it offers a wide range of flight options.</p>
                         </div>
 
                         <div class="main">
@@ -652,7 +677,9 @@
                                     <i class="fa-solid fa-caret-down" id="faqon2"></i>
                                 </div>
                             </div>
-                            <p id="faq3">The vacation packages have proven to be ideal for all-inclusive and pre-planned vacations. Moreover, with vacation packages, you are promised further discounted rates as compared to booking separately.</p>
+                            <p id="faq3">The vacation packages have proven to be ideal for all-inclusive and pre-planned
+                                vacations. Moreover, with vacation packages, you are promised further discounted rates
+                                as compared to booking separately.</p>
                         </div>
 
                         <div class="main">
@@ -663,19 +690,23 @@
                                     <i class="fa-solid fa-caret-down" id="faqon3"></i>
                                 </div>
                             </div>
-                            <p id="faq4">With FaresMatch, customers who have booked their flights are entitled to cancel their flights within 24 hours of booking by contacting 24x7 customer service.</p>
+                            <p id="faq4">With FaresMatch, customers who have booked their flights are entitled to cancel
+                                their flights within 24 hours of booking by contacting 24x7 customer service.</p>
                         </div>
 
                         <div class="main">
                             <div class="flex">
-                                <p id="click5"><b>Does FaresMatch help customers book domestic & international flights?</b>
+                                <p id="click5"><b>Does FaresMatch help customers book domestic & international
+                                        flights?</b>
                                 </p>
                                 <div class="icon">
                                     <i class="fa-solid fa-caret-up" id="faqoff4"></i>
                                     <i class="fa-solid fa-caret-down" id="faqon4"></i>
                                 </div>
                             </div>
-                            <p id="faq5">The site is expert in searching for the lowest fares for both domestic and international destinations. Customers no longer need to spend hours finding ideal fares for their travel as the site easily finds them.</p>
+                            <p id="faq5">The site is expert in searching for the lowest fares for both domestic and
+                                international destinations. Customers no longer need to spend hours finding ideal fares
+                                for their travel as the site easily finds them.</p>
                         </div>
                     </div>
 
@@ -688,7 +719,8 @@
                                     <i class="fa-solid fa-caret-down" id="faqon5"></i>
                                 </div>
                             </div>
-                            <p id="faq6">In case of any problems or queries, travelers are free to contact the customer service of the site through the following ways:<br>
+                            <p id="faq6">In case of any problems or queries, travelers are free to contact the customer
+                                service of the site through the following ways:<br>
                                 ● Phone: <a href="tel:+18009183039">+1-800-918-3039</a><br>
                                 ● E-mail: <a href="mailto:support@faresmatch.com">support@faresmatch.com</a><br>
                                 ● E-mail: <a href="mailto:bookings@faresmatch.com">bookings@faresmatch.com</a></p>
@@ -702,7 +734,9 @@
                                     <i class="fa-solid fa-caret-down" id="faqon6"></i>
                                 </div>
                             </div>
-                            <p id="faq7">FaresMatch is a 100% legit site. The site has always prioritised the safety and satisfaction of customers. Also, there are no hidden fees charged by the site proving it to be genuine. </p>
+                            <p id="faq7">FaresMatch is a 100% legit site. The site has always prioritised the safety and
+                                satisfaction of customers. Also, there are no hidden fees charged by the site proving it
+                                to be genuine. </p>
                         </div>
 
                         <div class="main">
@@ -713,29 +747,37 @@
                                     <i class="fa-solid fa-caret-down" id="faqon7"></i>
                                 </div>
                             </div>
-                            <p id="faq8">Yes, in case of cancellation of flights, the site promises their customers a refund. However, the refund and cancellation policy might vary on the specific terms and conditions of the airline.</p>
+                            <p id="faq8">Yes, in case of cancellation of flights, the site promises their customers a
+                                refund. However, the refund and cancellation policy might vary on the specific terms and
+                                conditions of the airline.</p>
                         </div>
 
                         <div class="main">
                             <div class="flex">
-                                <p id="click9"><b>Can customers avail of cheap last-minute flights with FaresMatch?</b></p>
+                                <p id="click9"><b>Can customers avail of cheap last-minute flights with FaresMatch?</b>
+                                </p>
                                 <div class="icon">
                                     <i class="fa-solid fa-caret-up" id="faqoff8"></i>
                                     <i class="fa-solid fa-caret-down" id="faqon8"></i>
                                 </div>
                             </div>
-                            <p id="faq9">FaresMatch understands that problems can arise at times. Hence, they always try their best to provide last-minute flights to travelers. Not only this but with the site, customers are also promised great discounts on their last-minute flights.</p>
+                            <p id="faq9">FaresMatch understands that problems can arise at times. Hence, they always try
+                                their best to provide last-minute flights to travelers. Not only this but with the site,
+                                customers are also promised great discounts on their last-minute flights.</p>
                         </div>
 
                         <div class="main">
                             <div class="flex">
-                                <p id="click10"><b>Besides flight bookings, what are FaresMatch's other services?</b></p>
+                                <p id="click10"><b>Besides flight bookings, what are FaresMatch's other services?</b>
+                                </p>
                                 <div class="icon">
                                     <i class="fa-solid fa-caret-up" id="faqoff9"></i>
                                     <i class="fa-solid fa-caret-down" id="faqon9"></i>
                                 </div>
                             </div>
-                            <p id="faq10">Besides offering great discounts on flights, with FaresMatch, customers can also book cheaper hotels and accommodations along with car rentals. Hurry up and visit the site to avail newest offers.</p>
+                            <p id="faq10">Besides offering great discounts on flights, with FaresMatch, customers can
+                                also book cheaper hotels and accommodations along with car rentals. Hurry up and visit
+                                the site to avail newest offers.</p>
                         </div>
                     </div>
                 </div>
@@ -746,26 +788,32 @@
     <div class="container bg3">
         <div class="row d-flex row2">
             <div class="left">
-            <div class="column">
-                <img src="./images/carrent.jpg" alt="Car Rent" class="hideshow">
-                <img src="./images/carrent1.jpeg" alt="Car Rent" class="hideshow1">
-                <div>
-                    <p>CAR RENTAL</p>
-                    <h4>Affordable Car Rentals Deals at <b><a href="https://www.faresmatch.com/">FaresMatch.com</a></b>!</h4>
-                    <a href="#"><p style="color: var(--primary-color); "><b>Book Now</b></p></a>
+                <div class="column">
+                    <img src="./images/carrent.jpg" alt="Car Rent" class="hideshow">
+                    <img src="./images/carrent1.jpeg" alt="Car Rent" class="hideshow1">
+                    <div>
+                        <p>CAR RENTAL</p>
+                        <h4>Affordable Car Rentals Deals at <b><a
+                                    href="https://www.faresmatch.com/">FaresMatch.com</a></b>!</h4>
+                        <a href="#">
+                            <p style="color: var(--primary-color); "><b>Book Now</b></p>
+                        </a>
+                    </div>
                 </div>
-            </div>
             </div>
 
             <div class="right">
-            <div class="column">
-                <img src="./images/hotelrent.jpg" alt="Hotel Rent" class="hideshow">
-                <img src="./images/hotelrent1.jpeg" alt="Hotel Rent" class="hideshow1">
-                <div>
-                    <p>HOTELS</p>
-                    <h4>Find the Perfect Hotel Deals on <a href="https://www.faresmatch.com/"><b>FaresMatch.com</b></a>!</h4>
-                    <a href="#"><p style="color: var(--primary-color);"><b>Book Now</b></p></a>
-                </div>
+                <div class="column">
+                    <img src="./images/hotelrent.jpg" alt="Hotel Rent" class="hideshow">
+                    <img src="./images/hotelrent1.jpeg" alt="Hotel Rent" class="hideshow1">
+                    <div>
+                        <p>HOTELS</p>
+                        <h4>Find the Perfect Hotel Deals on <a
+                                href="https://www.faresmatch.com/"><b>FaresMatch.com</b></a>!</h4>
+                        <a href="#">
+                            <p style="color: var(--primary-color);"><b>Book Now</b></p>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -979,11 +1027,46 @@
         </div>
     </footer>
 
+    <div class="mobilecta">
+        <div class="img">
+            <img src="./images/customer-support.jpg" alt="customer-support">
+        </div>
+        <div>
+            <p><b>Need Help Booking</b></p>
+            <p>Our agent is ready! Call us 24/7</p>
+        </div>
+        <div>
+            <i class="fa-solid fa-phone-volume fa-beat"></i>
+        </div>
+    </div>
+
+    <div id="popup-container" class="popup-container">
+        <div class="popup-content">
+            <iframe src="popup.html" title="Popup"></iframe>
+        </div>
+    </div>
+
 </body>
 <script src="./css/file.js"></script>
 <script src="./css/slider.js"></script>
 <script src="./css/bootstrap.js"></script>
 <script src="./css/jquery.js"></script>
 <script src="https://kit.fontawesome.com/513bc71f1a.js" crossorigin="anonymous"></script>
+
+<script>
+    function showPopup() {
+        document.getElementById('popup-container').style.display = 'flex';
+    }
+
+    function closePopup() {
+        document.getElementById('popup-container').style.display = 'none';
+        document.getElementsByClassName('nav').style.zIndea = '9999 !important';
+        document.getElementById('header').style.zIndex = '9999 !important';
+    }
+
+    window.onload = function () {
+        setTimeout(showPopup, 2000);
+    };
+</script>
 
 </html>
