@@ -14,11 +14,17 @@
         }
 
         .row {
-            width: 65% !important;
+            /* width: 65% !important; */
             margin: auto !important;
             height: 100vh;
+            text-align: center;
             
-            .column {
+            img {
+                width: 40%;
+                margin: 0 auto !important;
+            }
+
+            /* .column {
                 box-shadow: 0px 0px 5px 5px rgba(255, 255, 255, 0.2) !important;
                 background-color: var(--fourth-color) !important;
                 border-radius: 15px !important;
@@ -31,11 +37,12 @@
                 }
 
                 .right {
+                    flex: 1 !important;
                     padding: 30px 20px !important;
                     text-align: center;
                     height: fit-content;
                 }
-                
+
                 div {
                     flex: 1 !important;
                 }
@@ -44,6 +51,7 @@
                     background-color: var(--secondary-color);
                     padding: 10px !important;
                     border-radius: 10px 10px 0 0;
+
                     img {
                         width: 30%;
                     }
@@ -80,24 +88,34 @@
                 }
 
                 .left {
+                    flex: 1 !important;
                     background-image: url(./images/popupoffer.jpg);
                     background-position: center !important;
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
-    height: 310px;
-    padding: 100px 0 !important;
+                    background-repeat: no-repeat !important;
+                    background-size: cover !important;
+                    height: 310px;
+                    padding: 100px 0 !important;
                 }
+            } */
+
+            i {
+                color: var(--fourth-color);
+                background-color: var(--secondary-color) !important;
+                padding: 10px 12px !important;
+                border-radius: 50px;
+                font-size: 20px;
+                cursor: pointer;
             }
-            
+
         }
 
         @media only screen and (max-width: 1024px) {
             .row {
-                width: 95% !important;
+                width: 100% !important;
             }
 
             img {
-                width: 60% !important;
+                width: 100% !important;
             }
         }
     </style>
@@ -107,12 +125,13 @@
     <div class="container popup" id="popup">
         <div class="row popup-content">
             <div class="column">
-                <div class="logo flex">
+                <a href="tel:+10000000000"><img src="./images/PopupFaresMatch.png"><br></a>
+                <i class="fa-solid fa-xmark" onclick="parent.closePopup()"></i>
+                <!-- <div class="logo flex">
                     <div>
                         <a href="./index.html"><img src="./images/logo.png"></a>
                     </div>
                     <div class="icon">
-                        <i class="fa-solid fa-xmark" onclick="parent.closePopup()"></i>
                     </div>
                 </div>
                 <div class="d-flex">
@@ -123,7 +142,8 @@
                         <h3>Fly Smart, Pay Less: Connect with Our Experts for <i class="highlight">Exclusive 50% Off</i> on Online Flight Deals!</h3>
                         <button>Call Us</button>
                     </div>
-                </div>
+                </div> -->
+
             </div>
         </div>
     </div>
