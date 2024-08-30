@@ -9,13 +9,14 @@ function mufun() {
     b1.addEventListener("click", function () {
         if ((view.style.display = "none")) {
             view.style.display = "block";
-            arrow.style.zIndex = "-9999 !important";
+            arrow.style.display = "none";
         }
     })
 
     b2.addEventListener("click", function () {
         if ((view.style.display = "block")) {
             view.style.display = "none";
+            arrow.style.display = "block";
         }
     })
 }
@@ -65,37 +66,6 @@ navLinks.forEach(link => {
     if (link.getAttribute('href') === `./${currentPage}` || currentPage === '') {
         link.parentElement.classList.add('active');
     }
-});
-
-
-
-// submenu
-document.addEventListener('DOMContentLoaded', () => {
-    const sections = {
-        airlines: document.getElementById('airlinesnav'),
-        amtrak: document.getElementById('amtraknav'),
-        travel: document.getElementById('travelnav')
-    };
-
-    const buttons = {
-        airlines: document.getElementById('airlines'),
-        amtrak: document.getElementById('amtrak'),
-        travel: document.getElementById('travel')
-    };
-
-    function toggleSection(sectionToToggle) {
-        const section = sections[sectionToToggle];
-        const isVisible = section.style.display === 'block';
-        Object.values(sections).forEach(sec => sec.style.display = 'none');
-        
-        if (!isVisible) {
-            section.style.display = 'block';
-        }
-    }
-
-    Object.keys(buttons).forEach(key => {
-        buttons[key].addEventListener('click', () => toggleSection(key));
-    });
 });
 
 

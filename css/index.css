@@ -23,7 +23,7 @@ header {
     }
 
     #off,
-    #on {
+    #on, .newnav, .navlogo {
         display: none;
     }
 
@@ -31,7 +31,7 @@ header {
         border: 1px solid var(--fourth-color);
         display: flex;
         border-radius: 50px;
-        width: 5%;
+        width: 3%;
         margin: auto !important;
         
         p {
@@ -54,8 +54,8 @@ header {
     ul {
         list-style-type: none !important;
         display: flex !important;
-        gap: 10px !important;
-        justify-content: right;
+        gap: 5px !important;
+        justify-content: center;
     }
 
     ul li {
@@ -73,41 +73,6 @@ header {
     ul li.active {
         text-decoration: underline !important;
         color: var(--fourth-color) !important;
-    }
-
-    #airlinesnav, #amtraknav, #travelnav {
-        position: absolute;
-        background-color: var(--secondary-color);
-        right: 0;
-        top: 55px;
-        padding: 10px !important;
-        width: fit-content;
-        border-radius: 5px;
-        ul {
-            flex-direction: column;
-        }
-
-        #close, #close1, #close2 {
-            color: var(--fourth-color);
-            text-align: right !important;
-            font-size: 20px;
-            margin-right: -10px !important;
-        }
-    }
-
-    #airlinesnav {
-        left: 47%;
-        display: none;
-    }
-    
-    #amtraknav {
-        display: none;
-        left: 57%;
-    }
-
-    #travelnav {
-        display: none;
-        left: 64%;
     }
 }
 

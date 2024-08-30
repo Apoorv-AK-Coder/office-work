@@ -9,8 +9,8 @@
 
 
 * {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
     box-sizing: border-box;
 }
 
@@ -123,16 +123,16 @@ ul#ui-id-1 {
         border: 1px solid var(--fourth-color);
         display: flex;
         border-radius: 50px;
-        width: 7%;
+        width: 5%;
         margin: auto !important;
-        
+
         p {
             margin: auto !important;
             color: var(--fourth-color);
             margin-top: 6px !important;
             font-size: 17px;
         }
-        
+
         i {
             color: var(--primary-color) !important;
             background-color: var(--fourth-color);
@@ -160,25 +160,31 @@ ul#ui-id-1 {
         font-size: 14px !important;
         color: var(--fourth-color) !important;
     }
-    
+
     ul li:hover,
     ul li.active {
         text-decoration: underline !important;
         color: var(--fourth-color) !important;
     }
 
-    #airlinesnav, #amtraknav, #travelnav {
+    #airlinesnav,
+    #amtraknav,
+    #travelnav {
         position: absolute;
         background-color: var(--secondary-color);
         right: 0;
         top: 55px;
-        padding: 5px 15px 15px 15px !important;
+        padding: 10px !important;
         width: fit-content;
+        border-radius: 5px;
+
         ul {
             flex-direction: column;
         }
 
-        #close, #close1, #close2 {
+        #close,
+        #close1,
+        #close2 {
             color: var(--fourth-color);
             text-align: right !important;
             font-size: 20px;
@@ -187,32 +193,32 @@ ul#ui-id-1 {
     }
 
     #airlinesnav {
-        left: 42%;
+        left: 47%;
         display: none;
     }
-    
+
     #amtraknav {
         display: none;
-        left: 51%;
+        left: 57%;
     }
 
     #travelnav {
         display: none;
-        left: 57%;
+        left: 64%;
     }
 }
 
 .newfooter {
-    background-color: var(--secondary-color);
+    background-color: var(--third-color) !important;
 
     .mainfooter {
         width: 1200px;
-        padding: 40px 20px 0 20px;
-        margin: auto;
+        padding: 40px 20px 0 20px !important;
+        margin: auto !important;
 
         h3,
         p {
-            color: var(--fourth-color);
+            color: var(--fourth-color) !important;
         }
 
         .social {
@@ -221,7 +227,7 @@ ul#ui-id-1 {
             i {
                 background-color: var(--fourth-color);
                 color: var(--secondary-color);
-                padding: 10px;
+                padding: 10px !important;
                 border-radius: 50px;
             }
 
@@ -229,13 +235,17 @@ ul#ui-id-1 {
                 background-color: var(--primary-color);
                 color: var(--fourth-color);
             }
+
+            div {
+                gap: 12px;
+            }
         }
 
         .links {
             border-top: 1px solid var(--fourth-color);
             border-bottom: 1px solid var(--fourth-color);
-            padding: 20px 0;
-            margin-top: 20px;
+            padding: 20px 0 !important;
+            margin-top: 20px !important;
 
             a::before {
                 content: "\f105";
@@ -246,32 +256,33 @@ ul#ui-id-1 {
         }
 
         .column {
-            flex: 1;
+            flex: 1 !important;
 
             b {
                 font-size: 18px;
             }
 
             a {
-                color: var(--fourth-color);
-                text-decoration: none;
+                color: var(--fourth-color) !important;
+                text-decoration: none !important;
             }
 
             a:hover {
-                text-decoration: underline dashed;
+                text-decoration: underline dashed !important;
             }
         }
 
         img {
-            width: 200px;
+            width: 200px !important;
         }
     }
 
     .foot {
         width: 1200px;
-        padding: 20px;
-        margin: auto;
-        color: var(--fourth-color);
+        padding: 20px !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
+        color: var(--fourth-color) !important;
     }
 }
 
@@ -284,6 +295,11 @@ ul#ui-id-1 {
         gap: 0 !important;
     }
 
+    #view,
+    .nav {
+        z-index: 9999 !important;
+    }
+
     .newheader {
         .head {
             width: 100% !important;
@@ -291,9 +307,13 @@ ul#ui-id-1 {
             .right {
                 text-align: center !important;
                 margin: 0 auto !important;
-                width: 52%;
+                width: 38%;
 
                 p {
+                    font-size: 12px !important;
+                }
+
+                i {
                     font-size: 15px !important;
                 }
             }
@@ -308,18 +328,19 @@ ul#ui-id-1 {
             }
 
             .nav {
-                z-index: 1 !important;
                 display: none;
                 position: absolute;
                 box-shadow: 0px 2px 2px rgba(20, 20, 20, 0.5);
                 padding: 30px 20px !important;
                 top: 0;
                 right: 0;
-                width: 50%;
+                width: 70%;
                 height: 100vh;
                 background-color: var(--third-color);
+                overflow-y: auto;
 
-                i, #on i {
+                i,
+                #on i {
                     color: var(--fourth-color) !important;
                 }
 
@@ -334,10 +355,14 @@ ul#ui-id-1 {
             }
         }
 
-        #airlinesnav, #amtraknav, #travelnav {
+        #airlinesnav,
+        #amtraknav,
+        #travelnav {
             position: relative !important;
             top: 0 !important;
             left: 0 !important;
+            width: 100% !important;
+            background-color: transparent !important;
         }
     }
 
@@ -352,6 +377,7 @@ ul#ui-id-1 {
     .newfooter {
         .foot {
             width: 100% !important;
+            margin-bottom: 100px !important;
         }
 
         .mainfooter {
