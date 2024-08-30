@@ -205,6 +205,7 @@ ul#ui-id-1 {
             }
 
             .nav {
+                background-color: var(--fourth-color) !important;
                 display: none;
                 position: absolute;
                 box-shadow: 0px 2px 2px rgba(20, 20, 20, 0.5);
@@ -216,13 +217,17 @@ ul#ui-id-1 {
                 background-color: var(--third-color);
                 overflow-y: auto;
 
-                i, #on i {
+                #on i {
                     color: var(--fourth-color) !important;
                 }
 
                 ul {
                     text-align: left !important;
                     flex-direction: column !important;
+                }
+
+                i, li, a {
+                    color: var(--third-color) !important;
                 }
             }
 
@@ -253,7 +258,7 @@ ul#ui-id-1 {
         background-color: var(--primary-color);
         border-radius: 10px;
         padding: 15px 5px !important;
-        h4 {
+        h4, i {
             color: var(--fourth-color) !important;
             font-size: 17px !important;
             margin: 0 !important;
