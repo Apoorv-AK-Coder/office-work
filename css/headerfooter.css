@@ -9,8 +9,8 @@
 
 
 * {
-    margin: 0 !important;
-    padding: 0 !important;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -115,7 +115,7 @@ ul#ui-id-1 {
     }
 
     #off,
-    #on {
+    #on, .newnav, .navlogo {
         display: none;
     }
 
@@ -123,16 +123,16 @@ ul#ui-id-1 {
         border: 1px solid var(--fourth-color);
         display: flex;
         border-radius: 50px;
-        width: 5%;
+        width: 3%;
         margin: auto !important;
-
+        
         p {
             margin: auto !important;
             color: var(--fourth-color);
             margin-top: 6px !important;
             font-size: 17px;
         }
-
+        
         i {
             color: var(--primary-color) !important;
             background-color: var(--fourth-color);
@@ -146,8 +146,8 @@ ul#ui-id-1 {
     ul {
         list-style-type: none !important;
         display: flex !important;
-        gap: 10px !important;
-        justify-content: right;
+        gap: 5px !important;
+        justify-content: center;
     }
 
     ul li {
@@ -160,51 +160,11 @@ ul#ui-id-1 {
         font-size: 14px !important;
         color: var(--fourth-color) !important;
     }
-
+    
     ul li:hover,
     ul li.active {
         text-decoration: underline !important;
         color: var(--fourth-color) !important;
-    }
-
-    #airlinesnav,
-    #amtraknav,
-    #travelnav {
-        position: absolute;
-        background-color: var(--secondary-color);
-        right: 0;
-        top: 55px;
-        padding: 10px !important;
-        width: fit-content;
-        border-radius: 5px;
-
-        ul {
-            flex-direction: column;
-        }
-
-        #close,
-        #close1,
-        #close2 {
-            color: var(--fourth-color);
-            text-align: right !important;
-            font-size: 20px;
-            margin-right: -10px !important;
-        }
-    }
-
-    #airlinesnav {
-        left: 47%;
-        display: none;
-    }
-
-    #amtraknav {
-        display: none;
-        left: 57%;
-    }
-
-    #travelnav {
-        display: none;
-        left: 64%;
     }
 }
 
@@ -328,18 +288,18 @@ ul#ui-id-1 {
             }
 
             .nav {
+                background-color: var(--fourth-color) !important;
                 display: none;
                 position: absolute;
                 box-shadow: 0px 2px 2px rgba(20, 20, 20, 0.5);
-                padding: 30px 20px !important;
+                padding: 20px !important;
                 top: 0;
                 right: 0;
-                width: 70%;
+                width: 60%;
                 height: 100vh;
                 background-color: var(--third-color);
                 overflow-y: auto;
 
-                i,
                 #on i {
                     color: var(--fourth-color) !important;
                 }
@@ -348,6 +308,12 @@ ul#ui-id-1 {
                     text-align: left !important;
                     flex-direction: column !important;
                 }
+
+                i,
+                li,
+                a {
+                    color: var(--third-color) !important;
+                }
             }
 
             .icon {
@@ -355,14 +321,36 @@ ul#ui-id-1 {
             }
         }
 
-        #airlinesnav,
-        #amtraknav,
-        #travelnav {
-            position: relative !important;
-            top: 0 !important;
-            left: 0 !important;
-            width: 100% !important;
-            background-color: transparent !important;
+        .newnav {
+            display: block !important;
+            margin-top: 20px !important;
+            padding-top: 20px !important;
+            border-top: 2px solid var(--primary-color);
+        }
+
+        #off,
+        #on {
+            display: block !important;
+            text-align: right !important;
+            font-size: 20px !important;
+            color: var(--fourth-color);
+        }
+
+        .navlogo {
+            display: block !important;
+            text-align: center;
+            margin-top: 30px !important;
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            padding: 15px 5px !important;
+
+            h4,
+            i {
+                color: var(--fourth-color) !important;
+                font-size: 17px !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
         }
     }
 

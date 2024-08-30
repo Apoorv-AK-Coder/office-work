@@ -226,13 +226,19 @@ ul#ui-id-1 {
                     flex-direction: column !important;
                 }
 
-                i, li, a {
+                i,
+                li,
+                a {
                     color: var(--third-color) !important;
                 }
             }
 
             .icon {
                 color: var(--fourth-color);
+            }
+
+            .ico {
+                display: inline-block !important;
             }
         }
 
@@ -244,30 +250,33 @@ ul#ui-id-1 {
         }
 
         #off,
-    #on {
-        display: block !important;
-        text-align: right !important;
-        font-size: 20px !important;
-        color: var(--fourth-color);
-    }
-
-    .navlogo {
-        display: block !important;
-        text-align: center;
-        margin-top: 30px !important;
-        background-color: var(--primary-color);
-        border-radius: 10px;
-        padding: 15px 5px !important;
-        h4, i {
-            color: var(--fourth-color) !important;
-            font-size: 17px !important;
-            margin: 0 !important;
-            padding: 0 !important;
+        #on {
+            display: block !important;
+            text-align: right !important;
+            font-size: 20px !important;
+            color: var(--fourth-color);
         }
-    }
+
+        .navlogo {
+            display: block !important;
+            text-align: center;
+            margin-top: 30px !important;
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            padding: 15px 5px !important;
+
+            h4,
+            i {
+                color: var(--fourth-color) !important;
+                font-size: 17px !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+        }
     }
 
     form {
+
         input,
         select,
         textarea {
@@ -303,6 +312,7 @@ ul#ui-id-1 {
     }
 
     .bg {
+
         h2,
         p {
             max-width: 100% !important;
@@ -310,11 +320,15 @@ ul#ui-id-1 {
     }
 
     .bg2 {
-        h4 {font-size: 17px !important;}
+        h4 {
+            font-size: 17px !important;
+        }
     }
 
     .bg3 {
-        .right, .left {
+
+        .right,
+        .left {
             padding-top: 85px !important;
         }
 
@@ -331,7 +345,7 @@ ul#ui-id-1 {
         }
     }
 
-    .faq {    
+    .faq {
         .gap2 {
             gap: 0 !important;
         }
@@ -345,11 +359,11 @@ ul#ui-id-1 {
         img {
             width: 40% !important;
         }
-    
-        .column {    
+
+        .column {
             .col {
                 text-align: center !important;
-    
+
                 .center {
                     border-right: 0 !important;
                     border-left: 0 !important;
@@ -385,6 +399,24 @@ ul#ui-id-1 {
     .uspsection {
         .column {
             padding: 0 20px !important;
+        }
+    }
+
+    .bookingpopup {
+        .center {
+            width: 100% !important;
+
+            .images {
+                width: 40% !important;
+            }
+        }
+
+        p {
+            font-size: 14px !important;
+        }
+
+        h4 {
+            margin-top: 10px !important;
         }
     }
 }

@@ -54,7 +54,7 @@
 
 <body>
     <header>
-        <div class="newheader">
+        <div class="newheader" id="newhead">
             <div class="container">
                 <div class="head">
                     <div class="flex  gap1">
@@ -63,26 +63,31 @@
                         </div>
                         <div class="column nav" id="view">
                             <i class="fa-solid fa-xmark icon" id="off" style="margin-bottom: 20px !important;"></i>
-                            
-                            <!-- <a href="./index.html" class="navlogo"><img src="./images/logo.png"></a> -->
                             <ul>
-                                <li><a href="./index.html"><i class="fa-solid fa-house"></i> Home</a></li>
-                                <li><a href="./about-us.aspx"><i class="fa-solid fa-address-card"></i> About Us</a></li>
-                                <li><a href="./flights.aspx"><i class="fa-solid fa-plane-departure"></i> Flights</a></li>
-                                <li><a href="./deals.aspx"><i class="fa-solid fa-gift"></i> Deals</a></li>
-                                <li><a href="./blog.aspx"><i class="fa-brands fa-blogger-b"></i> Blog</a></li>
-                                <li><a href="./contact-us.aspx"><i class="fa-solid fa-address-book"></i> Contact Us</a></li>
+                                <li><a href="./index.html"><i class="fa-solid fa-house ico"></i> Home</a></li>
+                                <li><a href="./about-us.aspx"><i class="fa-solid fa-address-card ico"></i> About Us</a></li>
+                                <li><a href="./flights.aspx"><i class="fa-solid fa-plane-departure ico"></i> Flights</a>
+                                </li>
+                                <li><a href="./deals.aspx"><i class="fa-solid fa-gift ico"></i> Deals</a></li>
+                                <li><a href="./blog.aspx"><i class="fa-brands fa-blogger-b ico"></i> Blog</a></li>
+                                <li><a href="./contact-us.aspx"><i class="fa-solid fa-address-book ico"></i> Contact Us</a>
+                                </li>
                             </ul>
                             <div class="newnav">
                                 <ul>
-                                    <li><a href="./privacy-policy.aspx"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</a></li>
-                            <li><a href="./terms.aspx"><i class="fa-solid fa-clipboard-list"></i> Terms & Conditions</a></li>
-                            <li><a href="./sitemap.aspx"><i class="fa-solid fa-sitemap"></i> Sitemap</a></li>
-                            <li><a href="./faq.aspx"><i class="fa-solid fa-circle-question"></i> FAQ's</a></li>
+                                    <li><a href="./privacy-policy.aspx"><i class="fa-solid fa-shield-halved"></i>
+                                            Privacy Policy</a></li>
+                                    <li><a href="./terms.aspx"><i class="fa-solid fa-clipboard-list"></i> Terms &
+                                            Conditions</a></li>
+                                    <li><a href="./sitemap.aspx"><i class="fa-solid fa-sitemap"></i> Sitemap</a></li>
+                                    <li><a href="./faq.aspx"><i class="fa-solid fa-circle-question"></i> FAQ's</a></li>
                                 </ul>
                             </div>
                             <div class="navlogo">
-                                <a href="tel:+18009183039"><h4><i class="fa-solid fa-square-phone"></i> +1-800-918-3039</h4></a>
+                                <a href="tel:+18009183039">
+                                    <h4><i class="fa-solid fa-phone" style="color: white !important;"></i>
+                                        +1-800-918-3039</h4>
+                                </a>
                             </div>
                         </div>
                         <div class="column right gap1">
@@ -423,16 +428,16 @@
                 </div>
                 <div class="col d-flex">
                     <div>
-                        <img src="./images/hawai.png">
-                        <p>Hawaiian Airlines</p>
+                        <img src="./images/Southwest.png">
+                        <p>Southwest Airlines</p>
                     </div>
                     <div class="center">
-                        <img src="./images/jetblue.png">
-                        <p>JetBlue Airways</p>
+                        <img src="./images/Alaska.png">
+                        <p>Alaska Airways</p>
                     </div>
                     <div>
-                        <img src="./images/turkish.png">
-                        <p>Turkish Airlines</p>
+                        <img src="./images/delta.png">
+                        <p>Delta Airlines</p>
                     </div>
                 </div>
             </div>
@@ -1034,13 +1039,12 @@
 
 <script>
     function showPopup() {
-        document.getElementById('popup-container').style.display = 'flex';
+        document.getElementById('popup-container').style.display = 'block';
     }
 
     function closePopup() {
         document.getElementById('popup-container').style.display = 'none';
         document.getElementsByClassName('nav').style.zIndea = '9999 !important';
-        document.getElementById('header').style.zIndex = '9999 !important';
     }
 
     window.onload = function () {

@@ -23,7 +23,7 @@ header {
     }
 
     #off,
-    #on, .newnav, .navlogo {
+    #on, .newnav, .navlogo, .ico {
         display: none;
     }
 
@@ -31,7 +31,7 @@ header {
         border: 1px solid var(--fourth-color);
         display: flex;
         border-radius: 50px;
-        width: 3%;
+        width: 0%;
         margin: auto !important;
         
         p {
@@ -636,7 +636,7 @@ footer {
     }
 
     .img {
-        border: 2px solid red;
+        border: 2px solid var(--fourth-color);
         border-radius: 100%;
         padding: 2px !important;
     }
@@ -656,5 +656,63 @@ footer {
         padding: 10px !important;
         border-radius: 50px;
         font-size: 20px;
+    }
+}
+
+.bookingpopup {
+    height: 100vh;
+    .column {
+        text-align: center;
+        .detail {
+            padding: 15px !important;
+
+            h2 {
+                line-height: 1 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            p {
+                line-height: 1.5 !important;
+            }
+
+            div {
+                flex: 1 !important;
+                margin: auto 0 !important;
+            }
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    .loading {
+        width: 75px !important;
+    }
+
+    .call {
+        background-color: var(--primary-color);
+        border-radius: 0 0 10px 10px;
+        padding: 10px !important;
+        h4 {
+            color: var(--fourth-color) !important;
+        }
+    }
+    
+    .img {
+        background-color: var(--third-color);
+        border-radius: 10px 10px 0 0;
+        padding: 15px !important;
+        img {
+            width: 30%;
+        }
+    }
+    .center{
+        box-shadow: 0 0 5px 5px rgba(20, 20, 20, 0.2);
+    width: 30%;
+    margin: auto !important;
+    background-color: var(--fourth-color);
+    border-radius: 10px;
     }
 }
