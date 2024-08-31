@@ -5,6 +5,7 @@ header {
     position: sticky !important;
     top: 0;
     border-bottom: 1px solid var(--fourth-color);
+    z-index: 9 !important;
 
     .head {
         background-color: transparent;
@@ -645,7 +646,6 @@ footer {
         width: 50px;
         background-color: #fff;
         border-radius: 50%;
-        /* padding: 8px !important; */
         img {
             width: 100%;
         }
