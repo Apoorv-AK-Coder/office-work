@@ -362,6 +362,7 @@ form {
         border-bottom: 1px solid var(--fifth-color);
         padding: 0 0 20px 0 !important;
         margin-bottom: 20px !important;
+        cursor: pointer;
 
         h4 {
             color: var(--fifth-color) !important;
