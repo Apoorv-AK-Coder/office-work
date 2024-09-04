@@ -14,7 +14,7 @@
     box-sizing: border-box !important;
 }
 
-.container {
+.container2 {
     width: 100% !important;
     max-width: 100% !important;
 }
@@ -32,7 +32,7 @@
 }
 
 .row {
-    width: 1200px !important;
+    width: 1280px !important;
     margin: auto !important;
     padding: 100px 20px !important;
 }
@@ -177,7 +177,7 @@ ul#ui-id-1 {
         font-size: 16px !important;
     }
 
-    header {
+    .newheader {
         .head {
             width: 100% !important;
 
@@ -289,7 +289,7 @@ ul#ui-id-1 {
         }
     }
 
-    footer {
+    .newfooter {
         .foot {
             width: 100% !important;
             margin-bottom: 100px !important;
@@ -352,10 +352,6 @@ ul#ui-id-1 {
     }
 
     .ctasection {
-        .row {
-            padding-top: 80px !important;
-        }
-
         img {
             width: 40% !important;
         }
