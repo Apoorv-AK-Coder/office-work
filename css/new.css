@@ -30,9 +30,10 @@
         border-bottom: 1px solid var(--fifth-color);
         /* background-color: rgba(20, 20, 20, 0.1); */
         cursor: pointer;
-        p {
+        h3 {
             padding: 5px 20px !important;
-            font-weight: 700;
+            font-weight: 400  !important;
+            font-size: 20px !important;
         }
 
         p:hover {
@@ -88,6 +89,15 @@
                     height: auto !important;
                 }
             }
+        }
+    }
+}
+
+.faq {
+    .main {
+        h3 {
+            font-size: 20px !important;
+            font-weight: 400 !important;
         }
     }
 }
