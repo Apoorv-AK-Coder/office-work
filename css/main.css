@@ -3823,10 +3823,6 @@ textarea.form-control {
 	}
 }
 
-.form-group {
-	margin-bottom: 15px
-}
-
 .checkbox,
 .radio {
 	position: relative;
@@ -12272,7 +12268,6 @@ input[type="search"] {
 }
 
 .form-group {
-	margin-bottom: 15px;
 	vertical-align: top;
 }
 

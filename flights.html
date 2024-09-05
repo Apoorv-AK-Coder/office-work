@@ -14,93 +14,66 @@
     <title>Cheap Flights, Airline Tickets & Car Rentals | FaresMatch</title>
     <link href="./css/style.css" rel="stylesheet">
     <link href="./css/index.css" rel="stylesheet">
+    <link href="./css/new.css" rel="stylesheet">
     <link href="./css/homepax.css" rel="stylesheet">
     <link href="./css/main.css" rel="stylesheet">
-
-    <style>
-        .popup-container {
-            z-index: 1000;
-            display: none;
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 102vh !important;
-        }
-
-        #view,
-        .nav {
-            z-index: 9999 !important;
-        }
-
-        .popup-content {
-            background-color: transparent;
-            width: 100% !important;
-            z-index: 1;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100vh;
-            border: none;
-        }
-    </style>
 
 </head>
 
 <body>
-        <div class="newheader" id="newhead">
-            <div class="container2">
-                <div class="head">
-                    <div class="flex  gap1">
-                        <div class="column">
-                            <a href="./index.html"><img src="./images/logo.png"></a>
-                        </div>
-                        <div class="column nav1" id="view">
-                            <i class="fa-solid fa-xmark icon" id="off" style="margin-bottom: 20px !important;"></i>
+    <div class="newheader" id="newhead">
+        <div class="container2">
+            <div class="head">
+                <div class="flex  gap1">
+                    <div class="column">
+                        <a href="./index.html"><img src="./images/logo.png"></a>
+                    </div>
+                    <div class="column nav1" id="view">
+                        <i class="fa-solid fa-xmark icon" id="off" style="margin-bottom: 20px !important;"></i>
+                        <ul>
+                            <li><a href="./index.html"><i class="fa-solid fa-house ico"></i> Home</a></li>
+                            <li><a href="./about-us.aspx"><i class="fa-solid fa-address-card ico"></i> About Us</a></li>
+                            <li><a href="./flights.aspx"><i class="fa-solid fa-plane-departure ico"></i> Flights</a>
+                            </li>
+                            <li><a href="./deals.aspx"><i class="fa-solid fa-gift ico"></i> Deals</a></li>
+                            <li><a href="./blog.aspx"><i class="fa-brands fa-blogger-b ico"></i> Blog</a></li>
+                            <li><a href="./contact-us.aspx"><i class="fa-solid fa-address-book ico"></i> Contact Us</a>
+                            </li>
+                        </ul>
+                        <div class="newnav">
                             <ul>
-                                <li><a href="./index.html"><i class="fa-solid fa-house ico"></i> Home</a></li>
-                                <li><a href="./about-us.aspx"><i class="fa-solid fa-address-card ico"></i> About Us</a></li>
-                                <li><a href="./flights.aspx"><i class="fa-solid fa-plane-departure ico"></i> Flights</a>
-                                </li>
-                                <li><a href="./deals.aspx"><i class="fa-solid fa-gift ico"></i> Deals</a></li>
-                                <li><a href="./blog.aspx"><i class="fa-brands fa-blogger-b ico"></i> Blog</a></li>
-                                <li><a href="./contact-us.aspx"><i class="fa-solid fa-address-book ico"></i> Contact Us</a>
-                                </li>
+                                <li><a href="./privacy-policy.aspx"><i class="fa-solid fa-shield-halved"></i>
+                                        Privacy Policy</a></li>
+                                <li><a href="./terms.aspx"><i class="fa-solid fa-clipboard-list"></i> Terms &
+                                        Conditions</a></li>
+                                <li><a href="./sitemap.aspx"><i class="fa-solid fa-sitemap"></i> Sitemap</a></li>
+                                <li><a href="./faq.aspx"><i class="fa-solid fa-circle-question"></i> FAQ's</a></li>
                             </ul>
-                            <div class="newnav">
-                                <ul>
-                                    <li><a href="./privacy-policy.aspx"><i class="fa-solid fa-shield-halved"></i>
-                                            Privacy Policy</a></li>
-                                    <li><a href="./terms.aspx"><i class="fa-solid fa-clipboard-list"></i> Terms &
-                                            Conditions</a></li>
-                                    <li><a href="./sitemap.aspx"><i class="fa-solid fa-sitemap"></i> Sitemap</a></li>
-                                    <li><a href="./faq.aspx"><i class="fa-solid fa-circle-question"></i> FAQ's</a></li>
-                                </ul>
-                            </div>
-                            <div class="navlogo">
-                                <a href="tel:+18009183039">
-                                    <h4><i class="fa-solid fa-phone" style="color: white !important;"></i>
-                                        +1-800-918-3039</h4>
-                                </a>
-                            </div>
                         </div>
-                        <div class="column">
-                            <div class="right gap1">
+                        <div class="navlogo">
+                            <a href="tel:+18009183039">
+                                <h4><i class="fa-solid fa-phone" style="color: white !important;"></i>
+                                    +1-800-918-3039</h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="right gap1">
                             <a href="tel:+18009183039"><i class="fa-solid fa-phone-volume fa-shake"></i></a>
                             <div>
                                 <a href="tel:+18009183039">
                                     <p>Call us 24/7</p>
                                 </a>
-                            </div></div>
+                            </div>
                         </div>
-                        <div class="column" id="on">
-                            <i class="fa-solid fa-bars"></i>
-                        </div>
+                    </div>
+                    <div class="column" id="on">
+                        <i class="fa-solid fa-bars"></i>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
     <div class="container2 bg1">
         <div class="row flex">
@@ -218,8 +191,8 @@
                                     </div>
                                 </div>
                             </div>
-                                <button type="submit" id="flight_submit" name="flight_submit"
-                                    onclick="return CheckValidation();">Search Flights</button>
+                            <button type="submit" id="flight_submit" name="flight_submit"
+                                onclick="return CheckValidation();">Search Flights</button>
                         </div>
                     </div>
                     <div class="form-group col-md-3 col-sm-4 col-xs-12 search-col-padding has-feedback"
@@ -410,33 +383,7 @@
         </div>
     </div>
 
-    <div class="container2 ctasection">
-        <div class="row">
-            <div class="column d-flex">
-                <div class="col">
-                    <p><b>Call us 24/7 at <a href="tel:+18009183039">800-918-3039</a></b></p>
-                    <p>Need Booking Assistance? Our agents are ready!</p>
-                    <p>Explore options from over 100 airlines.</p>
-                </div>
-                <div class="col d-flex">
-                    <div>
-                        <img src="./images/Southwest.png">
-                        <p>Southwest Airlines</p>
-                    </div>
-                    <div class="center">
-                        <img src="./images/Alaska.png">
-                        <p>Alaska Airlines</p>
-                    </div>
-                    <div>
-                        <img src="./images/delta.png">
-                        <p>Delta Airlines</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container2 bg2">
+    <div class="container2 newbg">
         <div class="row">
             <div class="column">
                 <div class="detail">
@@ -602,13 +549,102 @@
         </div>
     </div>
 
-    <div class="container2 bg">
+    <div class="container2 flightdetails">
         <div class="row">
             <div class="column">
-                <h2>World's Best Unmatched Fares</h2>
-                <p>Yes, you can find the best deals anywhere but FaresMatch offers you unmatched fares for your travel.
-                    We find the cheapest airfare, budget-friendly hotels, tour packages at the lowest price & a lot
-                    more!</p>
+                <h2>Cheap Flights to New York City</h2>
+                <p>The captivating megacity of New York City is famed for its iconic skyline, top-notch culture, and
+                    endless prospects. Whether you are a seasoned traveler or a first-time tourist, discovering New
+                    York's lively thoroughfares is a dream come true. The chance of getting affordable flights to
+                    this amazing megacity makes it much more thrilling because you can enjoy its magic without
+                    spending a fortune. Dreams are created in New York City, which offers a wide variety of
+                    conditioning to suit all tastes.</p>
+                <p>Finding cheap flights to New York City is like opening a door to a world of occasions. It entails
+                    having further money to take in Broadway performances, visit world-class museums, sample famous
+                    street food, and shop until you drop. Your trip into the heart of the megacity, where every road
+                    corner has a tale to tell and every minute is an adventure awaiting to unfold, begins with this
+                    preface to affordable flights to NYC. So let's start our nicely priced stint of the megacity
+                    that noway stops surprising you, where dreams come true, and where you will make memories that
+                    will last a lifetime.</p>
+
+                <br>
+
+                <h2>Deals to find on cheap flights to New York</h2>
+                <p>
+                    Lower airfares are constantly available when you plan your holiday far in advance. For tickets
+                    bought several months prior to your trip dates, airlines offer lower costs. You can use fare
+                    timetables to find cheaper flying days if your trip dates are variable. Flights during the week are
+                    constantly more affordable than those on the weekend.
+                    <br>
+                    
+                    Although New York is open all year round, costs are frequently lower in the shoulder seasons of late
+                    winter and early spring or summer and early fall. Keep an eye out for flash deals that airlines like
+                    <a href="/jetblue-jfk.aspx">JetBlue flights to New York</a> or Delta Airlines sometimes hold with
+                    time-limited deals. Flying into or out of regional airports rather than the big New York airports
+                    might sometimes affect cost savings.
+                    <br>
+                    
+                    Maybe you are thinking that how to find the best airlines booking deals for the reservations of New
+                    York and that’s why you are on this place. Don’t worry about travel package this time because now
+                    you can ensure the travel booking for <a href="/flights.aspx">Cheap Flights to New York</a> by
+                    considering the Fares Match Offers. Deals are actually worthy for the passengers when they are
+                    thinking to ensure the flight tickets booking in a cheap cost.
+                </p>
+
+                <br>
+
+                <h2>Cheap days to book flights to New York</h2>
+                <p>
+                    Avoid making trip reservations on Fridays and Sundays. They're now well known for both business and
+                    rest trips, which raises demand and costs. Lower rates can be attained by making your reservation
+                    long in advance, generally numerous weeks or months before your intended holiday dates. Purchasing
+                    your tickets in advance can save you money because airlines constantly have elevations when they
+                    advertise new flights. Saturdays can also be a good day for deals, particularly on weekend
+                    excursions. Fridays or Sundays are popular days for passengers to fly. Saturdays may also be less
+                    expensive and less congested. Early in the week, airlines constantly announce fresh fare specials,
+                    and these cheaper rates may apply through Wednesday.
+                </p>
+
+                <br>
+
+                <h2>Cheapest Time to Book New York Flights</h2>
+                <p>Cheapest time to manage the booking of <a href="/">Cheap Flights</a> to New York is also the main
+                    concern of the flyers when they want to manage the vacations tickets in a cheap cost. You can find
+                    the best deals for Cheap Flights booking on New York Travel in August. August is the lowest season
+                    time for the booking of New York Flight Tickets.</p>
+
+                <h3>Major Airline for New York Travel Booking</h3>
+                <p>Major airline is also important to know for the flyers for the booking of Cheap Flights to New
+                    York. You can book the flight tickets with the best deals when you book United Airlines New York
+                    Flights Tickets for the vacation’s goals.</p>
+
+                <h3>Book Last-Minute New York Flights</h3>
+                <p>If you are thinking to ensure the flight booking online at the lowest fare for the New York
+                    Last-Minute Flights then you can call on the United Airlines Customer Service to ensure the
+                    travel booking with the cheap flights.</p>
+
+                <br><br>
+
+                <h2>Things to do in New York</h2>
+                <h3>Central Park</h3>
+                <p>It resembles a sizable oasis of greenery. People flock there to get away from the city's noise
+                    and bustle and to enjoy some peace and nature. You may walk or rent a bike and explore because
+                    there are walking and riding paths.</p>
+
+                <h3>Times Square</h3>
+                <p>It is a bustling, colorful location. It resembles a gigantic outdoor theater with numerous
+                    flashing lights, massive billboards, and large screens playing different commercials. Times
+                    Square attracts visitors from all over the world because of its constant activity, even late at
+                    night. There are people performing on the streets in colorful costumes.</p>
+
+                <h3>Museum Mile</h3>
+                <p>A section of Fifth Avenue in New York City known as "Museum Mile" is unique since it is like a
+                    treasure trove of museums. Numerous museums can be found next to one another in a row.</p>
+
+                <h3>Brooklyn Bridge</h3>
+                <p>It is significant and well-known. One of the oldest and most beautiful bridges in the world, it
+                    is distinctive for this reason. It has distinct routes for people who want to bike and those who
+                    want to walk on it.</p>
             </div>
         </div>
     </div>
@@ -761,265 +797,223 @@
         </div>
     </div>
 
-    <div class="container2 bg3">
-        <div class="row d-flex row2">
-            <div class="left">
-                <div class="column">
-                    <img src="./images/carrent.jpg" alt="Car Rent" class="hideshow">
-                    <img src="./images/carrent1.jpeg" alt="Car Rent" class="hideshow1">
-                    <div>
-                        <p>CAR RENTAL</p>
-                        <h4>Affordable Car Rentals Deals at <b><a
-                                    href="https://www.faresmatch.com/">FaresMatch.com</a></b>!</h4>
-                        <a href="./car-rental.aspx">
-                            <p style="color: var(--primary-color); "><b>Book Now</b></p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="right">
-                <div class="column">
-                    <img src="./images/hotelrent.jpg" alt="Hotel Rent" class="hideshow">
-                    <img src="./images/hotelrent1.jpeg" alt="Hotel Rent" class="hideshow1">
-                    <div>
-                        <p>HOTELS</p>
-                        <h4>Find the Perfect Hotel Deals on <a
-                                href="https://www.faresmatch.com/"><b>FaresMatch.com</b></a>!</h4>
-                        <a href="./hotels.aspx">
-                            <p style="color: var(--primary-color);"><b>Book Now</b></p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container2 uspsection">
-        <div class="row d-flex gap1">
-            <div class="column flex">
-                <i class="fa-solid fa-headset"></i>
-                <div>
-                    <h3>24/7 Customer Support</h3>
-                    <p>Always available for customer assistance.</p>
-                </div>
-            </div>
-
-            <div class="column flex">
-                <i class="fa-solid fa-tags"></i>
-                <div>
-                    <h3>Transparent Pricing</h3>
-                    <p>Clear pricing, no hidden fees, upfront final cost.</p>
-                </div>
-            </div>
-
-            <div class="column flex col4">
-                <i class="fa-solid fa-shield-halved"></i>
-                <div>
-                    <h3>Reliable and Trusted</h3>
-                    <p>Guaranteed protection, reliable peace of mind.</p>
-                </div>
-            </div>
-
-            <div class="column flex col4">
-                <i class="fa-solid fa-ticket"></i>
-                <div>
-                    <h3>Instant Reservations</h3>
-                    <p>On-call booking services provide 24/7 availability.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container2 mainslider">
+    <div class="container2 tabs">
         <div class="row">
             <div class="column">
-                <h2>Explore Trending Destinations</h2>
-                <div class="slider1">
-                    <div class="firstslider">
-                        <div class="slides">
-                            <a href="./flights/cheap-flights-to-michigan.aspx"><div class="slide1"
-                                style="background-image: linear-gradient(to top, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0)), url('./images/Michigan.jpg');">
-                                <p>Michigan</p>
-                            </div></a>
-                            <a href="./flights/cheap-flights-to-new-jersey.aspx"><div class="slide1"
-                                style="background-image: linear-gradient(to top, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0)), url('./images/Newjersey.jpg');">
-                                <p>New Jersey</p>
-                            </div></a>
-                            <a href="./flights/cheap-flights-to-minnesota.aspx"><div class="slide1"
-                                style="background-image: linear-gradient(to top, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0)), url('./images/Minnesota.jpg');">
-                                <p>Minnesota</p>
-                            </div></a>
-                            <a href="./flights/cheap-flights-to-oregon.aspx"><div class="slide1"
-                                style="background-image: linear-gradient(to top, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0)), url('./images/Oregon.jpg');">
-                                <p>Oregon</p>
-                            </div></a>
-                            <a href="./flights/cheap-flights-to-illinois.aspx"><div class="slide1"
-                                style="background-image: linear-gradient(to top, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0)), url('./images/Illinois.jpg');">
-                                <p>Illinois</p>
-                            </div></a>
-                            <a href="./flights/cheap-flights-to-hawaii.aspx"><div class="slide1"
-                                style="background-image: linear-gradient(to top, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0)), url('./images/Hawaii.jpg');">
-                                <p>Hawaii</p>
-                            </div></a>
-                            <a href="./flights/cheap-flights-to-georgia.aspx"><div class="slide1"
-                                style="background-image: linear-gradient(to top, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0)), url('./images/Georgia.jpg');">
-                                <p>Georgia</p>
-                            </div></a>
-                            <a href="./flights/cheap-flights-to-colorado.aspx"><div class="slide1"
-                                style="background-image: linear-gradient(to top, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0)), url('./images/Colorado.jpg');">
-                                <p>Colorado</p>
-                            </div></a>
-                            <a href="./flights/cheap-flights-to-arizona.aspx"><div class="slide1"
-                                style="background-image: linear-gradient(to top, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0)), url('./images/Arizona.jpg');">
-                                <p>Arizona</p>
-                            </div></a>
-                            <a href="./flights/cheap-flights-to-nevada.aspx"><div class="slide1"
-                                style="background-image: linear-gradient(to top, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0)), url('./images/Nevada.jpeg');">
-                                <p>Nevada</p>
-                            </div></a>
-                            <a href="./flights/cheap-flights-to-texas.aspx"><div class="slide1"
-                                style="background-image: linear-gradient(to top, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0)), url('./images/Texas.jpeg');">
-                                <p>Texas</p>
-                            </div></a>
-                            <a href="./flights/cheap-flights-to-washington.aspx"><div class="slide1"
-                                style="background-image: linear-gradient(to top, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0)), url('./images/Washington.jpeg');">
-                                <p>Washington</p>
-                            </div></a>
-                            <a href="./flights/cheap-flights-to-california.aspx"><div class="slide1"
-                                style="background-image: linear-gradient(to top, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0)), url('./images/California.jpeg');">
-                                <p>California</p>
-                            </div></a>
-                            <a href="./flights/cheap-flights-to-florida.aspx"><div class="slide1"
-                                style="background-image: linear-gradient(to top, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0)), url('./images/Florida.jpeg');">
-                                <p>Florida</p>
-                            </div></a>
-                            <a href="./flights/cheap-flights-to-new-york.aspx"><div class="slide1"
-                                style="background-image: linear-gradient(to top, rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0)), url('./images/Newyork.jpeg');">
-                                <p>New York</p>
-                            </div></a>
-                        </div>
-                    </div>
-                    <div class="slidebutton flex">
-                        <div class="leftBt">
-                            <i class="fa-solid fa-circle-left"></i>
-                        </div>
-                        <div class="column" style="flex: 1 !important;"></div>
-
-                        <div class="rightBt">
-                            <i class="fa-solid fa-circle-right"></i>
-                        </div>
-                    </div>
+                <div class="tab flex gap1">
+                    <p id="tab1">Tab1</p>
+                    <p id="tab2">Tab2</p>
+                    <p id="tab3">Tab3</p>
+                    <p id="tab4">Tab4</p>
+                </div>
+                <div class="tabdetails" id="tabdetail1">
+                    <a href="">
+                        <p>1Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                </div>
+                <div class="tabdetails" id="tabdetail2">
+                    <a href="">
+                        <p>2Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                </div>
+                <div class="tabdetails" id="tabdetail3">
+                    <a href="">
+                        <p>3Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                </div>
+                <div class="tabdetails" id="tabdetail4">
+                    <a href="">
+                        <p>4Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
+                    <a href="">
+                        <p>Page Name</p>
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
+    </div>    
 
-        <div class="newfooter">
-            <div class="container2">
-                <div class="mainfooter">
-                    <div class="d-flex gap logo">
-                        <div class="column">
-                            <a href="./index.html">
-                                <img src="./images/logo.png" alt="logo">
-                            </a>
-                        </div>
-                        <div class="column d-flex gap1 social">
-                            <h3>Connect with Us</h3>
-                            <div class="flex">
-                                <a href="https://www.facebook.com/faresmatchtravelagency" target="_blank"><i
-                                        class="fa-brands fa-facebook"></i></a>
-                                <a href="https://twitter.com/faresmatch" target="_blank"><i
-                                        class="fa-brands fa-x-twitter"></i></a>
-                                <a href="https://www.instagram.com/faresmatch9/" target="_blank"><i
-                                        class="fa-brands fa-instagram"></i></a>
-                                <a href="https://www.linkedin.com/company/faresmatchagency/" target="_blank"><i
-                                        class="fa fa-linkedin"></i></a>
-                                <a href="https://www.pinterest.com/faresmatchagency/" target="_blank"><i
-                                        class="fa fa-pinterest"></i></a>
-                                <a target="_blank" href="https://www.youtube.com/channel/UCVF0LhsyO15yOulfg82K4MQ"><i
-                                        class="fa-brands fa-youtube"></i></a>
-                                <a target="_blank" href="https://faresmatchtravelagency.quora.com/"><i
-                                        class="fa-brands fa-quora"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="links d-flex gap1">
-                        <div class="column">
-                            <p><b>Quick Links</b></p>
-                            <p><a href="./refund-cancellation.aspx">Policies </a></p>
-                            <p><a href="./vacations.aspx">Vacations </a></p>
-                            <p><a href="./vacation-packages.aspx">Packages</a></p>
-                            <p><a href="./airline-destinations.aspx">Airlines Destinations</a></p>
-                            <p><a href="./jetblue-fare-finder.aspx">Jetblue Fare Finder</a></p>
-                            <p><a href="./low-fare-calendar.aspx">Low-Fare Calendar</a></p>
-                        </div>
-
-                        <div class="column">
-                            <p><b>Airlines</b></p>
-                            <p><a href="./delta-airlines-flights-reservations.aspx">Delta</a></p>
-                            <p><a href="./united-airlines-flights-reservations.aspx">United</a></p>
-                            <p><a href="./alaska-airlines-flights-reservations.aspx">Alaska </a></p>
-                            <p><a href="./allegiant-airlines-flights-reservations.aspx">Allegiant</a></p>
-                            <p><a href="./frontier-airlines-flights-reservations.aspx">Frontier</a></p>
-                        </div>
-                        <div class="column">
-                            <p><b>Destinations</b></p>
-                            <p><a href="./flights/cheap-flights-to-las-vegas.aspx">Las Vegas</a></p>
-                            <p><a href="./flights/cheap-flights-to-new-york.aspx">New York</a></p>
-                            <p><a href="./flights/cheap-flights-to-los-angeles.aspx">Los Angeles</a></p>
-                            <p><a href="./flights/cheap-flights-to-florida.aspx">Florida </a></p>
-                            <p><a href="./flights/cheap-flights-to-california.aspx">California</a></p>
-                        </div>
-                        <div class="column">
-                            <p><b>Top Routes</b></p>
-                            <p><a href="./flights/chicago-ord-to-honolulu-hnl-flights.aspx">Chicago to Honolulu</a></p>
-                            <p><a href="./flights/san-francisco-to-london-flights.aspx">San Francisco to London</a></p>
-                            <p><a href="./flights/chicago-ord-to-los-angele-lax-flights.aspx">Chicago to Los Angeles</a>
-                            </p>
-                            <p><a href="./flights/toronto-to-lima-flights.aspx">Toronto to Lima</a></p>
-                            <p><a href="./flights/new-york-nyc-to-miami-mia-flights.aspx">New York to Miami</a></p>
-                        </div>
-                        <div class="column">
-                            <p><b>Information</b></p>
-                            <p><a href="./about-us.aspx">About</a></p>
-                            <p><a href="./contact-us.aspx">Contact</a></p>
-                            <p><a href="./privacy-policy.aspx">Privacy Policy</a></p>
-                            <p><a href="./terms.aspx">Terms & Conditions</a></p>
-                            <p><a href="./sitemap.aspx">Sitemap</a></p>
-                            <p><a href="./faq.aspx">FAQ's</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="foot">
+    <div class="newfooter">
+        <div class="container2">
+            <div class="mainfooter">
+                <div class="d-flex gap logo">
                     <div class="column">
-                        <p>© Copyright 2024 <b>Faresmatch</b>. All Rights Reserved. | Address: 6355 Haystack CT Cumming
-                            , GA
-                            30040</p>
+                        <a href="./index.html">
+                            <img src="./images/logo.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="column d-flex gap1 social">
+                        <h3>Connect with Us</h3>
+                        <div class="flex">
+                            <a href="https://www.facebook.com/faresmatchtravelagency" target="_blank"><i
+                                    class="fa-brands fa-facebook"></i></a>
+                            <a href="https://twitter.com/faresmatch" target="_blank"><i
+                                    class="fa-brands fa-x-twitter"></i></a>
+                            <a href="https://www.instagram.com/faresmatch9/" target="_blank"><i
+                                    class="fa-brands fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/company/faresmatchagency/" target="_blank"><i
+                                    class="fa fa-linkedin"></i></a>
+                            <a href="https://www.pinterest.com/faresmatchagency/" target="_blank"><i
+                                    class="fa fa-pinterest"></i></a>
+                            <a target="_blank" href="https://www.youtube.com/channel/UCVF0LhsyO15yOulfg82K4MQ"><i
+                                    class="fa-brands fa-youtube"></i></a>
+                            <a target="_blank" href="https://faresmatchtravelagency.quora.com/"><i
+                                    class="fa-brands fa-quora"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="links d-flex gap1">
+                    <div class="column">
+                        <p><b>Quick Links</b></p>
+                        <p><a href="./refund-cancellation.aspx">Policies </a></p>
+                        <p><a href="./vacations.aspx">Vacations </a></p>
+                        <p><a href="./vacation-packages.aspx">Packages</a></p>
+                        <p><a href="./airline-destinations.aspx">Airlines Destinations</a></p>
+                        <p><a href="./jetblue-fare-finder.aspx">Jetblue Fare Finder</a></p>
+                        <p><a href="./low-fare-calendar.aspx">Low-Fare Calendar</a></p>
+                    </div>
+
+                    <div class="column">
+                        <p><b>Airlines</b></p>
+                        <p><a href="./delta-airlines-flights-reservations.aspx">Delta</a></p>
+                        <p><a href="./united-airlines-flights-reservations.aspx">United</a></p>
+                        <p><a href="./alaska-airlines-flights-reservations.aspx">Alaska </a></p>
+                        <p><a href="./allegiant-airlines-flights-reservations.aspx">Allegiant</a></p>
+                        <p><a href="./frontier-airlines-flights-reservations.aspx">Frontier</a></p>
+                    </div>
+                    <div class="column">
+                        <p><b>Destinations</b></p>
+                        <p><a href="./flights/cheap-flights-to-las-vegas.aspx">Las Vegas</a></p>
+                        <p><a href="./flights/cheap-flights-to-new-york.aspx">New York</a></p>
+                        <p><a href="./flights/cheap-flights-to-los-angeles.aspx">Los Angeles</a></p>
+                        <p><a href="./flights/cheap-flights-to-florida.aspx">Florida </a></p>
+                        <p><a href="./flights/cheap-flights-to-california.aspx">California</a></p>
+                    </div>
+                    <div class="column">
+                        <p><b>Top Routes</b></p>
+                        <p><a href="./flights/chicago-ord-to-honolulu-hnl-flights.aspx">Chicago to Honolulu</a></p>
+                        <p><a href="./flights/san-francisco-to-london-flights.aspx">San Francisco to London</a></p>
+                        <p><a href="./flights/chicago-ord-to-los-angele-lax-flights.aspx">Chicago to Los Angeles</a>
+                        </p>
+                        <p><a href="./flights/toronto-to-lima-flights.aspx">Toronto to Lima</a></p>
+                        <p><a href="./flights/new-york-nyc-to-miami-mia-flights.aspx">New York to Miami</a></p>
+                    </div>
+                    <div class="column">
+                        <p><b>Information</b></p>
+                        <p><a href="./about-us.aspx">About</a></p>
+                        <p><a href="./contact-us.aspx">Contact</a></p>
+                        <p><a href="./privacy-policy.aspx">Privacy Policy</a></p>
+                        <p><a href="./terms.aspx">Terms & Conditions</a></p>
+                        <p><a href="./sitemap.aspx">Sitemap</a></p>
+                        <p><a href="./faq.aspx">FAQ's</a></p>
                     </div>
                 </div>
             </div>
-        </div>
-
-	<a href="tel:+18009183039">
-    <div class="mobilecta">
-        <div class="img">
-            <img src="./images/customer-support.jpg" alt="customer-support">
-        </div>
-        <div>
-            <p><b>Need Help Booking</b></p>
-            <p>Our agent is ready! Call us 24/7</p>
-        </div>
-        <div>
-            <i class="fa-solid fa-phone-volume fa-beat"></i>
-        </div>
-    </div></a>
-
-    <div id="popup-container" class="popup-container">
-        <div class="popup-content">
-            <iframe src="popup.html" title="Popup"></iframe>
+            <div class="foot">
+                <div class="column">
+                    <p>© Copyright 2024 <b>Faresmatch</b>. All Rights Reserved. | Address: 6355 Haystack CT Cumming
+                        , GA
+                        30040</p>
+                </div>
+            </div>
         </div>
     </div>
+
+    <a href="tel:+18009183039">
+        <div class="mobilecta">
+            <div class="img">
+                <img src="./images/customer-support.jpg" alt="customer-support">
+            </div>
+            <div>
+                <p><b>Need Help Booking</b></p>
+                <p>Our agent is ready! Call us 24/7</p>
+            </div>
+            <div>
+                <i class="fa-solid fa-phone-volume fa-beat"></i>
+            </div>
+        </div>
+    </a>
 
 </body>
 <script src="./css/file.js"></script>
@@ -1027,20 +1021,5 @@
 <script src="./css/bootstrap.js"></script>
 <script src="./css/jquery.js"></script>
 <script src="https://kit.fontawesome.com/513bc71f1a.js" crossorigin="anonymous"></script>
-
-<script>
-    function showPopup() {
-        document.getElementById('popup-container').style.display = 'block';
-    }
-
-    function closePopup() {
-        document.getElementById('popup-container').style.display = 'none';
-        document.getElementsByClassName('nav').style.zIndex = '9999 !important';
-    }
-
-    window.onload = function () {
-        setTimeout(showPopup, 2000);
-    };
-</script>
 
 </html>

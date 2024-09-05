@@ -1,0 +1,107 @@
+@import url(./style.css);
+@import url(./index.css);
+
+.tabs {
+    background-color: rgba(20, 20, 20, 0.1);
+    .column {
+        padding: 20px !important;
+        background-color: var(--fourth-color);
+        border-radius: 15px;
+        box-shadow: 0 0 2px 2px rgba(20, 20, 20, 0.2);
+    }
+
+    .tabdetails {
+        padding: 20px !important;
+        column-count: 4;
+
+        a {
+            color: var(--primary-color) !important;
+        }
+
+        a:hover {
+            color: var(--fifth-color) !important;
+        }
+    }
+
+    .tab {
+        border-bottom: 1px solid var(--fifth-color);
+        /* background-color: rgba(20, 20, 20, 0.1); */
+        cursor: pointer;
+        p {
+            padding: 5px 20px !important;
+            font-weight: 700;
+        }
+
+        p:hover {
+            border-bottom: 2px solid var(--primary-color) !important;
+            color: var(--primary-color);
+        }
+    }
+
+    #tabdetail2, #tabdetail3, #tabdetail4 {
+        display: none;
+    }
+}
+
+.newbg {
+    .column {
+        flex: 1 !important;
+    }
+
+    .innerrow {
+        .column {
+            flex: 1 !important;
+            padding: 20px !important;
+            box-shadow: 0 0 2px 2px rgba(20, 20, 20, 0.3);
+            border-radius: 10px;
+            margin-top: 20px !important;
+
+            .right {
+                text-align: right;
+            }
+
+            a {
+                color: var(--primary-color) !important;
+            }
+
+            div {
+                flex: 1;
+            }
+
+            .center {
+                background-image: linear-gradient(to right, green, var(--sixth-color), var(--sixth-color), red);
+                height: 10px;
+                border-radius: 10px;
+                margin: 20px 0 5px 0 !important;
+            }
+
+            .flex {
+                h3 {
+                    font-size: 25px !important;
+                }
+
+                img {
+                    width: 50px;
+                    height: auto !important;
+                }
+            }
+        }
+    }
+}
+
+.flightdetails {
+    background-color: rgba(20, 20, 20, 0.1);
+
+    a {
+        color: var(--primary-color) !important;
+    }
+
+    a:hover {
+        color: var(--fifth-color) !important;
+        text-decoration: underline !important;
+    }
+
+    h3 {
+        font-weight: 400 !important;
+    }
+}

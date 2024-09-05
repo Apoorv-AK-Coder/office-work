@@ -9,9 +9,9 @@
 
 
 * {
-    margin: 0 !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .container2 {
@@ -32,7 +32,7 @@
 }
 
 .row {
-    width: 1280px !important;
+    width: 1240px !important;
     margin: auto !important;
     padding: 100px 20px !important;
 }
@@ -136,18 +136,25 @@ button:hover {
     gap: 15px !important;
 }
 
-ul#ui-id-2 {
+.ac_results ul {
     background-color: #fff !important;
     padding: 5px !important;
+    box-shadow: 0 0 2px 2px rgba(20, 20, 20, 0.1) !important;
+    border-radius: 5px !important;
 }
 
-ul#ui-id-1 {
-    background-color: #fff !important;
-    padding: 5px !important;
-}
+    .ac_results ul li {
+        width: 100% !important;
+        padding:5px !important;
+    }
 
-@media only screen and (max-width: 1024px) {
-    .row {
+    .ac_results ul li:hover {
+        background-color: antiquewhite !important;
+        cursor: pointer !important;
+    }
+
+    @media only screen and (max-width: 1024px) {
+        .row {
         width: 100% !important;
         padding: 40px 20px !important;
         margin: auto !important;
@@ -204,7 +211,7 @@ ul#ui-id-1 {
                 height: auto !important;
             }
 
-            .nav {
+            .nav1 {
                 background-color: var(--fourth-color) !important;
                 display: none;
                 position: absolute;

@@ -1,7 +1,7 @@
 @import url(./style.css);
 
 .newheader {
-    background-color: var(--third-color);
+    background-color: var(--third-color) !important;
     position: sticky !important;
     top: 0;
     border-bottom: 1px solid var(--fourth-color);
@@ -9,7 +9,7 @@
 
     .head {
         background-color: transparent;
-        width: 1280px;
+        width: 1240px;
         margin: auto !important;
         padding: 15px 20px !important;
         border: 0;
@@ -24,7 +24,10 @@
     }
 
     #off,
-    #on, .newnav, .navlogo, .ico {
+    #on,
+    .newnav,
+    .navlogo,
+    .ico {
         display: none;
     }
 
@@ -32,16 +35,17 @@
         border: 1px solid var(--fourth-color);
         display: flex;
         border-radius: 50px;
-        width: 0%;
+        width: fit-content !important;
+        padding-right: 17px;
         margin: auto !important;
-        
+
         p {
             margin: auto !important;
             color: var(--fourth-color);
             margin-top: 6px !important;
             font-size: 17px;
         }
-        
+
         i {
             color: var(--primary-color) !important;
             background-color: var(--fourth-color);
@@ -69,13 +73,14 @@
         font-size: 14px !important;
         color: var(--fourth-color) !important;
     }
-    
+
     ul li:hover,
     ul li.active {
         text-decoration: underline !important;
         color: var(--fourth-color) !important;
     }
 }
+
 
 .bg1 {
     background-image: linear-gradient(to right, rgba(20, 20, 20, 0.8), rgba(20, 20, 20, 0.8)), url(../images/bg.jpg);
@@ -112,15 +117,20 @@
         padding: 20px !important;
         margin-top: 20px !important;
         box-shadow: 0 5px 5px rgba(20, 20, 20, 0.2);
-        /* margin-bottom: -50px !important; */
 
         button {
-            width: 70% !important;
+            width: 75% !important;
             margin: 7px 0 !important;
         }
 
         .column {
             flex: 1 !important;
+        }
+
+        input,
+        select,
+        textarea {
+            padding-left: 30px !important;
         }
     }
 }
@@ -131,10 +141,6 @@ form {
 
         input {
             width: 15px !important;
-        }
-
-        label {
-            margin-left: 20px !important;
         }
     }
 
@@ -311,12 +317,13 @@ form {
     }
 }
 
-.calendar, .calendar1 {
+.calendar,
+.calendar1 {
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url(../images/calendar.png);
     background-position: left !important;
     background-repeat: no-repeat !important;
     background-size: 27px !important;
-    padding-left: 25px !important;
+
 }
 
 .user {
@@ -324,18 +331,27 @@ form {
     background-position: left !important;
     background-repeat: no-repeat !important;
     background-size: 27px !important;
-    padding-left: 25px !important;
+    padding-left: 30px !important;
 }
 
-.location, .location1 {
+.location,
+.location1 {
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url(../images/location.png);
     background-position: left !important;
     background-repeat: no-repeat !important;
     background-size: 25px !important;
-    padding-left: 25px !important;
+
 }
 
-.calendar.typing, .location.typing, .user.typing, .calendar1.typing, .location1.typing {
+.calendar:focus,
+.location.typing,
+.user.typing,
+.calendar1:focus,
+.location1.typing {
+    background-image: none !important;
+}
+
+.background-image-hidden {
     background-image: none !important;
 }
 
@@ -362,7 +378,6 @@ form {
         border-bottom: 1px solid var(--fifth-color);
         padding: 0 0 20px 0 !important;
         margin-bottom: 20px !important;
-        cursor: pointer;
 
         h4 {
             color: var(--fifth-color) !important;
@@ -539,7 +554,7 @@ form {
     background-color: var(--third-color) !important;
 
     .mainfooter {
-        width: 1280px;
+        width: 1240px;
         padding: 40px 20px 0 20px !important;
         margin: auto !important;
 
@@ -605,7 +620,7 @@ form {
     }
 
     .foot {
-        width: 1280px;
+        width: 1240px;
         padding: 20px !important;
         margin-right: auto !important;
         margin-left: auto !important;
@@ -624,9 +639,11 @@ form {
     display: none;
     background-color: var(--secondary-color);
     color: var(--fourth-color);
+
     div {
         margin: auto 0 !important;
     }
+
     p {
         line-height: 1.5 !important;
         font-size: 13px !important;
@@ -642,6 +659,7 @@ form {
         width: 50px;
         background-color: #fff;
         border-radius: 50%;
+
         img {
             width: 100%;
         }
@@ -657,8 +675,10 @@ form {
 
 .bookingpopup {
     height: 100vh;
+
     .column {
         text-align: center;
+
         .detail {
             padding: 15px !important;
 
@@ -691,24 +711,32 @@ form {
         background-color: var(--primary-color);
         border-radius: 0 0 10px 10px;
         padding: 10px !important;
+
         h4 {
             color: var(--fourth-color) !important;
         }
     }
-    
+
     .img {
         background-color: var(--third-color);
         border-radius: 10px 10px 0 0;
         padding: 15px !important;
+
         img {
             width: 30%;
         }
     }
-    .center{
+
+    .center {
         box-shadow: 0 0 5px 5px rgba(20, 20, 20, 0.2);
-    width: 30%;
-    margin: auto !important;
-    background-color: var(--fourth-color);
-    border-radius: 10px;
+        width: 30%;
+        margin: auto !important;
+        background-color: var(--fourth-color);
+        border-radius: 10px;
     }
+}
+
+section .wizard .tab-content .row {
+    width: 100% !important;
+    padding: 0 !important;
 }
