@@ -143,18 +143,18 @@ button:hover {
     border-radius: 5px !important;
 }
 
-    .ac_results ul li {
-        width: 100% !important;
-        padding:5px !important;
-    }
+.ac_results ul li {
+    width: 100% !important;
+    padding: 5px !important;
+}
 
-    .ac_results ul li:hover {
-        background-color: antiquewhite !important;
-        cursor: pointer !important;
-    }
+.ac_results ul li:hover {
+    background-color: antiquewhite !important;
+    cursor: pointer !important;
+}
 
-    @media only screen and (max-width: 1024px) {
-        .row {
+@media only screen and (max-width: 1024px) {
+    .row {
         width: 100% !important;
         padding: 40px 20px !important;
         margin: auto !important;
