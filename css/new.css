@@ -30,9 +30,10 @@
         border-bottom: 1px solid var(--fifth-color);
         /* background-color: rgba(20, 20, 20, 0.1); */
         cursor: pointer;
+
         h3 {
             padding: 5px 20px !important;
-            font-weight: 400  !important;
+            font-weight: 400 !important;
             font-size: 20px !important;
         }
 
@@ -42,7 +43,9 @@
         }
     }
 
-    #tabdetail2, #tabdetail3, #tabdetail4 {
+    #tabdetail2,
+    #tabdetail3,
+    #tabdetail4 {
         display: none;
     }
 }
@@ -103,7 +106,7 @@
 }
 
 .flightdetails {
-    .row{
+    .row {
         padding: 0 20px !important;
     }
 
@@ -132,6 +135,45 @@
     }
 }
 
+.deals {
+    .row {
+        padding-top: 0 !important;
+    }
+
+    ol {
+        li {
+            margin-left: 17px !important;
+        }
+    }
+
+    .column .d-flex a {
+        flex: 1;
+        margin-top: 15px !important;
+    }
+
+    .img {
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+        border-radius: 15px;
+        padding-top: 175px !important;
+        cursor: pointer;
+        
+
+        p {
+            background-color: rgba(255, 255, 255, 0.85);
+            text-align: center;
+            padding: 10px 20px !important;
+            border-radius: 0 0 15px 15px;
+            font-weight: 700;
+        }
+    }
+
+    .img:hover {
+        box-shadow: 0 0 4px 4px rgba(20, 20, 20, 0.3);
+    }
+}
+
 .contact {
     a {
         color: var(--primary-color) !important;
@@ -145,13 +187,10 @@
         .column {
             background-color: rgba(20, 20, 20, 0.05);
             border-radius: 10px;
-            padding: 20px !important;
-            /* margin-top: 15px; */
+            padding: 30px 20px !important;
             text-align: center;
-            
-            i {}
         }
-        
+
         .column:hover {
             box-shadow: 0 0 3px 3px rgba(20, 20, 20, 0.2);
         }
@@ -168,20 +207,20 @@
 
 @media only screen and (max-width: 1024px) {
 
-.tabs {
-    .tabdetails {
+    .tabs {
+        .tabdetails {
+            column-count: 1 !important;
+        }
+    }
+
+    .flightdetails .text {
         column-count: 1 !important;
     }
-}
 
-.flightdetails .text {
-    column-count: 1 !important;
-}
-
-.map {
-    iframe {
-        height: 250px !important;
+    .map {
+        iframe {
+            height: 250px !important;
+        }
     }
-}
 
 }
