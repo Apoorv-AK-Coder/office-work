@@ -132,7 +132,38 @@
     }
 }
 
+.contact {
+    a {
+        color: var(--primary-color) !important;
+    }
 
+    .column {
+        flex: 1 !important;
+    }
+
+    .right {
+        .column {
+            background-color: rgba(20, 20, 20, 0.05);
+            border-radius: 10px;
+            padding: 20px !important;
+            /* margin-top: 15px; */
+            text-align: center;
+            
+            i {}
+        }
+        
+        .column:hover {
+            box-shadow: 0 0 3px 3px rgba(20, 20, 20, 0.2);
+        }
+    }
+}
+
+.map {
+    iframe {
+        width: 100%;
+        height: 450px;
+    }
+}
 
 
 @media only screen and (max-width: 1024px) {
@@ -145,6 +176,12 @@
 
 .flightdetails .text {
     column-count: 1 !important;
+}
+
+.map {
+    iframe {
+        height: 250px !important;
+    }
 }
 
 }
