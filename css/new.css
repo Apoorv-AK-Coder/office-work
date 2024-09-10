@@ -167,7 +167,7 @@
         border-radius: 15px;
         padding-top: 200px !important;
         cursor: pointer;
-        
+
 
         p {
             background-color: rgba(255, 255, 255, 0.85);
@@ -228,10 +228,14 @@
         .detail {
             padding: 20px;
             flex: 1 !important;
-            div {flex: 1 !important;}
+
+            div {
+                flex: 1 !important;
+            }
 
             .right {
                 text-align: right;
+
                 p {
                     font-size: 12px !important;
                     line-height: 1.3 !important;
@@ -248,7 +252,9 @@
     padding: 80px 40px;
     border-radius: 11px;
 
-    h2, p, h3 {
+    h2,
+    p,
+    h3 {
         color: var(--fourth-color) !important;
     }
 
@@ -265,6 +271,43 @@
     .column {
         flex: 1 !important;
         margin: auto !important;
+    }
+}
+
+.table {
+    table {
+        width: 100%;
+        border: 1px solid #999;
+
+        td,
+        th {
+            font-family: var(--secondary-font) !important;
+            color: var(--fifth-color);
+            font-weight: 400;
+            font-size: 16px;
+            border-collapse: collapse;
+            border: 1px solid #999999;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        tr:hover {
+            background-color: var(--secondary-color);
+
+            td {
+                color: var(--fourth-color) !important;
+            }
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--fourth-color) !important;
+        }
+    }
+
+    h4 {
+        text-align: center;
+        margin-bottom: 20px !important;
     }
 }
 
