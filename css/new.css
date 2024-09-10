@@ -241,7 +241,6 @@
 }
 
 .bg4 {
-    background-image: linear-gradient(to right, rgba(20, 20, 20, 0.8), rgba(20, 20, 20, 0)), url(../images/hotels.jpg);
     background-position: center !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
