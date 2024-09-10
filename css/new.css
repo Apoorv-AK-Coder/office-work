@@ -227,6 +227,7 @@
 
         .detail {
             padding: 20px;
+            flex: 1 !important;
             div {flex: 1 !important;}
 
             .right {
@@ -244,15 +245,26 @@
     background-position: center !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
-    padding: 100px 40px;
+    padding: 80px 40px;
     border-radius: 11px;
 
-    h2, p {
+    h2, p, h3 {
         color: var(--fourth-color) !important;
+    }
+
+    h3 {
+        font-weight: 400 !important;
+    }
+
+    h4 {
+        color: var(--fourth-color) !important;
+        text-decoration: line-through;
+        margin: auto 0 !important;
     }
 
     .column {
         flex: 1 !important;
+        margin: auto !important;
     }
 }
 
