@@ -128,6 +128,19 @@
     column-count: 2;
 }
 
+.text1 {
+    column-count: 3;
+
+    a {
+        color: var(--primary-color) !important;
+    }
+
+    a:hover {
+        color: var(--fifth-color) !important;
+        text-decoration: underline;
+    }
+}
+
 .flightdeals {
     .row {
         padding-bottom: 0 !important;
@@ -318,6 +331,36 @@
     }
 }
 
+.amtraksection {
+    .row {
+        padding-bottom: 0 !important;
+    }
+}
+
+.amtrak {
+    .column {
+        flex: 1 !important;
+    }
+    .img {
+        background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    padding: 100px 20px !important;
+    border-radius: 10px 0 0 10px;
+    width: 120%;
+    }
+
+    .c1 {
+        border-radius: 10px;
+        box-shadow: 0 0 3px 3px rgba(20, 20, 20, 0.2);
+        margin-top: 20px;
+    }
+
+    .c2 {
+        padding: 20px;
+    }
+}
+
 
 @media only screen and (max-width: 1024px) {
 
@@ -327,7 +370,7 @@
         }
     }
 
-    .text {
+    .text, .text1 {
         column-count: 1 !important;
     }
 
@@ -339,5 +382,10 @@
 
     .bg4 {
         padding: 60px 20px !important;
+    }
+
+    .amtrak .img {
+        width: 100% !important;
+        border-radius: 10px 10px 0 0;
     }
 }
