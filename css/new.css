@@ -45,7 +45,12 @@
 
     #tabdetail2,
     #tabdetail3,
-    #tabdetail4 {
+    #tabdetail4,
+    #tabdetail5,
+    #tabdetail6,
+    #tabdetail7,
+    #tabdetail8,
+    #tabdetail9 {
         display: none;
     }
 }
