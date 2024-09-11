@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta property="og:title" content="Cheap Flights, Airline Tickets &  Car Rentals | FaresMatch" />
+    <meta name="og:description"
+        content="Find the cheapest flights, book airline tickets and rent a car at affordable prices. Get flight deals, save money and enjoy your trip with FaresMatch." />
+    <meta property="og:image" content="./images/logo.png" />
+    <meta name="keywords"
+        content="Cheap flight providers from London. Special Deals on flights, Low cost flight providers" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./images/favicon.png">
+    <title>Cheap Flights, Airline Tickets & Car Rentals | FaresMatch</title>
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/index.css" rel="stylesheet">
+    <link href="./css/new.css" rel="stylesheet">
+    <link href="./css/homepax.css" rel="stylesheet">
+    <link href="./css/main.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="newheader" id="newhead">
+        <div class="container2">
+            <div class="head">
+                <div class="flex  gap1">
+                    <div class="column">
+                        <a href="./index.html"><img src="./images/logo.png"></a>
+                    </div>
+                    <div class="column nav1" id="view">
+                        <i class="fa-solid fa-xmark icon" id="off" style="margin-bottom: 20px !important;"></i>
+                        <ul>
+                            <li><a href="./index.html"><i class="fa-solid fa-house ico"></i> Home</a></li>
+                            <li><a href="./about-us.aspx"><i class="fa-solid fa-address-card ico"></i> About Us</a></li>
+                            <li><a href="./flights.aspx"><i class="fa-solid fa-plane-departure ico"></i> Flights</a>
+                            </li>
+                            <li><a href="./deals.aspx"><i class="fa-solid fa-gift ico"></i> Deals</a></li>
+                            <li><a href="./blog.aspx"><i class="fa-brands fa-blogger-b ico"></i> Blog</a></li>
+                            <li><a href="./contact-us.aspx"><i class="fa-solid fa-address-book ico"></i> Contact Us</a>
+                            </li>
+                        </ul>
+                        <div class="newnav">
+                            <ul>
+                                <li><a href="./privacy-policy.aspx"><i class="fa-solid fa-shield-halved"></i>
+                                        Privacy Policy</a></li>
+                                <li><a href="./terms.aspx"><i class="fa-solid fa-clipboard-list"></i> Terms &
+                                        Conditions</a></li>
+                                <li><a href="./sitemap.aspx"><i class="fa-solid fa-sitemap"></i> Sitemap</a></li>
+                                <li><a href="./faq.aspx"><i class="fa-solid fa-circle-question"></i> FAQ's</a></li>
+                            </ul>
+                        </div>
+                        <div class="navlogo">
+                            <a href="tel:+18009183039">
+                                <h4><i class="fa-solid fa-phone" style="color: white !important;"></i>
+                                    +1-800-918-3039</h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="right gap1">
+                            <a href="tel:+18009183039"><i class="fa-solid fa-phone-volume fa-shake"></i></a>
+                            <div>
+                                <a href="tel:+18009183039">
+                                    <p>Call us 24/7</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column" id="on">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container2 bg1">
+        <div class="row flex">
+            <div class="column">
+                <h1>Chicago to Honolulu Flights | HNL to ORD Flights</h1>
+                <form action="/home/_searchenginehome" method="post" id="onflight">
+                    <div class="column radio flex">
+                        <div>
+                            <input name="return" type="radio" value="Return" id="return" checked="checked"
+                                class="slct_btn rndtrp trpact" />
+                            <label for="radio1"><span><span></span></span>Round Trip</label>
+                        </div>
+                        <div>
+                            <input name="return" type="radio" value="OneWay" class="slct_btn onwtrp" id="oneway" />
+                            <label for="radio2"><span><span></span></span>One Way</label>
+                        </div>
+                    </div>
+
+                    <div class="col3 d-flex">
+                        <div class="column d-flex">
+                            <input name="flying_from" type="text" placeholder="Origin" id="flying_from"
+                                onchange="checkdata();" onclick="this.select();" class="location" />
+                            <div class="arrowicon" id="arrowicon">
+                                <i class="fa-solid fa-right-left"></i>
+                            </div>
+                            <input name="flying_to" type="text" placeholder="Destination" id="flying_to"
+                                onchange="checkdata1();" onclick="this.select();" class="location1" />
+                        </div>
+                        <div class="column flex">
+                            <input autocomplete="off" class="cal calendar mid-dspc-lt" data-val="true"
+                                data-val-required="Please Select Depart Date" id="from" name="from"
+                                onclick="this.focus(); this.setSelectionRange(0, 9999);" placeholder="Depart" readonly
+                                style="cursor:pointer" type="text" value="" />
+
+                            <input autocomplete="off" class="pad-left calendar1 return" data-val="true"
+                                data-val-required="Please Select Return Date" id="to" name="to"
+                                onclick="this.focus(); this.setSelectionRange(0, 9999);" placeholder="Return" readonly
+                                style="cursor:pointer" type="text" value="" />
+                        </div>
+
+                        <div class="column d-flex">
+                            <div class="dropdown-container">
+                                <div class="form_full">
+                                    <div class="form-group">
+                                        <div id="divPaxInfo" data-toggle="collapse" data-target="#divPaxInfo_Fight1"
+                                            class="form-control f-traveller collapsed" aria-expanded="false">
+                                            <span id="spanTotalPax_Flight" class="user">1 Traveller, Economy</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="divPaxInfo_Fight1" class="adult-class-dropdown flight-pax collapse"
+                                    style="position: absolute; height: 0px;" aria-expanded="false">
+                                    <div class="dropdown-content" id="divFlightRoom1">
+                                        <div class="form-group">
+                                            <label>Cabin Class:</label>
+                                            <select id="CabinClass" name="CabinClass" class="form-control"
+                                                onclick="getPassenger()">
+                                                <option value="Y">Economy</option>
+                                                <option value="W">Premium Eco</option>
+                                                <option value="C">Business</option>
+                                                <option value="F">First Class</option>
+                                            </select>
+                                        </div>
+                                        <div class="adult-panel">
+                                            <div class="min-max-outer">
+                                                <span class="age-text">Adult(s)</span>
+                                                <div class="min-max">
+                                                    <input class="input-btn1 qtyminus" value="-" id="mins_adt"
+                                                        type="button" field='quantity'>
+                                                    <input Value="1" class="input-text" data-val="true"
+                                                        data-val-number="The field Adult must be a number."
+                                                        data-val-required="The Adult field is required."
+                                                        field="quantity" id="Adult" name="Adult" readonly type="text"
+                                                        value="" />
+                                                    <input class="input-btn2 qtyplus" value="+" id="plus_adt"
+                                                        type="button" field='quantity'>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="adult-panel">
+                                            <div class="min-max-outer">
+                                                <span class="age-text">Child(ren)</span>
+                                                <div class="min-max">
+                                                    <input class="input-btn1 qtyminus" data-field="Children" value="-"
+                                                        id="mins_chd" type="button" field='quantity'>
+                                                    <input Value="0" class="input-text" data-val="true"
+                                                        data-val-number="The field Children must be a number."
+                                                        data-val-required="The Children field is required."
+                                                        field="quantity" id="Children" name="Children" readonly
+                                                        type="text" value="" />
+                                                    <input class="input-btn2 qtyplus" data-field="Children" value="+"
+                                                        id="plus_chd" type="button" field='quantity'>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="adult-panel">
+                                            <div class="min-max-outer">
+                                                <span class="age-text">Infant(s)</span>
+                                                <div class="min-max">
+                                                    <input class="input-btn1 qtyminus" value="-" id="mins_inf"
+                                                        type="button" field='quantity'>
+                                                    <input Value="0" class="input-text" data-val="true"
+                                                        data-val-number="The field Infant must be a number."
+                                                        data-val-required="The Infant field is required."
+                                                        field="quantity" id="Infant" name="Infant" readonly type="text"
+                                                        value="" />
+                                                    <input class="input-btn2 qtyplus" value="+" id="plus_inf"
+                                                        type="button" field='quantity'>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="done-btn-full">
+                                            <a href="javascript:void(0);" class="done-btn" id="prsn_done">Done</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" id="flight_submit" name="flight_submit"
+                                onclick="return CheckValidation();">Search Flights</button>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3 col-sm-4 col-xs-12 search-col-padding has-feedback"
+                        style="display:none!important">
+                        <label>Airline</label>
+                        <div class="inputGroupContainer no_padding">
+                            <div class="input-group" id="datetimePickerReturn_date">
+                                <span id="return_dateSpan" class="input-group-addon"><i
+                                        class="fa fa-paper-plane fa-fw"></i></span>
+                                <select id="airline" name="airline" class="form-control">
+                                    <option selected="selected" value="">Any</option>
+                                    <option value="JP">Adria Airways</option>
+                                    <option value="EI">Aerlingus</option>
+                                    <option value="SU">Aeroflot</option>
+                                    <option value="AR">Aerolineas Argen </option>
+                                    <option value="AM">Aeromexico</option>
+                                    <option value="5L">Aerosur </option>
+                                    <option value="VV">Aerosvit</option>
+                                    <option value="8U">Afriqiyah Airline</option>
+                                    <option value="AH">Air Algerie</option>
+                                    <option value="KC">Air Astana</option>
+                                    <option value="BT">Air Baltic</option>
+                                    <option value="AB">Air Berlin</option>
+                                    <option value="2J">Air Burkina </option>
+                                    <option value="AC">Air Canada</option>
+                                    <option value="CA">Air China </option>
+                                    <option value="A7">Air Comet </option>
+                                    <option value="UX">Air Europa </option>
+                                    <option value="AF">Air France </option>
+                                    <option value="AI">Air India </option>
+                                    <option value="JM">Air Jamaica</option>
+                                    <option value="KM">Air Malta </option>
+                                    <option value="MK">Air Mauritius </option>
+                                    <option value="9U">Air Maldova</option>
+                                    <option value="SW">Air Namibia </option>
+                                    <option value="NZ">Air New Zealand </option>
+                                    <option value="HM">Air Seychelles </option>
+                                    <option value="VT">Air Tahiti </option>
+                                    <option value="TN">Air Tahiti Nui </option>
+                                    <option value="TS">Air Transat</option>
+                                    <option value="UM">Air Zimbabwe</option>
+                                    <option value="AS">Alaska Air</option>
+                                    <option value="LV">Albanian Air</option>
+                                    <option value="AZ">Alitalia </option>
+                                    <option value="NH">All Nippon </option>
+                                    <option value="AA">American Air</option>
+                                    <option value="OZ">Asiana Airlines</option>
+                                    <option value="GR">Aurigny</option>
+                                    <option value="OS">Austrian Airline </option>
+                                    <option value="AV">Avianca </option>
+                                    <option value="J2">Azerbaijan</option>
+                                    <option value="UP">Bahamasair</option>
+                                    <option value="PG">Bangkok Airways </option>
+                                    <option value="BG">Biman Bangla</option>
+                                    <option value="BD">Bmi British </option>
+                                    <option value="BA">British Airways</option>
+                                    <option value="SN">Brussels Airline </option>
+                                    <option value="FB">Bulgaria Air</option>
+                                    <option value="BW">Caribbean Air</option>
+                                    <option value="CX">Cathay Pacific </option>
+                                    <option value="CI">China Airlines </option>
+                                    <option value="MU">China Eastern </option>
+                                    <option value="CZ">China Southern </option>
+                                    <option value="QI">Cimber Sterli</option>
+                                    <option value="CF">City Airline</option>
+                                    <option value="DE">Condor </option>
+                                    <option value="CO">Continental </option>
+                                    <option value="OU">Croatia Air </option>
+                                    <option value="CU">Cubana Airlines </option>
+                                    <option value="CY">Cyprus Airways </option>
+                                    <option value="OK">Czech Airlines </option>
+                                    <option value="D3">Daallo</option>
+                                    <option value="DL">Delta </option>
+                                    <option value="T3">Eastern airways</option>
+                                    <option value="MS">Egyptair </option>
+                                    <option value="EK">Emirates Air </option>
+                                    <option value="OV">Estonian Air</option>
+                                    <option value="ET">Ethiopian Air </option>
+                                    <option value="EY">Etihad Airways </option>
+                                    <option value="BR">EVA Airways </option>
+                                    <option value="AY">Finnair </option>
+                                    <option value="BE">Flybe </option>
+                                    <option value="GA">Garuda </option>
+                                    <option value="GF">Gulf Air </option>
+                                    <option value="HR">Hahn Air </option>
+                                    <option value="HU">Hainan Airlin</option>
+                                    <option value="YO">Heli-Air Monaco</option>
+                                    <option value="EO">Hewa Bora Air </option>
+                                    <option value="IB">Iberia </option>
+                                    <option value="FI">Iceland Air </option>
+                                    <option value="IC">Indian Air </option>
+                                    <option value="IR">Iran Air </option>
+                                    <option value="6H">Israir</option>
+                                    <option value="JL">Japan Airline</option>
+                                    <option value="JU">Jat Airways</option>
+                                    <option value="9W">Jet Airways </option>
+                                    <option value="KQ">Kenya Airways </option>
+                                    <option value="KL">KLM </option>
+                                    <option value="KE">Korean Air </option>
+                                    <option value="KU">Kuwait Airways </option>
+                                    <option value="LA">Lan Airlines </option>
+                                    <option value="LO">Lot-Polish </option>
+                                    <option value="LH">Lufthansa </option>
+                                    <option value="CC">Macair</option>
+                                    <option value="W5">Mahan Air </option>
+                                    <option value="MA">Malev </option>
+                                    <option value="MH">Malaysia </option>
+                                    <option value="MP">Martinair </option>
+                                    <option value="IG">Meridiana </option>
+                                    <option value="MX">Mexicana </option>
+                                    <option value="ME">Middle East</option>
+                                    <option value="YM">Montenegro</option>
+                                    <option value="CE">Nationwide Air </option>
+                                    <option value="NW">Northwest </option>
+                                    <option value="OA">Olympic </option>
+                                    <option value="WY">Oman Aviation </option>
+                                    <option value="PR">Philippine </option>
+                                    <option value="QR">Qatar Airways </option>
+                                    <option value="AT">Royal Air Maroc </option>
+                                    <option value="BI">Royal Brunei </option>
+                                    <option value="RJ">Royal Jordanian </option>
+                                    <option value="FV">Rossiya </option>
+                                    <option value="SK">Sas </option>
+                                    <option value="S4">Sata Intl </option>
+                                    <option value="SV">Saudi Arabian </option>
+                                    <option value="S7">Siberia Air</option>
+                                    <option value="SQ">Singapore Airlines</option>
+                                    <option value="SA">South African </option>
+                                    <option value="UL">SriLankan </option>
+                                    <option value="SD">Sudan </option>
+                                    <option value="LX">Swiss </option>
+                                    <option value="RB">Syrian Arab</option>
+                                    <option value="DT">Taag-Angola </option>
+                                    <option value="VR">Tacv Carbo Verdes </option>
+                                    <option value="JJ">Tam Linhas Aerea </option>
+                                    <option value="TP">Tap Portugal Airline</option>
+                                    <option value="TG">Thai Intl </option>
+                                    <option value="UN">Transaero</option>
+                                    <option value="TU">Tunis Air</option>
+                                    <option value="TK">Turkish Airlines </option>
+                                    <option value="QF">Qantas Flights </option>
+                                    <option value="PS">Ukraine Intl </option>
+                                    <option value="UA">United</option>
+                                    <option value="US">US Airways </option>
+                                    <option value="HY">Uzbekistan </option>
+                                    <option value="VN">Vietnam Air </option>
+                                    <option value="VS">Virgin Atlantic </option>
+                                    <option value="VK">Virgin Nigeria </option>
+                                    <option value="WM">Windward Island</option>
+                                    <option value="IY">Yemenia Yemen </option>
+                                </select>
+                            </div>
+                            <small data-bv-validator="notEmpty" data-bv-validator-for="return_date" class="help-block"
+                                style="display: none;">The return date is required</small>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <input id="hdn_MultiCityFrom" name="MultiCityFrom" type="hidden" value="" />
+                    <input id="hdn_MultiCityTo" name="MultiCityTo" type="hidden" value="" />
+                    <input id="hdn_MultiCitydate" name="MultiCitydate" type="hidden" value="" />
+                    <input id="hdn_ClassTypeName" name="ClassTypeName" type="hidden" value="" />
+                    <div id="dvNLMessage_FS" class="searchpop12_FS" style="display: none; top: 0; left: 0;"
+                        onclick="NLMessageClose_FS();">
+                        <div class="searchpopinner2_FS searchpopinner12_FS">
+                            <div style="float: right">Close(X)</div>
+                            <br />
+                            <br />
+                            <h3>Sorry! This e-mail id is already registered for our newsletter.</h3>
+                            <div class="searcpoprow2_FS">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="hfTripType" name="hfTripType" value=>
+                    <input type="hidden" id="hfFromDestination" name="hfFromDestination" value="">
+                    <input type="hidden" id="hfToDestination" name="hfToDestination" value="">
+                    <input type="hidden" id="hfFromDate" name="hfFromDate" value=>
+                    <input type="hidden" id="hfToDate" name="hfToDate" value=>
+                    <input type="hidden" id="hfAdult" name="hfAdult" value=>
+                    <input type="hidden" id="hfChild" name="hfChild" value="0">
+                    <input type="hidden" id="hfInfant" name="hfInfant" value="0">
+                    <input type="hidden" id="hfflex" value="false" name="hfflex" />
+                    <input type="hidden" id="hfdirect" value="false" name="hfdirect" />
+                    <input type="hidden" id="hfcontact" value="false" name="hfcontact" />
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container2">
+        <div class="row">
+            <div class="column">
+                    <h2>Explore Honolulu with cheap flights from Chicago (ORD) to Honolulu (HNL)</h2>
+                    <p>Are you thinking of taking a vacation? Are you planning to purchase flights, hotels, or cheap rental cars? You can quickly book all of these things when you use the FaresMatch portal. FaresMatch is a user-friendly website that allows you to search for cheaper alternatives and provides exceptional service. If you are in vacation mode and want to visit the greatest domestic destination, Honolulu is a good option. It is an excellent pick for your next adventure. Also, when you start looking for cheap Chicago to Honolulu flights on our platform, it becomes easier than ever. 425 Miles or 11 hours, and 35 minutes separate Chicago and Honolulu in total. Many airlines fly between this route and you may find the pricing table on our site. One will never face any difficulties when they contact us to make all the travel arrangements.
+                    </p>
+                    <br>
+                    <h2>Cheapest Flight Deals from Chicago (ORD) to Honolulu (HNL)</h2>
+                    <div class="text">
+                        <h4>Round-trip Last-minute Chicago to Honolulu Flights</h4>
+                        <p>If you are looking for the average price for round-trip Chicago-Honolulu flights, we can tell you that it is around $000. You may get inexpensive air tickets for the Honolulu trip without anxiety in this price range. Prices may, however, potentially rise during peak season or at the last minute. Don't worry, we also have fantastic deals on Chicago to Honolulu Last Minute Flights Deals. That implies you can always save money on last-minute trip management.</p>
+                        
+                        <h4>Cheapest Nonstop Chicago to Honolulu Flights</h4>
+                        <p>There are approximately 52 non-stop flights available for this route each week. That equates to an average of 7 flights every day. As a result, you can get cheap airfares without concern because the number of flights on this route is high. Most customers are looking for nonstop flights since they want to escape the inconveniences of traveling. You may contact our customer service number to quickly reserve cheap nonstop flights to Honolulu.</p>
+                    </div>
+
+                    <br><br><br>
+                    <h3>Choose Late March, Early April, or May to visit Honolulu</h3>
+                    <p>Wondering when you can get an affordable flying option to Honolulu? Consider ticket booking into the suggested months and get savings of up to 30% on all your travel arrangements. Booking tickets in late March, early April and May will save you some bucks since the crowd would be less and accommodation is cheaper. Another great alternative is visiting in September and Early October. These months are considered Shoulder months and hence, you are most likely to get tempting offers on flights and hotels.</p>
+                    <br>
+                    <h3>A guide to Chicago and Honolulu (ORD to HNL) Airports</h3>
+                    <p>Both Chicago O’Hare International Airport (ORD) and Chicago Midway International Airport (MDW) provide flights to Honolulu. Whereas you will land at Daniel K. Inouye International Airport (HNL) in Honolulu. Both Chicago airports have nursing rooms available for new mothers to breastfeed their babies. At MDW, there's just one such room that's close to the yoga room. Whereas, in ORD, there are four nursing rooms at various terminals. Lacking cash? There are numerous ATMs in Terminals 1 and 2 both before and after security if you need to make a cash withdrawal in HNL. The Central Lobby Business Center in Terminal 2 is where you may exchange any foreign currency notes you may have.</p>
+                    <br>
+                    <h3>Top Airlines to pick for Chicago to Honolulu Flights</h3>
+                    <p>If you are thinking of which airlines to choose to fly, then opt for Delta, United, Alaska, or American Airlines. All of these airlines provide excellent facilities onboard and are our top recommendations. You may avail good bargains when you fly with them. However, among all these airlines, Alaska Airlines provides the cheapest ticket option. As a result, this airline is our consumers' preferred choice.</p>
+                    <br>
+                    <h3>Other Popular Routes to Honolulu</h3>
+                    <br>
+
+                    <div class="table">
+                        <div class="column">
+                            <table>
+                                <tr>
+                                    <th>Origin</th>
+                                    <th>Destination</th>
+                                    <th>Airline</th>
+                                    <th>Duration</th>
+                                    <th>Fare (Round Trip)</th>
+                                </tr>
+                                <tr>
+                                    <td>Atlanta</td>
+                                    <td>Honolulu</td>
+                                    <td>Delta</td>
+                                    <td>11h 35m</td>
+                                    <td><button>$ 1046</button></td>
+                                </tr>
+    
+                                <tr>
+                                    <td>New York</td>
+                                    <td>Honolulu</td>
+                                    <td>Alaska</td>
+                                    <td>11h 21m</td>
+                                    <td><button>$ 1017</button></td>
+                                </tr>
+    
+                                <tr>
+                                    <td>San Francisco</td>
+                                    <td>Honolulu</td>
+                                    <td>United</td>
+                                    <td>5h 34m</td>
+                                    <td><button>$ 537</button></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Canada</td>
+                                    <td>Honolulu</td>
+                                    <td>United</td>
+                                    <td>14h 47m</td>
+                                    <td><button>$ 825</button></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                
+                    <h2>Cheap Hotel Deals in Honolulu</h2>
+                <p>Looking for a good hotel in Honolulu? We know how important it is to get a comfortable hotel room. Hence, we suggest you discover them on our platform. We have fantastic offers running on our website, you just need to pick the dates and number of rooms required. Thereafter, we will do the rest. Our top recommendation to you is to choose Waikiki Beach Marriott Resort & Spa or Pacific Beach hotel (Alohilani Resort Waikiki Beach). You could also think of booking a room at Hilton Hawaiian Village Waikiki Beach Resort. Always remember to look for flights and hotels together as a bundle to get maximum saving benefits.</p>
+                
+                <br><br>
+
+                <div class="bg4 d-flex gap1" style="background-image: linear-gradient(to right, rgba(20, 20, 20, 0.8), rgba(20, 20, 20, 0.8)), url(./images/Hilton-Hotel.jpg);">
+                    <div class="column">
+                        <h2>Waikiki Beach Marriott Resort & Spa</h2>
+                        <h4>$ 589.50</h4>
+                        <div class="flex gap1">
+                            <h3>$ 489 (Per Night)</h3>
+                        </div>
+                        <p><i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i></p>
+                        <a href="tel:+18009183039"><button>Book Now</button></a>
+                    </div>
+                    <div class="column">
+                        <p><i class="fa-solid fa-location-dot"></i> 2552 Kalakaua Avenue, Honolulu, Oahu, HI 96815-3662</p>
+                        <p><i class="fa-solid fa-check"></i> Breakfast Included</p>
+                        <p><i class="fa-solid fa-check"></i> Fully Refundable</p>
+                        <p>Waikiki Beach Marriott Resort & Spa is located on Waikiki Beach, directly facing one of the most renowned surf spots in the world, Queens. The Waikiki hotel offers 1,310 newly renovated guest rooms and suites with private lanai (balconies) providing iconic views of Diamond Head and the ocean. Other amenities include Waikiki's newest rooftop restaurant Queensbreak Waikiki featuring the best in Pacific Rim cuisine</p>
+                    </div>
+                </div>
+                <br><br>
+                <div class="bg4 d-flex" style="background-image: linear-gradient(to right, rgba(20, 20, 20, 0.8), rgba(20, 20, 20, 0.8)), url(./images/Beachside.jpg);">
+                    <div class="column">
+                        <h2>Alohilani Resort Waikiki Beach</h2>
+                        <h4>$ 589.50</h4>
+                        <div class="flex gap1">
+                            <h3>$ 489 (Per Night)</h3>
+                        </div>
+                        <p><i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i></p>
+                        <a href="tel:+18009183039"><button>Book Now</button></a>
+                    </div>
+                    <div class="column">
+                        <p><i class="fa-solid fa-location-dot"></i> 2490 Kalakaua Avenue, Waikiki, Honolulu, HI 96815</p>
+                        <p><i class="fa-solid fa-check"></i> Breakfast Included</p>
+                        <p><i class="fa-solid fa-check"></i> Fully Refundable</p>
+                        <p>Award-winning beachside resort in Waikiki. The award-winning 'Alohilani Resort Waikiki Beach sits where the city meets the sand with a sophisticated, awe-inspiring design that pays homage to Hawaii's rich cultural heritage</p>
+                    </div>
+                </div>
+                <br><br>
+                <div class="bg4 d-flex" style="background-image: linear-gradient(to right, rgba(20, 20, 20, 0.8), rgba(20, 20, 20, 0.8)), url(./images/Plantation.jpg);">
+                    <div class="column">
+                        <h2>Hilton Hawaiian Village Waikiki Beach Resort</h2>
+                        <h4>$ 589.50</h4>
+                        <div class="flex gap1">
+                            <h3>$ 489 (Per Night)</h3>
+                        </div>
+                        <p><i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i></p>
+                        <a href="tel:+18009183039"><button>Book Now</button></a>
+                    </div>
+                    <div class="column">
+                        <p><i class="fa-solid fa-location-dot"></i> 2005 Kalia Road, Honolulu, Oahu, HI 96815</p>
+                        <p><i class="fa-solid fa-check"></i> Breakfast Included</p>
+                        <p><i class="fa-solid fa-check"></i> Fully Refundable</p>
+                        <p>Hilton Hawaiian Village is Waikiki's only true resort destination located on the widest stretch of beach in Waikiki. Do as much or as little as you like on Duke Kahanamoku Beach & Lagoon, the world-famous stretch of pristine white sands and azure waters fronting the Hilton Hawaiian Village Waikiki Beach Resort. Unwind beside five sparkling pools</p>
+                    </div>
+                </div>
+                <br><br>
+
+                <h2>Top things to do in Honolulu</h2>
+                <h4>Take yourself to Waikiki Beach</h4>
+                <p>The most relaxing way to unwind from a busy week is at the beach. On the southern tip of the island of Oahu in Hawaii, U.S., the city of Honolulu's Waikiki area is located right on the beach. Though there are five beaches in the area, Waikiki Beach is the most well-known one.</p>
+                
+                <h4>Honolulu Zoo</h4>
+                <p>A popular tourist destination, the 42-acre Honolulu Zoo is home to a variety of animals, amphibians, reptiles, and birds. The zoo is a beautiful destination to come to with your family or friends. This is because it has more than 900 types of wildlife and a unique diversity of vegetation. It is home to a variety of creatures and birds, including tortoises, Asian elephants, chimps, hippos, monkeys, and Palm Cockatoos.</p>
+                
+                <h4>Fort DeRussy Beach Park</h4>
+                <p>People are constantly present at Fort DeRussy Beach Park, from the early morning aerobics class to the volleyball, swimming, and freediving in the evening. The retired elderly who enjoy visiting this area for a stroll love the seaside park. Children who like being in natural settings flock to the park in droves for picnics with their families and friends.</p>
+
+                <br><br>
+                <h2>FAQs</h2>
+                <div class="text">
+                    <h4>Do you require a passport to fly between Chicago and Honolulu?</h4>
+                    <p>Many times, you get into the confusion about whether to bring a passport to fly between this route or not. Remember that this trip is a domestic one and a domestic journey doesn't demand a passport. However, you should always bring a valid id card while you travel.</p>
+                    <br>
+                    <h4>Which airlines offer flights between ORD to HNL?</h4>
+                    <p>Various airlines offer flights between this route daily. This includes Delta Airlines, American Airlines, Alaska Airlines, Hawaiian Airlines, and United Airlines. However, the cheapest airline among all is Alaska Airlines.</p>
+                    <br>
+                    <h4>What is the number of flights between Chicago and Honolulu?</h4>
+                    <p>There are an average of 28 flights per week between Chicago and Honolulu, or 4 nonstop flights every day.</p>
+                    <br>
+                    <h4>What is the time duration you'll spend on air from Chicago to Honolulu?</h4>
+                    <p>You have to be on air for approximately 12 hours and 23 minutes from ORD to Honolulu. For your entertainment, we recommend you bring some novels or downloaded movies. This way, you can easily pass up the flying time.</p>
+                    <br>
+                    <h4>When should I make reservations for a flight from Chicago to Honolulu?</h4>
+                    <p>You may find a fantastic offer by making your reservation at least 61 days before the desired departure date. Presently, there are several flights between Chicago and Honolulu available, with the least expensive ticket starting at $370.</p>
+                    <br>
+                    <h4>Which is the best month to fly to Honolulu from Chicago?</h4>
+                    <p>Always look for flying in late March, early April, and May to save some bucks since the crowd would be less. The accommodation rates would be cheaper too. Additionally, you may consider traveling in September and Early October.</p>
+                    <br>
+                    <h4>What is the baggage policy allowed for this route?</h4>
+                    <p>Each airline has its baggage policy rules. For example, you may bring 8 kg of carry-on baggage and 25 kg of checked bags on Air India. Whereas Indigo Airlines will only allow you to bring 7 kg of carry-on and 15 kg of checked bags.</p>
+                    <br>
+                    <h4>Can I locate around $400 round-trip tickets on FaresMatch from Chicago to Honolulu?</h4>
+                    <p>Yes, there are numerous flights under $400 between Chicago and Honolulu. The least expensive flight on Multiple Airlines is as little as $373, but you may anticipate paying $415 on average.</p>
+                    <br>
+                    <h4>Which airlines provide flights between Chicago and Honolulu with flexible cancellation policies?</h4>
+                    <p>On flights from Chicago to Honolulu, Air New Zealand, and United Airlines have all waived their change and cancellation costs. However, we advise you to manually check policies on booking sites.</p>
+                    <br>
+                    <h4>How can FaresMatch locate such cheap airfare from Chicago to HNL?</h4>
+                    <p>FaresMatch is a reputed and customer-oriented travel search engine. This implies that we search the internet for the greatest pricing for our users. We can anytime provide a wide range of costs and choices for flights to Honolulu. For more details, you may get in touch with us around the clock.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="newfooter">
+        <div class="container2">
+            <div class="mainfooter">
+                <div class="d-flex gap logo">
+                    <div class="column">
+                        <a href="./index.html">
+                            <img src="./images/logo.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="column d-flex gap1 social">
+                        <h3>Connect with Us</h3>
+                        <div class="flex">
+                            <a href="https://www.facebook.com/faresmatchtravelagency" target="_blank"><i
+                                    class="fa-brands fa-facebook"></i></a>
+                            <a href="https://twitter.com/faresmatch" target="_blank"><i
+                                    class="fa-brands fa-x-twitter"></i></a>
+                            <a href="https://www.instagram.com/faresmatch9/" target="_blank"><i
+                                    class="fa-brands fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/company/faresmatchagency/" target="_blank"><i
+                                    class="fa fa-linkedin"></i></a>
+                            <a href="https://www.pinterest.com/faresmatchagency/" target="_blank"><i
+                                    class="fa fa-pinterest"></i></a>
+                            <a target="_blank" href="https://www.youtube.com/channel/UCVF0LhsyO15yOulfg82K4MQ"><i
+                                    class="fa-brands fa-youtube"></i></a>
+                            <a target="_blank" href="https://faresmatchtravelagency.quora.com/"><i
+                                    class="fa-brands fa-quora"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="links d-flex gap1">
+                    <div class="column">
+                        <p><b>Quick Links</b></p>
+                        <p><a href="./refund-cancellation.aspx">Policies </a></p>
+                        <p><a href="./vacations.aspx">Vacations </a></p>
+                        <p><a href="./vacation-packages.aspx">Packages</a></p>
+                        <p><a href="./airline-destinations.aspx">Airlines Destinations</a></p>
+                        <p><a href="./jetblue-fare-finder.aspx">Jetblue Fare Finder</a></p>
+                        <p><a href="./low-fare-calendar.aspx">Low-Fare Calendar</a></p>
+                    </div>
+
+                    <div class="column">
+                        <p><b>Airlines</b></p>
+                        <p><a href="./delta-airlines-flights-reservations.aspx">Delta</a></p>
+                        <p><a href="./united-airlines-flights-reservations.aspx">United</a></p>
+                        <p><a href="./alaska-airlines-flights-reservations.aspx">Alaska </a></p>
+                        <p><a href="./allegiant-airlines-flights-reservations.aspx">Allegiant</a></p>
+                        <p><a href="./frontier-airlines-flights-reservations.aspx">Frontier</a></p>
+                    </div>
+                    <div class="column">
+                        <p><b>Destinations</b></p>
+                        <p><a href="./flights/cheap-flights-to-las-vegas.aspx">Las Vegas</a></p>
+                        <p><a href="./flights/cheap-flights-to-new-york.aspx">New York</a></p>
+                        <p><a href="./flights/cheap-flights-to-los-angeles.aspx">Los Angeles</a></p>
+                        <p><a href="./flights/cheap-flights-to-florida.aspx">Florida </a></p>
+                        <p><a href="./flights/cheap-flights-to-california.aspx">California</a></p>
+                    </div>
+                    <div class="column">
+                        <p><b>Top Routes</b></p>
+                        <p><a href="./flights/chicago-ord-to-honolulu-hnl-flights.aspx">Chicago to Honolulu</a></p>
+                        <p><a href="./flights/san-francisco-to-london-flights.aspx">San Francisco to London</a></p>
+                        <p><a href="./flights/chicago-ord-to-los-angele-lax-flights.aspx">Chicago to Los Angeles</a>
+                        </p>
+                        <p><a href="./flights/toronto-to-lima-flights.aspx">Toronto to Lima</a></p>
+                        <p><a href="./flights/new-york-nyc-to-miami-mia-flights.aspx">New York to Miami</a></p>
+                    </div>
+                    <div class="column">
+                        <p><b>Information</b></p>
+                        <p><a href="./about-us.aspx">About</a></p>
+                        <p><a href="./contact-us.aspx">Contact</a></p>
+                        <p><a href="./privacy-policy.aspx">Privacy Policy</a></p>
+                        <p><a href="./terms.aspx">Terms & Conditions</a></p>
+                        <p><a href="./sitemap.aspx">Sitemap</a></p>
+                        <p><a href="./faq.aspx">FAQ's</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="foot">
+                <div class="column">
+                    <p>© Copyright 2024 <b>Faresmatch</b>. All Rights Reserved. | Address: 6355 Haystack CT Cumming
+                        , GA
+                        30040</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="tel:+18009183039">
+        <div class="mobilecta">
+            <div class="img">
+                <img src="./images/customer-support.jpg" alt="customer-support">
+            </div>
+            <div>
+                <p><b>Need Help Booking</b></p>
+                <p>Our agent is ready! Call us 24/7</p>
+            </div>
+            <div>
+                <i class="fa-solid fa-phone-volume fa-beat"></i>
+            </div>
+        </div>
+    </a>
+
+</body>
+<script src="./css/file.js"></script>
+<script src="./css/slider.js"></script>
+<script src="./css/bootstrap.js"></script>
+<script src="./css/jquery.js"></script>
+<script src="https://kit.fontawesome.com/513bc71f1a.js" crossorigin="anonymous"></script>
+
+</html>
