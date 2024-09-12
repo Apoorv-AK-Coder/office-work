@@ -24,29 +24,37 @@ function mufun() {
 
 //tabs
 function TabFun() {
-    const tabs = document.querySelectorAll("[id^='tab']");
-    const tabDetails = document.querySelectorAll("[id^='tabdetail']");
+    // Get all tab sections
+    const tabSections = document.querySelectorAll(".tabs");
 
-    // Initial setup: underline the first tab
-    tabs[0].style.borderBottom = "2px solid var(--primary-color)";
-    tabs[0].style.color = "var(--primary-color)";
+    // Loop through each tab section
+    tabSections.forEach((section) => {
+        const tabs = section.querySelectorAll("[id^='tab']");
+        const tabDetails = section.querySelectorAll("[id^='tabdetail']");
 
-    tabs.forEach((tab, index) => {
-        tab.addEventListener("click", () => {
-            tabDetails.forEach((detail, detailIndex) => {
-                if (detailIndex === index) {
-                    detail.style.display = "block";
-                    tabs[detailIndex].style.borderBottom = "2px solid var(--primary-color)";
-                    tabs[detailIndex].style.color = "var(--primary-color)";
-                } else {
-                    detail.style.display = "none";
-                    tabs[detailIndex].style.border = "none";
-                    tabs[detailIndex].style.color = "var(--fifth-color)";
-                }
+        // Initial setup: underline the first tab in each section
+        tabs[0].style.borderBottom = "2px solid var(--primary-color)";
+        tabs[0].style.color = "var(--primary-color)";
+        tabDetails[0].style.display = "block"; // Show the first tab detail
+
+        tabs.forEach((tab, index) => {
+            tab.addEventListener("click", () => {
+                tabDetails.forEach((detail, detailIndex) => {
+                    if (detailIndex === index) {
+                        detail.style.display = "block";
+                        tabs[detailIndex].style.borderBottom = "2px solid var(--primary-color)";
+                        tabs[detailIndex].style.color = "var(--primary-color)";
+                    } else {
+                        detail.style.display = "none";
+                        tabs[detailIndex].style.border = "none";
+                        tabs[detailIndex].style.color = "var(--fifth-color)";
+                    }
+                });
             });
         });
     });
 }
+
 
 // Run TabFun on page load to set initial state
 document.addEventListener("DOMContentLoaded", () => {
