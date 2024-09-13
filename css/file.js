@@ -121,3 +121,48 @@ fields.forEach(field => {
         }
     });
 });
+
+
+function hideAllDetails() {
+    const allDetails = document.querySelectorAll('.linkdetails');
+    allDetails.forEach(detail => detail.style.display = 'none');
+
+    const allPlusIcons = document.querySelectorAll('.fa-plus');
+    const allMinusIcons = document.querySelectorAll('.fa-minus');
+    const allLinkHeads = document.querySelectorAll('.linkhead');
+    
+    allPlusIcons.forEach(plus => plus.style.display = 'inline');
+    allMinusIcons.forEach(minus => minus.style.display = 'none');
+    allLinkHeads.forEach(linkhead => linkhead.classList.remove('active-linkhead'));
+  }
+
+  // Add click event listener to all linkheads
+  const linkHeads = document.querySelectorAll('.linkhead');
+  linkHeads.forEach(link => {
+    link.addEventListener('click', function() {
+      const tabNumber = this.getAttribute('data-tab');
+      const tabContent = document.getElementById('linktab' + tabNumber);
+
+      // Toggle the clicked tab content
+      if (tabContent.style.display === 'none' || !tabContent.style.display) {
+        hideAllDetails();  // First hide all others
+        tabContent.style.display = 'block';  // Show the selected tab
+
+        // Show minus icon and hide plus icon for the clicked tab
+        this.querySelector('.fa-plus').style.display = 'none';
+        this.querySelector('.fa-minus').style.display = 'inline';
+
+        // Add box-shadow to the clicked linkhead
+        this.classList.add('active-linkhead');
+      } else {
+        // Hide this tab content if already open
+        tabContent.style.display = 'none';
+        this.querySelector('.fa-plus').style.display = 'inline';
+        this.querySelector('.fa-minus').style.display = 'none';
+        this.classList.remove('active-linkhead');
+      }
+    });
+  });
+
+  // Initialize by hiding all details
+  hideAllDetails();

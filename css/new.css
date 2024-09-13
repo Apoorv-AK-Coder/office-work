@@ -409,6 +409,54 @@ table {
     }
 }
 
+.sitemap {
+    .linkcard {
+        .linkhead {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #b1b1b1;
+            margin-top: 10px;
+            cursor: pointer;
+            i {
+                font-size: 22px !important;
+            }
+        }
+        
+        .linkhead:hover {
+            box-shadow: 0 0 1px 1px rgba(20, 20, 20, 0.2);
+        }
+
+        .active-linkhead {
+            box-shadow: 0 0 1px 1px rgba(20, 20, 20, 0.2);
+          }
+
+        h4 {
+            flex: 1 !important;
+            margin: auto 0 !important;
+        }
+
+    }
+
+      .fa-minus {
+        display: none;
+      }
+
+    .linkdetails {
+        padding: 20px;
+        border: 1px solid #d1d1d1;
+        border-radius: 10px;
+        margin-top: 10px;
+        display: none;
+
+        h3 {
+            border-bottom: 1px solid #d1d1d1;
+            margin-bottom: 20px !important;
+            font-weight: 400 !important;
+        }
+    }
+}
+
 
 @media only screen and (max-width: 1024px) {
 
